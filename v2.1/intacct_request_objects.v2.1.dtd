@@ -19,7 +19,7 @@
 <!ELEMENT check (bankaccountid, checkno?)>
 <!ELEMENT creditcard (creditcardid)>
 <!ELEMENT eft (documentno)>
-<!ELEMENT expense ((expensetype | glaccountno), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, exppmttype?)>
+<!ELEMENT expense ((expensetype | glaccountno), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, exppmttype?, quantity?, rate?)>
 <!ELEMENT expenses (expense+)>
 <!ELEMENT glentry (trtype, amount, glaccountno, document?, datecreated?, memo?, locationid?, departmentid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, customfields?, recon_date?, (currency, ((exchratedate?, exchratetype) | exchrate))?)>
 <!ELEMENT gltransaction (journalid, datecreated, description, sourceentity?, gltransactionentries)>
@@ -37,7 +37,7 @@
 	line_num CDATA #REQUIRED
 >
 <!ELEMENT potransitems (potransitem+)>
-<!ELEMENT potransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?, locationid?, departmentid?, memo?, itemdetails?, form1099?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, billable?)>
+<!ELEMENT potransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?, overridetaxamount?, tax?, locationid?, departmentid?, memo?, itemdetails?, form1099?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, billable?)>
 <!ELEMENT sotransitems (sotransitem+)>
 <!ELEMENT sotransitem (bundlenumber?, itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, discountpercent?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, fulfillmentstatus?, taskno?, billingtemplate?)>
 <!ELEMENT recursotransitems (recursotransitem+)>
@@ -50,7 +50,7 @@
 <!ELEMENT updateapadjustmentitems (lineitem | updatelineitem)+>
 <!ELEMENT updatearadjustmentitems (lineitem | updatelineitem)+>
 <!ELEMENT updatebillitems (lineitem | updatelineitem)+>
-<!ELEMENT updateexpense ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, exppmttype?)>
+<!ELEMENT updateexpense ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, exppmttype?, quantity?, rate?)>
 <!ATTLIST updateexpense
 	line_num CDATA #REQUIRED
 >
@@ -60,9 +60,9 @@
 
 <!ELEMENT updateexpenseadjustments (expenseadjustment | updateexpenseadjustment)+>
 
-<!ELEMENT expenseadjustment ((expensetype | glaccountno), amount, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, customfields?)>
+<!ELEMENT expenseadjustment ((expensetype | glaccountno), amount, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, exppmttype?, quantity?, rate?, customfields?)>
 
-<!ELEMENT updateexpenseadjustment ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, customfields?)>
+<!ELEMENT updateexpenseadjustment ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, exppmttype?, quantity?, rate?, customfields?)>
 
 <!ATTLIST updateexpenseadjustment
 	line_num CDATA #REQUIRED
@@ -142,3 +142,7 @@
 <!-- For Supporting Documents-->
 <!ELEMENT attachments (attachment, attachment*)>
 <!ELEMENT attachment (attachmentname, attachmenttype, attachmentdata)>
+
+<!ELEMENT unitrates (unitrate+)>
+<!ELEMENT unitrate (startdate,rate)>
+

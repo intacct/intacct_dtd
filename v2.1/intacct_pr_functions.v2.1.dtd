@@ -274,7 +274,7 @@
 <!-- Create an ar payment batch -->
 <!ELEMENT create_arpaymentbatch (batchtitle, (bankaccountid | undepfundsacct)?, datecreated?, create_arpayment*, apply_arpayment*)>
 <!-- Create an ar payment -->
-<!ELEMENT create_arpayment (customerid, paymentamount,translatedamount?, (batchkey | bankaccountid | undepfundsacct)?, refid?, overpaylocid?, overpaydeptid?, datereceived?, paymentmethod?,(basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, authcode?, arpaymentitem*, (onlinecardpayment | onlineachpayment)*)>
+<!ELEMENT create_arpayment (customerid, paymentamount,translatedamount?, (batchkey | bankaccountid | undepfundsacct)?, refid?, overpaylocid?, overpaydeptid?, datereceived?, paymentmethod?,(basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, cctype?, authcode?, arpaymentitem*, (onlinecardpayment | onlineachpayment)*)>
 <!ELEMENT delete_arpayment EMPTY>
 <!ATTLIST delete_arpayment
 	key CDATA #REQUIRED
@@ -364,7 +364,7 @@
 >
 
 <!-- Applying AR Payments -->
-<!ELEMENT apply_arpayment (arpaymentkey, paymentdate, batchkey?, memo?, overpaylocid?, overpaydeptid?, (arpaymentitems* | arpaymentitemdetails*))>
+<!ELEMENT apply_arpayment (arpaymentkey, paymentdate, batchkey?, memo?, overpaylocid?, overpaydeptid?, arpaymentitems*)>
 <!-- Get an AR Aging -->
 <!ELEMENT get_araging (agingperiods?, customerid?, invoiceno?,locationid? ,departmentid?, asofdate?, useduedate?, showdetails?, documenttype?,useglpostdate?,showzerowithactivity?)> 
 

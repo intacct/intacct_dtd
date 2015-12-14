@@ -22,6 +22,7 @@
 <!ENTITY % NUMBER_6 "(#PCDATA)">
 <!ENTITY % NUMBER_2_2 "(#PCDATA)">
 <!ENTITY % NUMBER_3_2 "(#PCDATA)">
+<!ENTITY % NUMBER_10_4 "(#PCDATA)">
 <!ENTITY % NUMBER_12_4 "(#PCDATA)">
 <!ENTITY % NUMBER_30_10 "(#PCDATA)">
 <!ENTITY % NUMBER_38_2 "(#PCDATA)">
@@ -123,6 +124,8 @@
 <!-- ENUMS: "debit", "credit" -->
 <!ENTITY % ENUM_PAYMENTMETHOD "(#PCDATA)">
 <!-- ENUMS: "Printed Check", "Online", "Cash", "EFT", "Credit Card", "Online Charge Card", "WF Check", "WF Domestic ACH", "WF USD Wire", "ACH" -->
+<!ENTITY % ENUM_CCTYPE "(#PCDATA)">
+<!-- ENUMS: 'Visa','Mastercard','Discover','American Express','Diners Club','Other Charge Card' -->
 <!ENTITY % ENUM_ACHACCTYPE "(#PCDATA)">
 <!-- ENUMS: "Demand Deposit Account" -->
 <!ENTITY % ENUM_WIREACCTYPE "(#PCDATA)">
@@ -630,6 +633,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT transactiontype %STRING_30;>
 <!ELEMENT undepfundsacct %STRING_24;>
 <!ELEMENT uniqueid %BOOLEAN;>
+<!ELEMENT includewhitespace %BOOLEAN;> <!-- includewhitespace default="true" -->
 <!ELEMENT nogl %BOOLEAN;>
 <!ELEMENT unit %STRING_30;>
 <!ELEMENT url %STRING_256;>
@@ -899,6 +903,10 @@ earningtype | employeerate | achbankconfiguration ">
 <!-- New elements for online charge card -->
 <!ELEMENT securitycode %NUMBER_4;>
 <!ELEMENT authcode %STRING_20;>
+
+<!-- New elements for Credit Card -->
+<!ELEMENT cctype %ENUM_CCTYPE;>
+
 <!ELEMENT usedefaultcard %BOOLEAN;>
 <!-- New elements for online charge ach debit -->
 <!ELEMENT usedefaultaccount %BOOLEAN;>
@@ -1124,5 +1132,10 @@ earningtype | employeerate | achbankconfiguration ">
 
 <!-- Elements for docentry -->
 <!ELEMENT overridetaxamount %BOOLEAN;>
+<!ELEMENT taxrate %NUMBER_10_4;>
 <!ELEMENT tax %NUMBER_38_2;>
 <!ELEMENT grossamount %NUMBER_38_2;>
+
+<!-- Elements for expensetype and unitrate-->
+<!ELEMENT unitcurrency %STRING_3;>
+<!ELEMENT rate %NUMBER_10_4;>

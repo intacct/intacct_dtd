@@ -22,7 +22,7 @@
 %COMMON_OBJECTS;%REQUEST_OBJECTS;%CO_FUNCTIONS;%GL_FUNCTIONS;%PR_FUNCTIONS;%ICOE_FUNCTIONS;%CM_FUNCTIONS;%WU_FUNCTIONS;
 <!-- REQUEST IS THE TOP LEVEL ELEMENT EXPECTED IN XML REQUESTS -->
 <!ELEMENT request (control, operation+)>
-<!ELEMENT control (senderid, password, controlid, uniqueid?, dtdversion?, policyid?, debug?, validate?)>
+<!ELEMENT control (senderid, password, controlid, uniqueid?, dtdversion?, policyid?, debug?, validate?, includewhitespace?)>
 <!ELEMENT operation (authentication, preferences*, content*)>
 <!ATTLIST operation
 	transaction (true | false) "false"

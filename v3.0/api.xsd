@@ -380,8 +380,8 @@
  </xs:element>
 
  <xs:element name='controlid'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
+     <xs:complexType mixed='true'>
+     </xs:complexType>
  </xs:element>
 
  <xs:element name='correction'>
@@ -1282,6 +1282,11 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='sourceentity'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='bookid'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -2112,10 +2117,7 @@
   </xs:complexType>
  </xs:element>
 
- <xs:element name='action'>
-    <xs:complexType mixed='true'>
-    </xs:complexType>
- </xs:element>
+
 
  <xs:element name='transactiontype'>
   <xs:complexType mixed='true'>
@@ -3294,6 +3296,11 @@
   </xs:complexType>
  </xs:element>
 
+<xs:element name='cctype'>
+    <xs:complexType mixed='true'>
+    </xs:complexType>
+</xs:element>
+
  <xs:element name='authcode'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -4017,6 +4024,12 @@
     <xs:element ref='memo' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customerid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='projectid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='recon_date' minOccurs='0' maxOccurs='1'/>
     <xs:sequence minOccurs='0' maxOccurs='1'>
@@ -4047,9 +4060,7 @@
  <xs:element name='gltransactionentries'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='glentry'/>
-    <xs:element ref='glentry'/>
-    <xs:element ref='glentry' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref='glentry' minOccurs='2' maxOccurs='unbounded'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -4057,7 +4068,7 @@
  <xs:element name='statgltransactionentries'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='glentry' maxOccurs='unbounded'/>
+    <xs:element ref='glentry' minOccurs="1" maxOccurs='unbounded'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -6174,6 +6185,7 @@
     <xs:element ref='datecreated'/>
     <xs:element ref='description'/>
     <xs:element ref='referenceno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='sourceentity' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='gltransactionentries'/>
    </xs:sequence>
@@ -7879,6 +7891,7 @@
       <xs:element ref='exchrate'/>
      </xs:choice>
     </xs:sequence>
+    <xs:element ref='cctype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='authcode' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='arpaymentitem' minOccurs='0' maxOccurs='unbounded'/>
     <xs:choice minOccurs='0' maxOccurs='unbounded'>
@@ -8056,10 +8069,7 @@
     <xs:element ref='memo' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='overpaylocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='overpaydeptid' minOccurs='0' maxOccurs='1'/>
-    <xs:choice>
-     <xs:element ref='arpaymentitems' minOccurs='0'/>
-     <xs:element ref='arpaymentitemdetails' minOccurs='0'/>
-    </xs:choice>
+    <xs:element ref='arpaymentitems' minOccurs='0' maxOccurs='unbounded'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -9134,6 +9144,18 @@
     <xs:element ref='referenceno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='payee' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
+    <xs:sequence minOccurs='0' maxOccurs='1'>
+     <xs:element ref='currency'/>
+     <xs:choice>
+      <xs:sequence>
+       <xs:element ref='exchratedate' minOccurs='0' maxOccurs='1'/>
+       <xs:element ref='exchratetype'/>
+      </xs:sequence>
+      <xs:element ref='exchrate'/>
+     </xs:choice>
+    </xs:sequence>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='ccpayitems'/>
    </xs:sequence>
   </xs:complexType>
@@ -9142,7 +9164,7 @@
  <xs:element name='ccpayitems'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='ccpayitem' maxOccurs='unbounded'/>
+    <xs:element ref='ccpayitem' minOccurs="1" maxOccurs='unbounded'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -9158,6 +9180,13 @@
     <xs:element ref='paymentamount'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customerid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='projectid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -9178,6 +9207,18 @@
     </xs:choice>
     <xs:element ref='refid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
+    <xs:sequence minOccurs='0' maxOccurs='1'>
+     <xs:element ref='currency'/>
+     <xs:choice>
+      <xs:sequence>
+       <xs:element ref='exchratedate' minOccurs='0' maxOccurs='1'/>
+       <xs:element ref='exchratetype'/>
+      </xs:sequence>
+      <xs:element ref='exchrate'/>
+     </xs:choice>
+    </xs:sequence>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='receiptitems'/>
    </xs:sequence>
   </xs:complexType>
@@ -9194,6 +9235,8 @@
      <xs:element ref='receiptkeys'/>
     </xs:choice>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -9408,6 +9451,18 @@
     <xs:element ref='referenceno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='payee' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
+    <xs:sequence minOccurs='0' maxOccurs='1'>
+     <xs:element ref='currency'/>
+     <xs:choice>
+      <xs:sequence>
+       <xs:element ref='exchratedate' minOccurs='0' maxOccurs='1'/>
+       <xs:element ref='exchratetype'/>
+      </xs:sequence>
+      <xs:element ref='exchrate'/>
+     </xs:choice>
+    </xs:sequence>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='updateccpayitems' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='key' type='xs:string' use='required'/>
@@ -9739,6 +9794,7 @@
     <xs:element ref='dtdversion' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='policyid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='debug' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='includewhitespace' minOccurs='0' maxOccurs='1' type="xs:boolean" default="true"/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -9909,7 +9965,7 @@
                 <xs:all>
                         <xs:element name="object" minOccurs="1" type='xs:string'/>
                         <xs:element name="query" minOccurs="1" type='xs:string'/>
-                        <xs:element name="pagesize" minOccurs="0" type='xs:string'/>
+                        <xs:element name="pagesize" minOccurs="0" maxOccurs="1" />
                         <xs:element name="fields" minOccurs="0" type='xs:string'/>
                         <xs:element name="returnFormat" minOccurs="0" type='xs:string'/>
                         <xs:element name="docparid" minOccurs="0" type='xs:string'/>
@@ -9994,7 +10050,7 @@
     <xs:complexType>
         <xs:all>
             <xs:element name="report" minOccurs="1" maxOccurs="1" type='xs:string'/>
-            <xs:element name="pagesize" minOccurs="0" type='xs:string'/>
+            <xs:element name="pagesize" minOccurs="0" maxOccurs="1" />
             <xs:element name="returnFormat" minOccurs="0" type='xs:string'/>
             <xs:element ref="arguments" minOccurs="0" maxOccurs="1"/>
             <xs:element name="waitTime" minOccurs="0" maxOccurs="1" type='xs:string'/>
@@ -10008,7 +10064,7 @@
     <xs:complexType>
         <xs:all>
             <xs:element name="view" minOccurs="1" maxOccurs="1" type='xs:string'/>
-            <xs:element name="pagesize" minOccurs="0" maxOccurs="1" type='xs:string'/>
+            <xs:element name="pagesize" minOccurs="0" maxOccurs="1" />
             <xs:element name="returnFormat" minOccurs="0" type='xs:string'/>
             <xs:element ref="filters" minOccurs="0" maxOccurs="1"/>
         </xs:all>

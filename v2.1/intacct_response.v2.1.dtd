@@ -87,7 +87,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT expenseadjustments (expenseadjustment+)>
 
 
-<!ELEMENT expensetypes (glaccountno?, expensetype?, description?, offsetglaccountno?, status?)>
+<!ELEMENT expensetypes (glaccountno?, expensetype?, description?, offsetglaccountno?, status?, unitcurrency?, unitrates?)>
 <!ELEMENT expensepaymenttype (name?, description?, nonreimbursable?, offsetacctno?, status?)>
 <!ELEMENT function (#PCDATA)>
 <!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, taxable?, taxcode?, mrccode?, alternativeaccount?, customfields?)>
@@ -105,9 +105,9 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, departmentid?, customfields?)>
 <!ELEMENT itemglgroup (glgroupname?)>
 <!ELEMENT sotransitems (sotransitem+)>
-<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?)>
+<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?)>
 <!ELEMENT potransitems (potransitem+)>
-<!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
+<!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, price?, overridetaxamount?, taxrate?, tax?, retailprice?, totalamount?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
 <!ELEMENT popricelist (pricelistname?, datefrom?, dateto?, status?)>
 <!ELEMENT potransaction (key?, transactiontype?, transactionid?, datecreated?, dateposted?, createdfrom?, vendorid?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, supdocid?, transactionstate?, whenmodified?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, potransitems?, subtotals?)>
 <!ELEMENT potransactiondef (transdefid?, transclass?)>
@@ -232,6 +232,9 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT earningtype (name?, method?, billableacctno?, nonbillableacctno?, ratemultiplier?) >
 <!ELEMENT employeerate (recordno?, employeeid?, ratestartdate?, rateenddate?, salaryrate?, billingrate?) >
 
+<!ELEMENT unitrates (unitrate+)>
+<!ELEMENT unitrate (startdate,rate)>
+
 <!-- DATA TYPES -->
 <!-- RAW TYPES -->
 <!ENTITY % INTEGER "(#PCDATA)">
@@ -243,6 +246,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ENTITY % NUMBER_2_2 "(#PCDATA)">
 <!ENTITY % NUMBER_3_2 "(#PCDATA)">
 <!ENTITY % NUMBER_38_2 "(#PCDATA)">
+<!ENTITY % NUMBER_10_4 "(#PCDATA)">
 <!ENTITY % NUMBER_12_4 "(#PCDATA)">
 <!ENTITY % NUMBER_30_10 "(#PCDATA)">
 <!ENTITY % NUMBER_16_4 "(#PCDATA)">
@@ -1309,3 +1313,10 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT sessionid (#PCDATA)>
 <!ELEMENT endpoint (#PCDATA)>
 <!ELEMENT session (#PCDATA)>
+
+<!-- VAT fields -->
+<!ELEMENT overridetaxamount %BOOLEAN;>
+<!ELEMENT tax %MONEY;>
+<!ELEMENT taxrate %NUMBER_10_4;>
+<!ELEMENT grossamount %MONEY;>
+<!ELEMENT rate %NUMBER_10_4;>

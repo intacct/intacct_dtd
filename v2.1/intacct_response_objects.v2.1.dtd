@@ -62,7 +62,7 @@
 <!ELEMENT expenseadjustments (expenseadjustment+)>
 
 
-<!ELEMENT expensetypes (glaccountno?, expensetype?, description?, offsetglaccountno?, status?)>
+<!ELEMENT expensetypes (glaccountno?, expensetype?, description?, offsetglaccountno?, status?, unitcurrency?, unitrates?)>
 <!ELEMENT expensepaymenttype (name?, description?, nonreimbursable?, offsetacctno?, status?)>
 <!ELEMENT function (#PCDATA)>
 <!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, taxable?, taxcode?, mrccode?, alternativeaccount?, customfields?)>
@@ -80,9 +80,9 @@
 <!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, departmentid?, customfields?)>
 <!ELEMENT itemglgroup (glgroupname?)>
 <!ELEMENT sotransitems (sotransitem+)>
-<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?)>
+<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?)>
 <!ELEMENT potransitems (potransitem+)>
-<!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
+<!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, price?, retailprice?, overridetaxamount?, taxrate?, tax?, totalamount?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
 <!ELEMENT popricelist (pricelistname?, datefrom?, dateto?, status?)>
 <!ELEMENT potransaction (key?, transactiontype?, transactionid?, datecreated?, dateposted?, createdfrom?, vendorid?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, supdocid?, transactionstate?, whenmodified?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, potransitems?, subtotals?)>
 <!ELEMENT potransactiondef (transdefid?, transclass?)>
@@ -215,3 +215,6 @@
 <!ELEMENT policy (policyName, rights)>
 <!ELEMENT policyName (#PCDATA)>
 <!ELEMENT rights (#PCDATA)>  <!-- pipe delimited list -->
+
+<!ELEMENT unitrates (unitrate+)>
+<!ELEMENT unitrate (startdate,rate)>
