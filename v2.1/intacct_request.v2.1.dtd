@@ -1,0 +1,39 @@
+<!--  	This DTD defines the basic structure of an XML request.  	
+         File:            intacct_request.v2.1.dtd
+         Version:            2.1
+		
+         (C)2002, Intacct Corporation, All Rights Reserved 
+
+         Intacct Corporation Proprietary Information.
+         This document contains trade secret data that belongs to Intacct 
+         corporation and is protected by the copyright laws. Information herein 
+         may not be used, copied or disclosed in whole or part without prior 
+         written consent from Intacct Corporation.
+-->
+<!-- INCLUDE FUNCTION, OBJECT AND LIST DEFINITIONS -->
+<!ENTITY % CO_FUNCTIONS SYSTEM "intacct_co_functions.v2.1.dtd">
+<!ENTITY % GL_FUNCTIONS SYSTEM "intacct_gl_functions.v2.1.dtd">
+<!ENTITY % PR_FUNCTIONS SYSTEM "intacct_pr_functions.v2.1.dtd">
+<!ENTITY % ICOE_FUNCTIONS SYSTEM "intacct_icoe_functions.v2.1.dtd">
+<!ENTITY % CM_FUNCTIONS SYSTEM "intacct_cm_functions.v2.1.dtd">
+<!ENTITY % WU_FUNCTIONS SYSTEM "intacct_wu_functions.v2.1.dtd">
+<!ENTITY % REQUEST_OBJECTS SYSTEM "intacct_request_objects.v2.1.dtd">
+<!ENTITY % COMMON_OBJECTS SYSTEM "intacct_common_objects.v2.1.dtd">
+%COMMON_OBJECTS;%REQUEST_OBJECTS;%CO_FUNCTIONS;%GL_FUNCTIONS;%PR_FUNCTIONS;%ICOE_FUNCTIONS;%CM_FUNCTIONS;%WU_FUNCTIONS;
+<!-- REQUEST IS THE TOP LEVEL ELEMENT EXPECTED IN XML REQUESTS -->
+<!ELEMENT request (control, operation+)>
+<!ELEMENT control (senderid, password, controlid, uniqueid?, dtdversion?, policyid?, debug?, validate?)>
+<!ELEMENT operation (authentication, preferences*, content*)>
+<!ATTLIST operation
+	transaction (true | false) "false"
+>
+<!ELEMENT authentication (login | sessionid)>
+<!ELEMENT login (userid, companyid, password, clientid?, locationid?)>
+<!ELEMENT sessionid (#PCDATA)>
+<!ELEMENT validate (#PCDATA)> <!-- valid values are 'none', 'server', and 'client'.  default is 'none' -->
+<!ELEMENT preferences (companyprefs*, moduleprefs*)>
+<!ELEMENT content (function)+>
+<!ELEMENT function %LIST_FUNCTIONS;>
+<!ATTLIST function
+	controlid CDATA #REQUIRED
+>

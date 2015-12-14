@@ -1,0 +1,357 @@
+<!--     This DTD defines the common functions and company functions  	
+         File:               intacct_co_functions.v2.1.dtd	
+         Version:            2.1
+		
+         (C)2002, Intacct Corporation, All Rights Reserved 
+
+         Intacct Corporation Proprietary Information.
+         This document contains trade secret data that belongs to Intacct 
+         corporation and is protected by the copyright laws. Information herein 
+         may not be used, copied or disclosed in whole or part without prior 
+         written consent from Intacct Corporation.
+-->
+<!-- Filter structure -->
+<!ELEMENT filter ((logical+) | (expression+))>
+<!ELEMENT expression (field, operator, value)>
+<!ATTLIST expression
+	object CDATA #IMPLIED
+>
+
+
+<!ELEMENT additional_parameters (parameter+)>
+<!ELEMENT parameter (name, value)>
+<!ATTLIST parameter
+	object CDATA #IMPLIED
+>
+
+<!ELEMENT logical ((logical | expression), (logical | expression)+ ) >
+<!ATTLIST logical
+	logical_operator (and | or) #REQUIRED
+	object CDATA #IMPLIED
+>
+<!-- init_session function -->
+<!ELEMENT init_session (activity?)>
+<!-- getAPISession function -->
+<!ELEMENT getAPISession EMPTY>
+<!-- Get_List function -->
+<!ELEMENT get_list (filter?, sorts?, fields?, additional_parameters?)>
+<!ATTLIST get_list
+	object (%LIST_OBJECTS;) #REQUIRED
+        start CDATA #IMPLIED
+	maxitems CDATA #IMPLIED
+	showprivate (true | false) "false"
+>
+<!ELEMENT sorts (sortfield+)>
+<!ELEMENT sortfield (#PCDATA)>
+<!ATTLIST sortfield
+	order (asc | desc) #REQUIRED
+>
+<!ELEMENT fields (field+)>
+<!ELEMENT field (#PCDATA)>
+<!-- Get an Object function -->
+<!ELEMENT get (fields?)>
+<!ATTLIST get
+	object (%GET_OBJECTS;) #REQUIRED
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create an employee -->
+<!ELEMENT create_employee (employeeid, ssn?, title?, locationid?, departmentid?, classid?, supervisorid?, birthdate?, startdate?, enddate?, terminationtype?, employeetype?, gender?, status?, currency?, externalid?, name1099?, form1099type?, form1099box?, earningtypename?, postactualcost?, personalinfo, contactlist?, paymethod?, paymentnotify?, achenabled?, achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?,customfields?, mergepaymentreq?)>
+<!ATTLIST create_employee
+	ignoreduplicates (true | false) "false"
+>
+<!-- Delete an employee -->
+<!ELEMENT delete_employee EMPTY>
+<!ATTLIST delete_employee
+	employeeid CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Update an employee -->
+<!ELEMENT update_employee (ssn?, title?, locationid?, departmentid?, classid?, supervisorid?, birthdate?, startdate?, enddate?, terminationtype?, employeetype?, gender?, status?, currency?, name1099?, form1099type?, form1099box?, earningtypename?, postactualcost?, personalinfo, contactlist?,  paymethod?, paymentnotify?,achenabled?, achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?, customfields?, mergepaymentreq?)>
+<!ATTLIST update_employee
+	employeeid CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Create an earningtype -->
+<!ELEMENT create_earningtype (name, method, billableacctno, nonbillableacctno, ratemultiplier?, customfields?)>
+<!-- Update a earningtype -->
+<!ELEMENT update_earningtype  (method?, billableacctno?, nonbillableacctno?, ratemultiplier?, customfields?)>
+<!ATTLIST update_earningtype
+    key CDATA #REQUIRED
+>
+<!-- Delete a earningtype -->
+<!ELEMENT delete_earningtype EMPTY>
+<!ATTLIST delete_earningtype
+    key CDATA #REQUIRED
+>
+<!-- Create an employeerate -->
+<!ELEMENT create_employeerate (employeeid, ratestartdate, billingrate?, salaryrate?, customfields?)>
+<!-- Update an employeerate -->
+<!ELEMENT update_employeerate  (ratestartdate?, billingrate?, salaryrate?, customfields?)>
+<!ATTLIST update_employeerate
+    key CDATA #REQUIRED
+>
+<!-- Delete an employeerate -->
+<!ELEMENT delete_employeerate EMPTY>
+<!ATTLIST delete_employeerate
+    key CDATA #REQUIRED
+>
+<!-- Create a contact -->
+<!ELEMENT create_contact (contactname, printas, %CONTACT_OPTIONAL_FIELDS;, externalid?)>
+<!ATTLIST create_contact
+	ignoreduplicates (true | false) "false"
+>
+<!-- Update a contact -->
+<!ELEMENT update_contact (printas, %CONTACT_OPTIONAL_FIELDS;)>
+<!ATTLIST update_contact
+	contactname CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete a contact -->
+<!ELEMENT delete_contact EMPTY>
+<!ATTLIST delete_contact
+	contactname CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create Department -->
+<!ELEMENT create_department (departmentid, title, parentid?, supervisorid?, status?, externalid?, customfields?, custtitle?)>
+<!ATTLIST create_department
+	ignoreduplicates (true | false) "false"
+>
+<!-- Update Department -->
+<!ELEMENT update_department (title?, parentid?, supervisorid?, status?, customfields?, custtitle?)>
+<!ATTLIST update_department
+	departmentid CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete Department -->
+<!ELEMENT delete_department EMPTY>
+<!ATTLIST delete_department
+	departmentid CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create GLBook -->
+<!ELEMENT create_glbook (bookid, description, currency, bookcontact?, ctanetassetacct, ctanetincomeacct, 
+		                 bookstatjournal?, budgetheader, department, exchratetype, bstranmethod, istranmethod, eename, autoelimination)>
+<!ATTLIST create_glbook
+    ignoreduplicates (true | false) "false"
+>
+<!-- Update GLBook -->
+<!ELEMENT update_glbook (description?, bookcontact?)>
+<!ATTLIST update_glbook
+	bookid CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete GLBook -->
+<!ELEMENT delete_glbook EMPTY>
+<!ATTLIST delete_glbook
+	bookkey CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!ELEMENT create_glbooklocations (bookkey, locationid, bookentityjournal)>
+<!ATTLIST create_glbooklocations
+    ignoreduplicates (true | false) "false"
+>
+<!-- Delete GLBookLocations -->
+<!ELEMENT delete_glbooklocations (bookkey, locationid)>
+<!ATTLIST delete_glbooklocations
+	externalkey (true | false) "false"
+>
+
+<!ELEMENT create_glbookacctgroups (bookkey, acctgroupkey)>
+<!ATTLIST create_glbookacctgroups
+    ignoreduplicates (true | false) "false"
+>
+
+<!-- Delete GLBookAcctGroups -->
+<!ELEMENT delete_glbookacctgroups (bookkey, acctgroupkey)>
+<!ATTLIST delete_glbookacctgroups
+	externalkey (true | false) "false"
+>
+
+<!ELEMENT create_glbookacctratetypes (bookkey, glaccountno, glacctratetypes)>
+<!ATTLIST create_glbookacctratetypes
+    ignoreduplicates (true | false) "false"
+>
+
+<!-- Delete GLBookAcctRateTypes -->
+<!ELEMENT delete_glbookacctratetypes (bookkey, glaccountno)>
+<!ATTLIST delete_glbookacctratetypes
+    ignoreduplicates (true | false) "false"
+>
+
+<!ELEMENT create_glbookelimaccounts (bookkey, accountkey)>
+<!ATTLIST create_glbookelimaccounts
+    ignoreduplicates (true | false) "false"
+>
+
+<!-- Delete glbookelimaccounts -->
+<!ELEMENT delete_glbookelimaccounts (bookkey)>
+<!ATTLIST delete_glbookelimaccounts
+    ignoreduplicates (true | false) "false"
+>
+
+<!ELEMENT create_location (locationid, name, parentid?, supervisorid?, startdate?, enddate?, status?, externalid?, primary?, shipto?, customfields?, custtitle?)>
+<!ATTLIST create_location
+	ignoreduplicates (true | false) "false"
+>
+
+<!ELEMENT create_locationgroup (id, name, members)>
+<!ATTLIST create_locationgroup
+	ignoreduplicates (true | false) "false"
+>
+
+<!-- Update Location -->
+<!ELEMENT update_location (name?, parentid?, supervisorid?, startdate?, enddate?, status?, primary?, shipto?, customfields?, custtitle?)>
+<!ATTLIST update_location
+	locationid CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete Location -->
+<!ELEMENT delete_location EMPTY>
+<!ATTLIST delete_location
+	locationid CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Get My Clients -->
+<!ELEMENT get_myclients (companytype?)>
+
+<!ELEMENT get_applications EMPTY>
+
+<!ELEMENT get_companyprefs EMPTY>
+<!ATTLIST get_companyprefs
+	application CDATA #REQUIRED
+>
+
+<!ELEMENT set_companyprefs (companyprefs)>
+<!ATTLIST set_companyprefs 
+	application CDATA #REQUIRED
+>
+<!ELEMENT create_territory (territoryid, name, parentid?, managerid?, status?, externalid?, customfields?)>
+<!ATTLIST create_territory ignoreduplicates (true | false) "false">
+
+<!-- Delete a territory -->
+<!ELEMENT delete_territory EMPTY>
+<!ATTLIST delete_territory
+	territoryid CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Update a territory -->
+<!ELEMENT update_territory (name?, parentid?, managerid?, status?, customfields?)>
+<!ATTLIST update_territory
+	territoryid CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Create a customerachinfo -->
+<!ELEMENT create_customerachinfo (customerid, bankname, bankadd1?, bankadd2?, aba, accountnumber, bankaccounttype)>
+
+<!-- Update a customerachinfo -->
+<!ELEMENT update_customerachinfo (bankname, bankadd1?, bankadd2?, aba, accountnumber, bankaccounttype)>
+<!ATTLIST update_customerachinfo
+	recordno CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Delete a customerachinfo -->
+<!ELEMENT delete_customerachinfo EMPTY>
+<!ATTLIST delete_customerachinfo
+	recordno CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Create a customerchargecard -->
+<!ELEMENT create_customerchargecard (customerid, cardnum, cardtype, exp_month, exp_year, description?, status?, mailaddress, defaultcard?, usebilltoaddr?)>
+
+<!-- Update a customerchargecard -->
+<!ELEMENT update_customerchargecard (exp_month?, exp_year?, description?, status?, mailaddress?, defaultcard?, usebilltoaddr?)>
+<!ATTLIST update_customerchargecard
+	recordno CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Delete a customerchargecard -->
+<!ELEMENT delete_customerchargecard EMPTY>
+<!ATTLIST delete_customerchargecard
+	recordno CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Describe a given entity -->
+<!ELEMENT describe (doctypes?)>
+<!ATTLIST describe
+    object CDATA #REQUIRED
+    externalkey (true | false) "false"
+>
+<!ELEMENT doctypes (doctype+)>
+<!ELEMENT doctype (#PCDATA)>
+
+<!-- Describe ALL entity -->
+<!ELEMENT describeall EMPTY>
+
+<!-- Create a customerbankaccount -->
+<!ELEMENT create_customerbankaccount (customerid, accountnumber, routingnumber, accounttype, bankname, accountholder, description?, status?, mailaddress?, defaultaccount?)>
+
+<!-- Update a customerbankaccount -->
+<!ELEMENT update_customerbankaccount (accountholder?, description?, status?, mailaddress?, defaultaccount?)>
+<!ATTLIST update_customerbankaccount
+	recordno CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Delete a customerbankaccount -->
+<!ELEMENT delete_customerbankaccount EMPTY>
+<!ATTLIST delete_customerbankaccount
+	recordno CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!ELEMENT create_class (classid, name, description?, parentid?, status?, customfields?)>
+<!ELEMENT update_class (name?, description?, parentid?, status?, customfields?)>
+<!ATTLIST update_class
+	key CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!ELEMENT delete_class EMPTY>
+<!ATTLIST delete_class
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!ELEMENT create_allocation (allocationid, description?,  status?, allocateby?, allocateto?, docnumber?, supdocid?, allocationentry )>
+<!ELEMENT update_allocation (description?,  status?, allocateby?, allocateto?, docnumber?, supdocid?, updateallocationentry? )>
+<!ATTLIST update_allocation
+	key CDATA #REQUIRED
+>
+<!ELEMENT delete_allocation  EMPTY>
+<!ATTLIST delete_allocation
+	key CDATA #REQUIRED
+>
+
+<!-- For Supporting Documents-->
+<!ELEMENT create_supdoc (supdocid, supdocname?, supdocfoldername?, supdocdescription?, attachments?)>
+<!ELEMENT update_supdoc (supdocid, supdocname?, supdocfoldername?, supdocdescription?, attachments?)>
+<!ELEMENT delete_supdoc  EMPTY>
+<!ATTLIST delete_supdoc
+	key CDATA #REQUIRED
+>
+
+<!ELEMENT create_supdocfolder (supdocfoldername, supdocfolderdescription?, supdocparentfoldername?)>
+<!ELEMENT update_supdocfolder (supdocfoldername, supdocfolderdescription?, supdocparentfoldername?)>
+<!ELEMENT delete_supdocfolder  EMPTY>
+<!ATTLIST delete_supdocfolder
+	key CDATA #REQUIRED
+>
+
+<!-- Get the list of permissions effective for a given user -->
+<!ELEMENT getUserPermissions (userId)>
+<!ELEMENT userId (#PCDATA)>
+

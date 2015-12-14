@@ -1,0 +1,217 @@
+<!--     This DTD maintains object definitions and reusable lists 
+         for the Intacct XML Response DTD  	
+		
+         File:               intacct_response_objects.v2.1.dtd	
+         Version:            2.1
+			
+         (C)2002, Intacct Corporation, All Rights Reserved 
+
+         Intacct Corporation Proprietary Information.
+         This document contains trade secret data that belongs to Intacct 
+         corporation and is protected by the copyright laws. Information herein 
+         may not be used, copied or disclosed in whole or part without prior 
+         written consent from Intacct Corporation.
+-->
+<!-- OBJECTS -->
+<!ELEMENT accountbalance (glaccountno, startbalance, debits, credits,adjdebits, adjcredits, endbalance)>
+<!ELEMENT accountgroup (accountgroupname?, headingtitle?, totaltitle?, normalbalance?, memberstype?, iskpi?)>
+<!ELEMENT accountgroupdetail (accountgroupname?, (accountgroupdetail | glaccount)*)>
+<!ELEMENT apaccountlabel (glaccountno?, accountlabel?, description?, offsetglaccountno?, status?)>
+<!ELEMENT apadjustment (key?, vendorid?, datecreated?, dateposted?, datepaid?, batchkey?, adjustmentno?, billno?, description?, totalamount?, totalpaid?, totaldue?, totalselected?, whenmodified?, state?, basecurr?, currency?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, trx_totalselected?, customfields?, apadjustmentitems?)>
+<!ELEMENT apadjustmentbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, apadjustment*)>
+<!ELEMENT apadjustmentitems (lineitem+)>
+<!ELEMENT apterm (name?, description?, status?, due?, discount?, disccalcon?, penalty?)>
+<!ELEMENT araccountlabel (glaccountno?, accountlabel?, description?, offsetglaccountno?, status?, taxcode?)>
+<!ELEMENT aradjustment (key?, customerid?, datecreated?, dateposted?, datepaid?, batchkey?, adjustmentno?, invoiceno?, description?, totalamount?, totalpaid?, totaldue, totalselected?, whenmodified?, state?, basecurr?, currency?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, trx_totalselected?, aradjustmentitems?)>
+<!ELEMENT aradjustmentbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, aradjustment*)>
+<!ELEMENT aradjustmentitems (lineitem+)>
+<!ELEMENT arpayment (customerid?, paymentamount?, paymentapplied?, paymentunapplied?, batchkey?, refid?, state?, datereceived?, key?, batchtitle?, paymentmethod?, undepglaccountno?, undepaccountlabel?,undeposited?, whenmodified?, arpaymentitems?, arpaymentitemdetails?, lineitems?)>
+<!ELEMENT arpaymentbatch (key?, batchtitle?, datecreated?, bankaccountid?, open?, status?, totalamount?, arpayment*)>
+<!ELEMENT arpaymentitems (arpaymentitem+)>
+<!ELEMENT arpaymentitem (invoicekey?, amount?)>
+<!ELEMENT arpaymentitemdetails (arpaymentitemdetail+)>
+<!ELEMENT arpaymentitemdetail (arpaymentitemkey?, invoicelineitemkey?, amount?)>
+<!ELEMENT lineitems (lineitem+)>
+<!ELEMENT arterm (name?, description?, status?, due?, discount?, disccalcon?, penalty?)>
+<!ELEMENT bankaccount (bankaccountid?, bankaccountno?, glaccountno?, bankname?, routingno?, branchid?, bankaccounttype?, phone?, nextcheck?, status?, lastreconciledbalance?, lastreconcileddate?, currency?, mailaddress?, outsourcecheck?, fractionalroutingno?, nameontheaccount?)>
+<!ELEMENT bill (key?, vendorid?, datecreated?, dateposted?, datedue?, datepaid?, termname?, batchkey?, billno?, ponumber?, totalamount?, totalpaid?, totaldue?, onhold?, description?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, basecurr?, currency?, customfields?, billitems?, payto?, returnto?, whenmodified?, state?, supdocid?)>
+<!ELEMENT billbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, bill*)>
+<!ELEMENT billitems (lineitem+)>
+<!ELEMENT project (key?, name?, description?, parentid?, invoicewithparent?, projectcategory?, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, sonumber?, ponumber?, poamount?, pqnumber?, whenmodified?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, invoicemessage?, invoicecurrency?, projectresources?)>
+<!ELEMENT task (key?, projectid?, name?, taskno?, description?, ismilestone?, parenttaskname?, budgetqty?, estqty?, priority?, pbegindate?, penddate?, percentcomplete?, taskstatus?, utilized?, billable?, itemid?, timetype?, classid?, obspercentcomplete?, taskresources?)>
+<!ELEMENT class (key?, classid?, name?, description?, parentid?, whenmodified?, status?)>
+<!ELEMENT timesheet (key?, title?, employeeid?, begindate?, enddate?, periodtype?, timesheetitems?)>
+<!ELEMENT checklayout (checkpaperformat?, signaturesrequired?)>
+<!ELEMENT customer (customerid?, name?, parentid?, termname?, custrepid?, shippingmethod?, custtype?, taxid?, creditlimit?, totaldue?, territoryid?, resaleno?, deliveryoptions?, accountlabel?, glaccountno?, glgroup?, comments?, whenmodified?, status?, currency?, primary?, billto?, shipto?, contactinfo?, vsoepricelist?, contactlist?, pricelist?, customfields?, supdocid?)>
+<!ELEMENT customervisibility (customerid?, name?, visibility?)>
+<!ELEMENT customerppackage (name?, description?, author?, intacctid?, signed?)>
+<!ELEMENT department (departmentid?, title?, parentid?, supervisorid?, whenmodified?, status?, customfields?)>
+<!ELEMENT discount ((daysforward | (dayofmonth, monthsforward)), (percentamount | amount), gracedays?)>
+<!ELEMENT due ((daysforward | (dayofmonth, monthsforward)))>
+<!ELEMENT employee (employeeid?, ssn?, title?, locationid?, departmentid?, classid?, supervisorid?, birthdate?, startdate?, enddate?, terminationtype?, employeetype?, gender?, whenmodified?, status?, name1099?, form1099type?, form1099box?,  currency?, earningtypename?, personalinfo?, contactlist?, paymentnotify?, customfields?, mergepaymentreq?)>
+<!ELEMENT expense (line_num?, expensetype?, glaccountno?, amount?, form1099, expensedate?, paidto?, memo?, locationid?, departmentid?, expenseexchinfo?)>
+<!ELEMENT expenseexchinfo (currency?, amount?, exch_rate_date?, exch_rate_type_id?, exchange_rate?, user_exchrate?)>
+<!ELEMENT expensereport (key?, employeeid?, datecreated?, datepaid?, batchkey?, expensereportno?, description?, status?, totalamount?, totalpaid?, totaldue?, expenses?)>
+<!ELEMENT expensereportbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, expensereport*)>
+<!ELEMENT expenses (expense+)>
+
+<!ELEMENT expenseadjustment (line_num?, expensetype?, glaccountno?, amount?, expensedate?, memo?, locationid?, departmentid?)>
+
+<!ELEMENT expenseadjustmentreport (key?, employeeid?, datecreated?, datepaid?, batchkey?, adjustmentno?, description?, totalamount?, totalpaid?, totaldue?, expenseadjustments?)>
+
+<!ELEMENT expenseadjustments (expenseadjustment+)>
+
+
+<!ELEMENT expensetypes (glaccountno?, expensetype?, description?, offsetglaccountno?, status?)>
+<!ELEMENT expensepaymenttype (name?, description?, nonreimbursable?, offsetacctno?, status?)>
+<!ELEMENT function (#PCDATA)>
+<!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, taxable?, taxcode?, mrccode?, alternativeaccount?, customfields?)>
+<!-- NEW NEW NEW -->
+<!ELEMENT custglgroup (glgroupname?)>
+<!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, whslineitems?,vendlineitems?,complineitems?)>
+<!ELEMENT ictotal (totalname?, status?)>
+<!ELEMENT icitemtotal (warehouseid?, itemid?, totalname?, quantity?)>
+<!ELEMENT stkittransaction (transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, stkittransitems?)>
+<!ELEMENT stkittransitems (stkittransitem)>
+<!ELEMENT stkittransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, locationid?, departmentid?,customfields?)>
+<!ELEMENT ictransaction (key?, transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, ictransitems?, subtotals?)>
+<!ELEMENT ictransactiondef (transdefid?, transclass?)>
+<!ELEMENT ictransitems (ictransitem+)>
+<!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, departmentid?, customfields?)>
+<!ELEMENT itemglgroup (glgroupname?)>
+<!ELEMENT sotransitems (sotransitem+)>
+<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?)>
+<!ELEMENT potransitems (potransitem+)>
+<!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
+<!ELEMENT popricelist (pricelistname?, datefrom?, dateto?, status?)>
+<!ELEMENT potransaction (key?, transactiontype?, transactionid?, datecreated?, dateposted?, createdfrom?, vendorid?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, supdocid?, transactionstate?, whenmodified?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, potransitems?, subtotals?)>
+<!ELEMENT potransactiondef (transdefid?, transclass?)>
+<!ELEMENT productline (productlineid?, parentid, productlinedesc?, status?)>
+<!ELEMENT sopricelist (pricelistname?, datefrom?, dateto?, status?)>
+<!ELEMENT sotransactiondef (transdefid?, transclass?)>
+<!ELEMENT sotransaction (key?, transactiontype?, transactionid?, documentnumber?, datecreated?, dateposted?, createdfrom?, customerid?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, transactionstate?, whenmodified?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, vsoepricelist?, projectid?, customfields?, sotransitems?, subtotals?)>
+<!ELEMENT subscription (object, intacctid, subscriber, externalid)>
+<!ELEMENT vendglgroup (glgroupname?)>
+<!ELEMENT warehouse (warehouseid?, name?, parentid?, managerid?, contactname?, shipto?, usedingl?, status?)>
+<!ELEMENT uom (unit?, numdecimals?)>
+<!-- NEW NEW NEW -->
+<!ELEMENT glentry (trtype?, amount?, glaccountno?, document?, datecreated?, memo?, locationid?, departmentid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, journalid?, batchno?, trx_amount?, exch_rate_date?, exch_rate_type_id?, exchange_rate?, recon_date?)>
+<!ELEMENT gltransactionentries (glentry, glentry, glentry*)>
+<!ELEMENT gltransaction (journalid?, batchno?, datecreated?, datemodified?, description?, sourceentity?, customfields?, gltransactionentries?)>
+
+<!ELEMENT recurringgltransaction (journalid?, batchno?, datecreated?, description?, sourceentity?, customfields?, gltransactionentries?)>
+
+<!ELEMENT invoice (key?, customerid?, datecreated?, dateposted?, datedue?, datepaid?, termname?, batchkey?, invoiceno?, ponumber?, totalamount?, totalpaid?, totaldue?, description?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, basecurr?, currency?, billto?, shipto?, whenmodified?, state?, supdocid?, invoiceitems?)>
+<!ELEMENT invoicebatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, invoice*)>
+<!ELEMENT invoiceitems (lineitem+)>
+<!ELEMENT journal (symbol?, title?, status?)>
+<!ELEMENT lineitem (line_num?, accountlabel?, glaccountno?, offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, key?, totalpaid?, totaldue?, trx_amount?, trx_totalpaid?, trx_totaldue?, currency?)>
+<!ELEMENT adjjournal (symbol?, title?, status?)>
+<!ELEMENT statjournal (symbol?, title?, status?)>
+<!ELEMENT location (locationid?, name?, parentid?, supervisorid?, startdate?, enddate?, whenmodified?, status?, primary?, shipto?, contactinfo?, customfields?)>
+<!ELEMENT locationentity (locationid, name, locationtype, currency, status?)>
+<!ELEMENT supdocfolder (name, description, parentfolder, creationdate, createdby, lastmodified, lastmodifiedby,  status)>
+<!ELEMENT supdoc (supdocid, folder, description, creationdate, createdby, attachments?)>
+<!ELEMENT attachments (attachment+)>
+<!ELEMENT attachment (attachmentname, attachmenttype, attachmentdata)>
+
+<!ELEMENT glbook (bookid, description, currency, bookcontact?, ctanetassetacct, ctanetincomeacct, bookstatjournal?, 
+		          budgetheader, department, exchratetype, bstransmethod, istransmethod, eename, autoelimination)>
+<!ELEMENT glbookdetail (bookid, detail)>
+<!ELEMENT glbooklocations (bookkey, locationid, name, bookentityjournal)>
+<!ELEMENT glbookacctgroups (bookkey, acctgroupkey)>
+<!ELEMENT glbookacctratetypes (bookkey, glaccountno, glaccounttitle, glacctratetypes, overriderate?, overrideexpirydate?)>
+<!ELEMENT glbookelimaccounts (bookkey, accountkey)>
+<!ELEMENT csnhistory (bookkey, locationname, periodname, actiontime, startedby, warate, bsrate, status, message )>
+<!ELEMENT company_info (title, name)>
+<!ELEMENT trxcurrencies (code)>
+<!ELEMENT penalty (penaltycycle, (percentamount | amount), gracedays?)>
+<!ELEMENT personalinfo (contact)>
+<!ELEMENT reportingperiod (name?, headingtitle?, headingtitle2?, startdate?, enddate?, budgetable?, status?)>
+<!ELEMENT salestotals (salestotal*)>
+<!ELEMENT salestotal (customerid, itemid, productlineid, quantity, totalamount)>
+<!ELEMENT redirectinfo (url, expires)>
+<!ELEMENT trialbalance (glaccountno, startbalance, debits, credits, endbalance, departmentid?, locationid?)>
+<!ELEMENT vendor (vendorid?, name?, parentid?, termname?, glaccountno?, accountlabel?, vendtype?, taxid?, creditlimit?, totaldue?, billingtype?, outsourcecheck?, vendoraccountno?, comments?, status?, currency?, onetime?, whenmodified?, primary?, returnto?, payto?, contactinfo?, contactlist?, form1099?, name1099?, paymentnotify?, achenabled?, wireenabled?, checkenabled?, achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?, wirebankname?, wirebankroutingnumber?, wireaccountnumber?, wireaccounttype?, pmplusremittancetype?, pmplusemail?, pmplusfax?, displaytermdiscount?, supdocid?, mergepaymentreq?)>
+<!ELEMENT vendorvisibility (vendorid?, name?, visibility?)>
+<!ELEMENT vendorentityaccount (recordno?, vendorid?, locationid?, accountno?, vendorname?, locationname?) >
+<!ELEMENT appayment (key, vendorid, paymentamount, refid?, paymentdate, paymentmethod, financialentity, transactionstate, paymenttrxamount?, currency?, whenmodified?, cleared?, cleareddate?, appaymentitems)>
+<!ELEMENT appaymentitems (appaymentitem+)>
+<!ELEMENT appaymentitem (billkey, billno?, lineitemkey, glaccountno, description?, amount, departmentid?, locationid?, trx_amount?, currency?)>
+<!ELEMENT bankinformation (bankaccountid, bankaccountno, bankname)>
+<!ELEMENT subtotals (subtotal*)>
+<!ELEMENT subtotal (description, total, absval?, percentval?, locationid?, departmentid?)>
+<!ELEMENT glbudget (budgetid, description, budgetdefault, whencreated?, whenmodified?, userid, status?, megadepartmentid?, megalocationid?, glbudgetitems?)>
+<!ELEMENT glbudgetitems (glbudgetitem+)>
+
+<!ELEMENT glbudgetitem (budgetid, budgetkey?, recordno?, glaccountno, title, accountkey?, normalbalance, departmentid?,  deptkey?, locationid?, locationkey?, basedon?, growby?, reportingperiodname, periodkey?, perperiod?,  startdate?, enddate?, note?, amount)>
+
+<!ELEMENT territory (territoryid?, name?, parentid?, managerid?, status?, customfields?)>
+<!ELEMENT araging (customerid?, invoiceno?,locationid?, departmentid?, aging+)>
+<!ELEMENT aging (agingperiod, totalamount,agingdetails?)>
+<!ELEMENT agingdetails (agingdetail+)>
+<!ELEMENT agingdetail (invoiceno,totaldue,agingdate,age)>
+<!ELEMENT sessioninfo (userid, companyid, sessiontimestamp)>
+<!ELEMENT recurbill (recordno, prbatchkey, prbatch, recordtype, description, state, datecreated, datemodified, termkey, termname, recordid, totalentered, userkey, docnumber, prmodulekey, status, schopkey, entity, contractid, contractdesc, vendorid, vendorname, username, paytocontactname, returntocontactname, locationkey, recurbillitems, supdocid, externalurl, startdate, enddate, repeatcount, repeatby, interval, vendordata)>
+<!ELEMENT recurinvoice (recordno, prbatchkey, prbatch, recordtype, description, state, datecreated, datemodified, termkey, termname, recordid, totalentered, userkey, docnumber, prmodulekey, status, schopkey, entity, contractid, contractdesc, customerid, customername, username, billtocontactname, shiptocontactname, locationkey, recurinvoiceitems, supdocid, externalurl, startdate, enddate, repeatcount, repeatby, interval, customerdata)>
+<!ELEMENT recurbillitems (recurlineitem+)>
+<!ELEMENT recurinvoiceitems (recurlineitem+)>
+<!ELEMENT recurlineitem ((accountlabel | glaccountno), amount, memo?, locationid?, departmentid?)>
+<!ELEMENT customerachinfo (recordno, customerid, bankname, bankadd1?, bankadd2?, aba, accountnumber, bankaccounttype)>
+<!ELEMENT customerchargecard (recordno, customerid, cardnum, maskcardnum, cardtype, exp_month, exp_year, description?, defaultcard?, usebilltoaddr?, status?, mailaddress)>
+<!ELEMENT vendlineitems (vendlineitem+)>
+<!ELEMENT vendlineitem (vendorid,stockno?,leadtime?,econorderqty?)>
+<!ELEMENT whslineitems (whslineitem+)>
+<!ELEMENT whslineitem (whsid,cycle?,stdcost?,lastcost?,avgcost?,reordermethod?,economyorderqty?,reorder?,minorderqty?,maxorderqty?,minstock?,maxstock?,datelastsold?,datelastrecvd?,begbalqty?,begbalprice?,defaultsubsection?)>
+<!ELEMENT complineitems (complineitem+)>
+<!ELEMENT complineitem (componentkey,quantity,revpercent)>
+<!ELEMENT itaxgroup (key?,name?)>
+<!ELEMENT renewalmacro (recordno?,macroid?,description?,createsalestrans?,documentparams.docid?,salesdocrecordkey?,createsalestranswhen?,createsalestransdays?,reneweddocdate?,renstartdateopt?,pricingtype?,pricingmarkup?,pricingmarkupvalue?,emailtocustomer?,emailtocustomerfromemailid?,emailcontact?,emailalertfromemailid?,emailcontactfilename?,emailalert?,emailalertfilename?,emailalertaddresses?,emailalertwhen?,emailalertdays?,createsalesopp?,createsalesoppwhen?,createsalesoppdays?,stageofopportunity?,latestversionkey?,status?)>
+<!ELEMENT appaymentrequest (recordno?,vendorid?,vendorname?,paymenttype?,paymentdate?,receiptdate?,paymentamount?,documentnumber?,memo?,state?,status?,bankaccountid?,whenmodified?,termname?,cleared?,cleareddate?,systemgenerated?, vendordue?,currency?,paymenttrxamount?)>
+<!ELEMENT pricelistitem (recordno,pricelistid,itemid,productlineid?,item_line?,datefrom?,dateto?,qtylimitmin?,qtylimitmax?,value?,valuetype?,fixed?,sale?,status?,currency?)>
+<!ELEMENT vsoeitempricelist (key, pricelistid, itemid, currency, valuebase, percentbase, percentof, usepricebands, pricebandtype, pricebandrule, status, version, priceentries)>
+<!ELEMENT priceentries (priceentry+)>
+<!ELEMENT priceentry (startdate?, enddate?, value?, markup?, markdown?, bandup?, banddown? memo?)>
+<!-- For SmartEventLog -->
+<!ELEMENT smarteventlog (recordno?, smartlinkid?, topic?, ownerobject?,timestamp?, userid?, objectkey? ) >
+<!-- For icitemtotals -->
+<!ELEMENT icitemtotals (itemtotal+)>
+<!ELEMENT itemtotal (itemid?, warehouseid?,aislekey?,rowkey?, binkey?,onhand?,onorder?, onhold? )>
+
+<!ELEMENT allocation (recordno?, allocationid?, description?, allocateby?, allocateto?, docnumber?, status?, allocationentries? ) >
+<!ELEMENT allocationentries (entry+) >
+<!ELEMENT entry ( value?, departmentid?, locationid?) >
+
+<!ELEMENT cctransaction (record?, description?, chargecardid?, payee?, referenceno?, paymentdate?, ccpayitems) >
+<!ELEMENT ccpayitems (ccpayitem+) >
+<!ELEMENT ccpayitem ( line_num?, glaccountno?, accountlabel?, description?, paymentamount?, department?, location?) >
+
+<!ELEMENT revrecschedule (
+    recordno?, revrectemplatekey?, revrectemplateid?, templatepostingmethod?, 
+    completed?, invoiceno?, invoicedate?, invoicekey?, sodocumentid?, 
+    sodocumentdate?, description?, invoiceitemkey?, sodocumententrykey?, 
+    status?, changecategorykey?, changecategory?, changememo?
+) >
+<!ELEMENT revrecscheduleentry (
+    recordno?, revrecschedulekey?, posted?, position?, next?, postingdate?, 
+    revacctkey?, accountno?, accounttitle?, journalkey?, gljournal?, 
+    deferredrevacctkey?, amount?, glbatchkey?, schopkey?, tr_type?, trx_amount?,
+    currency?, posted_amount?, exchratedate?, exchratetypeid?, exchrate?, 
+    description?
+) >
+<!ELEMENT revrecchangelog (
+    recordno?, revrecschedulekey?, modifieduserkey?, modifiedby?, whenmodified?,
+    summary?, memo?
+) >
+
+<!ELEMENT earningtype (name?, method?, billableacctno?, nonbillableacctno?, ratemultiplier?) >
+<!ELEMENT employeerate (recordno?, employeeid?, ratestartdate?, rateenddate?, salaryrate?, billingrate?) >
+
+<!-- Permissions -->
+<!ELEMENT permissions (appSubscription*)>
+<!ELEMENT appSubscription (applicationName, policies)>
+<!ELEMENT applicationName (#PCDATA)>
+<!ELEMENT policies (policy*)>
+<!ELEMENT policy (policyName, rights)>
+<!ELEMENT policyName (#PCDATA)>
+<!ELEMENT rights (#PCDATA)>  <!-- pipe delimited list -->

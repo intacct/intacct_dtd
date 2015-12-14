@@ -1,0 +1,39 @@
+<!--  	This DTD maintains function specifications for WriteUp
+         File:               intacct_wu_functions.v2.1.dtd
+         Version:            2.1
+			
+         (C)2002, Intacct Corporation, All Rights Reserved 
+
+         Intacct Corporation Proprietary Information.
+         This document contains trade secret data that belongs to Intacct 
+         corporation and is protected by the copyright laws. Information herein 
+         may not be used, copied or disclosed in whole or part without prior 
+         written consent from Intacct Corporation.
+-->
+<!-- Write-up Credit Card Transactions -->
+<!ELEMENT record_wucctransactions (wucctransactions)>
+<!ELEMENT wucctransactions (wucctransaction+)>
+<!ELEMENT wucctransaction (creditcardid, datecreated, payee?, referenceno?, description?, wuccpayitems)>
+<!ELEMENT wuccpayitems (wuccpayitem+)>
+<!ELEMENT wuccpayitem ((glaccountno | accountlabel), description?, paymentamount, departmentid?, locationid?)>
+<!-- Write-up Receipts-->
+<!ELEMENT record_wureceipts (wureceipts)>
+<!ELEMENT wureceipts (wureceipt+)>
+<!ELEMENT wureceipt (bankaccountid, datecreated, depositid, depositdate, (customerid | payer), referenceno?, description?, wureceiptitems)>
+<!ELEMENT wureceiptitems (wureceiptitem+)>
+<!ELEMENT wureceiptitem ((glaccountno | accountlabel), description?, amount, departmentid?, locationid?)>
+<!-- Write-up Disbursements-->
+<!ELEMENT record_wudisbursements (wudisbursements)>
+<!ELEMENT wudisbursements (wudisbursement+)>
+<!ELEMENT wudisbursement (bankaccountid, datecreated, (vendorid | payee), referenceno?, description?, wudisbursementitems)>
+<!ELEMENT wudisbursementitems (wudisbursementitem+)>
+<!ELEMENT wudisbursementitem ((glaccountno | accountlabel), description?, amount, item1099?, departmentid?, locationid?)>
+<!-- Adjusting Journal, Journal Entries -->
+<!ELEMENT record_wuadjjournalentries (wujournalentries)>
+<!ELEMENT record_wujournalentries (wujournalentries)>
+<!ELEMENT wujournalentries (wujournalentry+)>
+<!ELEMENT wujournalentry (journalid, datecreated, referenceno?, description?, wuentryitems)>
+<!ELEMENT wuentryitems (wuentryitem+)>
+<!ELEMENT wuentryitem ((glaccountno | accountlabel), amount, trtype, departmentid?, locationid?, description?, document?)>
+
+

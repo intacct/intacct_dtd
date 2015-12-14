@@ -1,0 +1,201 @@
+<!--  	This DTD maintains function specifications for PO/IC/OE
+         File:               intacct_icoe_functions.v2.1.dtd
+         Version:            2.1
+			
+         (C)2002, Intacct Corporation, All Rights Reserved 
+
+         Intacct Corporation Proprietary Information.
+         This document contains trade secret data that belongs to Intacct 
+         corporation and is protected by the copyright laws. Information herein 
+         may not be used, copied or disclosed in whole or part without prior 
+         written consent from Intacct Corporation.
+-->
+<!ELEMENT create_stkittransaction (transactiontype, datecreated, createdfrom?, documentno?, referenceno?, message?, externalid?,  customfields?,stkittransitems?)>
+<!ELEMENT create_ictransaction (transactiontype, datecreated, createdfrom?, documentno?, referenceno?, message?, externalid?, basecurr?, customfields?, state?, ictransitems, subtotals?)>
+<!ELEMENT create_potransaction (transactiontype, datecreated, dateposted?, createdfrom?, vendorid, documentno?, referenceno?,vendordocno?, termname?, datedue,
+message?, shippingmethod?, returnto,payto, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, state?, potransitems, subtotals?)>
+<!ELEMENT create_sotransaction (transactiontype, datecreated, dateposted?, createdfrom?, customerid, documentno?, origdocdate?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? , vsoepricelist?, customfields?, state?, projectid?, sotransitems, subtotals?)>
+<!ELEMENT create_recursotransaction (transactiontype, customerid, referenceno?, termname?, message?, contractid?, contractdesc?, shippingmethod?, shipto?, billto?, externalid?, basecurr?, currency?, exchratetype? , customfields?, recursotransitems, subtotals?, startdate, ending?, modenew?, interval?, eom?, status?, docstatus?)>
+<!-- Delete a recurring Bill -->
+<!ELEMENT delete_recursotransaction EMPTY>
+<!ATTLIST delete_recursotransaction
+	key CDATA #REQUIRED
+>
+<!ELEMENT get_salestotals (customerid?, (reportingperiodname | (startdate, enddate)))>
+<!ELEMENT get_icitemtotals (itemid?, warehouseid?)>
+<!ELEMENT delete_sotransaction EMPTY>
+<!ATTLIST delete_sotransaction
+    key CDATA #REQUIRED
+    external (true | false) "false"
+>
+<!ELEMENT delete_potransaction EMPTY>
+<!ATTLIST delete_potransaction
+    key CDATA #REQUIRED
+    external (true | false) "false"
+>
+<!ELEMENT delete_ictransaction EMPTY>
+<!ATTLIST delete_ictransaction
+    key CDATA #REQUIRED
+    external (true | false) "false"
+>
+<!ELEMENT update_ictransaction (datecreated?, referenceno?, message?, externalid?, customfields?, state?, updateictransitems?, updatesubtotals?)>
+<!ATTLIST update_ictransaction
+	key CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!ELEMENT update_sotransaction (datecreated?, dateposted?, referenceno?, termname?, datedue?, origdocdate?, message?, shippingmethod?, shipto?, billto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, vsoepricelist?, customfields?, state?, projectid?, updatesotransitems?, updatesubtotals?)>
+<!ATTLIST update_sotransaction
+	key CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+    disablevalidation (true | false) "false"
+>
+<!ELEMENT update_potransaction (datecreated?, dateposted?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, state?, updatepotransitems?, updatesubtotals?)>
+<!ATTLIST update_potransaction
+	key CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+
+<!ELEMENT create_item (itemid, name, status?,itemtype,enable_bins?,extended_description?, productlineid?, substituteid?,
+ship_weight?, datelastsold?, datelastrecvd?, taxable?, cost_method?, standard_cost?, average_cost?, base_price?,
+standard_unit?, purchase_unit?, purchase_unit_factor?, sales_unit?, sales_unit_factor?, default_warehouse?,
+glgroup?, note?, inventory_precision?, purchasing_precision?, sales_precision?, upc?, hasstartenddates?, term_period?, defaultnoofperiods?, computepriceforshortterm?,
+itaxgroup?, revenue_posting?, vendlineitems?, whslineitems?, complineitems?, taxcode?, vsoecategory?, vsoedlvrstatus?, vsoerevdefstatus?, 
+incomeaccount?, invaccount?, expenseaccount?, cogsaccount?, offsetoeglaccount?, offsetpoglaccount?, defrevaccount?, uomgrp?, customfields?)>
+<!ATTLIST create_item
+	ignoreduplicates (true | false) "false"
+>
+<!ELEMENT delete_item EMPTY>
+<!ATTLIST delete_item
+	itemid CDATA #REQUIRED
+>
+<!ELEMENT update_item (name?, status?,enable_bins?,extended_description?, productlineid?, substituteid?, ship_weight?, taxable?, standard_cost?, base_price?, standard_unit?, purchase_unit?, purchase_unit_factor?, sales_unit?, sales_unit_factor?, default_warehouse?,
+glgroup?, note?, inventory_precision?, purchasing_precision?, sales_precision?, upc?, hasstartenddates?, term_period?, defaultnoofperiods?, computepriceforshortterm?,
+itaxgroup?, revenue_posting?, vendlineitems?, whslineitems?, complineitems?, taxcode?, vsoecategory?, vsoedlvrstatus?, vsoerevdefstatus?, 
+incomeaccount?, invaccount?, expenseaccount?, cogsaccount?, offsetoeglaccount?, offsetpoglaccount?, defrevaccount?, uomgrp?, customfields?)>
+<!ATTLIST update_item
+	itemid CDATA #REQUIRED
+>
+<!ELEMENT create_sopricelist (name,datefrom?,dateto?,status?)>
+<!ATTLIST create_sopricelist
+	ignoreduplicates (true | false) "false"
+>
+<!ELEMENT delete_sopricelist EMPTY>
+<!ATTLIST delete_sopricelist 
+	name CDATA #REQUIRED
+>
+<!ELEMENT update_sopricelist (datefrom?,dateto?,status?)>
+<!ATTLIST update_sopricelist
+	name CDATA #REQUIRED
+>
+<!ELEMENT create_popricelist (name,datefrom?,dateto?,status?)>
+<!ATTLIST create_popricelist
+        ignoreduplicates (true | false) "false"
+>
+<!ELEMENT delete_popricelist EMPTY>
+<!ATTLIST delete_popricelist
+        name CDATA #REQUIRED
+>
+<!ELEMENT update_popricelist (datefrom?,dateto?,status?)>
+<!ATTLIST update_popricelist
+        name CDATA #REQUIRED
+>
+<!ELEMENT create_invpricelistentry (pricelistid, (itemid | productlineid)?, datefrom, dateto, minimum_quantity?, 
+maximum_quantity?, value, valuetype, fixed, status?)>
+<!ATTLIST create_invpricelistentry
+        ignoreduplicates (true | false) "false"
+>
+<!ELEMENT delete_invpricelistentry EMPTY>
+<!ATTLIST delete_invpricelistentry
+        recordno CDATA #REQUIRED
+>
+<!ELEMENT update_invpricelistentry ( (itemid | productlineid)? , datefrom?, dateto?, minimum_quantity?,
+maximum_quantity?, value?, valuetype?, fixed?, status?)>
+<!ATTLIST update_invpricelistentry
+        recordno CDATA #REQUIRED
+>
+<!ELEMENT create_vsoepricelist (name,description?,status?,isdefault?)>
+<!ATTLIST create_vsoepricelist
+	ignoreduplicates (true | false) "false"
+>
+<!ELEMENT update_vsoepricelist (description?,status?,isdefault?)>
+<!ATTLIST update_vsoepricelist
+	name CDATA #REQUIRED
+>
+<!ELEMENT delete_vsoepricelist EMPTY>
+<!ATTLIST delete_vsoepricelist 
+	name CDATA #REQUIRED
+>
+<!ELEMENT create_vsoeitempricelist (pricelistid,itemid,currency?,valuebase,(percentbase, percentof, usepricebands, pricebandtype, pricebandrule)?,status?,priceentries)>
+<!ATTLIST create_vsoeitempricelist
+	ignoreduplicates (true | false) "false"
+>
+<!ELEMENT update_vsoeitempricelist ((percentbase, percentof, usepricebands, pricebandtype, pricebandrule)?,status?,priceentries)>
+<!ATTLIST update_vsoeitempricelist
+	key CDATA #REQUIRED
+>
+<!ELEMENT delete_vsoeitempricelist EMPTY>
+<!ATTLIST delete_vsoeitempricelist 
+	key CDATA #REQUIRED
+>
+<!-- TAX DETAILS -->
+<!ELEMENT create_taxdetail (detailid, description?, taxtype, value?, mintaxable?, maxtaxable?, include?, mintax?, maxtax?, glaccountno, accountlabel?, taxauthority?, status?)>
+<!ELEMENT update_taxdetail (description?, taxtype?, value?, mintaxable?, maxtaxable?, include?, mintax?, maxtax?, glaccountno?, accountlabel?, taxauthority?, status?)>
+<!ATTLIST update_taxdetail
+	detailid CDATA #REQUIRED
+	set_nulls (true | false) "false"
+>
+<!ELEMENT delete_taxdetail EMPTY>
+<!ATTLIST delete_taxdetail
+	detailid CDATA #REQUIRED
+>
+<!-- TAX SCHEDULE -->
+<!ELEMENT create_taxschedule (scheduleid, description?, taxtype, status?)> 
+<!ELEMENT update_taxschedule (description?, taxtype?, status?)>
+<!ATTLIST update_taxschedule
+	scheduleid CDATA #REQUIRED
+>
+<!ELEMENT delete_taxschedule EMPTY>
+<!ATTLIST delete_taxschedule
+	scheduleid CDATA #REQUIRED
+>
+<!-- TAX SCHEDULE DETAILS -->
+<!ELEMENT create_taxscheduledetail (scheduleid, detailid)>
+<!ELEMENT delete_taxscheduledetail EMPTY>
+<!ATTLIST delete_taxscheduledetail
+	recordno CDATA #REQUIRED
+>
+<!-- TAX GROUPS -->
+<!ELEMENT create_contacttaxgroup (name)>
+<!ELEMENT delete_contacttaxgroup EMPTY>
+<!ATTLIST delete_contacttaxgroup
+	name CDATA #REQUIRED
+>
+<!-- ITEM TAX GROUPS -->
+<!ELEMENT create_itemtaxgroup (name)>
+<!ELEMENT delete_itemtaxgroup EMPTY>
+<!ATTLIST delete_itemtaxgroup
+	name CDATA #REQUIRED
+>
+<!-- TAX SCHEDULE MAPS -->
+<!ELEMENT create_taxschedulemap (documenttype?, (itemtaxgroup | accountgroup), taxgroup, scheduleid, module?)>
+<!ELEMENT delete_taxschedulemap EMPTY>
+<!ATTLIST delete_taxschedulemap
+	recordno CDATA #REQUIRED
+>
+
+<!ELEMENT hold_revrecschedule (recordno, category?, memo?)>
+<!ELEMENT resume_revrecschedule (recordno, adjustpostingday, memo?)>
+<!ELEMENT terminate_revrecschedule (recordno, category?, memo?)>
+<!ELEMENT update_revrecschedule (recordno, memo?, revrecentries)>
+<!ELEMENT create_revrecscheduleentry (recordno, memo?, revrecentry)>
+<!ELEMENT post_revrecscheduleentry (
+    recordno, postcurrencygainandloss?, exchratetype?
+)>
+<!ELEMENT unpost_revrecscheduleentry (recordno, memo?)>
+<!ELEMENT reallocate_revrecschedule (recordno, revrecstartdate, revrecenddate)>
+
+
+

@@ -1,0 +1,440 @@
+<!--  	This DTD maintains function specifications for AP/AR
+         File:               intacct_pr_functions.v2.1.dtd
+         Version :            2.1
+			
+         (C)2002, Intacct Corporation, All Rights Reserved 
+
+         Intacct Corporation Proprietary Information.
+         This document contains trade secret data that belongs to Intacct 
+         corporation and is protected by the copyright laws. Information herein 
+         may not be used, copied or disclosed in whole or part without prior 
+         written consent from Intacct Corporation. 
+-->
+<!-- ACCOUNTS PAYABLE FUNCTIONS -->
+<!-- Set the current bill batch -->
+<!-- Create a Vendor -->
+<!ELEMENT create_vendor (vendorid, name, parentid?, termname?, glaccountno?, accountlabel?, vendtype?, taxid?, creditlimit?, paymethod?, outsourcecheck?, outsourceach?, billingtype?, vendoraccountno?, displocacctnocheck?, onhold?, donotcutcheck?,
+        comments?, status?, currency?, onetime?, externalid?, primary?, returnto?, payto?, contactinfo?, contactlist?, name1099?,form1099type?, form1099box?, customfields?, paymentnotify?, achenabled?, wireenabled?,
+        checkenabled?, achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?, wirebankname?, wirebankroutingnumber?, wireaccountnumber?, wireaccounttype?, pmplusremittancetype?, pmplusemail?,
+        pmplusfax?, displaytermdiscount?, visibility?, supdocid?, mergepaymentreq?, offsetglaccountno?)>
+<!ATTLIST create_vendor
+	ignoreduplicates (true | false) "false"
+>
+<!--Update a vendor-->
+<!ELEMENT update_vendor (name?, parentid?, termname?, glaccountno?, accountlabel?, vendtype?, taxid?, creditlimit?, paymethod?, outsourcecheck?, outsourceach?, billingtype?, vendoraccountno?, displocacctnocheck?, onhold?, donotcutcheck?,
+        comments?, status?, currency?, primary?, returnto?, payto?, contactinfo?, contactlist?, name1099?, form1099type?, form1099box?, customfields?, paymentnotify?, achenabled?, wireenabled?, checkenabled?,
+        achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?, wirebankname?, wirebankroutingnumber?, wireaccountnumber?, wireaccounttype?, pmplusremittancetype?,
+        pmplusemail?, pmplusfax?, displaytermdiscount?, visibility?, supdocid?, mergepaymentreq?, offsetglaccountno?)>
+<!ATTLIST update_vendor
+	vendorid CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!--Update Vendorvisibility-->
+<!ELEMENT update_vendorvisibility (visibility?)>
+<!ATTLIST update_vendorvisibility
+	vendorid CDATA #REQUIRED
+>
+<!-- Delete a Vendor -->
+<!ELEMENT delete_vendor EMPTY>
+<!ATTLIST delete_vendor
+	vendorid CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create a project -->
+<!ELEMENT create_project (projectid, name, description?, parentid?, invoicewithparent?, projectcategory, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, billingtype?, termname?, docnumber?, billto?, shipto?, contactinfo?, sonumber?, ponumber?, poamount?, pqnumber?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, supdocid?, invoicemessage?, invoicecurrency?, projectresources*, customfields?)>
+<!-- Update a project -->
+<!ELEMENT update_project (projectid, name, description?, parentid?, invoicewithparent?, projectcategory, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, billingtype?, termname?, docnumber?, billto?, shipto?, contactinfo?, sonumber?, ponumber?, poamount?, pqnumber?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, supdocid?, invoicemessage?, invoicecurrency?, projectresources*, customfields?)>
+<!ATTLIST update_project
+	key CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!ELEMENT delete_project EMPTY>
+<!ATTLIST delete_project
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Create a bill batch -->
+<!ELEMENT create_billbatch (batchtitle, datecreated?, create_bill*)>
+<!-- Create an AP adjustment batch -->
+<!ELEMENT create_apadjustmentbatch (batchtitle, datecreated?, create_apadjustment*)>
+<!-- Create a bill -->
+<!ELEMENT create_bill (vendorid, datecreated, dateposted?, ((datedue, termname?) | termname), action?, batchkey?, billno?, ponumber?, onhold?, description?, externalid?, payto?, returnto?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? ,nogl?, supdocid?, customfields?, billitems)>
+<!-- Create a recurring bill -->
+<!ELEMENT create_recurringbill (vendorid, datecreated, recordid?, docnumber?, description?, contractid?, contractdesc?, termname, (currency, ((exchratedate?, exchratetype) | exchrate))?, status?, supdocid?, paytocontactname?, returntocontactname?, startdate, ending?, modenew?, interval?, eom?, recurbillitems)>
+<!--Reclassify bill -->
+<!ELEMENT reclassify_bill (billno?, referenceno?, description?, termname?, datedue?, recpaydate?, paypriority?, onhold?, reclassifyitems?)>
+<!ATTLIST reclassify_bill
+        key CDATA #REQUIRED
+>
+<!-- Update a Bill -->
+<!ELEMENT update_bill (vendorid?, datecreated?, dateposted?, datedue?, termname?, action?,  billno?, ponumber?, onhold?, description?, payto?, returnto?, (currency, ((exchratedate?, exchratetype) | exchrate))?, supdocid?, customfields?, updatebillitems?)>
+<!ATTLIST update_bill
+	key CDATA #REQUIRED
+	partial_edit (true | false) "false"
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete a Bill -->
+<!ELEMENT delete_bill EMPTY>
+<!ATTLIST delete_bill
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!ELEMENT reverse_bill (datereversed, description?)>
+<!ATTLIST reverse_bill
+	key CDATA #REQUIRED
+>
+
+<!ELEMENT reverse_appayment (datereversed, description?)>
+<!ATTLIST reverse_appayment
+	key CDATA #REQUIRED
+>
+
+<!-- Delete a recurring Bill -->
+<!ELEMENT delete_recurringbill EMPTY>
+<!ATTLIST delete_recurringbill
+	key CDATA #REQUIRED
+>
+<!-- Get a Bill -->
+<!ELEMENT get_bill EMPTY>
+<!ATTLIST get_bill
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create an ap adjustment -->
+<!ELEMENT create_apadjustment (vendorid, datecreated, dateposted?, batchkey?, adjustmentno?, action?, billno?, description?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? ,nogl?, customfields?, apadjustmentitems)>
+<!-- Update an ap adjustment -->
+<!ELEMENT update_apadjustment (vendorid?, datecreated?, dateposted?, adjustmentno?, action?, billno?,description?, (currency, ((exchratedate?, exchratetype) | exchrate))?, updateapadjustmentitems?)>
+<!ATTLIST update_apadjustment
+	key CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete an AP adjustment -->
+<!ELEMENT delete_apadjustment EMPTY>
+<!ATTLIST delete_apadjustment
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Get an AP adjustment -->
+<!ELEMENT get_apadjustment EMPTY>
+<!ATTLIST get_apadjustment
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- NEW For APPayment APIs -->
+<!ELEMENT create_paymentrequest ((bankaccountid|chargecardid), vendorid, memo?, paymentmethod, grouppayments?, paymentdate, paymentoption?, paymentrequestitems , documentnumber?, paymentdescription?, paymentcontact?)>
+<!ELEMENT paymentrequestitems (paymentrequestitem+)>
+<!ELEMENT paymentrequestitem (key, paymentamount, credittoapply?, discounttoapply?)>
+<!ATTLIST paymentrequestitem
+	externalkey (true | false) "false"
+>
+<!ELEMENT delete_paymentrequest EMPTY>
+<!ATTLIST delete_paymentrequest
+	key CDATA #REQUIRED
+>
+<!ELEMENT create_appayment (bankaccountid, vendorid, memo, checkdate, checkno, billno?, payitems)>
+<!ELEMENT approve_appaymentrequest (appaymentkeys)>
+<!ELEMENT send_appaymentrequest (appaymentkeys)>
+<!ELEMENT confirm_appaymentrequest (appaymentkeys)>
+<!ELEMENT void_appaymentrequest (appaymentkeys)>
+<!ELEMENT payitems (payitem+)>
+<!ELEMENT payitem ((glaccountno | accountlabel), paymentamount, item1099?, departmentid?, locationid?)>
+<!ELEMENT appaymentkeys (appaymentkey+)>
+<!-- END NEW For APPayment APIs -->
+<!-- Create a Customer -->
+<!ELEMENT create_customer (customerid, name, parentid?, termname?, custrepid?, shippingmethod?, custtype?, taxid?, creditlimit?, territoryid?, resaleno?, deliveryoptions?, accountlabel?, glaccountno?, glgroup?, onhold?,
+        comments?, status?, currency?, externalid?, primary?, billto?, shipto?, contactinfo?, contactlist?, vsoepricelist?, customfields?, visibility?, supdocid?, offsetglaccountno?)>
+<!ATTLIST create_customer
+	ignoreduplicates (true | false) "false"
+>
+<!-- Update Customer -->
+<!ELEMENT update_customer (name?, parentid?, termname?, custrepid?, shippingmethod?, custtype?, taxid?, creditlimit?, territoryid?, resaleno?, deliveryoptions?, accountlabel?, glaccountno?, glgroup?,  onhold?, comments?,
+        status?, currency?, primary?, billto?, shipto?, contactinfo?, contactlist?, vsoepricelist?, customfields?, visibility?, supdocid?, offsetglaccountno?)>
+<!ATTLIST update_customer
+	customerid CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Update Customer Visibility -->
+<!ELEMENT update_customervisibility (visibility?)>
+<!ATTLIST update_customervisibility
+	customerid CDATA #REQUIRED
+>
+<!-- Delete a Customer -->
+<!ELEMENT delete_customer EMPTY>
+<!ATTLIST delete_customer
+	customerid CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create an invoice batch -->
+<!ELEMENT create_invoicebatch (batchtitle, datecreated?, create_invoice*)>
+<!-- Create an invoice -->
+<!ELEMENT create_invoice (customerid, datecreated, dateposted?, datedue?, termname?, batchkey?, action?, invoiceno?,  ponumber?, description?, externalid?,  billto?, shipto?, (basecurr?, currency, ((exchratedate?, exchratetype) |
+        exchrate))? , nogl?,  supdocid?, customfields?, invoiceitems)>
+<!-- Create a recurring invoice -->
+<!ELEMENT create_recurringinvoice (customerid, datecreated, recordid?, docnumber?, description?, contractid?, contractdesc?, termname, (currency, ((exchratedate?, exchratetype) | exchrate))?, status?, supdocid?, billtocontactname?, shiptocontactname?, startdate, ending?, modenew?, interval?, eom?, recurinvoiceitems, paymethod?, payinfull?, paymentamount?, customercreditcardkey?, customerbankaccountkey?, creditcardtype?, expirednotify?, expirednotifyemail?, (accounttype, (bankaccountid | glaccountkey))?)>
+<!--Reclassify invoice -->
+<!ELEMENT reclassify_invoice (invoiceno?, referenceno?, description?, termname?, datedue?, reclassifyitems?)>
+<!ATTLIST reclassify_invoice
+        key CDATA #REQUIRED
+>
+<!-- Update an Invoice -->
+<!ELEMENT update_invoice (customerid?, datecreated?, dateposted?, datedue?, termname?, action?, invoiceno?, ponumber?, description?, payto?, returnto?, (currency, ((exchratedate?, exchratetype) | exchrate))?,  supdocid?,
+        customfields?, updateinvoiceitems?)>
+<!ATTLIST update_invoice
+	key CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete an Invoice -->
+<!ELEMENT delete_invoice EMPTY>
+<!ATTLIST delete_invoice
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!ELEMENT reverse_invoice (datereversed, description?)>
+<!ATTLIST reverse_invoice
+	key CDATA #REQUIRED
+>
+<!-- Delete a recurring Invoice -->
+<!ELEMENT delete_recurringinvoice EMPTY>
+<!ATTLIST delete_recurringinvoice
+	key CDATA #REQUIRED
+>
+<!-- Get an Invoice -->
+<!ELEMENT get_invoice EMPTY>
+<!ATTLIST get_invoice
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create an adjustment batch -->
+<!ELEMENT create_aradjustmentbatch (batchtitle, datecreated?, create_aradjustment*)>
+<!-- Create an ar adjustment -->
+<!ELEMENT create_aradjustment (customerid, datecreated, dateposted?, batchkey?, adjustmentno?, action?, invoiceno?,description?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? , nogl?, aradjustmentitems)>
+<!-- Update an Adjustment -->
+<!ELEMENT update_aradjustment (customerid?, datecreated?, dateposted?, adjustmentno?,action?, invoiceno?, description?, (currency, ((exchratedate?, exchratetype) | exchrate))?, updatearadjustmentitems?)>
+<!ATTLIST update_aradjustment
+	key CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete an Adjustment -->
+<!ELEMENT delete_aradjustment EMPTY>
+<!ATTLIST delete_aradjustment
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Get an adjustment -->
+<!ELEMENT get_aradjustment EMPTY>
+<!ATTLIST get_aradjustment
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create an ap accountlabel -->
+<!ELEMENT create_apaccountlabel (glaccountno, accountlabel, description, offsetglaccountno?, status?, externalid?)>
+<!ATTLIST create_apaccountlabel
+	ignoreduplicates (true | false) "false"
+>
+<!-- Update an ap accountlabel -->
+<!ELEMENT update_apaccountlabel (glaccountno?, description?, offsetglaccountno?, status?)>
+<!ATTLIST update_apaccountlabel
+	accountlabel CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete an ap accounLabel -->
+<!ELEMENT delete_apaccountlabel EMPTY>
+<!ATTLIST delete_apaccountlabel
+	accountlabel CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create an ar accountlabel -->
+<!ELEMENT create_araccountlabel (glaccountno, accountlabel, description, offsetglaccountno?, status?, externalid?, taxcode?)>
+<!ATTLIST create_araccountlabel
+	ignoreduplicates (true | false) "false"
+>
+<!-- Update an ar accountlabel -->
+<!ELEMENT update_araccountlabel (glaccountno?, description?, offsetglaccountno?, status?, taxcode?)>
+<!ATTLIST update_araccountlabel
+	accountlabel CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete an ar accounLabel -->
+<!ELEMENT delete_araccountlabel EMPTY>
+<!ATTLIST delete_araccountlabel
+	accountlabel CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create an ar payment batch -->
+<!ELEMENT create_arpaymentbatch (batchtitle, (bankaccountid | undepfundsacct)?, datecreated?, create_arpayment*, apply_arpayment*)>
+<!-- Create an ar payment -->
+<!ELEMENT create_arpayment (customerid, paymentamount,translatedamount?, (batchkey | bankaccountid | undepfundsacct)?, refid?, overpaylocid?, overpaydeptid?, datereceived?, paymentmethod?,(basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, authcode?, arpaymentitem*, (onlinecardpayment | onlineachpayment)*)>
+<!ELEMENT delete_arpayment EMPTY>
+<!ATTLIST delete_arpayment
+	key CDATA #REQUIRED
+>
+
+<!-- Create an expense report batch -->
+<!ELEMENT create_expensereportbatch (batchtitle, datecreated?, create_expensereport*)>
+<!-- Create an expense report-->
+<!ELEMENT create_expensereport (employeeid, datecreated, dateposted?, state?, batchkey?, expensereportno?, description?, memo?, externalid?, basecurr?, currency?, customfields?, expenses, supdocid?)>
+<!-- Update an expense report-->
+<!ELEMENT update_expensereport (employeeid?, datecreated?, dateposted?, state?, expensereportno?, description?, memo?, basecurr?, currency?, customfields?, updateexpenses?, supdocid?)>
+<!ATTLIST update_expensereport
+	key CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete an expense report-->
+<!ELEMENT delete_expensereport EMPTY>
+<!ATTLIST delete_expensereport
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!ELEMENT reverse_expensereport (datereversed, description?)>
+<!ATTLIST reverse_expensereport
+	key CDATA #REQUIRED
+>
+<!-- Get an expense report -->
+<!ELEMENT get_expensereport EMPTY>
+<!ATTLIST get_expensereport
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create an Expense adjustment -->
+
+<!ELEMENT create_expenseadjustmentreport (employeeid, datecreated, dateposted?, batchkey?, adjustmentno?, docnumber?, description?, basecurr?, currency? , expenseadjustments, supdocid?)>
+
+<!-- Update an EE adjustment -->
+<!ELEMENT update_expenseadjustmentreport (employeeid?, datecreated?, adjustmentno?,docnumber?, description?, basecurr?, currency? , updateexpenseadjustments?, supdocid?)>
+
+<!ATTLIST update_expenseadjustmentreport
+	key CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+
+<!-- Delete an EE adjustment -->
+<!ELEMENT delete_expenseadjustmentreport EMPTY>
+<!ATTLIST delete_expenseadjustmentreport
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Get an EE adjustment -->
+<!ELEMENT get_expenseadjustmentreport EMPTY>
+<!ATTLIST get_expenseadjustmentreport
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+
+
+<!-- Create an expense type -->
+<!ELEMENT create_expensetype (glaccountno, expensetype, description, offsetglaccountno?, status?, externalid?)>
+<!-- Update Expense Type -->
+<!ELEMENT update_expensetype (glaccountno?, description?, offsetglaccountno?, status?)>
+<!ATTLIST update_expensetype
+	expensetype CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Delete an expense type -->
+<!ELEMENT delete_expensetype EMPTY>
+<!ATTLIST delete_expensetype
+	expensetype CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Create an expense payment type -->
+<!ELEMENT create_expensepaymenttype (name, description?, nonreimbursable?, offsetacctno?, status?)>
+<!-- Update Expense Type -->
+<!ELEMENT update_expensepaymenttype (description?, nonreimbursable?, offsetacctno?, status?)>
+<!ATTLIST update_expensepaymenttype
+    name CDATA #REQUIRED
+>
+<!-- Delete an expense payment type -->
+<!ELEMENT delete_expensepaymenttype EMPTY>
+<!ATTLIST delete_expensepaymenttype
+    name CDATA #REQUIRED
+>
+
+<!-- Applying AR Payments -->
+<!ELEMENT apply_arpayment (arpaymentkey, paymentdate, batchkey?, memo?, overpaylocid?, overpaydeptid?, (arpaymentitems* | arpaymentitemdetails*))>
+<!-- Get an AR Aging -->
+<!ELEMENT get_araging (agingperiods?, customerid?, invoiceno?,locationid? ,departmentid?, asofdate?, useduedate?, showdetails?, documenttype?,useglpostdate?,showzerowithactivity?)> 
+
+<!ELEMENT create_apterm (name, description?, status?, due?, discount?, disccalcon?, penalty?)>
+<!ELEMENT update_apterm (description?, status?, due?, discount?, disccalcon?, penalty?)>
+<!ATTLIST update_apterm
+	name CDATA #REQUIRED
+>
+<!ELEMENT delete_apterm  EMPTY>
+<!ATTLIST delete_apterm
+	name CDATA #REQUIRED
+>
+<!ELEMENT create_arterm (name, description?, status?, due?, discount?, disccalcon?, penalty?)>
+<!ELEMENT update_arterm (description?, status?, due?, discount?, disccalcon?, penalty?)>
+<!ATTLIST update_arterm
+	name CDATA #REQUIRED
+>
+<!ELEMENT delete_arterm  EMPTY>
+<!ATTLIST delete_arterm
+	name CDATA #REQUIRED
+>
+
+<!-- Create a task -->
+<!ELEMENT create_task (taskname, projectid, pbegindate?, penddate?, itemid?, billable?, taskdescription?, ismilestone?, utilized?, priority?, taskno?, taskstatus, parentkey?, budgetqty?, estqty?, timetype?, obspercentcomplete?, taskresources?, customfields?, classid?, supdocid?)>
+
+<!-- Update a task -->
+<!ELEMENT update_task (taskname?, projectid?, pbegindate?, penddate?, itemid?, billable?, taskdescription?, ismilestone?, utilized?, priority?, taskno?, taskstatus?, parentkey?, budgetqty?, estqty?, timetype?, obspercentcomplete?, taskresources?, customfields?, classid?, supdocid?)>
+<!ATTLIST update_task
+	key CDATA #REQUIRED
+>
+
+<!-- Delete a task -->
+<!ELEMENT delete_task EMPTY>
+<!ATTLIST delete_task
+	key CDATA #REQUIRED
+>
+
+<!-- Create a timesheet -->
+<!ELEMENT create_timesheet (employeeid, begindate, timesheetdescription?, state?, timesheetitems+)>
+
+<!-- Update a timesheet -->
+<!ELEMENT update_timesheet (employeeid, begindate, timesheetdescription?, state?, timesheetitems+)>
+<!ATTLIST update_timesheet
+	key CDATA #REQUIRED
+>
+
+<!-- Delete a timesheet -->
+<!ELEMENT delete_timesheet EMPTY>
+<!ATTLIST delete_timesheet
+	key CDATA #REQUIRED
+>
+
+<!-- Create a timetype -->
+<!ELEMENT create_timetype (name, status?, accountno?, offsetaccountno?, earningtypename?, customfields?)>
+
+<!-- Update a timetype -->
+<!ELEMENT update_timetype  (status?, accountno?, offsetaccountno?, earningtypename?, customfields?)>
+<!ATTLIST update_timetype
+    key CDATA #REQUIRED
+>
+
+<!-- Delete a timetype -->
+<!ELEMENT delete_timetype EMPTY>
+<!ATTLIST delete_timetype
+    key CDATA #REQUIRED
+>
+<!-- Create vendoracctnolochead -->
+<!ELEMENT create_vendorentityaccountno (vendorid,accountno,locationid)>
+
+<!ELEMENT reverse_arpayment (datereversed, description?, nsfclosedaccount?)>
+<!ATTLIST reverse_arpayment
+        key CDATA #REQUIRED
+>

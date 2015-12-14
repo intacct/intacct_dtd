@@ -1,0 +1,130 @@
+<!--  	This DTD maintains function specifications for GL  
+         File:               intacct_gl_functions.v2.1.dtd
+         Version:            2.1
+		
+         (C)2002, Intacct Corporation, All Rights Reserved 
+
+         Intacct Corporation Proprietary Information.
+         This document contains trade secret data that belongs to Intacct 
+         corporation and is protected by the copyright laws. Information herein 
+         may not be used, copied or disclosed in whole or part without prior 
+         written consent from Intacct Corporation.
+-->
+<!-- create_gltransaction -->
+<!ELEMENT create_gltransaction (journalid, datecreated, description, referenceno?, sourceentity?, customfields?, gltransactionentries)>
+
+<!-- create_recurringgltransaction -->
+<!ELEMENT create_recurringgltransaction (journalid, datecreated, description, referenceno?, sourceentity?, supdocid?, 
+startdate, ending?, modenew?, interval?, eom?, errnotifyemailids?,
+revstartdate?, revending?, revmodenew?, revinterval?, reveom?, reverrnotifyemailids?, isautoreverse?, tiereverse?, autorevmodenew?, autorevinterval?, autoreveom?, customfields?, gltransactionentries)>
+
+<!-- create statgltransaction -->
+<!ELEMENT create_statgltransaction (journalid, datecreated, description, statgltransactionentries)>
+
+<!-- create_recurringstatgltrans -->
+<!ELEMENT create_recurringstatgltrans (journalid, datecreated, description, referenceno?,
+startdate, ending?, modenew?, interval?, eom?, errnotifyemailids?,
+revstartdate?, revending?, revmodenew?, revinterval?, reveom?, reverrnotifyemailids?, isautoreverse?, tiereverse?, autorevmodenew?, autorevinterval?, autoreveom?, customfields?, statgltransactionentries)>
+
+<!-- Get Trial Balance -->
+<!ELEMENT get_trialbalance ((reportingperiodname | (startdate, enddate)), showzerobalances?,showdeptdetail?,showlocdetail?)>
+<!-- Get Account Balances -->
+<!ELEMENT get_accountbalances ((reportingperiodname | (startdate, enddate)), (glaccountno | accountgroupname | (startaccountno, endaccountno))?, locationid?, departmentid?, showzerobalances?)>
+<!-- Get Account Group Details -->
+<!ELEMENT get_accountgroupdetails (accountgroupname)>
+<!-- Create Journal -->
+<!ELEMENT create_journal (symbol, title, status?, externalid?, bookkey?)>
+<!ATTLIST create_journal
+	ignoreduplicates (true | false) "false"
+>
+<!-- Update journal -->
+<!ELEMENT update_journal (title?, status?)>
+<!ATTLIST update_journal
+	symbol CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Delete Journal -->
+<!ELEMENT delete_journal (title?, status?)>
+<!ATTLIST delete_journal
+	symbol CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create Statistical Journal -->
+<!ELEMENT create_statjournal (symbol, title, status?, bookkey?)>
+<!ATTLIST create_statjournal
+	ignoreduplicates (true | false) "false"
+>
+<!-- Delete Statistical Journal -->
+<!ELEMENT delete_statjournal (title?, status?)>
+<!ATTLIST delete_statjournal
+	symbol CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Create Glaccount -->
+<!ELEMENT create_glaccount (glaccountno, title, normalbalance, accounttype?, closingtype?, closingaccountno?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, taxable?, externalid?, customfields?, category?, taxcode?, mrccode?, alternativeaccount?)>
+<!ATTLIST create_glaccount
+	ignoreduplicates (true | false) "false"
+>
+<!-- Update Glaccount -->
+<!ELEMENT update_glaccount (title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, taxable?, customfields?, category?, taxcode?, mrccode?, alternativeaccount?)>
+<!ATTLIST update_glaccount
+	glaccountno CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete Glaccount -->
+<!ELEMENT delete_glaccount EMPTY>
+<!ATTLIST delete_glaccount
+	glaccountno CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!-- Create Statistical Glaccount -->
+<!ELEMENT create_statglaccount (glaccountno, title, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, customfields?, category?, status?)>
+<!ATTLIST create_statglaccount
+	ignoreduplicates (true | false) "false"
+>
+<!-- Update Glaccount -->
+<!ELEMENT update_statglaccount (title?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, customfields?, category?, status?)>
+<!ATTLIST update_statglaccount
+	glaccountno CDATA #REQUIRED
+	set_nulls (true | false) "false"
+	externalkey (true | false) "false"
+>
+<!-- Delete Stat. Glaccount -->
+<!ELEMENT delete_statglaccount EMPTY>
+<!ATTLIST delete_statglaccount
+	glaccountno CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+<!ELEMENT get_closedbooksdate EMPTY>
+
+<!-- Delete Gltransaction -->
+<!ELEMENT delete_gltransaction EMPTY>
+<!ATTLIST delete_gltransaction
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Delete Recurring Gltransaction -->
+<!ELEMENT delete_recurringgltransaction EMPTY>
+<!ATTLIST delete_recurringgltransaction
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- Delete Recurring StatGltransaction -->
+<!ELEMENT delete_recurringstatgltrans EMPTY>
+<!ATTLIST delete_recurringstatgltrans
+	key CDATA #REQUIRED
+	externalkey (true | false) "false"
+>
+
+<!-- convert_glbudget_fp_amounts_to_eop -->
+<!ELEMENT convert_glbudget_fp_amounts_to_eop (budgetid, glaccountno, departmentid?, locationid?, 
+projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, convertfromperiod?)>
+
+<!-- NEW For Atlas Consolidation APIs -->
+<!ELEMENT create_consolidation (bookid, offline?, updatesucceedingperiods?, changesonly?, email?, reportingperiodname, entities)>
+<!ELEMENT entities (csnentity+)>
+<!ELEMENT csnentity (entityid, bsrate, warate)>

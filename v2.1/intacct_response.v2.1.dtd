@@ -1,0 +1,1311 @@
+<!--  	This DTD defines the basic structure of an XML response.  
+
+         File:               intacct_response.v2.1.dtd
+         Version:            2.1
+
+         (C)2002 - 2014, Intacct Corporation, All Rights Reserved
+
+         Intacct Corporation Proprietary Information.
+         This document contains trade secret data that belongs to Intacct 
+         corporation and is protected by the copyright laws. Information herein 
+         may not be used, copied or disclosed in whole or part without prior 
+         written consent from Intacct Corporation.
+-->
+<!-- Response Structure -->
+<!ELEMENT response (control, (operation+ | errormessage))>
+<!ELEMENT control (status, senderid, controlid, uniqueid?, dtdversion?)>
+<!ELEMENT operation (authentication, (errormessage? | result*))>
+<!ELEMENT authentication (status, userid, companyid, clientstatus?, (clientid|locationid)?, sessiontimestamp?)>
+<!ELEMENT result (status, function, controlid, (listtype | key)?, data?, errormessage?)>
+<!ELEMENT data (trialbalance | accountgroupdetail | sessioninfo | client | companypref | appSubscription | closedbooksdate |
+araging | icitemtotals | itemtotal| accountgroup | adjjournal | statjournal | apaccountlabel | apadjustment |
+apadjustmentbatch | appayment | apterm | project | class | araccountlabel | aradjustment | aradjustmentbatch |
+arpayment | arpaymentbatch | arterm | artransactiondef | bankaccount | bill | billbatch | contact | custglgroup |
+customer | customervisibility | customerachinfo | customerchargecard | customerbankaccount | customerppackage |
+department | employee | expensereport | expensereportbatch | expensetypes | expensepaymenttype | glaccount | statglaccount | glbudget |
+glbudgetitem |glentry | gltransaction | icitem | ictotal | stkittransaction| ictransaction | ictransactiondef |
+invoice | invoicebatch | itemglgroup | journal | location | locationentity | supdocfolder | supdoc |
+company_info | trxcurrencies | popricelist | vsoepricelist | vsoeitempricelist | potransaction | potransactiondef | csnhistory | locationgroup |
+pricelistitem | productline | renewalmacro | reportingperiod | revrecschedule | revrecscheduleentry | revrectemplate |
+sopricelist | sotransaction | recursotransaction | sotransactiondef | subscription | territory | uom |
+vendglgroup | vendor | vendorvisibility | warehouse | taxdetail | taxschedule | taxscheduledetail | contacttaxgroup | itemtaxgroup |
+taxschedulemap | smarteventlog | appaymentrequest | icitemtotals |
+itemtotal | timesheet | task | projecttype | projectstatus | timetype |
+allocation | cctransaction | revrecchangelog | vsoeallocation | expenseadjustmentreport | earningtype | employeerate |
+achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permissions | api)*>
+<!ELEMENT errormessage (error*)>
+<!ELEMENT error (errorno, description?, description2?, correction?)>
+
+<!-- OBJECTS -->
+<!ELEMENT accountbalance (glaccountno, startbalance, debits, credits,adjdebits, adjcredits, endbalance)>
+<!ELEMENT accountgroup (accountgroupname?, headingtitle?, totaltitle?, normalbalance?, memberstype?, iskpi?)>
+<!ELEMENT accountgroupdetail (accountgroupname?, (accountgroupdetail | glaccount)*)>
+<!ELEMENT apaccountlabel (glaccountno?, accountlabel?, description?, offsetglaccountno?, status?)>
+<!ELEMENT apadjustment (key?, vendorid?, datecreated?, dateposted?, datepaid?, batchkey?, adjustmentno?, billno?, description?, totalamount?, totalpaid?, totaldue?, totalselected?, whenmodified?, state?, basecurr?, currency?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, trx_totalselected?, customfields?, apadjustmentitems?)>
+<!ELEMENT apadjustmentbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, apadjustment*)>
+<!ELEMENT apadjustmentitems (lineitem+)>
+<!ELEMENT api (sessionid, endpoint)>
+<!ELEMENT apterm (name?, description?, status?, due?, discount?, penalty?)>
+<!ELEMENT araccountlabel (glaccountno?, accountlabel?, description?, offsetglaccountno?, status?, taxcode?)>
+<!ELEMENT aradjustment (key?, customerid?, datecreated?, dateposted?, datepaid?, batchkey?, adjustmentno?, invoiceno?, description?, totalamount?, totalpaid?, totaldue, totalselected?, whenmodified?, state?, basecurr?, currency?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, trx_totalselected?, aradjustmentitems?)>
+<!ELEMENT aradjustmentbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, aradjustment*)>
+<!ELEMENT aradjustmentitems (lineitem+)>
+<!ELEMENT arpayment (customerid?, paymentamount?, paymentapplied?, paymentunapplied?, batchkey?, refid?, state?, datereceived?, key?, batchtitle?, paymentmethod?, undepglaccountno?, undepaccountlabel?,undeposited?, whenmodified?, arpaymentitems?, arpaymentitemdetails?, lineitems?)>
+<!ELEMENT arpaymentbatch (key?, batchtitle?, datecreated?, bankaccountid?, open?, status?, totalamount?, arpayment*)>
+<!ELEMENT arpaymentitems (arpaymentitem+)>
+<!ELEMENT arpaymentitem (invoicekey?, amount?)>
+<!ELEMENT arpaymentitemdetails (arpaymentitemdetail+)>
+<!ELEMENT arpaymentitemdetail (arpaymentitemkey?, invoicelineitemkey?, amount?)>
+<!ELEMENT lineitems (lineitem+)>
+<!ELEMENT arterm (name?, description?, status?, due?, discount?, penalty?)>
+<!ELEMENT bankaccount (bankaccountid?, bankaccountno?, glaccountno?, bankname?, routingno?, branchid?, bankaccounttype?, phone?, nextcheck?, status?, lastreconciledbalance?, lastreconcileddate?, currency?, mailaddress?, outsourcecheck?, fractionalroutingno?, nameontheaccount?)>
+<!ELEMENT bill (key?, vendorid?, datecreated?, dateposted?, datedue?, datepaid?, termname?, batchkey?, billno?, ponumber?, totalamount?, totalpaid?, totaldue?, onhold?, description?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, basecurr?, currency?, customfields?, billitems?, payto?, returnto?, whenmodified?, state?, supdocid?)>
+<!ELEMENT billbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, bill*)>
+<!ELEMENT billitems (lineitem+)>
+<!ELEMENT project (key?, name?, description?, parentid?, invoicewithparent?, projectcategory?, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, sonumber?, ponumber?, poamount?, pqnumber?, whenmodified?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, supdocid?, invoicemessage?, invoicecurrency?, projectresources?)>
+<!ELEMENT task (key?, projectid?, name?, taskno?, description?, ismilestone?, parenttaskname?, budgetqty?, estqty?, priority?, pbegindate?, penddate?, percentcomplete?, taskstatus?, utilized?, billable?, itemid?, timetype?, classid?, supdocid?, obspercentcomplete?, taskresources?)>
+<!ELEMENT class (key?, classid?, name?, description?, parentid?, whenmodified?, status?)>
+<!ELEMENT timesheet (key?, title?, employeeid?, begindate?, enddate?, periodtype?, timesheetitems?)> <!-- TODO: this is foobar -->
+<!ELEMENT checklayout (checkpaperformat?, signaturesrequired?)>
+<!ELEMENT customer (customerid?, name?, parentid?, termname?, custrepid?, shippingmethod?, custtype?, taxid?, creditlimit?, totaldue?, territoryid?, resaleno?, deliveryoptions?, accountlabel?, glaccountno?, glgroup?, comments?, whenmodified?, status?, currency?, primary?, billto?, shipto?, contactinfo?, vsoepricelist?, contactlist?, pricelist?, customfields?, supdocid?)>
+<!ELEMENT customervisibility (customerid?, name?, visibility?)>
+<!ELEMENT customerppackage (name?, description?, author?, intacctid?, signed?)>
+<!ELEMENT department (departmentid?, title?, parentid?, supervisorid?, whenmodified?, status?, customfields?)>
+<!ELEMENT discount ((daysforward | (dayofmonth, monthsforward)), (percentamount | amount), gracedays?)>
+<!ELEMENT due ((daysforward | (dayofmonth, monthsforward)))>
+<!ELEMENT employee (employeeid?, ssn?, title?, locationid?, departmentid?, classid?, supervisorid?, birthdate?, startdate?, enddate?, terminationtype?, employeetype?, gender?, whenmodified?, status?, name1099?, form1099type?, form1099box?,  currency?, earningtypename?, personalinfo?, contactlist?, paymentnotify?, customfields?, mergepaymentreq?)>
+<!ELEMENT expense (line_num?, expensetype?, glaccountno?, amount?, form1099, expensedate?, paidto?, memo?, locationid?, departmentid?, expenseexchinfo?)>
+<!ELEMENT expenseexchinfo (currency?, amount?, exch_rate_date?, exch_rate_type_id?, exchange_rate?, user_exchrate?)>
+<!ELEMENT expensereport (key?, employeeid?, datecreated?, datepaid?, batchkey?, expensereportno?, description?, status?, totalamount?, totalpaid?, totaldue?, expenses?)>
+<!ELEMENT expensereportbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, expensereport*)>
+<!ELEMENT expenses (expense+)>
+
+<!ELEMENT expenseadjustment (line_num?, expensetype?, glaccountno?, amount?, expensedate?, memo?, locationid?, departmentid?)>
+
+<!ELEMENT expenseadjustmentreport (key?, employeeid?, datecreated?, datepaid?, batchkey?, adjustmentno?, description?, totalamount?, totalpaid?, totaldue?, expenseadjustments?)>
+
+<!ELEMENT expenseadjustments (expenseadjustment+)>
+
+
+<!ELEMENT expensetypes (glaccountno?, expensetype?, description?, offsetglaccountno?, status?)>
+<!ELEMENT expensepaymenttype (name?, description?, nonreimbursable?, offsetacctno?, status?)>
+<!ELEMENT function (#PCDATA)>
+<!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, taxable?, taxcode?, mrccode?, alternativeaccount?, customfields?)>
+<!-- NEW NEW NEW -->
+<!ELEMENT custglgroup (glgroupname?)>
+<!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, whslineitems?,vendlineitems?,complineitems?)>
+<!ELEMENT ictotal (totalname?, status?)>
+<!ELEMENT icitemtotal (warehouseid?, itemid?, totalname?, quantity?)>
+<!ELEMENT stkittransaction (transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, stkittransitems?)>
+<!ELEMENT stkittransitems (stkittransitem)>
+<!ELEMENT stkittransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, locationid?, departmentid?,customfields?)>
+<!ELEMENT ictransaction (key?, transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, ictransitems?, subtotals?)>
+<!ELEMENT ictransactiondef (transdefid?, transclass?)>
+<!ELEMENT ictransitems (ictransitem+)>
+<!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, departmentid?, customfields?)>
+<!ELEMENT itemglgroup (glgroupname?)>
+<!ELEMENT sotransitems (sotransitem+)>
+<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?)>
+<!ELEMENT potransitems (potransitem+)>
+<!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
+<!ELEMENT popricelist (pricelistname?, datefrom?, dateto?, status?)>
+<!ELEMENT potransaction (key?, transactiontype?, transactionid?, datecreated?, dateposted?, createdfrom?, vendorid?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, supdocid?, transactionstate?, whenmodified?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, potransitems?, subtotals?)>
+<!ELEMENT potransactiondef (transdefid?, transclass?)>
+<!ELEMENT productline (productlineid?, parentid, productlinedesc?, status?)>
+<!ELEMENT sopricelist (pricelistname?, datefrom?, dateto?, status?)>
+<!ELEMENT sotransactiondef (transdefid?, transclass?)>
+<!ELEMENT sotransaction (key?, transactiontype?, transactionid?, documentnumber?, datecreated?, dateposted?, createdfrom?, customerid?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, transactionstate?, whenmodified?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, vsoepricelist?, projectid?, customfields?, sotransitems?, subtotals?)>
+<!ELEMENT subscription (object, intacctid, subscriber, externalid)>
+<!ELEMENT vendglgroup (glgroupname?)>
+<!ELEMENT warehouse (warehouseid?, name?, parentid?, managerid?, contactname?, shipto?, usedingl?, status?)>
+<!ELEMENT uom (unit?, numdecimals?)>
+<!-- NEW NEW NEW -->
+<!ELEMENT glentry (trtype?, amount?, glaccountno?, document?, datecreated?, memo?, locationid?, departmentid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, journalid?, batchno?, trx_amount?, exch_rate_date?, exch_rate_type_id?, exchange_rate?, recon_date?)>
+<!ELEMENT gltransactionentries (glentry, glentry, glentry*)>
+<!ELEMENT gltransaction (journalid?, batchno?, datecreated?, datemodified?, description?, sourceentity?, customfields?, gltransactionentries?)>
+
+<!ELEMENT recurringgltransaction (journalid?, batchno?, datecreated?, description?, sourceentity?, customfields?, gltransactionentries?)>
+
+<!ELEMENT invoice (key?, customerid?, datecreated?, dateposted?, datedue?, datepaid?, termname?, batchkey?, invoiceno?, ponumber?, totalamount?, totalpaid?, totaldue?, description?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, basecurr?, currency?, billto?, shipto?, whenmodified?, state?, supdocid?, invoiceitems?)>
+<!ELEMENT invoicebatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, invoice*)>
+<!ELEMENT invoiceitems (lineitem+)>
+<!ELEMENT journal (symbol?, title?, status?)>
+<!ELEMENT lineitem (line_num?, accountlabel?, glaccountno?, offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, key?, totalpaid?, totaldue?, trx_amount?, trx_totalpaid?, trx_totaldue?, currency?)>
+<!ELEMENT adjjournal (symbol?, title?, status?)>
+<!ELEMENT statjournal (symbol?, title?, status?)>
+<!ELEMENT location (locationid?, name?, parentid?, supervisorid?, startdate?, enddate?, whenmodified?, status?, primary?, shipto?, contactinfo?, customfields?)>
+<!ELEMENT locationentity (locationid, name, locationtype, currency, status?, enablelegalcontact?, legalname?, legaladdress1?, legaladdress2?, legalcity?, legalstate?, legalzipcode?, legalcountry?)>
+<!ELEMENT supdocfolder (name, description, parentfolder, creationdate, createdby, lastmodified, lastmodifiedby,  status)>
+<!ELEMENT supdoc (supdocid, folder, description, creationdate, createdby, attachments?)>
+<!ELEMENT attachments (attachment+)>
+<!ELEMENT attachment (attachmentname, attachmenttype, attachmentdata)>
+
+<!ELEMENT glbook (bookid, description, currency, bookcontact?, ctanetassetacct, ctanetincomeacct, bookstatjournal?,
+        budgetheader, department, exchratetype, bstransmethod, istransmethod, eename, autoelimination)>
+<!ELEMENT glbookdetail (bookid, detail)>
+<!ELEMENT glbooklocations (bookkey, locationid, name, bookentityjournal)>
+<!ELEMENT glbookacctgroups (bookkey, acctgroupkey)>
+<!ELEMENT glbookacctratetypes (bookkey, glaccountno, glaccounttitle, glacctratetypes, overriderate?, overrideexpirydate?)>
+<!ELEMENT glbookelimaccounts (bookkey, accountkey)>
+<!ELEMENT csnhistory (bookkey, locationname, periodname, actiontime, startedby, warate, bsrate, status, message )>
+<!ELEMENT company_info (title, name)>
+<!ELEMENT trxcurrencies (code)>
+<!ELEMENT penalty (penaltycycle, (percentamount | amount), gracedays?)>
+<!ELEMENT personalinfo (contact)>
+<!ELEMENT reportingperiod (name?, headingtitle?, headingtitle2?, startdate?, enddate?, budgetable?, status?)>
+<!ELEMENT salestotals (salestotal*)>
+<!ELEMENT salestotal (customerid, itemid, productlineid, quantity, totalamount)>
+<!ELEMENT redirectinfo (url, expires)>
+<!ELEMENT trialbalance (glaccountno, startbalance, debits, credits, endbalance, departmentid?, locationid?)>
+<!ELEMENT vendor (vendorid?, name?, parentid?, termname?, glaccountno?, accountlabel?, vendtype?, taxid?, creditlimit?, totaldue?, billingtype?, outsourcecheck?, servicestate?, vendoraccountno?, comments?, status?, currency?, onetime?, whenmodified?, primary?, returnto?, payto?, contactinfo?, contactlist?, form1099?, name1099?, paymentnotify?, achenabled?, wireenabled?, checkenabled?, achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?, wirebankname?, wirebankroutingnumber?, wireaccountnumber?, wireaccounttype?, pmplusremittancetype?, pmplusemail?, pmplusfax?, displaytermdiscount?, supdocid?, mergepaymentreq?)>
+<!ELEMENT vendorvisibility (vendorid?, name?, visibility?)>
+<!ELEMENT vendorentityaccount (recordno?, vendorid?, locationid?, accountno?, vendorname?, locationname?) >
+<!ELEMENT appayment (key, vendorid, paymentamount, refid?, paymentdate, paymentmethod, financialentity, transactionstate, paymenttrxamount?, currency?, whenmodified?, cleared?, cleareddate?, appaymentitems)>
+<!ELEMENT appaymentitems (appaymentitem+)>
+<!ELEMENT appaymentitem (billkey, billno?, lineitemkey, glaccountno, description?, amount, departmentid?, locationid?, trx_amount?, currency?)>
+<!ELEMENT bankinformation (bankaccountid, bankaccountno, bankname)>
+<!ELEMENT subtotals (subtotal*)>
+<!ELEMENT subtotal (description, total, absval?, percentval?, locationid?, departmentid?)>
+<!ELEMENT glbudget (budgetid, description, budgetdefault, whencreated?, whenmodified?, userid, status?, megadepartmentid?, megalocationid?, glbudgetitems?)>
+<!ELEMENT glbudgetitems (glbudgetitem+)>
+
+<!ELEMENT glbudgetitem (budgetid, budgetkey?, recordno?, glaccountno, title, accountkey?, normalbalance, departmentid?,  deptkey?, locationid?, locationkey?, basedon?, growby?, reportingperiodname, periodkey?, perperiod?,  startdate?, enddate?, amount)>
+
+<!ELEMENT territory (territoryid?, name?, parentid?, managerid?, status?, customfields?)>
+<!ELEMENT araging (customerid?, invoiceno?,locationid?, departmentid?, aging+)>
+<!ELEMENT aging (agingperiod, totalamount,agingdetails?)>
+<!ELEMENT agingdetails (agingdetail+)>
+<!ELEMENT agingdetail (invoiceno,totaldue,agingdate,age)>
+<!ELEMENT sessioninfo ((userid, companyid, sessiontimestamp)|(url, expires, session))>
+<!ELEMENT recurbill (recordno, prbatchkey, prbatch, recordtype, description, state, datecreated, datemodified, termkey, termname, recordid, totalentered, userkey, docnumber, prmodulekey, status, schopkey, entity, contractid, contractdesc, vendorid, vendorname, username, paytocontactname, returntocontactname, locationkey, recurbillitems, supdocid, externalurl, startdate, enddate, repeatcount, repeatby, interval, vendordata)>
+<!ELEMENT recurinvoice (recordno, prbatchkey, prbatch, recordtype, description, state, datecreated, datemodified, termkey, termname, recordid, totalentered, userkey, docnumber, prmodulekey, status, schopkey, entity, contractid, contractdesc, customerid, customername, username, billtocontactname, shiptocontactname, locationkey, recurinvoiceitems, supdocid, externalurl, startdate, enddate, repeatcount, repeatby, interval, customerdata)>
+<!ELEMENT recurbillitems (recurlineitem+)>
+<!ELEMENT recurinvoiceitems (recurlineitem+)>
+<!ELEMENT recurlineitem ((accountlabel | glaccountno), amount, memo?, locationid?, departmentid?)>
+<!ELEMENT customerachinfo (recordno, customerid, bankname, bankadd1?, bankadd2?, aba, accountnumber, bankaccounttype)>
+<!ELEMENT customerchargecard (recordno, customerid, cardnum, maskcardnum, cardtype, exp_month, exp_year, description?, defaultcard?, usebilltoaddr?, status?, mailaddress)>
+<!ELEMENT vendlineitems (vendlineitem+)>
+<!ELEMENT vendlineitem (vendorid,stockno?,leadtime?,econorderqty?)>
+<!ELEMENT whslineitems (whslineitem+)>
+<!ELEMENT whslineitem (whsid,cycle?,stdcost?,lastcost?,avgcost?,reordermethod?,economyorderqty?,reorder?,minorderqty?,maxorderqty?,minstock?,maxstock?,datelastsold?,datelastrecvd?,begbalqty?,begbalprice?,defaultsubsection?)>
+<!ELEMENT complineitems (complineitem+)>
+<!ELEMENT complineitem (componentkey,quantity,revpercent)>
+<!ELEMENT itaxgroup (key?,name?)>
+<!ELEMENT renewalmacro (recordno?,macroid?,description?,createsalestrans?,documentparams.docid?,salesdocrecordkey?,createsalestranswhen?,createsalestransdays?,reneweddocdate?,renstartdateopt?,pricingtype?,pricingmarkup?,pricingmarkupvalue?,emailtocustomer?,emailtocustomerfromemailid?,emailcontact?,emailalertfromemailid?,emailcontactfilename?,emailalert?,emailalertfilename?,emailalertaddresses?,emailalertwhen?,emailalertdays?,createsalesopp?,createsalesoppwhen?,createsalesoppdays?,stageofopportunity?,latestversionkey?,status?)>
+<!ELEMENT appaymentrequest (recordno?,vendorid?,vendorname?,paymenttype?,paymentdate?,receiptdate?,paymentamount?,documentnumber?,memo?,state?,status?,bankaccountid?,whenmodified?,termname?,cleared?,cleareddate?,systemgenerated?, vendordue?,currency?,paymenttrxamount?)>
+<!ELEMENT pricelistitem (recordno,pricelistid,itemid,productlineid?,item_line?,datefrom?,dateto?,qtylimitmin?,qtylimitmax?,value?,valuetype?,fixed?,sale?,status?,currency?)>
+<!ELEMENT vsoeitempricelist (key, pricelistid, itemid, currency, valuebase, percentbase, percentof, status, version, priceentries)>
+<!ELEMENT priceentries (priceentry+)>
+<!ELEMENT priceentry (startdate?, enddate?, value?, markup?, markdown?, bandup?, banddown? memo?)>
+<!-- For SmartEventLog -->
+<!ELEMENT smarteventlog (recordno?, smartlinkid?, topic?, ownerobject?,timestamp?, userid?, objectkey? ) >
+<!-- For icitemtotals -->
+<!ELEMENT icitemtotals (itemtotal+)>
+<!ELEMENT itemtotal (itemid?, warehouseid?,aislekey?,rowkey?, binkey?,onhand?,onorder?, onhold? )>
+
+<!ELEMENT allocation (recordno?, allocationid?, description?, allocateby?, allocateto?, docnumber?, status?, allocationentries? ) >
+<!ELEMENT allocationentries (entry+) >
+<!ELEMENT entry ( value?, departmentid?, locationid?) >
+
+<!ELEMENT cctransaction (record?, description?, chargecardid?, payee?, referenceno?, paymentdate?, ccpayitems) >
+<!ELEMENT ccpayitems (ccpayitem+) >
+<!ELEMENT ccpayitem ( line_num?, glaccountno?, accountlabel?, description?, paymentamount?, department?, location?) >
+
+<!ELEMENT revrecschedule (
+        recordno?, revrectemplatekey?, revrectemplateid?, templatepostingmethod?,
+        completed?, invoiceno?, invoicedate?, invoicekey?, sodocumentid?,
+        sodocumentdate?, description?, invoiceitemkey?, sodocumententrykey?,
+        status?, changecategorykey?, changecategory?, changememo?
+        ) >
+<!ELEMENT revrecscheduleentry (
+        recordno?, revrecschedulekey?, posted?, position?, next?, postingdate?,
+        revacctkey?, accountno?, accounttitle?, journalkey?, gljournal?,
+        deferredrevacctkey?, amount?, glbatchkey?, schopkey?, tr_type?, trx_amount?,
+        currency?, posted_amount?, exchratedate?, exchratetypeid?, exchrate?,
+        description?
+        ) >
+<!ELEMENT revrecchangelog (
+        recordno?, revrecschedulekey?, modifieduserkey?, modifiedby?, whenmodified?,
+        summary?, memo?
+        ) >
+
+<!ELEMENT earningtype (name?, method?, billableacctno?, nonbillableacctno?, ratemultiplier?) >
+<!ELEMENT employeerate (recordno?, employeeid?, ratestartdate?, rateenddate?, salaryrate?, billingrate?) >
+
+<!-- DATA TYPES -->
+<!-- RAW TYPES -->
+<!ENTITY % INTEGER "(#PCDATA)">
+<!ENTITY % NUMBER_1 "(#PCDATA)">
+<!ENTITY % NUMBER_2 "(#PCDATA)">
+<!ENTITY % NUMBER_3 "(#PCDATA)">
+<!ENTITY % NUMBER_4 "(#PCDATA)">
+<!ENTITY % NUMBER_6 "(#PCDATA)">
+<!ENTITY % NUMBER_2_2 "(#PCDATA)">
+<!ENTITY % NUMBER_3_2 "(#PCDATA)">
+<!ENTITY % NUMBER_38_2 "(#PCDATA)">
+<!ENTITY % NUMBER_12_4 "(#PCDATA)">
+<!ENTITY % NUMBER_30_10 "(#PCDATA)">
+<!ENTITY % NUMBER_16_4 "(#PCDATA)">
+<!ENTITY % NUMBER_8 "(#PCDATA)">
+<!ENTITY % STRING_1 "(#PCDATA)">
+<!ENTITY % STRING_2 "(#PCDATA)">
+<!ENTITY % STRING_3 "(#PCDATA)">
+<!ENTITY % STRING_4 "(#PCDATA)">
+<!ENTITY % STRING_5 "(#PCDATA)">
+<!ENTITY % STRING_6 "(#PCDATA)">
+<!ENTITY % STRING_8 "(#PCDATA)">
+<!ENTITY % STRING_9 "(#PCDATA)">
+<!ENTITY % STRING_10 "(#PCDATA)">
+<!ENTITY % STRING_12 "(#PCDATA)">
+<!ENTITY % STRING_15 "(#PCDATA)">
+<!ENTITY % STRING_17 "(#PCDATA)">
+<!ENTITY % STRING_20 "(#PCDATA)">
+<!ENTITY % STRING_23 "(#PCDATA)">
+<!ENTITY % STRING_24 "(#PCDATA)">
+<!ENTITY % STRING_30 "(#PCDATA)">
+<!ENTITY % STRING_34 "(#PCDATA)">
+<!ENTITY % STRING_35 "(#PCDATA)">
+<!ENTITY % STRING_40 "(#PCDATA)">
+<!ENTITY % STRING_44 "(#PCDATA)">
+<!ENTITY % STRING_50 "(#PCDATA)">
+<!ENTITY % STRING_60 "(#PCDATA)">
+<!ENTITY % STRING_80 "(#PCDATA)">
+<!ENTITY % STRING_100 "(#PCDATA)">
+<!ENTITY % STRING_200 "(#PCDATA)">
+<!ENTITY % STRING_250 "(#PCDATA)">
+<!ENTITY % STRING_256 "(#PCDATA)">
+<!ENTITY % STRING_400 "(#PCDATA)">
+<!ENTITY % STRING_500 "(#PCDATA)">
+<!ENTITY % STRING_1000 "(#PCDATA)">
+<!ENTITY % STRING_4000 "(#PCDATA)">
+<!ENTITY % STRING_100000 "(#PCDATA)">
+<!ENTITY % BOOLEAN "(#PCDATA)">
+<!-- ENUMS: "true", "false" -->
+<!ENTITY % MONEY "(#PCDATA)">
+<!-- ENUMERATIONS -->
+<!ENTITY % ENUM_ACCTTYPE "(#PCDATA)">
+<!-- ENUMS: "balancesheet", "incomestatement" -->
+<!-- ENUMERATIONS -->
+<!ENTITY % ENUM_ACCTGLTYPE "(#PCDATA)">
+<!-- ENUMS: "N", "P", "R" -->
+<!ENTITY % ENUM_BANKACCOUNTTYPE "(#PCDATA)">
+<!-- ENUMS: "checking", "savings" -->
+<!ENTITY % ENUM_BILLINGTYPE "(#PCDATA)">
+<!-- ENUMS: "balanceforward", "openitem" -->
+<!ENTITY % ENUM_CHECKPAPERFORMAT "(#PCDATA)">
+<!-- ENUMS: "top", "middle" -->
+<!ENTITY % ENUM_COSTMETHOD "(#PCDATA)">
+<!-- ENUMS: "standard", "average", "lifo", "fifo" -->
+<!ENTITY % ENUM_CLOSINGTYPE "(#PCDATA)">
+<!-- ENUMS: "non-closing account", "closing account",
+                                    "closed to account" -->
+<!ENTITY % ENUM_COMPANYTYPE "(#PCDATA)">
+<!-- ENUMS: "W", "A", "E"  which mean "Writeup", "Accounting", "E-Practice" -->
+<!ENTITY % ENUM_DELIVERYOPTIONS "(#PCDATA)">
+<!-- ENUMS: "print", "email", "online" -->
+<!ENTITY % ENUM_EMPLOYEETYPE "(#PCDATA)">
+<!-- ENUMS: "fulltime", "parttime",	"contractor" -->
+<!ENTITY % ENUM_FINENTTYPE "(#PCDATA)">
+<!-- ENUMS: "CHECKING", "SAVINGS",	"DEBIT", "CREDIT" -->
+<!ENTITY % ENUM_GENDER "(#PCDATA)">
+<!-- ENUMS: "male", "female" -->
+<!ENTITY % ENUM_LISTTYPE "(#PCDATA)">
+<!-- ENUMS: "glaccount, journal, department,
+            location, employee, vendor, customer,
+            bill, billbatch, apaccountlabel,
+            apadjustment, invoice, invoicebatch,
+            araccountlabel, aradjustment,
+            apterm, arterm, apadjustmentbatch,
+            aradjustmentbatch, arpaymentbatch,
+            arpayment, expensereportbatch,
+            expensereport, expensetype" -->
+<!ENTITY % ENUM_MEMBERSTYPE "(#PCDATA)">
+<!-- ENUMS: "Groups", "Accounts" -->
+<!ENTITY % ENUM_NUMBEROFSIGNATURES "(#PCDATA)">
+<!-- ENUMS: "1", "2" -->
+<!ENTITY % ENUM_OPERATOR "(#PCDATA)">
+<!-- ENUMS: "<, <=, =, !=, >=, >, like" -->
+<!ENTITY % ENUM_PENALTYCYCLE "(#PCDATA)">
+<!-- ENUMS: "Daily", "Weekly", "Biweekly",
+                                                                       "Monthly", "Bimonthly", "Quarterly",
+                                                                       "Halfyearly", "Annually" -->
+<!ENTITY % ENUM_STATUS "(#PCDATA)">
+<!-- ENUMS: "active", "inactive" -->
+<!ENTITY % ENUM_TRANSSTATE "(#PCDATA)">
+<!-- ENUMS: "Pending","Closed", "Submitted", "Approved", "Unapproved", "Confirmed", "Voided", "Deleted" -->
+<!ENTITY % ENUM_TRANSCLASS "(#PCDATA)">
+<!-- ENUMS: "Quote","Order","Invoice","List","Adjustment","Other" -->
+<!ENTITY % ENUM_TERMINATIONTYPE "(#PCDATA)">
+<!-- ENUMS: "voluntary","involuntary", "deceased","disability","retired" -->
+<!ENTITY % ENUM_TXTYPE "(#PCDATA)">
+<!-- ENUMS: "debit", "credit" -->
+<!ENTITY % ENUM_PAYMENTMETHOD "(#PCDATA)">
+<!-- ENUMS: "Printed Check", "Online", "Cash", "EFT", "Credit Card", "Online Charge Card", "WF Check", "WF Domestic ACH", "WF USD Wire", "ACH" -->
+<!ENTITY % ENUM_ACHACCTYPE "(#PCDATA)">
+<!-- ENUMS: "Demand Deposit Account" -->
+<!ENTITY % ENUM_WIREACCTYPE "(#PCDATA)">
+<!-- ENUMS: "Demand Deposit Account" -->
+<!ENTITY % ENUM_ACHREMITTYPE "(#PCDATA)">
+<!-- ENUMS: "CTX", "CCD" -->
+<!ENTITY % ENUM_PMPLUSRTYPE "(#PCDATA)">
+<!-- ENUMS: "Email", "Fax" -->
+<!ENTITY % ENUM_TASKSTATUS "(#PCDATA)">
+<!-- ENUMS: "In Progress", "Completed", "On Hold" -->
+
+<!ENTITY % ENUM_TAXTYPE "(#PCDATA)">
+<!-- ENUMS: "Sale", "Purchase" -->
+<!ENTITY % ENUM_TAXINCLUDE "(#PCDATA)">
+<!-- ENUMS: "Full Amount", "Amount Within Range" -->
+<!ENTITY % ENUM_MODULE "(#PCDATA)">
+<!-- ENUMS: 'Sales','Purchasing','AR' -->
+<!-- REUSABLE TYPES -->
+<!ENTITY % PHONENO "(#PCDATA)">
+<!-- phone number -->
+<!ENTITY % ID "(#PCDATA)">
+<!ENTITY % KEY "(#PCDATA)">
+<!ENTITY % CONTACTNAME "(#PCDATA)">
+<!ENTITY % CONTACT "(contact | contactname)">
+<!-- COMMON ENTITY DEFINITIONS -->
+<!-- Date and Time definitions -->
+<!ENTITY % DATE "(year, month, day)">
+<!ENTITY % TIMESTAMP "(#PCDATA)">
+<!ENTITY % ENUM_APPAYMENTOPTION "(#PCDATA)">
+<!-- ENUMS: "vendor", "bill", "vendorpref" -->
+<!-- Optional contact fields -->
+<!ENTITY % CONTACT_OPTIONAL_FIELDS " companyname?, taxable?, taxgroup?, prefix?, firstname?, lastname?, initial?, phone1?, phone2?,
+cellphone?, pager?, fax?, email1?, email2?, url1?, url2?, status?, mailaddress?, taxid?">
+<!-- Contact Fields -->
+<!ENTITY % CONTACT_FIELDS "(contactname, printas, %CONTACT_OPTIONAL_FIELDS;)">
+
+<!ENTITY % LIST_RESULTS "trialbalance | accountgroupdetail | sessioninfo | client | companypref | application | closedbooksdate | araging | icitemtotals | itemtotal">
+<!-- <!ENTITY % LIST_APPLICATIONS "AP | AR | CO | GL | SO | INV | PO | EE "> -->
+
+<!ENTITY % LIST_OBJECTS "accountgroup | adjjournal | statjournal | apaccountlabel | apadjustment | apadjustmentbatch | appayment | apterm | project | class |
+araccountlabel | aradjustment | aradjustmentbatch | arpayment | arpaymentbatch | arterm | artransactiondef | bankaccount |
+bill | billbatch | contact | custglgroup | customer | customervisibility | customerachinfo | customerchargecard | customerbankaccount |
+customerppackage | department | employee | expensereport | expensereportbatch | expensetypes | glaccount | statglaccount |
+glbudget | glbudgetitem |glentry | gltransaction | icitem | ictotal | stkittransaction| ictransaction | ictransactiondef |
+invoice | invoicebatch | itemglgroup | journal | location | locationentity | supdocfolder | supdoc |
+company_info | trxcurrencies | popricelist | vsoepricelist | vsoeitempricelist | potransaction | potransactiondef | csnhistory | locationgroup |
+pricelistitem | productline | renewalmacro | reportingperiod | revrecschedule | revrecscheduleentry | revrectemplate |
+sopricelist | sotransaction | recursotransaction | sotransactiondef | subscription | territory | uom |
+vendglgroup | vendor | vendorvisibility | warehouse | taxdetail | taxschedule | taxscheduledetail | contacttaxgroup | itemtaxgroup |
+taxschedulemap | smarteventlog | appaymentrequest | icitemtotals |
+itemtotal | timesheet | task | projecttype | projectstatus | timetype |
+allocation | cctransaction | revrecchangelog | vsoeallocation | expenseadjustmentreport | earningtype | employeerate |
+achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
+<!-- COMMON OBJECT DEFINITIONS -->
+<!ELEMENT absval %MONEY;>
+<!ELEMENT accountgroupname %STRING_80;>
+<!ELEMENT accountlabel %STRING_80;>
+<!ELEMENT accountno %STRING_24;>
+<!ELEMENT accounttype %ENUM_ACCTTYPE;>
+<!ELEMENT alternativeaccount %ENUM_ACCTGLTYPE;>
+<!ELEMENT activity %STRING_30;>
+<!ELEMENT address1 %STRING_80;>
+<!ELEMENT address2 %STRING_80;>
+<!ELEMENT adjcredits %MONEY;>
+<!ELEMENT adjdebits %MONEY;>
+<!ELEMENT adjustmentno %STRING_30;>
+<!ELEMENT amount %MONEY;>
+<!ELEMENT approverid %STRING_20;>
+<!ELEMENT arpaymentkey %KEY;>
+<!ELEMENT arpaymentitemkey %KEY;>
+<!ELEMENT arpaymentlineitemkey %KEY;>
+<!ELEMENT averagecost %MONEY;>
+<!ELEMENT author %STRING_80;>
+<!ELEMENT bankaccountid %STRING_24;>
+<!ELEMENT bankaccountno %STRING_30;>
+<!ELEMENT bankaccounttype %ENUM_BANKACCOUNTTYPE;>
+<!ELEMENT bankname %STRING_100;>
+<!ELEMENT baseprice %MONEY;>
+<!ELEMENT batchkey %KEY;>
+<!ELEMENT batchno %NUMBER_8;>
+<!ELEMENT batchtitle %STRING_80;>
+<!ELEMENT billingtype %ENUM_BILLINGTYPE;>
+<!ELEMENT billkey %KEY;>
+<!ELEMENT billno %STRING_30;>
+<!ELEMENT billto %CONTACT;>
+<!ELEMENT birthdate %DATE;>
+<!ELEMENT branchid %STRING_12;>
+<!ELEMENT budgetdefault %BOOLEAN;>
+<!ELEMENT budgetid %STRING_40;>
+<!ELEMENT budgetable %BOOLEAN;>
+<!ELEMENT category %STRING_80;>
+<!ELEMENT city %STRING_80;>
+<!ELEMENT cellphone %PHONENO;>
+<!ELEMENT chargecardid %ID;>
+<!ELEMENT checkno %STRING_20;>
+<!ELEMENT checkdate %DATE;>
+<!ELEMENT checkpaperformat %ENUM_CHECKPAPERFORMAT;>
+<!ELEMENT client (clientid)>
+<!ELEMENT clientid %STRING_40;>
+<!ELEMENT closingaccountno %STRING_24;>
+<!ELEMENT closingtype %ENUM_CLOSINGTYPE;>
+<!ELEMENT comments %STRING_500;>
+<!ELEMENT companyid %STRING_40;>
+<!ELEMENT companyname %STRING_100;>
+<!ELEMENT companyprefs (companypref+)>
+<!ELEMENT companypref (appSubscription, preference, prefvalue)>
+<!ELEMENT moduleprefs (modulepref+)>
+<!ELEMENT modulepref (appSubscription, preference, prefvalue)>
+<!ELEMENT companytype %ENUM_COMPANYTYPE;>
+<!ELEMENT contact (contactname, printas,taxable?, companyname?, taxgroup?, prefix?, firstname?, lastname?, initial?, phone1?, phone2?, cellphone?, pager?, fax?, email1?, email2?, url1?, url2?, status?, mailaddress?, taxid?)>
+<!ELEMENT contactlist (contactitem+)>
+<!ELEMENT contactinfo (contact | contactname)>
+<!ELEMENT contactitem (category, contactname)>
+<!ELEMENT contactname %CONTACTNAME;>
+<!ELEMENT controlid %STRING_256;>
+<!ELEMENT correction %STRING_4000;>
+<!ELEMENT members %STRING_4000;>
+<!ELEMENT cost %MONEY;>
+<!ELEMENT costmethod %ENUM_COSTMETHOD;>
+<!ELEMENT country %STRING_60;>
+<!ELEMENT createdfrom %STRING_30;>
+<!ELEMENT creditcardid %ID;>
+<!ELEMENT creditlimit %MONEY;>
+<!ELEMENT credittoapply %MONEY;>
+<!ELEMENT credits %MONEY;>
+<!ELEMENT customerid %ID;>
+<!ELEMENT customfields (customfield*)>
+<!ELEMENT customfield (customfieldname, customfieldvalue)>
+<!ELEMENT customfieldname %STRING_80;>
+<!ELEMENT customfieldvalue (#PCDATA)>
+<!ELEMENT custtitle %STRING_250;>
+<!ELEMENT visibility (visibility_type, restricted_locs*, restricted_depts*)>
+<!ELEMENT restricted_locs (locationid+)>
+<!ELEMENT restricted_depts (departmentid+)>
+<!ELEMENT visibility_type %STRING_80;>
+<!ELEMENT custrepid %ID;>
+<!ELEMENT custtype %STRING_80;>
+<!ELEMENT paypriority %ENUM_LISTTYPE;>
+<!ATTLIST paypriority
+        urgent CDATA #IMPLIED
+        high CDATA #IMPLIED
+        normal CDATA #IMPLIED
+        low CDATA #IMPLIED
+        >
+<!ELEMENT datedue %DATE;>
+<!ELEMENT recpaydate %DATE;>
+<!ELEMENT datecreated %DATE;>
+<!ELEMENT datefrom %DATE;>
+<!ELEMENT dateto %DATE;>
+<!ELEMENT datereceived %DATE;>
+<!ELEMENT datemodified %DATE;>
+<!ELEMENT datereversed %DATE;>
+<!ELEMENT day %INTEGER;>
+<!ELEMENT dayofmonth %INTEGER;>
+<!ELEMENT daysforward %INTEGER;>
+<!ELEMENT departmentid %ID;>
+<!ELEMENT debits %MONEY;>
+<!ELEMENT debug %BOOLEAN;>
+<!ELEMENT defaultwhse %STRING_40;>
+<!ELEMENT deliveryoptions (deliveryoption+)>
+<!ELEMENT deliveryoption %ENUM_DELIVERYOPTIONS;>
+<!ELEMENT undeposited %BOOLEAN;>
+<!ELEMENT description %STRING_80;>
+<!ELEMENT description2 %STRING_80;>
+<!ELEMENT discountamount %MONEY;>
+<!ELEMENT discountpercent %NUMBER_2_2;>
+<!ELEMENT discounttoapply %MONEY;>
+<!ELEMENT discsurchargememo %STRING_4000;>
+<!ELEMENT document %STRING_30;>
+<!ELEMENT documentno %STRING_20;>
+<!ELEMENT origdocdate %DATE;>
+<!ELEMENT bundlenumber %INTEGER;>
+<!ELEMENT vsoepricelist %STRING_40;>
+<!ELEMENT vsoecategory %STRING_40;>
+<!ELEMENT vsoedlvrstatus %STRING_40;>
+<!ELEMENT vsoerevdefstatus %STRING_40;>
+<!ELEMENT kcdlvrstatus %STRING_40;>
+<!ELEMENT kcrevdefstatus %STRING_40;>
+<!ELEMENT documentnumber %STRING_20;>
+<!ELEMENT dtdversion %STRING_20;>
+<!ELEMENT email %STRING_40;>
+<!ELEMENT email1 %STRING_40;>
+<!ELEMENT email2 %STRING_40;>
+<!ELEMENT errnotifyemailids %STRING_100;>
+<!ELEMENT reverrnotifyemailids %STRING_100;>
+<!ELEMENT employeeid %ID;>
+<!ELEMENT employeetype %ENUM_EMPLOYEETYPE;>
+<!ELEMENT endaccountno %STRING_24;>
+<!ELEMENT endbalance %MONEY;>
+<!ELEMENT enddate %DATE;>
+<!ELEMENT begindate %DATE;>
+<!ELEMENT errorno %STRING_20;>
+<!ELEMENT expensedate %DATE;>
+<!ELEMENT expensereportno %STRING_20;>
+<!ELEMENT expensetype %STRING_80;>
+<!ELEMENT user_exchrate %NUMBER_12_4;>
+<!ELEMENT expires %STRING_20;>
+<!ELEMENT extdescription %STRING_400;>
+<!ELEMENT externalid %KEY;>
+<!ELEMENT fax %PHONENO;>
+<!ELEMENT financialentity %STRING_80;>
+<!ELEMENT finentid %STRING_20;>
+<!ELEMENT finentname %STRING_100;>
+<!ELEMENT finentacctno %STRING_30;>
+<!ELEMENT finenttype %ENUM_FINENTTYPE;>
+<!ELEMENT firstname %STRING_40;>
+<!ELEMENT form1099 %BOOLEAN;>
+<!ELEMENT gender %ENUM_GENDER;>
+<!ELEMENT glaccountno %STRING_24;>
+<!ELEMENT glgroupname %STRING_80;>
+<!ELEMENT servicechargeglaccount %STRING_24;>
+<!ELEMENT interestearnedglaccount %STRING_24;>
+<!ELEMENT servicechargeaccountlabel %STRING_80;>
+<!ELEMENT interestearnedaccountlabel %STRING_80;>
+<!ELEMENT dfltcnyaddr %STRING_5;>
+<!ELEMENT checkprintformat %STRING_40;>
+<!ELEMENT signatureimage1 %STRING_40;>
+<!ELEMENT usesig1belowamt %NUMBER_38_2;>
+<!ELEMENT signatureimage2 %STRING_40;>
+<!ELEMENT usesig2belowamt %NUMBER_38_2;>
+<!ELEMENT sigline2amount %NUMBER_38_2;>
+<!ELEMENT printlineitems %STRING_5;>
+<!ELEMENT bankacctalign %STRING_40;>
+<!ELEMENT spacestoappend %NUMBER_8;>
+<!ELEMENT checknolength %NUMBER_2;>
+<!ELEMENT voidtext %STRING_40;>
+<!ELEMENT gmtoffset %STRING_5;>
+<!ELEMENT categorykey %KEY;>
+<!-- For Simplified Inventory items -->
+<!ELEMENT incomeaccount %STRING_24;>
+<!ELEMENT invaccount %STRING_24;>
+<!ELEMENT expenseaccount %STRING_24;>
+<!ELEMENT cogsaccount %STRING_24;>
+<!ELEMENT offsetoeglaccount %STRING_24;>
+<!ELEMENT offsetpoglaccount %STRING_24;>
+<!ELEMENT uomgrp %STRING_50;>
+
+<!-- New elements for aging -->
+<!ELEMENT agingperiods %STRING_80;>
+<!ELEMENT asofdate %DATE;>
+<!ELEMENT useduedate %BOOLEAN;>
+<!ELEMENT agingperiod %STRING_12;>
+<!ELEMENT showdetails %BOOLEAN;>
+<!ELEMENT agingdate %DATE;>
+<!ELEMENT age %INTEGER;>
+<!ELEMENT documenttype %STRING_24;>
+<!ELEMENT useglpostdate %BOOLEAN;>
+<!ELEMENT showzerowithactivity %BOOLEAN;>
+
+<!ELEMENT achenabled %BOOLEAN;>
+<!ELEMENT wireenabled %BOOLEAN;>
+<!ELEMENT checkenabled %BOOLEAN;>
+<!ELEMENT achbankroutingnumber %STRING_9;>
+<!ELEMENT achaccountnumber %STRING_34;>
+<!ELEMENT achaccounttype %ENUM_ACHACCTYPE;>
+<!ELEMENT achremittancetype %ENUM_ACHREMITTYPE;>
+<!ELEMENT wirebankname %STRING_35;>
+<!ELEMENT wirebankroutingnumber %STRING_17;>
+<!ELEMENT wireaccountnumber %STRING_34;>
+<!ELEMENT wireaccounttype %ENUM_WIREACCTYPE;>
+<!ELEMENT pmplusremittancetype %ENUM_PMPLUSRTYPE;>
+<!ELEMENT pmplusemail %STRING_60;>
+<!ELEMENT pmplusfax %STRING_50;>
+<!ELEMENT displaytermdiscount %BOOLEAN;>
+<!-- ex. "-0700" -->
+<!ELEMENT gracedays %INTEGER;>
+<!ELEMENT headingtitle %STRING_80;>
+<!ELEMENT headingtitle2 %STRING_80;>
+<!ELEMENT hour %INTEGER;>
+<!ELEMENT itemname %STRING_100;>
+<!ELEMENT initial %STRING_40;>
+<!ELEMENT invoiceno %STRING_30;>
+<!ELEMENT invoicekey %KEY;>
+<!ELEMENT invoicelineitemkey %KEY;>
+<!ELEMENT intacctid %STRING_80;>
+<!ELEMENT isocountrycode %STRING_2;>
+<!ELEMENT itemid %STRING_30;>
+<!ELEMENT itemdesc %STRING_200;>
+<!ELEMENT item1099 %STRING_10;>
+<!ELEMENT journalid %STRING_4;>
+<!ELEMENT key %KEY;>
+<!ELEMENT label %STRING_80;>
+<!ELEMENT lastname %STRING_40;>
+<!ELEMENT lastreconciledbalance %STRING_20;>
+<!ELEMENT lastreconcileddate %DATE;>
+<!ELEMENT lineitemkey %KEY;>
+<!ELEMENT line_num %KEY;>
+<!ELEMENT listtype %ENUM_LISTTYPE;>
+<!ATTLIST listtype
+        start CDATA #IMPLIED
+        end CDATA #IMPLIED
+        total CDATA #IMPLIED
+        >
+<!ELEMENT locationid %ID;>
+<!ELEMENT locationtype (#PCDATA)>
+<!ELEMENT entityid %ID;>
+<!ELEMENT bookid %ID;>
+<!ELEMENT bookkey %ID;>
+<!ELEMENT offline %BOOLEAN;>
+<!ELEMENT updatesucceedingperiods %BOOLEAN;>
+<!ELEMENT changesonly %BOOLEAN;>
+<!ELEMENT eename %ID;>
+<!ELEMENT acctgroupkey %ID;>
+<!ELEMENT glacctratetypes %STRING_1;>
+<!ELEMENT code %ID;>
+<!ELEMENT mailaddress (address1?, address2?, city?, state?, zip?, country?, isocountrycode?)>
+<!ELEMENT managerid %ID;>
+<!ELEMENT megadepartmentid %ID;>
+<!ELEMENT megalocationid %ID;>
+<!ELEMENT memberstype %ENUM_MEMBERSTYPE;>
+<!ELEMENT memo %STRING_500;>
+<!ELEMENT paymentdescription %STRING_500;>
+<!ELEMENT message %STRING_4000;>
+<!ELEMENT minute %INTEGER;>
+<!ELEMENT month %INTEGER;>
+<!ELEMENT monthsforward %INTEGER;>
+<!ELEMENT name %STRING_100;>
+<!ELEMENT normalbalance %ENUM_TXTYPE;>
+<!ELEMENT notifyemail %STRING_40;>
+<!ELEMENT note %STRING_1000;>
+<!ELEMENT numdecimals %NUMBER_1;>
+<!ELEMENT bsrate %NUMBER_1;>
+<!ELEMENT warate %NUMBER_1;>
+<!ELEMENT nextcheck %STRING_6;>
+<!ELEMENT offsetglaccountno %STRING_24;>
+<!ELEMENT offsetacctno %STRING_24;>
+<!ELEMENT onhold %STRING_30;>
+<!ELEMENT overpaydeptid %ID;>
+<!ELEMENT overpaylocid %ID;>
+<!ELEMENT onetime %BOOLEAN;>
+<!ELEMENT open %BOOLEAN;>
+<!ELEMENT operator %ENUM_OPERATOR;>
+<!ELEMENT pager %PHONENO;>
+<!ELEMENT paidto %STRING_40;>
+<!ELEMENT paidfor %STRING_40;>
+<!ELEMENT parentid %ID;>
+<!ELEMENT password %STRING_12;>
+<!ELEMENT payee %STRING_80;>
+<!ELEMENT payer %STRING_80;>
+<!ELEMENT paydate %DATE;>
+<!ELEMENT paymentdate %DATE;>
+<!ELEMENT cleareddate %DATE;>
+<!ELEMENT cleared %STRING_1;>
+<!ELEMENT paylabel %STRING_80;>
+<!ELEMENT paymentamount %MONEY;>
+<!ELEMENT translatedamount %MONEY;>
+<!ELEMENT paymentapplied %MONEY;>
+<!ELEMENT paymentmethod %ENUM_PAYMENTMETHOD;>
+<!ELEMENT paymentunapplied %MONEY;>
+<!ELEMENT payto %CONTACT;>
+<!ELEMENT penaltycycle %ENUM_PENALTYCYCLE;>
+<!ELEMENT percentamount %NUMBER_38_2;>
+<!ELEMENT percentval %NUMBER_38_2;>
+<!ELEMENT periodend %DATE;>
+<!ELEMENT phone %PHONENO;>
+<!ELEMENT phone1 %PHONENO;>
+<!ELEMENT phone2 %PHONENO;>
+<!ELEMENT ponumber %STRING_20;>
+<!ELEMENT prefix %STRING_6;>
+<!ELEMENT preference %STRING_80;>
+<!ELEMENT prefvalue %STRING_4000;>
+<!ELEMENT primary %CONTACT;>
+<!ELEMENT price %MONEY;>
+<!ELEMENT printas %STRING_200;>
+<!ELEMENT policyid %STRING_40;>
+<!ELEMENT referenceno %STRING_20;>
+<!ELEMENT pricelistname %STRING_100;>
+<!ELEMENT pricelist %STRING_100;>
+<!ELEMENT productlineid %STRING_30;>
+<!ELEMENT productlinedesc %STRING_30;>
+<!ELEMENT purchasingunit %STRING_30;>
+<!ELEMENT purchasingunitfactor %NUMBER_12_4;>
+<!ELEMENT quantity %NUMBER_16_4;>
+<!ELEMENT receiptkey %KEY;>
+<!ELEMENT refid %STRING_20;>
+<!ELEMENT reportingperiodname %STRING_80;>
+<!ELEMENT convertfromperiod %STRING_80;>
+<!ELEMENT periodname %STRING_80;>
+<!ELEMENT actiontime %TIMESTAMP;>
+<!ELEMENT startedby %STRING_40;>
+<!ELEMENT requiredept %BOOLEAN;>
+<!ELEMENT requireloc %BOOLEAN;>
+<!ELEMENT requireproject %BOOLEAN;>
+<!ELEMENT requirecustomer %BOOLEAN;>
+<!ELEMENT requirevendor %BOOLEAN;>
+<!ELEMENT requireemployee %BOOLEAN;>
+<!ELEMENT requireitem %BOOLEAN;>
+<!ELEMENT requireclass %BOOLEAN;>
+<!ELEMENT resaleno %STRING_20;>
+<!ELEMENT returnto %CONTACT;>
+<!ELEMENT routingno %STRING_9;>
+<!ELEMENT recon_date %DATE;>
+<!ELEMENT salesunit %STRING_30;>
+<!ELEMENT salesunitfactor %NUMBER_12_4;>
+<!ELEMENT second %INTEGER;>
+<!ELEMENT senderid %ID;>
+<!ELEMENT shippingmethod %STRING_40;>
+<!ELEMENT shipto %CONTACT;>
+<!ELEMENT bookcontact (name)>
+<!ELEMENT ctanetassetacct (accountno)>
+<!ELEMENT ctanetincomeacct (accountno)>
+<!ELEMENT bookstatjournal (symbol, title?)>
+<!ELEMENT bookentityjournal (symbol, title?)>
+<!ELEMENT budgetheader (budgetid)>
+<!ELEMENT bstranmethod %STRING_1;>
+<!ELEMENT istranmethod %STRING_1;>
+<!ELEMENT shipweight %NUMBER_12_4;>
+<!ELEMENT showzerobalances %BOOLEAN;>
+<!ELEMENT showdeptdetail %BOOLEAN;>
+<!ELEMENT showlocdetail %BOOLEAN;>
+<!ELEMENT financialdata (reconmode,apjournal?,arjournal?)>
+<!ELEMENT apjournal %STRING_4;>
+<!ELEMENT arjournal %STRING_4;>
+<!ELEMENT reconmode %STRING_30;>
+<!ELEMENT disableiet %BOOLEAN;>
+<!-- default is true -->
+<!ELEMENT signaturesrequired %ENUM_NUMBEROFSIGNATURES;>
+<!ELEMENT signed %BOOLEAN;>
+<!ELEMENT ssn %STRING_9;>
+<!ELEMENT source %STRING_80;>
+<!ELEMENT startaccountno %STRING_24;>
+<!ELEMENT startbalance %MONEY;>
+<!ELEMENT startdate %DATE;>
+<!ELEMENT ratestartdate %DATE;>
+<!ELEMENT rateenddate %DATE;>
+<!ELEMENT revstartdate %DATE;>
+<!ELEMENT state %STRING_40;>
+<!ELEMENT status %ENUM_STATUS;>
+<!ELEMENT docstatus %ENUM_STATUS;>
+<!ELEMENT sourceentity %ID;>
+<!ELEMENT standardcost %MONEY;>
+<!ELEMENT standardunit %STRING_30;>
+<!ELEMENT symbol %STRING_4;>
+<!ELEMENT statjournalsymbol %STRING_4;>
+<!ELEMENT supervisorid %ID;>
+<!ELEMENT substituteid %STRING_30;>
+<!ELEMENT taxable %BOOLEAN;>
+<!ELEMENT taxgroup %STRING_30;>
+<!ELEMENT taxid %STRING_20;>
+<!ELEMENT termname %STRING_40;>
+<!ELEMENT termperiod %STRING_1;>
+<!ELEMENT terminationtype %ENUM_TERMINATIONTYPE;>
+<!ELEMENT territoryid %ID;>
+<!ELEMENT title %STRING_80;>
+<!ELEMENT total %MONEY;>
+<!ELEMENT totalamount %MONEY;>
+<!ELEMENT totaldue %MONEY;>
+<!ELEMENT totalselected %MONEY;>
+<!ELEMENT totalname %STRING_30;>
+<!ELEMENT totalpaid %MONEY;>
+<!ELEMENT totaltitle %STRING_80;>
+<!ELEMENT trtype %ENUM_TXTYPE;>
+<!ELEMENT transactionid %STRING_60;>
+<!ELEMENT transdefid %STRING_30;>
+<!ELEMENT transclass %ENUM_TRANSCLASS;>
+<!ELEMENT transactionstate %ENUM_TRANSSTATE;>
+<!ELEMENT transactiontype %STRING_30;>
+<!ELEMENT undepfundsacct %STRING_24;>
+<!ELEMENT uniqueid %BOOLEAN;>
+<!ELEMENT nogl %BOOLEAN;>
+<!ELEMENT unit %STRING_30;>
+<!ELEMENT url %STRING_256;>
+<!ELEMENT url1 %STRING_256;>
+<!ELEMENT url2 %STRING_256;>
+<!ELEMENT usedingl %BOOLEAN;>
+<!ELEMENT userid %ID;>
+<!ELEMENT value %STRING_100;>
+<!ELEMENT vendoraccountno %STRING_30;>
+<!ELEMENT displocacctnocheck %BOOLEAN;>
+<!ELEMENT vendordocno %STRING_20;>
+<!ELEMENT vendorid %ID;>
+<!ELEMENT name1099 %STRING_100;>
+<!ELEMENT form1099type %STRING_4;>
+<!ELEMENT form1099box %STRING_4;>
+<!ELEMENT vendtype %STRING_80;>
+<!ELEMENT warehouseid %STRING_40;>
+<!ELEMENT webpage %STRING_256;>
+<!ELEMENT whencreated %DATE;>
+<!ELEMENT whenlastsold %DATE;>
+<!ELEMENT whenlastreceived %DATE;>
+<!ELEMENT whenmodified %TIMESTAMP;>
+<!ELEMENT year %INTEGER;>
+<!ELEMENT zip %STRING_30;>
+<!ELEMENT receiveddate %DATE;>
+<!ELEMENT undepglaccountno %STRING_24;>
+<!ELEMENT depositdate %DATE;>
+<!ELEMENT depositid %STRING_80;>
+<!ELEMENT receiptvalue %KEY;>
+<!ELEMENT datepaid %DATE;>
+<!ELEMENT dateposted %DATE;>
+<!ELEMENT undepaccountlabel %STRING_24;>
+<!ELEMENT earningtypename %STRING_50;>
+<!ELEMENT postactualcost %BOOLEAN;>
+<!ELEMENT offsetaccountno %STRING_24;>
+<!ELEMENT contraaccountno %STRING_24;>
+
+<!-- ITEM ELEMENTS -->
+<!ELEMENT allow_backorder %BOOLEAN;>
+<!ELEMENT average_cost %NUMBER_30_10;>
+<!ELEMENT base_price %NUMBER_30_10;>
+<!ELEMENT cost_method %STRING_1;>
+<!ELEMENT cycle %STRING_30;>
+<!ELEMENT default_warehouse %STRING_40;>
+<!ELEMENT extended_description %STRING_400;>
+<!ELEMENT glgroup %STRING_80;>
+<!ELEMENT inventory_precision %INTEGER;>
+<!ELEMENT itemtype %STRING_30;>
+<!ELEMENT enable_bins %BOOLEAN;>
+<!ELEMENT producttype %STRING_20;>
+<!ELEMENT purchase_unit %STRING_30;>
+<!ELEMENT purchase_unit_factor %INTEGER;>
+<!ELEMENT purchasing_precision %INTEGER;>
+<!ELEMENT sales_precision %INTEGER;>
+<!ELEMENT sales_unit %STRING_30;>
+<!ELEMENT sales_unit_factor %INTEGER;>
+<!ELEMENT ship_weight %NUMBER_12_4;>
+<!ELEMENT standard_cost %NUMBER_30_10;>
+<!ELEMENT standard_unit %STRING_30;>
+<!ELEMENT upc %STRING_40;>
+<!ELEMENT taxcode %STRING_30;>
+<!ELEMENT mrccode %STRING_20;>
+<!ELEMENT retailprice %MONEY;>
+
+<!ELEMENT hasstartenddates %BOOLEAN;>
+<!ELEMENT term_period %STRING_1;>
+<!ELEMENT defaultnoofperiods %INTEGER;>
+<!ELEMENT computepriceforshortterm %BOOLEAN;>
+<!ELEMENT stockno %STRING_50;>
+<!ELEMENT leadtime %NUMBER_8;>
+<!ELEMENT econorderqty %NUMBER_8;>
+<!ELEMENT whsid %ID;>
+<!ELEMENT stdcost %NUMBER_30_10;>
+<!ELEMENT lastcost %NUMBER_30_10;>
+<!ELEMENT avgcost %NUMBER_30_10;>
+<!ELEMENT reordermethod %STRING_20;>
+<!ELEMENT economyorderqty %NUMBER_8;>
+<!ELEMENT reorder %BOOLEAN;>
+<!ELEMENT minorderqty %NUMBER_30_10;>
+<!ELEMENT maxorderqty %NUMBER_30_10;>
+<!ELEMENT minstock %NUMBER_30_10;>
+<!ELEMENT maxstock %NUMBER_30_10;>
+<!ELEMENT datelastsold %DATE;>
+<!ELEMENT datelastrecvd %DATE;>
+<!ELEMENT begbalqty %NUMBER_30_10;>
+<!ELEMENT begbalprice %NUMBER_30_10;>
+<!ELEMENT defaultsubsection %STRING_30;>
+<!ELEMENT default_aisle %STRING_30;>
+<!ELEMENT default_row %STRING_30;>
+<!ELEMENT default_bin %STRING_30;>
+
+<!ELEMENT revenue_posting %STRING_30;>
+<!ELEMENT componentkey %STRING_50;>
+<!ELEMENT revpercent %NUMBER_30_10;>
+<!ELEMENT delete_component %STRING_50;>
+
+<!ELEMENT billable %BOOLEAN;>
+<!ELEMENT nonreimbursable %BOOLEAN;>
+<!ELEMENT totalperiods (#PCDATA)>
+<!ELEMENT computeforshortterm (#PCDATA)>
+
+<!ELEMENT nsfclosedaccount %STRING_3;>
+
+<!-- Project -->
+<!ELEMENT parentname %STRING_30;>
+<!ELEMENT invoicewithparent %BOOLEAN;>
+<!ELEMENT projectid %STRING_30;>
+<!ELEMENT custuserid %STRING_30;>
+<!ELEMENT projectcategory %STRING_30;>
+<!ELEMENT projecttype %STRING_30;>
+<!ELEMENT projectstatus %STRING_30;>
+<!ELEMENT sonumber %STRING_30;>
+<!ELEMENT poamount %STRING_30;>
+<!ELEMENT pqnumber %STRING_30;>
+<!ELEMENT userrestrictions %STRING_30;>
+<!ELEMENT projectresources (projectresource*)>
+<!ELEMENT projectresource (employeeid?, itemid?, resourcedescription?, startdate?, billingrate?, expenserate?, poaprate?)>
+<!ELEMENT resourcedescription %STRING_200;>
+<!ELEMENT billingrate %NUMBER_38_2;>
+<!ELEMENT expenserate %NUMBER_38_2;>
+<!ELEMENT poaprate %NUMBER_38_2;>
+<!ELEMENT salescontactid %STRING_100;>
+<!ELEMENT budgetamount %NUMBER_38_2;>
+<!ELEMENT budgetedcost %NUMBER_38_2;>
+<!ELEMENT obspercentcomplete %NUMBER_3_2;>
+<!ELEMENT billingpricing %STRING_30;>
+<!ELEMENT expensepricing %STRING_30;>
+<!ELEMENT poappricing %STRING_30;>
+<!ELEMENT invoicemessage %STRING_4000;>
+<!ELEMENT invoicecurrency %STRING_3;>
+
+<!-- Class -->
+<!ELEMENT classid %STRING_30;>
+
+<!-- PRICELISTENTRY ELEMENTS -->
+<!ELEMENT fixed %STRING_1;>
+<!ELEMENT maximum_quantity %NUMBER_38_2;>
+<!ELEMENT minimum_quantity %NUMBER_38_2;>
+<!ELEMENT pricelistid %STRING_30;>
+<!ELEMENT valuetype %STRING_15;>
+<!ELEMENT closedbooksdate %DATE;>
+<!ELEMENT sessiontimestamp (#PCDATA)>
+<!ELEMENT item_line (#PCDATA)>
+<!ELEMENT sale (#PCDATA)>
+<!ELEMENT qtylimitmin %NUMBER_38_2;>
+<!ELEMENT qtylimitmax %NUMBER_38_2;>
+
+<!-- MCP ELEMENTS -->
+<!ELEMENT basecurr %STRING_3;>
+<!ELEMENT currency %STRING_3;>
+<!ELEMENT detail %STRING_3;>
+<!ELEMENT trx_totaldue %NUMBER_38_2;>
+<!ELEMENT trx_totalpaid %NUMBER_38_2;>
+<!ELEMENT trx_totalamount %NUMBER_38_2;>
+<!ELEMENT trx_totalselected %NUMBER_38_2;>
+<!ELEMENT exchange_rate %NUMBER_38_2;>
+<!ELEMENT exchratetypeid %STRING_3;>
+<!ELEMENT exch_rate_type_id %STRING_3;>
+<!ELEMENT exch_rate_date %NUMBER_38_2;>
+<!ELEMENT trx_amount %NUMBER_38_2;>
+<!ELEMENT trx_price %NUMBER_38_2;>
+<!ELEMENT trx_value %NUMBER_38_2;>
+<!ELEMENT paymenttrxamount %NUMBER_38_2;>
+<!ELEMENT exchratedate %DATE;>
+<!ELEMENT exchratetype %STRING_100;>
+<!ELEMENT exchrate %NUMBER_38_2;>
+<!ELEMENT autoelimination %STRING_1;>
+
+<!-- XML GATEWAY RECURRING BILLS/INVOICES -->
+<!ENTITY % ENUM_MODENEW "(#PCDATA)">
+<!-- ENUMS: "days", "weeks", "months", "years" -->
+<!ELEMENT ending (occur | enddate)>
+<!ELEMENT revending (occur | enddate)>
+<!ELEMENT occur %INTEGER;>
+<!ELEMENT modenew %ENUM_MODENEW;>
+<!ELEMENT revmodenew %ENUM_MODENEW;>
+<!ELEMENT revinterval %INTEGER;>
+<!ELEMENT interval %INTEGER;>
+<!ELEMENT eom %BOOLEAN;>
+<!ELEMENT reveom %BOOLEAN;>
+<!ELEMENT isautoreverse %BOOLEAN;>
+<!ELEMENT tiereverse %BOOLEAN;>
+<!ELEMENT autorevmodenew %ENUM_MODENEW;>
+<!ELEMENT autorevinterval %INTEGER;>
+<!ELEMENT autoreveom %BOOLEAN;>
+<!ELEMENT recordid %STRING_100;>
+<!ELEMENT docnumber %STRING_100;>
+<!ELEMENT docid %STRING_100;>
+<!ELEMENT dochdrno %STRING_100;>
+<!ELEMENT contractid %STRING_100;>
+<!ELEMENT contractdesc %STRING_100;>
+<!ELEMENT supdocid %STRING_100;>
+<!ELEMENT paytocontactname %STRING_100;>
+<!ELEMENT returntocontactname %STRING_100;>
+<!ELEMENT billtocontactname %STRING_100;>
+<!ELEMENT shiptocontactname %STRING_100;>
+<!ELEMENT vendorname %STRING_100;>
+<!ELEMENT customername %STRING_100;>
+<!-- FOR RECURLINEITEM -->
+<!ELEMENT recordno %INTEGER;>
+<!ELEMENT recordkey %INTEGER;>
+<!ELEMENT entrydescription %STRING_80;>
+<!ELEMENT accountkey %INTEGER;>
+<!ELEMENT glaccounttitle %STRING_80;>
+<!ELEMENT locationname %STRING_80;>
+<!ELEMENT departmentname %STRING_80;>
+<!ELEMENT lineno %INTEGER;>
+<!ELEMENT line_no %INTEGER;>
+<!-- FOR RECURBILLS AND INVOICES -->
+<!ELEMENT prbatchkey %INTEGER;>
+<!ELEMENT prbatch %STRING_80;>
+<!ELEMENT recordtype %STRING_4;>
+<!ELEMENT termkey %INTEGER;>
+<!ELEMENT totalentered %INTEGER;>
+<!ELEMENT userkey %INTEGER;>
+<!ELEMENT prmodulekey %INTEGER;>
+<!ELEMENT schopkey %INTEGER;>
+<!ELEMENT entity %STRING_80;>
+<!ELEMENT username %STRING_80;>
+<!ELEMENT locationkey %INTEGER;>
+<!ELEMENT externalurl %STRING_80;>
+<!ELEMENT repeatcount %INTEGER;>
+<!ELEMENT repeatby %STRING_4;>
+<!ELEMENT customerdata %STRING_80;>
+<!ELEMENT vendordata %STRING_80;>
+<!-- ITEM DETAILS -->
+<!ELEMENT serialno %STRING_30;>
+<!ELEMENT lotno %STRING_30;>
+<!ELEMENT aisle %STRING_30;>
+<!ELEMENT row %STRING_30;>
+<!ELEMENT bin %STRING_30;>
+<!ELEMENT itemexpiration %DATE;>
+<!-- FOR REV REC SUPPORT-->
+<!ELEMENT revrecenddate %DATE;>
+<!ELEMENT defrevaccount %STRING_30;>
+<!ELEMENT scheduleperiod %STRING_10;>
+<!ELEMENT revrecstartdate %DATE;>
+<!ELEMENT revrectemplate %STRING_30;>
+<!-- FOR CUSTOMERACHINFO -->
+<!ELEMENT bankadd1 %STRING_30;>
+<!ELEMENT bankadd2 %STRING_30;>
+<!ELEMENT aba %STRING_15;>
+<!ELEMENT accountnumber %STRING_44;>
+<!-- FOR CUSTOMERCHARGECARD -->
+<!ELEMENT cardnum %STRING_30;>
+<!ELEMENT maskcardnum %STRING_30;>
+<!ELEMENT cardtype %STRING_30;>
+<!ELEMENT exp_month %STRING_30;>
+<!ELEMENT exp_year %STRING_4;>
+<!ELEMENT defaultcard %BOOLEAN;>
+<!ELEMENT usebilltoaddr %BOOLEAN;>
+<!-- FOR CUSTOMERBANKACCOUNT -->
+<!ELEMENT routingnumber %STRING_9;>
+<!ELEMENT accountholder %STRING_80;>
+<!ELEMENT defaultaccount %BOOLEAN;>
+<!-- FOR TAX DETAIL SUPPORT -->
+<!ELEMENT detailid %STRING_30;>
+<!ELEMENT taxtype %ENUM_TAXTYPE;>
+<!ELEMENT mintaxable %NUMBER_38_2;>
+<!ELEMENT maxtaxable %NUMBER_38_2;>
+<!ELEMENT mintax %NUMBER_38_2;>
+<!ELEMENT maxtax %NUMBER_38_2;>
+<!ELEMENT taxauthority %STRING_40;>
+<!ELEMENT include %ENUM_TAXINCLUDE;>
+<!-- FOR TAX SCHEDULE SUPPORT -->
+<!ELEMENT scheduleid %STRING_30;>
+<!-- FOR TAX SCHEDULE MAP SUPPORT -->
+<!ELEMENT itemtaxgroup %STRING_80;>
+<!ELEMENT contacttaxgroup %STRING_80;>
+<!ELEMENT module %ENUM_MODULE;>
+<!-- New elements for online charge card -->
+<!ELEMENT securitycode %NUMBER_4;>
+<!ELEMENT authcode %STRING_20;>
+<!ELEMENT usedefaultcard %BOOLEAN;>
+<!-- New elements for online charge ach debit -->
+<!ELEMENT usedefaultaccount %BOOLEAN;>
+<!-- New elements for bank reconciliation -->
+<!--<!ELEMENT bankaccountid %STRING_24;>-->
+<!ELEMENT cutoffdate %DATE;>
+<!ELEMENT statementendingdate %DATE;>
+<!-- <!ELEMENT reconmode %STRING_30;> -->
+<!ELEMENT statementendingbalance %MONEY;>
+<!ELEMENT postingdate %DATE;>
+<!ELEMENT txntype %STRING_80;>
+<!-- <!ELEMENT doctype %STRING_80;> -->
+<!-- <!ELEMENT payee %STRING_80;> -->
+<!-- <!ELEMENT amount %MONEY;> -->
+<!-- <!ELEMENT description %STRING_80;> -->
+<!ELEMENT banktxn (postingdate, txntype, doctype, document, payee, amount, description?)>
+<!ELEMENT banktxns (banktxn+)>
+<!ELEMENT clientstatus %ENUM_STATUS;>
+<!-- New values for Atlas features -->
+<!ELEMENT iskpi %BOOLEAN;>
+<!ELEMENT isdefault %BOOLEAN;>
+<!ELEMENT valuebase %STRING_10;>
+<!ELEMENT percentbase (category+)>
+<!ELEMENT percentof %STRING_20;>
+<!ELEMENT paymethod %ENUM_PAYMENTMETHOD;>
+<!ELEMENT outsourcecheck %STRING_1;>
+<!ELEMENT servicestate %STRING_1;>
+<!ELEMENT payinfull %BOOLEAN;>
+<!ELEMENT customercreditcardkey %STRING_30;>
+<!ELEMENT customerbankaccountkey %STRING_60;>
+<!ELEMENT creditcardtype %STRING_30;>
+<!ELEMENT expirednotify %BOOLEAN;>
+<!ELEMENT expirednotifyemail %STRING_4000;>
+
+<!-- Elements for SmartEventLog -->
+<!ELEMENT objectkey %STRING_80;>
+<!ELEMENT object %STRING_20;>
+<!ELEMENT subscriber %STRING_20;>
+<!ELEMENT ownerobject %STRING_40;>
+<!ELEMENT smartlinkid %ID;>
+<!ELEMENT topic %STRING_80;>
+<!ELEMENT timestamp %TIMESTAMP;>
+
+<!-- Elements for TERMS -->
+<!ELEMENT dueday %INTEGER;>
+<!ELEMENT duefrom %STRING_100;>
+<!ELEMENT discday %INTEGER;>
+<!ELEMENT discfrom %STRING_100;>
+<!ELEMENT discamount %MONEY;>
+<!ELEMENT discpercamn %STRING_1;>
+<!ELEMENT discgracedays %INTEGER;>
+<!ELEMENT pen_type %STRING_50;>
+<!ELEMENT penamount %MONEY;>
+<!ELEMENT penpercamn %STRING_1;>
+<!ELEMENT pengracedays %INTEGER;>
+
+<!ELEMENT onhand %STRING_30;>
+<!ELEMENT onorder %STRING_30;>
+
+
+<!ELEMENT aislekey %STRING_30;>
+<!ELEMENT rowkey %STRING_30;>
+<!ELEMENT binkey %STRING_30;>
+
+<!ELEMENT glaccountkey %KEY;>
+<!ELEMENT id %ID;>
+
+<!-- Elements for TASK -->
+<!ELEMENT taskname %STRING_200;>
+<!ELEMENT pbegindate %DATE;>
+<!ELEMENT penddate %DATE;>
+<!ELEMENT taskdescription %STRING_1000;>
+<!ELEMENT ismilestone %BOOLEAN;>
+<!ELEMENT utilized %BOOLEAN;>
+<!ELEMENT taskno %STRING_8;>
+<!ELEMENT parenttaskname %STRING_200;>
+<!ELEMENT parentkey %KEY;>
+<!ELEMENT budgetqty %NUMBER_38_2;>
+<!ELEMENT estqty %NUMBER_38_2;>
+<!ELEMENT priority %INTEGER;>
+<!ELEMENT taskstatus %ENUM_TASKSTATUS;>
+<!ELEMENT taskresources (employeeid+)>
+<!ELEMENT percentcomplete %NUMBER_3_2;>
+
+<!-- Elements for TIMESHEET -->
+<!ELEMENT timesheetdescription %STRING_200;>
+<!ELEMENT timesheetitems (timesheetitem+)>
+<!ELEMENT timesheetitem (lineno?, customerid?, itemid?, projectid?, taskname?, timetype?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, customfields?)>
+<!ELEMENT timetype %STRING_80;>
+<!ELEMENT entrydate %DATE;>
+<!ELEMENT qty %NUMBER_2;>
+<!ELEMENT timesheetentrydescription %STRING_100;>
+<!ELEMENT notes %STRING_100;>
+<!ELEMENT periodtype (#PCDATA)>
+
+<!-- Elements for ALLOCATIONS -->
+<!ELEMENT allocationid %STRING_50;>
+<!ELEMENT allocateby %STRING_20;>
+<!ELEMENT allocateto %STRING_20;>
+
+<!-- Elements for rev rec -->
+<!ELEMENT adjustpostingday %BOOLEAN;>
+<!ELEMENT postcurrencygainandloss %BOOLEAN;>
+<!ELEMENT cumpercent %NUMBER_30_10;>
+<!ELEMENT revrectemplatekey %KEY;>
+<!ELEMENT revrectemplateid %STRING_30;>
+<!ELEMENT templatepostingmethod %STRING_100;>
+<!ELEMENT completed %BOOLEAN;>
+<!ELEMENT invoicedate %DATE;>
+<!ELEMENT sodocumentid %STRING_60;>
+<!ELEMENT sodocumentdate %DATE;>
+<!ELEMENT invoiceitemkey %KEY;>
+<!ELEMENT sodocumententrykey %KEY;>
+<!ELEMENT changecategorykey %KEY;>
+<!ELEMENT changecategory %STRING_50;>
+<!ELEMENT changememo %STRING_200;>
+<!ELEMENT revrecschedulekey %KEY;>
+<!ELEMENT posted %STRING_20;>
+<!ELEMENT position %STRING_20;>
+<!ELEMENT next %BOOLEAN;>
+<!ELEMENT revacctkey %KEY;>
+<!ELEMENT accounttitle %STRING_80;>
+<!ELEMENT journalkey %KEY;>
+<!ELEMENT gljournal %STRING_20;>
+<!ELEMENT deferredrevacctkey %KEY;>
+<!ELEMENT glbatchkey %KEY;>
+<!ELEMENT tr_type %INTEGER;>
+<!ELEMENT posted_amount %MONEY;>
+<!ELEMENT modifieduserkey %KEY;>
+<!ELEMENT modifiedby %STRING_20;>
+<!ELEMENT summary %STRING_30;>
+
+
+
+
+
+
+<!-- Elements for VSOE KIT ALLOCATION -->
+<!ELEMENT deliverystatus %STRING_20;>
+<!ELEMENT deliverydate %DATE;>
+<!ELEMENT deferralstatus %STRING_50;>
+<!ELEMENT invoiceprice %MONEY;>
+
+
+<!-- For Supporting Documents-->
+<!--<!ELEMENT supdocid %STRING_20;>-->
+<!ELEMENT supdocname %STRING_200;>
+<!ELEMENT supdocfoldername %STRING_100;>
+<!ELEMENT supdocdescription %STRING_1000;>
+<!ELEMENT attachmentname %STRING_4000;>
+<!ELEMENT attachmenttype %STRING_20;>
+<!ELEMENT attachmentdata %STRING_100000;>
+
+<!-- For Supporting Document Folders-->
+<!ELEMENT supdocparentfoldername %STRING_100;>
+<!ELEMENT supdocfolderdescription %STRING_1000;>
+
+
+<!-- Elements for earningtype -->
+<!ELEMENT billableacctno %STRING_24;>
+<!ELEMENT nonbillableacctno %STRING_24;>
+<!ELEMENT ratemultiplier %NUMBER_4;>
+<!ENTITY % ENUM_EARNINGTYPEMETHOD "(#PCDATA)">
+<!ELEMENT method %ENUM_EARNINGTYPEMETHOD;>
+<!-- ENUMS: "Hourly", "Salary" -->
+
+<!-- Elements for employeerate -->
+<!ELEMENT salaryrate %MONEY;>
+
+<!-- Elements for advanced billing -->
+<!ELEMENT billingtemplate %STRING_30;>
+<!-- Elements for ach -->
+<!ELEMENT achbankid %STRING_24;>
+<!ELEMENT destinationid %STRING_9;>
+<!ELEMENT destinationname %STRING_23;>
+<!ELEMENT originid %STRING_10;>
+<!ELEMENT originname %STRING_23;>
+<!ELEMENT referencecode %STRING_8;>
+<!ELEMENT eofmarker %BOOLEAN;>
+
+<!ELEMENT companyidentification %STRING_10;>
+<!ELEMENT financialinstitution %STRING_8;>
+<!ELEMENT discretionarydata %STRING_20;>
+<!ELEMENT serviceclasscode %NUMBER_3;>
+<!ELEMENT originatorstatuscode %NUMBER_1;>
+<!ELEMENT userecommendedsetup %BOOLEAN;>
+<!ELEMENT batchid %STRING_30;>
+<!ELEMENT tracenumberseq %STRING_30;>
+<!ELEMENT docnumberseq %STRING_30;>
+<!ELEMENT usetracenumber %STRING_1;>
+<!ELEMENT paymentnotify %BOOLEAN;>
+<!ELEMENT paymentcontact %STRING_30;>
+<!ELEMENT mergepaymentreq %BOOLEAN;>
+<!ELEMENT paymentoption %ENUM_APPAYMENTOPTION;>
+<!ELEMENT donotcutcheck %BOOLEAN;>
+<!ELEMENT grouppayments %BOOLEAN;>
+
+<!-- Elements for Entity Legal Information -->
+<!ELEMENT enablelegalcontact %BOOLEAN;>
+<!ELEMENT legalname %STRING_100;>
+<!ELEMENT legaladdress1 %STRING_100;>
+<!ELEMENT legaladdress2 %STRING_100;>
+<!ELEMENT legalcity %STRING_50;>
+<!ELEMENT legalstate %STRING_50;>
+<!ELEMENT legalzipcode %STRING_30;>
+
+<!-- Elements for supporting docs -->
+<!ELEMENT parentfolder (#PCDATA)>
+<!ELEMENT creationdate %DATE;>
+<!ELEMENT createdby (#PCDATA)>
+<!ELEMENT lastmodified (#PCDATA)>
+<!ELEMENT lastmodifiedby (#PCDATA)>
+<!ELEMENT folder (#PCDATA)>
+
+<!-- Elements for glbooks -->
+<!ELEMENT bstransmethod (#PCDATA)>
+<!ELEMENT istransmethod (#PCDATA)>
+<!ELEMENT overriderate (#PCDATA)>
+<!ELEMENT overrideexpirydate (#PCDATA)>
+
+<!-- other -->
+<!ELEMENT doctype (#PCDATA)>
+
+<!-- Permissions -->
+<!ELEMENT permissions (appSubscription*)>
+<!ELEMENT appSubscription (applicationName, policies)>
+<!ELEMENT applicationName (#PCDATA)>
+<!ELEMENT policies (policy*)>
+<!ELEMENT policy (policyName, rights)>
+<!ELEMENT policyName (#PCDATA)>
+<!ELEMENT rights (#PCDATA)>  <!-- pipe delimited list -->
+
+<!-- init session -->
+<!ELEMENT sessionid (#PCDATA)>
+<!ELEMENT endpoint (#PCDATA)>
+<!ELEMENT session (#PCDATA)>
