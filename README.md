@@ -11,4 +11,5 @@ Your XML requests must be constructed carefully in order to avoid an error respo
 Learning to read the Intacct DTD and XSD files will help you write valid XML more consistently.
 
 ## Updates
+
 These files are updated periodically as Intacct does major and off cycle releases.

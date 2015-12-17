@@ -105,7 +105,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, departmentid?, customfields?)>
 <!ELEMENT itemglgroup (glgroupname?)>
 <!ELEMENT sotransitems (sotransitem+)>
-<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?)>
+<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?, discountpercent?)>
 <!ELEMENT potransitems (potransitem+)>
 <!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, price?, overridetaxamount?, taxrate?, tax?, retailprice?, totalamount?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
 <!ELEMENT popricelist (pricelistname?, datefrom?, dateto?, status?)>
