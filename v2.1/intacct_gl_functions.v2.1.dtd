@@ -11,7 +11,7 @@
          written consent from Intacct Corporation.
 -->
 <!-- create_gltransaction -->
-<!ELEMENT create_gltransaction (journalid, datecreated, description, referenceno?, sourceentity?, customfields?, gltransactionentries)>
+<!ELEMENT create_gltransaction (journalid, datecreated, reversedate?, description, referenceno?, sourceentity?, customfields?, gltransactionentries)>
 
 <!-- create_recurringgltransaction -->
 <!ELEMENT create_recurringgltransaction (journalid, datecreated, description, referenceno?, sourceentity?, supdocid?, 
@@ -19,7 +19,7 @@ startdate, ending?, modenew?, interval?, eom?, errnotifyemailids?,
 revstartdate?, revending?, revmodenew?, revinterval?, reveom?, reverrnotifyemailids?, isautoreverse?, tiereverse?, autorevmodenew?, autorevinterval?, autoreveom?, customfields?, gltransactionentries)>
 
 <!-- create statgltransaction -->
-<!ELEMENT create_statgltransaction (journalid, datecreated, description, statgltransactionentries)>
+<!ELEMENT create_statgltransaction (journalid, datecreated, reversedate?, description, statgltransactionentries)>
 
 <!-- create_recurringstatgltrans -->
 <!ELEMENT create_recurringstatgltrans (journalid, datecreated, description, referenceno?,

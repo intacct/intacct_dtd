@@ -380,8 +380,12 @@
  </xs:element>
 
  <xs:element name='controlid'>
-     <xs:complexType mixed='true'>
-     </xs:complexType>
+     <xs:simpleType>
+         <xs:restriction base="xs:string">
+             <xs:minLength value="0"/>
+             <xs:maxLength value="256"/>
+         </xs:restriction>
+     </xs:simpleType>
  </xs:element>
 
  <xs:element name='correction'>
@@ -549,6 +553,16 @@
     <xs:element ref='day'/>
    </xs:sequence>
   </xs:complexType>
+ </xs:element>
+
+ <xs:element name="reversedate">
+   <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year" />
+        <xs:element ref="month" />
+        <xs:element ref="day" />
+      </xs:sequence>
+   </xs:complexType>
  </xs:element>
 
  <xs:element name='datefrom'>
@@ -6183,6 +6197,7 @@
    <xs:sequence>
     <xs:element ref='journalid'/>
     <xs:element ref='datecreated'/>
+    <xs:element minOccurs="0" maxOccurs="1" ref="reversedate" />
     <xs:element ref='description'/>
     <xs:element ref='referenceno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='sourceentity' minOccurs='0' maxOccurs='1'/>
@@ -6223,6 +6238,7 @@
    <xs:sequence>
     <xs:element ref='journalid'/>
     <xs:element ref='datecreated'/>
+    <xs:element minOccurs="0" maxOccurs="1" ref="reversedate" />
     <xs:element ref='description'/>
     <xs:element ref='statgltransactionentries'/>
    </xs:sequence>
@@ -9965,7 +9981,7 @@
                 <xs:all>
                         <xs:element name="object" minOccurs="1" type='xs:string'/>
                         <xs:element name="query" minOccurs="1" type='xs:string'/>
-                        <xs:element name="pagesize" minOccurs="0" maxOccurs="1" />
+                        <xs:element name="pagesize" minOccurs="0" type='xs:string' />
                         <xs:element name="fields" minOccurs="0" type='xs:string'/>
                         <xs:element name="returnFormat" minOccurs="0" type='xs:string'/>
                         <xs:element name="docparid" minOccurs="0" type='xs:string'/>
@@ -10050,7 +10066,7 @@
     <xs:complexType>
         <xs:all>
             <xs:element name="report" minOccurs="1" maxOccurs="1" type='xs:string'/>
-            <xs:element name="pagesize" minOccurs="0" maxOccurs="1" />
+            <xs:element name="pagesize" minOccurs="0" type='xs:string'/>
             <xs:element name="returnFormat" minOccurs="0" type='xs:string'/>
             <xs:element ref="arguments" minOccurs="0" maxOccurs="1"/>
             <xs:element name="waitTime" minOccurs="0" maxOccurs="1" type='xs:string'/>
@@ -10064,7 +10080,7 @@
     <xs:complexType>
         <xs:all>
             <xs:element name="view" minOccurs="1" maxOccurs="1" type='xs:string'/>
-            <xs:element name="pagesize" minOccurs="0" maxOccurs="1" />
+            <xs:element name="pagesize" minOccurs="0" maxOccurs="1" type='xs:string'/>
             <xs:element name="returnFormat" minOccurs="0" type='xs:string'/>
             <xs:element ref="filters" minOccurs="0" maxOccurs="1"/>
         </xs:all>
@@ -10381,7 +10397,14 @@
     <xs:element ref='update_employeerate'/>
     <xs:element ref='delete_employeerate'/>
    </xs:choice>
-   <xs:attribute name='controlid' type='xs:string' use='required'/>
+   <xs:attribute name='controlid' use='required'>
+       <xs:simpleType>
+           <xs:restriction base="xs:string">
+               <xs:minLength value="0"/>
+               <xs:maxLength value="256"/>
+           </xs:restriction>
+       </xs:simpleType>
+   </xs:attribute>
   </xs:complexType>
  </xs:element>
 

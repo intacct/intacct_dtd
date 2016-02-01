@@ -324,6 +324,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT datedue %DATE;>
 <!ELEMENT recpaydate %DATE;>
 <!ELEMENT datecreated %DATE;>
+<!ELEMENT reversedate %DATE;>
 <!ELEMENT datefrom %DATE;>
 <!ELEMENT dateto %DATE;>
 <!ELEMENT datereceived %DATE;>
