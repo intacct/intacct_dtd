@@ -1,15 +1,16 @@
-<!--  	This DTD defines the basic structure of an XML response.  
+<!--
+Copyright 2016 Intacct Corporation.
 
-         File:               intacct_response.v2.1.dtd
-         Version:            2.1
+Licensed under the Apache License, Version 2.0 (the "License"). You may not
+use this file except in compliance with the License. You may obtain a copy
+of the License at
 
-         (C)2002 - 2014, Intacct Corporation, All Rights Reserved
+http://www.apache.org/licenses/LICENSE-2.0
 
-         Intacct Corporation Proprietary Information.
-         This document contains trade secret data that belongs to Intacct 
-         corporation and is protected by the copyright laws. Information herein 
-         may not be used, copied or disclosed in whole or part without prior 
-         written consent from Intacct Corporation.
+or in the "LICENSE" file accompanying this file. This file is distributed on
+an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+express or implied. See the License for the specific language governing
+permissions and limitations under the License.
 -->
 <!-- Response Structure -->
 <!ELEMENT response (control, (operation+ | errormessage))>
@@ -120,7 +121,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT warehouse (warehouseid?, name?, parentid?, managerid?, contactname?, shipto?, usedingl?, status?)>
 <!ELEMENT uom (unit?, numdecimals?)>
 <!-- NEW NEW NEW -->
-<!ELEMENT glentry (trtype?, amount?, glaccountno?, document?, datecreated?, memo?, locationid?, departmentid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, journalid?, batchno?, trx_amount?, exch_rate_date?, exch_rate_type_id?, exchange_rate?, recon_date?)>
+<!ELEMENT glentry (trtype?, amount?, glaccountno?, document?, datecreated?, memo?, locationid?, departmentid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, contractid?, warehouseid?, journalid?, batchno?, trx_amount?, exch_rate_date?, exch_rate_type_id?, exchange_rate?, recon_date?)>
 <!ELEMENT gltransactionentries (glentry, glentry, glentry*)>
 <!ELEMENT gltransaction (journalid?, batchno?, datecreated?, datemodified?, description?, sourceentity?, customfields?, gltransactionentries?)>
 
@@ -1164,7 +1165,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!-- Elements for TIMESHEET -->
 <!ELEMENT timesheetdescription %STRING_200;>
 <!ELEMENT timesheetitems (timesheetitem+)>
-<!ELEMENT timesheetitem (lineno?, customerid?, itemid?, projectid?, taskname?, timetype?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, customfields?)>
+<!ELEMENT timesheetitem (lineno?, customerid?, itemid?, projectid?, taskname?, timetype?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, contractid?, warehouseid?, customfields?)>
 <!ELEMENT timetype %STRING_80;>
 <!ELEMENT entrydate %DATE;>
 <!ELEMENT qty %NUMBER_2;>

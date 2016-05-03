@@ -1,14 +1,16 @@
-<!--  	This DTD maintains function specifications for AP/AR
-         File:               intacct_pr_functions.v2.1.dtd
-         Version :            2.1
-			
-         (C)2002, Intacct Corporation, All Rights Reserved 
+<!--
+Copyright 2016 Intacct Corporation.
 
-         Intacct Corporation Proprietary Information.
-         This document contains trade secret data that belongs to Intacct 
-         corporation and is protected by the copyright laws. Information herein 
-         may not be used, copied or disclosed in whole or part without prior 
-         written consent from Intacct Corporation. 
+Licensed under the Apache License, Version 2.0 (the "License"). You may not
+use this file except in compliance with the License. You may obtain a copy
+of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+or in the "LICENSE" file accompanying this file. This file is distributed on
+an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+express or implied. See the License for the specific language governing
+permissions and limitations under the License.
 -->
 <!-- ACCOUNTS PAYABLE FUNCTIONS -->
 <!-- Set the current bill batch -->
@@ -438,3 +440,6 @@
 <!ATTLIST reverse_arpayment
         key CDATA #REQUIRED
 >
+
+<!-- Generate project invoices -->
+<!ELEMENT generate_projectinvoices (invoicetemplate, invoicedate, glpostdate?, sortbyproject?, invoiceby, customerid?, projectid?, pricelistid?, saveas, invcurrencysource?, invoicecurrency?, exchratedate?, exchratetype?, exchrate?, custtype?, projecttype?, projectmanagerid?, fromdate?, todate?, fromitemid?, toitemid?, employeeid?, locationid?, departmentid?)>

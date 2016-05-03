@@ -1,16 +1,16 @@
-<!--  	This DTD maintains object definitions and reusable lists
-        for the Intacct XML Request DTD  	
-			
-         File:               intacct_request_objects.v2.1.dtd
-         Version :            2.1
-		
-         (C)2002, Intacct Corporation, All Rights Reserved 
+<!--
+Copyright 2016 Intacct Corporation.
 
-         Intacct Corporation Proprietary Information.
-         This document contains trade secret data that belongs to Intacct 
-         corporation and is protected by the copyright laws. Information herein 
-         may not be used, copied or disclosed in whole or part without prior 
-         written consent from Intacct Corporation.
+Licensed under the Apache License, Version 2.0 (the "License"). You may not
+use this file except in compliance with the License. You may obtain a copy
+of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+or in the "LICENSE" file accompanying this file. This file is distributed on
+an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+express or implied. See the License for the specific language governing
+permissions and limitations under the License.
 -->
 <!ELEMENT apadjustmentitems (lineitem+)>
 <!ELEMENT aradjustmentitems (lineitem+)>
@@ -19,29 +19,29 @@
 <!ELEMENT check (bankaccountid, checkno?)>
 <!ELEMENT creditcard (creditcardid)>
 <!ELEMENT eft (documentno)>
-<!ELEMENT expense ((expensetype | glaccountno), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, exppmttype?, quantity?, rate?)>
+<!ELEMENT expense ((expensetype | glaccountno), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?)>
 <!ELEMENT expenses (expense+)>
-<!ELEMENT glentry (trtype, amount, glaccountno, document?, datecreated?, memo?, locationid?, departmentid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, customfields?, recon_date?, (currency, ((exchratedate?, exchratetype) | exchrate))?)>
+<!ELEMENT glentry (trtype, amount, glaccountno, document?, datecreated?, memo?, locationid?, departmentid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, contractid?, warehouseid?, customfields?, recon_date?, (currency, ((exchratedate?, exchratetype) | exchrate))?)>
 <!ELEMENT gltransaction (journalid, datecreated, description, sourceentity?, gltransactionentries)>
 <!ELEMENT gltransactionentries (glentry, glentry, glentry*)>
 <!ELEMENT statgltransactionentries (glentry+)>
 <!ELEMENT stkittransitems (stkittransitem)>
 <!ELEMENT stkittransitem (itemid, itemdesc?, warehouseid, quantity, unit?, locationid?, departmentid?, customfields?)>
 <!ELEMENT ictransitems (ictransitem+)>
-<!ELEMENT ictransitem (itemid, itemdesc?, warehouseid, quantity, unit?, cost?, locationid?, departmentid?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?)>
+<!ELEMENT ictransitem (itemid, itemdesc?, warehouseid, quantity, unit?, cost?, locationid?, departmentid?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
 <!ELEMENT invoiceitems (lineitem+)>
-<!ELEMENT lineitem ((accountlabel | glaccountno), offsetglaccountno?, amount, allocationid?, memo?, locationid?, departmentid?, item1099?, key?, totalpaid?, totaldue?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?)>
+<!ELEMENT lineitem ((accountlabel | glaccountno), offsetglaccountno?, amount, allocationid?, memo?, locationid?, departmentid?, item1099?, key?, totalpaid?, totaldue?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?)>
 <!ELEMENT reclassifyitems (reclasslineitem)+>
-<!ELEMENT reclasslineitem ((accountlabel | glaccountno), memo?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?)>
+<!ELEMENT reclasslineitem ((accountlabel | glaccountno), memo?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?)>
 <!ATTLIST reclasslineitem
 	line_num CDATA #REQUIRED
 >
 <!ELEMENT potransitems (potransitem+)>
-<!ELEMENT potransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?, overridetaxamount?, tax?, locationid?, departmentid?, memo?, itemdetails?, form1099?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, billable?)>
+<!ELEMENT potransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?, overridetaxamount?, tax?, locationid?, departmentid?, memo?, itemdetails?, form1099?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?)>
 <!ELEMENT sotransitems (sotransitem+)>
-<!ELEMENT sotransitem (bundlenumber?, itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, discountpercent?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, fulfillmentstatus?, taskno?, billingtemplate?)>
+<!ELEMENT sotransitem (bundlenumber?, itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, discountpercent?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, fulfillmentstatus?, taskno?, billingtemplate?)>
 <!ELEMENT recursotransitems (recursotransitem+)>
-<!ELEMENT recursotransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, status?, projectid?, customerid?, vendorid?, employeeid?, classid?)>
+<!ELEMENT recursotransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, status?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
 <!ELEMENT itemdetails (itemdetail+)>
 <!ELEMENT itemdetail (quantity?, (serialno | lotno)?, aisle?, row?, bin?, itemexpiration?)>
 <!ELEMENT offset (glaccountno | accountlabel)>
@@ -50,7 +50,7 @@
 <!ELEMENT updateapadjustmentitems (lineitem | updatelineitem)+>
 <!ELEMENT updatearadjustmentitems (lineitem | updatelineitem)+>
 <!ELEMENT updatebillitems (lineitem | updatelineitem)+>
-<!ELEMENT updateexpense ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, exppmttype?, quantity?, rate?)>
+<!ELEMENT updateexpense ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?)>
 <!ATTLIST updateexpense
 	line_num CDATA #REQUIRED
 >
@@ -60,16 +60,16 @@
 
 <!ELEMENT updateexpenseadjustments (expenseadjustment | updateexpenseadjustment)+>
 
-<!ELEMENT expenseadjustment ((expensetype | glaccountno), amount, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, exppmttype?, quantity?, rate?, customfields?)>
+<!ELEMENT expenseadjustment ((expensetype | glaccountno), amount, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?, customfields?)>
 
-<!ELEMENT updateexpenseadjustment ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, exppmttype?, quantity?, rate?, customfields?)>
+<!ELEMENT updateexpenseadjustment ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?, customfields?)>
 
 <!ATTLIST updateexpenseadjustment
 	line_num CDATA #REQUIRED
 >
 
 <!ELEMENT updateinvoiceitems (lineitem | updatelineitem)+>
-<!ELEMENT updatelineitem ((accountlabel? | glaccountno?), offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?)>
+<!ELEMENT updatelineitem ((accountlabel? | glaccountno?), offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?)>
 <!ATTLIST updatelineitem
 	line_num CDATA #REQUIRED
 >
@@ -78,15 +78,15 @@
 <!ELEMENT receipt (paymentdate, payee, receiveddate, paymentmethod, undepglaccountno, refid?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, receiptitems)>
 <!ELEMENT receiptkeys (receiptkey+)>
 <!ELEMENT subtotals (subtotal+)>
-<!ELEMENT subtotal (description, total, absval?, percentval?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, classid?,itemid?, customfields?)>
+<!ELEMENT subtotal (description, total, absval?, percentval?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, classid?,itemid?, contractid?, customfields?)>
 <!ELEMENT updatesubtotals (updatesubtotal+)>
-<!ELEMENT updatesubtotal (description, total, absval?, percentval?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, classid?, itemid?, customfields?)>
+<!ELEMENT updatesubtotal (description, total, absval?, percentval?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, classid?, itemid?, contractid?, customfields?)>
 <!ELEMENT arpaymentitems (arpaymentitem+)>
 <!ELEMENT arpaymentitemdetails (arpaymentitemdetail)>
 <!ELEMENT arpaymentitemdetail (arpaymentlineitemkey, invoicelineitemkey, amount)>
 <!ELEMENT recurbillitems (recurlineitem+)>
 <!ELEMENT recurinvoiceitems (recurlineitem+)>
-<!ELEMENT recurlineitem ((accountlabel | glaccountno), form1099?, amount, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, billable?, customfields?)>
+<!ELEMENT recurlineitem ((accountlabel | glaccountno), form1099?, amount, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, customfields?)>
 <!ELEMENT vendlineitems (vendlineitem+)>
 <!ELEMENT vendlineitem (vendorid,stockno?,leadtime?,econorderqty?)>
 <!ELEMENT whslineitems (whslineitem+)>
@@ -98,17 +98,17 @@
 <!ELEMENT onlineachpayment (bankname,accounttype,accountnumber,routingnumber,accountholder,usedefaultaccount?)>
 <!ELEMENT expirydate (exp_month,exp_year)>
 <!ELEMENT updatesotransitems (sotransitem | updatesotransitem)+>
-<!ELEMENT updatesotransitem (bundlenumber?, itemid?, itemdesc?, taxable?, warehouseid?, quantity?, unit?, discountpercent?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, fulfillmentstatus?, taskno?, billingtemplate?)>
+<!ELEMENT updatesotransitem (bundlenumber?, itemid?, itemdesc?, taxable?, warehouseid?, quantity?, unit?, discountpercent?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, fulfillmentstatus?, taskno?, billingtemplate?)>
 <!ATTLIST updatesotransitem
 	line_num CDATA #REQUIRED
 >
 <!ELEMENT updatepotransitems (potransitem | updatepotransitem)+>
-<!ELEMENT updatepotransitem (itemid?, itemdesc?, taxable?, warehouseid?, quantity?, unit?, price?, locationid?, departmentid?, memo?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, billable?)>
+<!ELEMENT updatepotransitem (itemid?, itemdesc?, taxable?, warehouseid?, quantity?, unit?, price?, locationid?, departmentid?, memo?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?)>
 <!ATTLIST updatepotransitem
 	line_num CDATA #REQUIRED
 >
 <!ELEMENT updateictransitems (ictransitem | updateictransitem)+>
-<!ELEMENT updateictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, locationid?, departmentid?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?)>
+<!ELEMENT updateictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, locationid?, departmentid?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
 <!ATTLIST updateictransitem
 	line_num CDATA #REQUIRED
 >
