@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
- xmlns:t='http://www.w3.org/namespace/'
- elementFormDefault="qualified">
+<!--
+Copyright 2016 Intacct Corporation.
+
+Licensed under the Apache License, Version 2.0 (the "License"). You may not
+use this file except in compliance with the License. You may obtain a copy
+of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+or in the "LICENSE" file accompanying this file. This file is distributed on
+an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+express or implied. See the License for the specific language governing
+permissions and limitations under the License.
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
  <xs:element name='absval'>
   <xs:complexType mixed='true'>
@@ -344,6 +357,7 @@
     <xs:element ref='url2' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='mailaddress' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='taxid' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -488,7 +502,7 @@
  <xs:element name='restricted_locs'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='locationid' maxOccurs='unbounded'/>
+    <xs:element ref='locationid' minOccurs="1" maxOccurs='unbounded'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -496,7 +510,7 @@
  <xs:element name='restricted_depts'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='departmentid' maxOccurs='unbounded'/>
+    <xs:element ref='departmentid' minOccurs="1" maxOccurs='unbounded'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -683,6 +697,11 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='discountpercent'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='discounttoapply'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -783,6 +802,31 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='isautoreverse'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='tiereverse'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='autorevmodenew'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='autorevinterval'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='autoreveom'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='employeeid'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -848,7 +892,27 @@
   </xs:complexType>
  </xs:element>
 
-<xs:element name='exppmttype'>
+ <xs:element name='expenserate'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='expensepricing'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='poaprate'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='poappricing'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='exppmttype'>
     <xs:complexType mixed='true'>
     </xs:complexType>
 </xs:element>
@@ -1033,6 +1097,16 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='offsetoeglaccount'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='offsetpoglaccount'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='uomgrp'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -1089,6 +1163,11 @@
  </xs:element>
 
  <xs:element name='useglpostdate'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='showzerowithactivity'>
   <xs:complexType mixed='true'>
   </xs:complexType>
  </xs:element>
@@ -1213,6 +1292,21 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='invoicewithparent'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='invoicemessage'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='invoicecurrency'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='intacctid'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -1307,6 +1401,21 @@
  </xs:element>
 
  <xs:element name='bookkey'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='offline'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='updatesucceedingperiods'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='changesonly'>
   <xs:complexType mixed='true'>
   </xs:complexType>
  </xs:element>
@@ -1540,6 +1649,21 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='paymentoption'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='paymentdescription'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='paymentcontact'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='paylabel'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -1561,6 +1685,11 @@
  </xs:element>
 
  <xs:element name='paymentmethod'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='grouppayments'>
   <xs:complexType mixed='true'>
   </xs:complexType>
  </xs:element>
@@ -2203,6 +2332,16 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='displocacctnocheck'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='donotcutcheck'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='name1099'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -2332,6 +2471,17 @@
   <xs:complexType mixed='true'>
   </xs:complexType>
  </xs:element>
+
+ <xs:element name='offsetaccountno'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='earningtypename'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
 
  <xs:element name='allow_backorder'>
   <xs:complexType mixed='true'>
@@ -2673,6 +2823,11 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='obspercentcomplete'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='projectresources'>
   <xs:complexType>
    <xs:sequence>
@@ -2687,7 +2842,10 @@
     <xs:element ref='employeeid'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='resourcedescription' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='startdate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billingrate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='expenserate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='poaprate' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -2698,6 +2856,11 @@
  </xs:element>
 
  <xs:element name='billingrate'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='billingpricing'>
   <xs:complexType mixed='true'>
   </xs:complexType>
  </xs:element>
@@ -2951,6 +3114,11 @@
  </xs:element>
 
  <xs:element name='contractdesc'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='action'>
   <xs:complexType mixed='true'>
   </xs:complexType>
  </xs:element>
@@ -3230,6 +3398,11 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='usebilltoaddr'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='routingnumber'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -3425,7 +3598,22 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='postactualcost'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='paymethod'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='paymentnotify'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='mergepaymentreq'>
   <xs:complexType mixed='true'>
   </xs:complexType>
  </xs:element>
@@ -3620,7 +3808,22 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='parentkey'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='parenttaskname'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='budgetamount'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='budgetedcost'>
   <xs:complexType mixed='true'>
   </xs:complexType>
  </xs:element>
@@ -3637,6 +3840,111 @@
 
  <xs:element name='priority'>
   <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='method'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='billableacctno'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='nonbillableacctno'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='ratemultiplier'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='achbankid'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='destinationid'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='destinationname'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='originid'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='originname'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='referencecode'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='eofmarker'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='companyidentification'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='financialinstitution'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='discretionarydata'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='serviceclasscode'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='originatorstatuscode'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='userecommendedsetup'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='batchid'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='tracenumberseq'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='usetracenumber'>
+  <xs:complexType mixed="true">
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='docnumberseq'>
+  <xs:complexType mixed="true">
   </xs:complexType>
  </xs:element>
 
@@ -3668,12 +3976,14 @@
 
  <xs:element name='timesheetitem'>
   <xs:complexType>
-   <xs:sequence>
+   <xs:all>
+    <xs:element ref='lineno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customerid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='projectid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taskname' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='timetype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='billable' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='entrydate'/>
@@ -3682,10 +3992,11 @@
     <xs:element ref='notes' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='extcostrate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='clznamount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='extbillrate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='extcostrate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
-   </xs:sequence>
+   </xs:all>
   </xs:complexType>
  </xs:element>
 
@@ -3698,6 +4009,11 @@
     <xs:complexType mixed='true'>
     </xs:complexType>
 </xs:element>
+
+<xs:element name='clznamount'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
 
 <xs:element name='timetype'>
   <xs:complexType mixed='true'>
@@ -3904,6 +4220,21 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='rate'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='nonreimbursable'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='offsetacctno'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='deliverystatus'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -3994,7 +4325,7 @@
      <xs:element ref='expensetype'/>
      <xs:element ref='glaccountno'/>
     </xs:choice>
-    <xs:element ref='amount'/>
+    <xs:element ref='amount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='trx_amount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='exchratedate' minOccurs='0' maxOccurs='1'/>
@@ -4013,8 +4344,12 @@
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billable' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='exppmttype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='quantity' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='rate' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -4044,6 +4379,8 @@
     <xs:element ref='projectid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='recon_date' minOccurs='0' maxOccurs='1'/>
     <xs:sequence minOccurs='0' maxOccurs='1'>
@@ -4066,6 +4403,7 @@
     <xs:element ref='journalid'/>
     <xs:element ref='datecreated'/>
     <xs:element ref='description'/>
+    <xs:element ref='sourceentity' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='gltransactionentries'/>
    </xs:sequence>
   </xs:complexType>
@@ -4136,6 +4474,7 @@
     <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -4155,6 +4494,7 @@
      <xs:element ref='accountlabel'/>
      <xs:element ref='glaccountno'/>
     </xs:choice>
+    <xs:element ref='offsetglaccountno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='amount'/>
     <xs:element ref='allocationid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='memo' minOccurs='0' maxOccurs='1'/>
@@ -4175,6 +4515,8 @@
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billable' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
@@ -4205,6 +4547,8 @@
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='line_num' type='xs:string' use='required'/>
   </xs:complexType>
@@ -4228,6 +4572,8 @@
     <xs:element ref='quantity'/>
     <xs:element ref='unit' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='price' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='overridetaxamount' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='tax' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='memo' minOccurs='0' maxOccurs='1'/>
@@ -4239,6 +4585,7 @@
     <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billable' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
@@ -4262,6 +4609,7 @@
     <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='quantity'/>
     <xs:element ref='unit' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='discountpercent' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='price' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='discsurchargememo' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
@@ -4278,6 +4626,7 @@
     <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='fulfillmentstatus' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taskno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billingtemplate' minOccurs='0' maxOccurs='1'/>
@@ -4298,6 +4647,7 @@
    <xs:sequence>
     <xs:element ref='itemid'/>
     <xs:element ref='itemdesc' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='taxable' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='quantity'/>
     <xs:element ref='unit' minOccurs='0' maxOccurs='1'/>
@@ -4317,6 +4667,7 @@
     <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -4403,8 +4754,8 @@
   <xs:complexType>
    <xs:sequence>
     <xs:choice>
-     <xs:element ref='expensetype'/>
-     <xs:element ref='glaccountno'/>
+     <xs:element ref='expensetype' minOccurs='0' maxOccurs='1'/>
+     <xs:element ref='glaccountno' minOccurs='0' maxOccurs='1'/>
     </xs:choice>
     <xs:element ref='amount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
@@ -4425,7 +4776,12 @@
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billable' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='exppmttype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='quantity' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='rate' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='line_num' type='xs:string' use='required'/>
   </xs:complexType>
@@ -4437,6 +4793,91 @@
     <xs:element ref='expense'/>
     <xs:element ref='updateexpense'/>
    </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='expenseadjustments'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='expenseadjustment' minOccurs='1' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='updateexpenseadjustments'>
+  <xs:complexType>
+   <xs:choice minOccurs='1' maxOccurs='unbounded'>
+    <xs:element ref='expenseadjustment'/>
+    <xs:element ref='updateexpenseadjustment'/>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='expenseadjustment'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:choice>
+     <xs:element ref='expensetype'/>
+     <xs:element ref='glaccountno'/>
+    </xs:choice>
+    <xs:element ref='amount'/>
+    <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='trx_amount' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='exchratedate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='exchratetype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='exchrate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='expensedate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='memo' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='projectid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customerid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='billable' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='exppmttype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='quantity' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='rate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='updateexpenseadjustment'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:choice>
+     <xs:element ref='expensetype' minOccurs='0' maxOccurs='1'/>
+     <xs:element ref='glaccountno' minOccurs='0' maxOccurs='1'/>
+    </xs:choice>
+    <xs:element ref='amount' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='trx_amount' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='exchratedate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='exchratetype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='exchrate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='expensedate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='memo' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='projectid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customerid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='billable' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='exppmttype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='quantity' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='rate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
   </xs:complexType>
  </xs:element>
 
@@ -4456,10 +4897,12 @@
      <xs:element ref='accountlabel'/>
      <xs:element ref='glaccountno'/>
     </xs:choice>
+    <xs:element ref='offsetglaccountno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='amount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='memo' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='item1099' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='revrectemplate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='defrevaccount' minOccurs='0' maxOccurs='1'/>
@@ -4471,6 +4914,8 @@
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billable' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='line_num' type='xs:string' use='required'/>
@@ -4503,6 +4948,18 @@
     <xs:element ref='undepglaccountno'/>
     <xs:element ref='refid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
+    <xs:sequence minOccurs='0' maxOccurs='1'>
+     <xs:element ref='currency'/>
+     <xs:choice>
+      <xs:sequence>
+       <xs:element ref='exchratedate' minOccurs='0' maxOccurs='1'/>
+       <xs:element ref='exchratetype'/>
+      </xs:sequence>
+      <xs:element ref='exchrate'/>
+     </xs:choice>
+    </xs:sequence>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='receiptitems'/>
    </xs:sequence>
   </xs:complexType>
@@ -4539,6 +4996,8 @@
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -4566,6 +5025,8 @@
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -4630,7 +5091,10 @@
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billable' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -4772,6 +5236,7 @@
     <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='quantity' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='unit' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='discountpercent' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='price' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='discsurchargememo' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
@@ -4788,6 +5253,7 @@
     <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='fulfillmentstatus' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taskno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billingtemplate' minOccurs='0' maxOccurs='1'/>
@@ -4825,6 +5291,7 @@
     <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billable' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='line_num' type='xs:string' use='required'/>
@@ -4858,6 +5325,7 @@
     <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='line_num' type='xs:string' use='required'/>
   </xs:complexType>
@@ -4930,11 +5398,26 @@
    </xs:sequence>
   </xs:complexType>
  </xs:element>
- 
+
+ <xs:element name='usepricebands'>
+  <xs:complexType>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='pricebandtype'>
+  <xs:complexType>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='pricebandrule'>
+  <xs:complexType>
+  </xs:complexType>
+ </xs:element>
+
 <xs:element name='entities'>
     <xs:complexType>
         <xs:sequence>
-            <xs:element ref='csnentity' maxOccurs='unbounded'/>
+            <xs:element ref='csnentity' minOccurs="1" maxOccurs='unbounded'/>
         </xs:sequence>
     </xs:complexType>
 </xs:element>
@@ -5004,6 +5487,7 @@
     <xs:element ref='value'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -5014,6 +5498,7 @@
     <xs:element ref='value' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='line_num' type='xs:string' use='required'/>
   </xs:complexType>
@@ -5175,6 +5660,7 @@
       <xs:enumeration value='contact'/>
       <xs:enumeration value='custglgroup'/>
       <xs:enumeration value='customer'/>
+      <xs:enumeration value='customervisibility'/>
       <xs:enumeration value='customerachinfo'/>
       <xs:enumeration value='customerchargecard'/>
       <xs:enumeration value='customerbankaccount'/>
@@ -5184,6 +5670,7 @@
       <xs:enumeration value='expensereport'/>
       <xs:enumeration value='expensereportbatch'/>
       <xs:enumeration value='expensetypes'/>
+      <xs:enumeration value='expensepaymenttype'/>
       <xs:enumeration value='glaccount'/>
       <xs:enumeration value='statglaccount'/>
       <xs:enumeration value='glbudget'/>
@@ -5201,6 +5688,8 @@
       <xs:enumeration value='journal'/>
       <xs:enumeration value='location'/>
       <xs:enumeration value='locationentity'/>
+      <xs:enumeration value='supdocfolder'/>
+      <xs:enumeration value='supdoc'/>
       <xs:enumeration value='company_info'/>
       <xs:enumeration value='trxcurrencies'/>
       <xs:enumeration value='popricelist'/>
@@ -5226,6 +5715,7 @@
       <xs:enumeration value='uom'/>
       <xs:enumeration value='vendglgroup'/>
       <xs:enumeration value='vendor'/>
+      <xs:enumeration value='vendorvisibility'/>
       <xs:enumeration value='warehouse'/>
       <xs:enumeration value='taxdetail'/>
       <xs:enumeration value='taxschedule'/>
@@ -5246,7 +5736,13 @@
       <xs:enumeration value='cctransaction'/>
       <xs:enumeration value='revrecchangelog'/>
       <xs:enumeration value='vsoeallocation'/>
-      <xs:enumeration value='glbudgetitem'/>
+      <xs:enumeration value='expenseadjustmentreport'/>
+      <xs:enumeration value='earningtype'/>
+      <xs:enumeration value='employeerate'/>
+      <xs:enumeration value='achbankconfiguration'/>
+      <xs:enumeration value='vendorentityaccount'/>
+      <xs:enumeration value='vendorpref'/>
+      <xs:enumeration value='employeepref'/>
      </xs:restriction>
     </xs:simpleType>
    </xs:attribute>
@@ -5318,6 +5814,7 @@
       <xs:enumeration value='project'/>
       <xs:enumeration value='class'/>
       <xs:enumeration value='customer'/>
+      <xs:enumeration value='customervisibility'/>
       <xs:enumeration value='customerachinfo'/>
       <xs:enumeration value='customerchargecard'/>
       <xs:enumeration value='customerbankaccount'/>
@@ -5332,6 +5829,8 @@
       <xs:enumeration value='invoice'/>
       <xs:enumeration value='location'/>
       <xs:enumeration value='locationentity'/>
+      <xs:enumeration value='supdocfolder'/>
+      <xs:enumeration value='supdoc'/>
       <xs:enumeration value='company_info'/>
       <xs:enumeration value='trxcurrencies'/>
       <xs:enumeration value='journal'/>
@@ -5356,6 +5855,7 @@
       <xs:enumeration value='subscription'/>
       <xs:enumeration value='territory'/>
       <xs:enumeration value='vendor'/>
+      <xs:enumeration value='vendorvisibility'/>
       <xs:enumeration value='warehouse'/>
       <xs:enumeration value='taxdetail'/>
       <xs:enumeration value='taxschedule'/>
@@ -5370,6 +5870,9 @@
       <xs:enumeration value='allocation'/>
       <xs:enumeration value='cctransaction'/>
       <xs:enumeration value='vsoeallocation'/>
+      <xs:enumeration value='earningtype'/>
+      <xs:enumeration value='employeerate'/>
+      <xs:enumeration value='achbankconfiguration'/>
      </xs:restriction>
     </xs:simpleType>
    </xs:attribute>
@@ -5393,6 +5896,7 @@
     <xs:element ref='title' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='supervisorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='birthdate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='startdate' minOccurs='0' maxOccurs='1'/>
@@ -5406,8 +5910,19 @@
     <xs:element ref='name1099' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='form1099type' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='form1099box' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='earningtypename' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='postactualcost' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='personalinfo'/>
     <xs:element ref='contactlist' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymethod' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymentnotify' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achenabled' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achbankroutingnumber' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achaccountnumber' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achaccounttype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achremittancetype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='mergepaymentreq' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='ignoreduplicates' use='optional' default='false'>
     <xs:simpleType>
@@ -5441,6 +5956,7 @@
     <xs:element ref='title' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='supervisorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='birthdate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='startdate' minOccurs='0' maxOccurs='1'/>
@@ -5453,8 +5969,19 @@
     <xs:element ref='name1099' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='form1099type' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='form1099box' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='earningtypename' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='postactualcost' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='personalinfo'/>
     <xs:element ref='contactlist' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymethod' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymentnotify' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achenabled' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achbankroutingnumber' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achaccountnumber' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achaccounttype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achremittancetype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='mergepaymentreq' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='employeeid' type='xs:string' use='required'/>
    <xs:attribute name='set_nulls' use='optional' default='false'>
@@ -5473,6 +6000,38 @@
      </xs:restriction>
     </xs:simpleType>
    </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='create_earningtype'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='name'/>
+    <xs:element ref='method'/>
+    <xs:element ref='billableacctno'/>
+    <xs:element ref='nonbillableacctno'/>
+    <xs:element ref='ratemultiplier' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='update_earningtype'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='method' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='billableacctno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='nonbillableacctno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='ratemultiplier' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+   <xs:attribute name='key' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='delete_earningtype'>
+  <xs:complexType>
+   <xs:attribute name='key' type='xs:string' use='required'/>
   </xs:complexType>
  </xs:element>
 
@@ -5499,6 +6058,7 @@
     <xs:element ref='url2' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='mailaddress' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='taxid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='externalid' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='ignoreduplicates' use='optional' default='false'>
@@ -5534,6 +6094,7 @@
     <xs:element ref='url2' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='mailaddress' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='taxid' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='contactname' type='xs:string' use='required'/>
    <xs:attribute name='set_nulls' use='optional' default='false'>
@@ -5979,6 +6540,7 @@
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='mailaddress'/>
     <xs:element ref='defaultcard' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='usebilltoaddr' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -5992,6 +6554,7 @@
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='mailaddress' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='defaultcard' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='usebilltoaddr' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='recordno' type='xs:string' use='required'/>
    <xs:attribute name='externalkey' use='optional' default='false'>
@@ -6046,6 +6609,11 @@
 
  <xs:element name='doctype'>
   <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='describeall'>
+  <xs:complexType>
   </xs:complexType>
  </xs:element>
 
@@ -6109,6 +6677,7 @@
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='parentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -6116,11 +6685,11 @@
  <xs:element name='update_class'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='classid'/>
-    <xs:element ref='name'/>
+    <xs:element ref='name' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='parentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='key' type='xs:string' use='required'/>
    <xs:attribute name='set_nulls' use='optional' default='false'>
@@ -6192,6 +6761,120 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='supdocname'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='supdocfoldername'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='supdocdescription'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='supdocfolderdescription'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='supdocparentfoldername'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='attachments'>
+  <xs:complexType>
+      <xs:sequence>
+          <xs:element ref="attachment" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='attachment'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='attachmentname'/>
+    <xs:element ref='attachmenttype'/>
+    <xs:element ref='attachmentdata'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='attachmentname'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='attachmenttype'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='attachmentdata'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='create_supdoc'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='supdocid'/>
+    <xs:element ref='supdocname' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocfoldername' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocdescription' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='attachments' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='update_supdoc'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='supdocid'/>
+    <xs:element ref='supdocname' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocfoldername' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocdescription' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='attachments' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='delete_supdoc'>
+  <xs:complexType>
+   <xs:attribute name='key' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='create_supdocfolder'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='supdocfoldername'/>
+    <xs:element ref='supdocfolderdescription' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocparentfoldername' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='update_supdocfolder'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='supdocfoldername'/>
+    <xs:element ref='supdocfolderdescription' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocparentfoldername' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='delete_supdocfolder'>
+  <xs:complexType>
+   <xs:attribute name='key' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='create_gltransaction'>
   <xs:complexType>
    <xs:sequence>
@@ -6214,6 +6897,7 @@
     <xs:element ref='datecreated'/>
     <xs:element ref='description'/>
     <xs:element ref='referenceno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='sourceentity' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='startdate'/>
     <xs:element ref='ending' minOccurs='0' maxOccurs='1'/>
@@ -6227,6 +6911,11 @@
     <xs:element ref='revinterval' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='reveom' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='reverrnotifyemailids' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='isautoreverse' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='tiereverse' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='autorevmodenew' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='autorevinterval' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='autoreveom' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='gltransactionentries'/>
    </xs:sequence>
@@ -6264,6 +6953,11 @@
     <xs:element ref='revinterval' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='reveom' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='reverrnotifyemailids' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='isautoreverse' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='tiereverse' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='autorevmodenew' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='autorevinterval' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='autoreveom' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='statgltransactionentries'/>
    </xs:sequence>
@@ -6644,10 +7338,14 @@
     <xs:element ref='vendtype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taxid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='creditlimit' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymethod' minOccurs='0' maxOccurs='1'/>
     <xs:element name='outsourcecheck' minOccurs='0' maxOccurs='1'/>
     <xs:element name='outsourceach' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billingtype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='vendoraccountno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='displocacctnocheck' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='onhold' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='donotcutcheck' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='comments' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
@@ -6659,7 +7357,10 @@
     <xs:element ref='contactinfo' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='contactlist' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='name1099' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='form1099type' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='form1099box' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymentnotify' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='achenabled' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='wireenabled' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='checkenabled' minOccurs='0' maxOccurs='1'/>
@@ -6676,6 +7377,8 @@
     <xs:element ref='pmplusfax' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='displaytermdiscount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='visibility' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='mergepaymentreq' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='offsetglaccountno' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='ignoreduplicates' use='optional' default='false'>
@@ -6700,9 +7403,14 @@
     <xs:element ref='vendtype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taxid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='creditlimit' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymethod' minOccurs='0' maxOccurs='1'/>
     <xs:element name='outsourcecheck' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='outsourceach' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billingtype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='vendoraccountno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='displocacctnocheck' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='onhold' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='donotcutcheck' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='comments' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
@@ -6715,6 +7423,7 @@
     <xs:element ref='form1099type' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='form1099box' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymentnotify' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='achenabled' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='wireenabled' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='checkenabled' minOccurs='0' maxOccurs='1'/>
@@ -6731,6 +7440,8 @@
     <xs:element ref='pmplusfax' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='displaytermdiscount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='visibility' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='mergepaymentreq' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='offsetglaccountno' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='vendorid' type='xs:string' use='required'/>
@@ -6750,6 +7461,15 @@
      </xs:restriction>
     </xs:simpleType>
    </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='update_vendorvisibility'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='visibility' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+   <xs:attribute name='vendorid' type='xs:string' use='required'/>
   </xs:complexType>
  </xs:element>
 
@@ -6774,6 +7494,7 @@
     <xs:element ref='name'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='parentid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='invoicewithparent' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='projectcategory'/>
     <xs:element ref='projecttype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='projectstatus' minOccurs='0' maxOccurs='1'/>
@@ -6785,6 +7506,7 @@
     <xs:element ref='enddate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billingtype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='termname' minOccurs='0' maxOccurs='1'/>
@@ -6796,8 +7518,22 @@
     <xs:element ref='ponumber' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='poamount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='pqnumber' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='budgetamount' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='budgetedcost' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='budgetqty' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='userrestrictions' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='obspercentcomplete' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='budgetid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='billingrate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='billingpricing' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='expenserate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='expensepricing' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='poaprate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='poappricing' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='invoicemessage' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='invoicecurrency' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='projectresources' minOccurs='0' maxOccurs='unbounded'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
@@ -6811,6 +7547,7 @@
     <xs:element ref='name'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='parentid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='invoicewithparent' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='projectcategory'/>
     <xs:element ref='projecttype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='projectstatus' minOccurs='0' maxOccurs='1'/>
@@ -6822,6 +7559,7 @@
     <xs:element ref='enddate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billingtype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='termname' minOccurs='0' maxOccurs='1'/>
@@ -6833,8 +7571,22 @@
     <xs:element ref='ponumber' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='poamount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='pqnumber' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='budgetamount' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='budgetedcost' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='budgetqty' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='userrestrictions' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='obspercentcomplete' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='budgetid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='billingrate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='billingpricing' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='expenserate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='expensepricing' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='poaprate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='poappricing' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='invoicemessage' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='invoicecurrency' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='projectresources' minOccurs='0' maxOccurs='unbounded'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
@@ -6905,6 +7657,7 @@
      </xs:sequence>
      <xs:element ref='termname'/>
     </xs:choice>
+    <xs:element ref='action' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='batchkey' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='ponumber' minOccurs='0' maxOccurs='1'/>
@@ -6925,6 +7678,7 @@
      </xs:choice>
     </xs:sequence>
     <xs:element ref='nogl' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billitems'/>
    </xs:sequence>
@@ -6988,8 +7742,10 @@
    <xs:sequence>
     <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='datecreated' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dateposted' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='datedue' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='termname' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='action' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='ponumber' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='onhold' minOccurs='0' maxOccurs='1'/>
@@ -7006,6 +7762,7 @@
       <xs:element ref='exchrate'/>
      </xs:choice>
     </xs:sequence>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='updatebillitems' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
@@ -7076,7 +7833,7 @@
         <xs:sequence>
             <xs:element ref='datereversed'/>
             <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
-	    <xs:element name='nsfclosedaccount' minOccurs='0' maxOccurs='1'/>
+	        <xs:element name='nsfclosedaccount' minOccurs='0' maxOccurs='1'/>
         </xs:sequence>
         <xs:attribute name='key' type='xs:string' use='required'/>
     </xs:complexType>
@@ -7110,6 +7867,7 @@
     <xs:element ref='dateposted' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='batchkey' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='adjustmentno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='action' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='externalid' minOccurs='0' maxOccurs='1'/>
@@ -7136,7 +7894,9 @@
    <xs:sequence>
     <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='datecreated' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dateposted' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='adjustmentno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='action' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
     <xs:sequence minOccurs='0' maxOccurs='1'>
@@ -7199,21 +7959,28 @@
   </xs:complexType>
  </xs:element>
 
-  
+
 
  <xs:element name='create_paymentrequest'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='bankaccountid'/>
+    <xs:choice>
+     <xs:element ref='bankaccountid'/>
+     <xs:element ref='chargecardid'/>
+    </xs:choice>
     <xs:element ref='vendorid'/>
     <xs:element ref='memo' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='paymentmethod'/>
+    <xs:element ref='grouppayments' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='paymentdate'/>
+    <xs:element ref='paymentoption' minOccurs='0' maxOccurs='1'/>
     <xs:choice>
      <xs:element ref='paymentrequestitems'/>
      <xs:element ref='paymentamount'/>
     </xs:choice>
     <xs:element ref='documentnumber' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymentdescription' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymentcontact' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -7221,7 +7988,7 @@
  <xs:element name='paymentrequestitems'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='paymentrequestitem' maxOccurs='unbounded'/>
+    <xs:element ref='paymentrequestitem' minOccurs="1" maxOccurs='unbounded'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -7346,6 +8113,7 @@
     <xs:element ref='accountlabel' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='glaccountno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='glgroup' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='onhold' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='comments' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
@@ -7358,6 +8126,7 @@
     <xs:element ref='vsoepricelist' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='visibility' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='offsetglaccountno' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='ignoreduplicates' use='optional' default='false'>
@@ -7388,6 +8157,7 @@
     <xs:element ref='accountlabel' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='glaccountno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='glgroup' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='onhold' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='comments' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
@@ -7399,6 +8169,7 @@
     <xs:element ref='vsoepricelist' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='visibility' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='offsetglaccountno' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='customerid' type='xs:string' use='required'/>
@@ -7418,6 +8189,15 @@
      </xs:restriction>
     </xs:simpleType>
    </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='update_customervisibility'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='visibility' minOccurs='0' maxOccurs='1'/>
+  </xs:sequence>
+   <xs:attribute name='customerid' type='xs:string' use='required'/>
   </xs:complexType>
  </xs:element>
 
@@ -7454,6 +8234,7 @@
     <xs:element ref='datedue' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='termname' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='batchkey' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='action' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='invoiceno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='ponumber' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
@@ -7472,6 +8253,7 @@
      </xs:choice>
     </xs:sequence>
     <xs:element ref='nogl' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='invoiceitems'/>
    </xs:sequence>
@@ -7547,8 +8329,10 @@
    <xs:sequence>
     <xs:element ref='customerid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='datecreated' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dateposted' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='datedue' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='termname' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='action' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='invoiceno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='ponumber' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
@@ -7564,6 +8348,7 @@
       <xs:element ref='exchrate'/>
      </xs:choice>
     </xs:sequence>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='updateinvoiceitems' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
@@ -7649,6 +8434,7 @@
     <xs:element ref='dateposted' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='batchkey' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='adjustmentno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='action' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='invoiceno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='externalid' minOccurs='0' maxOccurs='1'/>
@@ -7674,7 +8460,9 @@
    <xs:sequence>
     <xs:element ref='customerid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='datecreated' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dateposted' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='adjustmentno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='action' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='invoiceno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
     <xs:sequence minOccurs='0' maxOccurs='1'>
@@ -7936,7 +8724,7 @@
 
  <xs:element name='create_expensereport'>
   <xs:complexType>
-   <xs:sequence>
+   <xs:all>
     <xs:element ref='employeeid'/>
     <xs:element ref='datecreated'/>
     <xs:element ref='dateposted' minOccurs='0' maxOccurs='1'/>
@@ -7951,13 +8739,13 @@
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='supdocid' minOccurs='0' maxOccurs='1' />
     <xs:element ref='expenses'/>
-   </xs:sequence>
+   </xs:all>
   </xs:complexType>
  </xs:element>
 
  <xs:element name='update_expensereport'>
   <xs:complexType>
-   <xs:sequence>
+   <xs:all>
     <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='datecreated' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='dateposted' minOccurs='0' maxOccurs='1'/>
@@ -7970,7 +8758,7 @@
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='supdocid' minOccurs='0' maxOccurs='1' />
     <xs:element ref='updateexpenses' minOccurs='0' maxOccurs='1'/>
-   </xs:sequence>
+   </xs:all>
    <xs:attribute name='key' type='xs:string' use='required'/>
    <xs:attribute name='set_nulls' use='optional' default='false'>
     <xs:simpleType>
@@ -8016,6 +8804,85 @@
  </xs:element>
 
  <xs:element name='get_expensereport'>
+  <xs:complexType>
+   <xs:attribute name='key' type='xs:string' use='required'/>
+   <xs:attribute name='externalkey' use='optional' default='false'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='true'/>
+      <xs:enumeration value='false'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='create_expenseadjustmentreport'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='employeeid'/>
+    <xs:element ref='datecreated'/>
+    <xs:element ref='dateposted' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='batchkey' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='adjustmentno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='docnumber' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='basecurr' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='expenseadjustments'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1' />
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='update_expenseadjustmentreport'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='datecreated' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='adjustmentno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='docnumber' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='basecurr' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='currency' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='updateexpenseadjustments' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1' />
+   </xs:sequence>
+   <xs:attribute name='key' type='xs:string' use='required'/>
+   <xs:attribute name='set_nulls' use='optional' default='false'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='true'/>
+      <xs:enumeration value='false'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+   <xs:attribute name='externalkey' use='optional' default='false'>
+   <xs:simpleType>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='true'/>
+     <xs:enumeration value='false'/>
+    </xs:restriction>
+   </xs:simpleType>
+  </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='delete_expenseadjustmentreport'>
+  <xs:complexType>
+   <xs:attribute name='key' type='xs:string' use='required'/>
+   <xs:attribute name='externalkey' use='optional' default='false'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='true'/>
+      <xs:enumeration value='false'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='get_expenseadjustmentreport'>
   <xs:complexType>
    <xs:attribute name='key' type='xs:string' use='required'/>
    <xs:attribute name='externalkey' use='optional' default='false'>
@@ -8076,6 +8943,36 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='create_expensepaymenttype'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='name'/>
+    <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='nonreimbursable' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='offsetacctno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='update_expensepaymenttype'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='nonreimbursable' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='offsetacctno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+   <xs:attribute name='name' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='delete_expensepaymenttype'>
+  <xs:complexType>
+   <xs:attribute name='name' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='apply_arpayment'>
   <xs:complexType>
    <xs:sequence>
@@ -8103,6 +9000,7 @@
     <xs:element ref='showdetails' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='documenttype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='useglpostdate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='showzerowithactivity' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -8190,12 +9088,16 @@
     <xs:element ref='priority' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taskno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taskstatus' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='parentkey' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='parenttaskname' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='budgetqty' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='estqty' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='timetype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='obspercentcomplete' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taskresources' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -8203,8 +9105,8 @@
  <xs:element name='update_task'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='taskname'/>
-    <xs:element ref='projectid'/>
+    <xs:element ref='taskname' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='projectid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='pbegindate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='penddate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
@@ -8215,9 +9117,12 @@
     <xs:element ref='priority' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taskno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taskstatus' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='parentkey' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='parenttaskname' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='budgetqty' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='estqty' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='timetype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='obspercentcomplete' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taskresources' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
@@ -8263,6 +9168,48 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='create_timetype'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='name'/>
+    <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='accountno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='offsetaccountno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='earningtypename' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='update_timetype'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='accountno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='offsetaccountno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='earningtypename' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+   <xs:attribute name='key' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='delete_timetype'>
+  <xs:complexType>
+   <xs:attribute name='key' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='create_vendorentityaccountno'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='vendorid'/>
+    <xs:element ref='accountno'/>
+    <xs:element ref='locationid'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='create_stkittransaction'>
   <xs:complexType>
    <xs:sequence>
@@ -8291,6 +9238,7 @@
     <xs:element ref='externalid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='basecurr' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='state' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='ictransitems'/>
     <xs:element ref='subtotals' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
@@ -8314,6 +9262,7 @@
     <xs:element ref='shippingmethod' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='returnto'/>
     <xs:element ref='payto'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='externalid' minOccurs='0' maxOccurs='1'/>
     <xs:sequence minOccurs='0' maxOccurs='1'>
      <xs:element ref='basecurr' minOccurs='0' maxOccurs='1'/>
@@ -8327,6 +9276,7 @@
      </xs:choice>
     </xs:sequence>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='state' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='potransitems'/>
     <xs:element ref='subtotals' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
@@ -8350,6 +9300,7 @@
     <xs:element ref='shippingmethod' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='shipto' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billto' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='externalid' minOccurs='0' maxOccurs='1'/>
     <xs:sequence minOccurs='0' maxOccurs='1'>
      <xs:element ref='basecurr' minOccurs='0' maxOccurs='1'/>
@@ -8364,6 +9315,8 @@
     </xs:sequence>
     <xs:element ref='vsoepricelist' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='state' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='projectid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='sotransitems'/>
     <xs:element ref='subtotals' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
@@ -8481,6 +9434,7 @@
     <xs:element ref='message' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='externalid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='state' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='updateictransitems' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='updatesubtotals' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
@@ -8517,6 +9471,7 @@
     <xs:element ref='shippingmethod' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='shipto' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billto' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='externalid' minOccurs='0' maxOccurs='1'/>
     <xs:sequence minOccurs='0' maxOccurs='1'>
      <xs:element ref='basecurr' minOccurs='0' maxOccurs='1'/>
@@ -8531,6 +9486,8 @@
     </xs:sequence>
     <xs:element ref='vsoepricelist' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='state' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='projectid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='updatesotransitems' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='updatesubtotals' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
@@ -8575,6 +9532,7 @@
     <xs:element ref='shippingmethod' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='returnto' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='payto' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='externalid' minOccurs='0' maxOccurs='1'/>
     <xs:sequence minOccurs='0' maxOccurs='1'>
      <xs:element ref='basecurr' minOccurs='0' maxOccurs='1'/>
@@ -8588,6 +9546,7 @@
      </xs:choice>
     </xs:sequence>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='state' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='updatepotransitems' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='updatesubtotals' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
@@ -8659,6 +9618,8 @@
     <xs:element ref='invaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='expenseaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='cogsaccount' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='offsetoeglaccount' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='offsetpoglaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='defrevaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='uomgrp' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
@@ -8722,6 +9683,8 @@
     <xs:element ref='invaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='expenseaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='cogsaccount' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='offsetoeglaccount' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='offsetpoglaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='defrevaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='uomgrp' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
@@ -8902,6 +9865,9 @@
     <xs:sequence minOccurs='0' maxOccurs='1'>
      <xs:element ref='percentbase'/>
      <xs:element ref='percentof'/>
+     <xs:element ref='usepricebands'/>
+     <xs:element ref='pricebandtype'/>
+     <xs:element ref='pricebandrule'/>
     </xs:sequence>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='priceentries'/>
@@ -8923,6 +9889,9 @@
     <xs:sequence minOccurs='0' maxOccurs='1'>
      <xs:element ref='percentbase'/>
      <xs:element ref='percentof'/>
+     <xs:element ref='usepricebands'/>
+     <xs:element ref='pricebandtype'/>
+     <xs:element ref='pricebandrule'/>
     </xs:sequence>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='priceentries'/>
@@ -9152,6 +10121,16 @@
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='reallocate_revrecschedule'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='recordno'/>
+    <xs:element ref='revrecstartdate'/>
+    <xs:element ref='revrecenddate'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='record_cctransaction'>
   <xs:complexType>
    <xs:sequence>
@@ -9202,6 +10181,8 @@
     <xs:element ref='projectid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
@@ -9285,6 +10266,20 @@
     <xs:element ref='checkinfocontact' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='checklayout' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='nextcheck' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achenabled' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achbankid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='companyname' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='companyidentification' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='financialinstitution' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='discretionarydata' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='userecommendedsetup' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='serviceclasscode' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='batchid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='tracenumberseq' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='usetracenumber' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='docnumberseq' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='visibility' minOccurs='0' maxOccurs='1'/>
     <xs:element name='outsourcecheck' minOccurs='0' maxOccurs='1'/>
     <xs:element name='fractionalroutingno' minOccurs='0' maxOccurs='1'/>
     <xs:element name='nameontheaccount' minOccurs='0' maxOccurs='1'/>
@@ -9324,6 +10319,7 @@
      <xs:element ref='interestearnedaccountlabel'/>
     </xs:choice>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='visibility' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -9354,6 +10350,30 @@
     <xs:element ref='checkinfocontact' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='checklayout' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='nextcheck' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achenabled' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='achbankid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='companyname' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='companyidentification' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='financialinstitution' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='description' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='discretionarydata' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='userecommendedsetup' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='serviceclasscode' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='batchid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='tracenumberseq' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='usetracenumber' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='docnumberseq' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='visibility' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='outsourcecheck' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='fractionalroutingno' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='nameontheaccount' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='amexchecknum' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='outsourceach' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='abo_first_name' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='abo_middle_name' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='abo_last_name' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='abo_phone_number' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='abo_email_id' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='bankaccountid' type='xs:string' use='required'/>
    <xs:attribute name='set_nulls' use='optional' default='false'>
@@ -9398,6 +10418,7 @@
      <xs:element ref='interestearnedaccountlabel'/>
     </xs:choice>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='visibility' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='bankaccountid' type='xs:string' use='required'/>
    <xs:attribute name='set_nulls' use='optional' default='false'>
@@ -9515,8 +10536,53 @@
     <xs:element ref='paymentamount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customerid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='employeeid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='projectid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='itemid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='line_num' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='create_achbankconfiguration'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='achbankid'/>
+    <xs:element ref='destinationid'/>
+    <xs:element ref='destinationname' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='originid'/>
+    <xs:element ref='originname' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='referencecode' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='eofmarker' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='update_achbankconfiguration'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='destinationid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='destinationname' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='originid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='originname' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='referencecode' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='eofmarker' minOccurs='0' maxOccurs='1'/>
+   </xs:sequence>
+   <xs:attribute name='achbankid' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='delete_achbankconfiguration'>
+  <xs:complexType>
+   <xs:attribute name='achbankid' type='xs:string' use='required'/>
   </xs:complexType>
  </xs:element>
 
@@ -9947,10 +11013,10 @@
             <xs:element name="changesonly" minOccurs="0" type='xs:string'/>
             <xs:element name="email" minOccurs="0" type='xs:string'/>
             <xs:element ref='reportingperiodname' minOccurs="1"/>
-            <xs:element ref='entities'/>
+            <xs:element ref='entities' minOccurs="0"/>
         </xs:all>
     </xs:complexType>
-</xs:element> 
+</xs:element>
 
  <xs:element name='readRelated'>
         <xs:complexType>
@@ -10016,7 +11082,13 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name='splitSize' minOccurs="0" maxOccurs='1' type='xs:integer' default="100000"/>
+            <xs:element name='splitSize' minOccurs="0" maxOccurs='1' default="100000">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:maxInclusive value="100000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
             <xs:element name='compress' minOccurs="0" maxOccurs='1' type='xs:boolean' default='false'/>
         </xs:all>
     </xs:complexType>
@@ -10034,6 +11106,36 @@
         </xs:all>
     </xs:complexType>
 </xs:element>
+
+<xs:element name='getAuditTrail'>
+    <xs:complexType>
+        <xs:all>
+            <xs:element name="object" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="objectKey" minOccurs="1" maxOccurs="1" type="xs:string"/>
+        </xs:all>
+    </xs:complexType>
+</xs:element>
+
+    <xs:element name='getSpotRate'>
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="fromCurrency" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                <xs:element name="toCurrency" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                <xs:element name="date" minOccurs="1" maxOccurs="1" type="xs:date"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getWARate">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="fromCurrency" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                <xs:element name="toCurrency" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                <xs:element name="fromDate" minOccurs="1" maxOccurs="1" type="xs:date"/>
+                <xs:element name="toDate" minOccurs="1" maxOccurs="1" type="xs:date"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
 
  <xs:element name='readMore'>
         <xs:complexType>
@@ -10073,6 +11175,7 @@
             <xs:element name="listSeparator" minOccurs="0" maxOccurs="1" type='xs:string'/>
         </xs:all>
         <xs:attribute name="returnDef" type='xs:string'/>
+        <xs:attribute name="libraryReport" type='xs:string'/>
     </xs:complexType>
  </xs:element>
 
@@ -10156,6 +11259,66 @@
     </xs:complexType>
 </xs:element>
 
+ <xs:element name='generate_projectinvoices'>
+  <xs:complexType>
+   <xs:all>
+    <xs:element name="invoicetemplate" minOccurs="1" type="xs:string"/>
+    <xs:element name="invoicedate" minOccurs="1"/>
+    <xs:element name="glpostdate" minOccurs="0"/>
+    <xs:element name="sortbyproject" minOccurs="0" type="xs:boolean" default="false"/>
+    <xs:element name="invoiceby" minOccurs="1" type="xs:string"/>
+    <xs:element name="customerid" minOccurs="0" type="xs:string"/>
+    <xs:element name="projectid" minOccurs="0" type="xs:string"/>
+    <xs:element name="pricelistid" minOccurs="0" type="xs:string"/>
+    <xs:element name="saveas" minOccurs="1" type="xs:string"/>
+    <xs:element name="invcurrencysource" minOccurs="0" type="xs:string"/>
+    <xs:element name="invoicecurrency" minOccurs="0" type="xs:string"/>
+    <xs:element name="exchratedate" minOccurs="0"/>
+    <xs:element name="exchratetype" minOccurs="0" type="xs:string"/>
+    <xs:element name="exchrate" minOccurs="0" type="xs:string"/>
+    <xs:element name="custtype" minOccurs="0" type="xs:string"/>
+    <xs:element name="projecttype" minOccurs="0" type="xs:string"/>
+    <xs:element name="projectmanagerid" minOccurs="0" type="xs:string"/>
+    <xs:element name="fromdate" minOccurs="0"/>
+    <xs:element name="todate" minOccurs="0"/>
+    <xs:element name="fromitemid" minOccurs="0" type="xs:string"/>
+    <xs:element name="toitemid" minOccurs="0" type="xs:string"/>
+    <xs:element name="employeeid" minOccurs="0" type="xs:string"/>
+    <xs:element name="locationid" minOccurs="0" type="xs:string"/>
+    <xs:element name="departmentid" minOccurs="0" type="xs:string"/>
+   </xs:all>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='glpostdate'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='year'/>
+    <xs:element ref='month'/>
+    <xs:element ref='day'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='fromdate'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='year'/>
+    <xs:element ref='month'/>
+    <xs:element ref='day'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='todate'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='year'/>
+    <xs:element ref='month'/>
+    <xs:element ref='day'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
 
  <xs:element name='function'>
   <xs:complexType>
@@ -10203,6 +11366,7 @@
     <xs:element ref='update_project'/>
     <xs:element ref='delete_project'/>
     <xs:element ref='create_class'/>
+    <xs:element ref='update_class'/>
     <xs:element ref='delete_class'/>
     <xs:element ref='create_vendor'/>
     <xs:element ref='delete_apaccountlabel'/>
@@ -10244,6 +11408,7 @@
     <xs:element ref='update_araccountlabel'/>
     <xs:element ref='update_contact'/>
     <xs:element ref='update_customer'/>
+    <xs:element ref='update_customervisibility'/>
     <xs:element ref='update_department'/>
     <xs:element ref='update_invoice'/>
     <xs:element ref='update_bill'/>
@@ -10257,11 +11422,16 @@
     <xs:element ref='update_journal'/>
     <xs:element ref='update_location'/>
     <xs:element ref='update_vendor'/>
+    <xs:element ref='update_vendorvisibility'/>
     <xs:element ref='create_paymentrequest'/>
     <xs:element ref='reclassify_bill'/>
     <xs:element ref='reclassify_invoice'/>
     <xs:element ref='delete_paymentrequest'/>
     <xs:element ref='create_appayment'/>
+    <xs:element ref="approve_appaymentrequest"/>
+    <xs:element ref="send_appaymentrequest"/>
+    <xs:element ref="confirm_appaymentrequest"/>
+    <xs:element ref="void_appaymentrequest"/>
     <xs:element ref='create_stkittransaction'/>
     <xs:element ref='create_ictransaction'/>
     <xs:element ref='update_ictransaction'/>
@@ -10336,6 +11506,7 @@
     <xs:element ref='create_taxschedulemap'/>
     <xs:element ref='delete_taxschedulemap'/>
     <xs:element ref='describe'/>
+    <xs:element ref='describeall'/>
     <xs:element ref='reconcile_bank'/>
     <xs:element ref='reverse_bill'/>
     <xs:element ref='reverse_appayment'/>
@@ -10364,6 +11535,37 @@
     <xs:element ref='create_revrecscheduleentry'/>
     <xs:element ref='post_revrecscheduleentry'/>
     <xs:element ref='unpost_revrecscheduleentry'/>
+    <xs:element ref='reallocate_revrecschedule'/>
+    <xs:element ref='create_expenseadjustmentreport'/>
+    <xs:element ref='update_expenseadjustmentreport'/>
+    <xs:element ref='delete_expenseadjustmentreport'/>
+    <xs:element ref='get_expenseadjustmentreport'/>
+    <xs:element ref='create_supdoc'/>
+    <xs:element ref='update_supdoc'/>
+    <xs:element ref='delete_supdoc'/>
+    <xs:element ref='create_supdocfolder'/>
+    <xs:element ref='update_supdocfolder'/>
+    <xs:element ref='delete_supdocfolder'/>
+    <xs:element ref='create_timetype'/>
+    <xs:element ref='update_timetype'/>
+    <xs:element ref='delete_timetype'/>
+    <xs:element ref='create_earningtype'/>
+    <xs:element ref='update_earningtype'/>
+    <xs:element ref='delete_earningtype'/>
+    <xs:element ref='create_employeerate'/>
+    <xs:element ref='update_employeerate'/>
+    <xs:element ref='delete_employeerate'/>
+    <xs:element ref='create_achbankconfiguration'/>
+    <xs:element ref='update_achbankconfiguration'/>
+    <xs:element ref='delete_achbankconfiguration'/>
+    <xs:element ref='create_vendorentityaccountno'/>
+    <xs:element ref='create_consolidation'/>
+    <xs:element ref='convert_glbudget_fp_amounts_to_eop'/>
+    <xs:element ref='create_expensepaymenttype'/>
+    <xs:element ref='update_expensepaymenttype'/>
+    <xs:element ref='delete_expensepaymenttype'/>
+    <xs:element ref='getUserPermissions'/>
+    <xs:element ref='generate_projectinvoices'/>
     <xs:element ref='getAPISession'/>
     <xs:element ref='inspect'/>
     <xs:element ref='validate'/>
@@ -10379,23 +11581,17 @@
     <xs:element ref='readView'/>
     <xs:element ref='readReport'/>
     <xs:element ref='consolidate'/>
-    <xs:element ref='convert_glbudget_fp_amounts_to_eop'/>
     <xs:element ref='runDdsJob'/>
     <xs:element ref='getDdsObjects'/>
     <xs:element ref='getDdsDdl'/>
-    <xs:element ref='getUserPermissions'/>
     <xs:element ref="getDimensionRestrictions"/>
     <xs:element ref="getDimensionRelationships"/>
     <xs:element ref="getDimensionAutofillDetails"/>
     <xs:element ref="getDimensionRestrictedData"/>
     <xs:element ref="getDimensionAutofillData"/>
-    <xs:element ref="approve_appaymentrequest"/>
-    <xs:element ref="send_appaymentrequest"/>
-    <xs:element ref="confirm_appaymentrequest"/>
-    <xs:element ref="void_appaymentrequest"/>
-    <xs:element ref='create_employeerate'/>
-    <xs:element ref='update_employeerate'/>
-    <xs:element ref='delete_employeerate'/>
+    <xs:element ref="getAuditTrail"/>
+    <xs:element ref="getSpotRate"/>
+    <xs:element ref="getWARate"/>
    </xs:choice>
    <xs:attribute name='controlid' use='required'>
        <xs:simpleType>
@@ -10426,9 +11622,25 @@
                 <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
                 <xs:element ref="itemid" minOccurs="0" maxOccurs="1"/>
                 <xs:element ref="classid" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+                <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
                 <xs:element ref="convertfromperiod" minOccurs="0" maxOccurs="1"/>
             </xs:sequence>
           </xs:complexType>
      </xs:element>
+
+    <xs:element name='create_consolidation'>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref='bookid'/>
+                <xs:element ref='offline' minOccurs='0' maxOccurs='1'/>
+                <xs:element ref='updatesucceedingperiods' minOccurs='0' maxOccurs='1'/>
+                <xs:element ref='changesonly' minOccurs='0' maxOccurs='1'/>
+                <xs:element ref='email' minOccurs='0' maxOccurs='1'/>
+                <xs:element ref='reportingperiodname'/>
+                <xs:element ref='entities'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
 </xs:schema>
