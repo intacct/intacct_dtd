@@ -11638,7 +11638,7 @@ permissions and limitations under the License.
                 <xs:element ref='changesonly' minOccurs='0' maxOccurs='1'/>
                 <xs:element ref='email' minOccurs='0' maxOccurs='1'/>
                 <xs:element ref='reportingperiodname'/>
-                <xs:element ref='entities'/>
+                <xs:element ref='entities' minOccurs='0' maxOccurs='1'/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
