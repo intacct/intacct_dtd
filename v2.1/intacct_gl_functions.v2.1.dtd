@@ -64,12 +64,12 @@ revstartdate?, revending?, revmodenew?, revinterval?, reveom?, reverrnotifyemail
 >
 
 <!-- Create Glaccount -->
-<!ELEMENT create_glaccount (glaccountno, title, normalbalance, accounttype?, closingtype?, closingaccountno?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, taxable?, externalid?, customfields?, category?, taxcode?, mrccode?, alternativeaccount?)>
+<!ELEMENT create_glaccount (glaccountno, title, normalbalance, accounttype?, closingtype?, closingaccountno?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, externalid?, customfields?, category?, taxcode?, mrccode?, alternativeaccount?)>
 <!ATTLIST create_glaccount
 	ignoreduplicates (true | false) "false"
 >
 <!-- Update Glaccount -->
-<!ELEMENT update_glaccount (title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, taxable?, customfields?, category?, taxcode?, mrccode?, alternativeaccount?)>
+<!ELEMENT update_glaccount (title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, customfields?, category?, taxcode?, mrccode?, alternativeaccount?)>
 <!ATTLIST update_glaccount
 	glaccountno CDATA #REQUIRED
 	set_nulls (true | false) "false"
@@ -82,12 +82,12 @@ revstartdate?, revending?, revmodenew?, revinterval?, reveom?, reverrnotifyemail
 	externalkey (true | false) "false"
 >
 <!-- Create Statistical Glaccount -->
-<!ELEMENT create_statglaccount (glaccountno, title, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, customfields?, category?, status?)>
+<!ELEMENT create_statglaccount (glaccountno, title, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, customfields?, category?, status?)>
 <!ATTLIST create_statglaccount
 	ignoreduplicates (true | false) "false"
 >
 <!-- Update Glaccount -->
-<!ELEMENT update_statglaccount (title?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, customfields?, category?, status?)>
+<!ELEMENT update_statglaccount (title?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, customfields?, category?, status?)>
 <!ATTLIST update_statglaccount
 	glaccountno CDATA #REQUIRED
 	set_nulls (true | false) "false"

@@ -60,6 +60,12 @@ message?, shippingmethod?, returnto,payto, supdocid?, externalid?, (basecurr?, c
 	externalkey (true | false) "false"
 >
 
+<!ELEMENT partialupdate_potransaction (dateposted)>
+<!ATTLIST partialupdate_potransaction
+		key CDATA #REQUIRED
+		externalkey (true | false) "false"
+>
+
 <!ELEMENT create_item (itemid, name, status?,itemtype,enable_bins?,extended_description?, productlineid?, substituteid?,
 ship_weight?, datelastsold?, datelastrecvd?, taxable?, cost_method?, standard_cost?, average_cost?, base_price?,
 standard_unit?, purchase_unit?, purchase_unit_factor?, sales_unit?, sales_unit_factor?, default_warehouse?,

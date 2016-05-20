@@ -91,7 +91,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT expensetypes (glaccountno?, expensetype?, description?, offsetglaccountno?, status?, unitcurrency?, unitrates?)>
 <!ELEMENT expensepaymenttype (name?, description?, nonreimbursable?, offsetacctno?, status?)>
 <!ELEMENT function (#PCDATA)>
-<!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, taxable?, taxcode?, mrccode?, alternativeaccount?, customfields?)>
+<!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, taxcode?, mrccode?, alternativeaccount?, customfields?)>
 <!-- NEW NEW NEW -->
 <!ELEMENT custglgroup (glgroupname?)>
 <!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, whslineitems?,vendlineitems?,complineitems?)>
@@ -734,6 +734,8 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT requireemployee %BOOLEAN;>
 <!ELEMENT requireitem %BOOLEAN;>
 <!ELEMENT requireclass %BOOLEAN;>
+<!ELEMENT requirecontract %BOOLEAN;>
+<!ELEMENT requirewarehouse %BOOLEAN;>
 <!ELEMENT resaleno %STRING_20;>
 <!ELEMENT returnto %CONTACT;>
 <!ELEMENT routingno %STRING_9;>

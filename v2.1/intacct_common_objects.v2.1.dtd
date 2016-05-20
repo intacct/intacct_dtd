@@ -182,7 +182,7 @@ permissions and limitations under the License.
 	update_journal | update_location | update_vendor | update_vendorvisibility | create_paymentrequest | reclassify_bill | reclassify_invoice |
 	delete_paymentrequest | create_appayment | approve_appaymentrequest | send_appaymentrequest | confirm_appaymentrequest | void_appaymentrequest |
 	create_stkittransaction | create_ictransaction | update_ictransaction |  create_sotransaction | update_sotransaction | create_recursotransaction | delete_recursotransaction |
-	create_potransaction | update_potransaction | get_salestotals | get_icitemtotals |record_cctransaction | record_wucctransactions |
+	create_potransaction | update_potransaction | partialupdate_potransaction | get_salestotals | get_icitemtotals |record_cctransaction | record_wucctransactions |
 	record_wureceipts | record_wudisbursements | record_wuadjjournalentries | record_wujournalentries |
 	get_companyprefs | set_companyprefs | get_applications | record_otherreceipt | record_deposit |
     create_territory | delete_territory | update_territory | apply_arpayment | delete_sotransaction | 
@@ -563,6 +563,8 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT requireemployee %BOOLEAN;>
 <!ELEMENT requireitem %BOOLEAN;>
 <!ELEMENT requireclass %BOOLEAN;>
+<!ELEMENT requirecontract %BOOLEAN;>
+<!ELEMENT requirewarehouse %BOOLEAN;>
 <!ELEMENT resaleno %STRING_20;>
 <!ELEMENT returnto %CONTACT;>
 <!ELEMENT routingno %STRING_9;>
@@ -1001,7 +1003,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!-- Elements for TIMESHEET -->
 <!ELEMENT timesheetdescription %STRING_200;>
 <!ELEMENT timesheetitems (timesheetitem+)>
-<!ELEMENT timesheetitem (lineno?, customerid?, itemid?, projectid?, taskname?, timetype?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, clznamount?, extbillrate?, extcostrate?, customfields?)>
+<!ELEMENT timesheetitem (lineno?, customerid?, itemid?, projectid?, taskname?, timetype?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, contractid?, warehouseid?, clznamount?, extbillrate?, extcostrate?, customfields?)>
 <!ELEMENT timetype %STRING_80;>
 <!ELEMENT entrydate %DATE;>
 <!ELEMENT qty %NUMBER_2;>

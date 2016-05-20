@@ -1896,6 +1896,16 @@ permissions and limitations under the License.
   <xs:complexType mixed='true'>
   </xs:complexType>
  </xs:element>
+ 
+ <xs:element name='requirecontract'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element> 
+ 
+ <xs:element name='requirewarehouse'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element> 
 
  <xs:element name='resaleno'>
   <xs:complexType mixed='true'>
@@ -3992,6 +4002,8 @@ permissions and limitations under the License.
     <xs:element ref='notes' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='vendorid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contractid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='warehouseid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='clznamount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='extbillrate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='extcostrate' minOccurs='0' maxOccurs='1'/>
@@ -7125,6 +7137,8 @@ permissions and limitations under the License.
     <xs:element ref='requireitem' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='requireemployee' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='requireclass' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='requirecontract' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='requirewarehouse' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taxable' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='externalid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
@@ -7161,6 +7175,8 @@ permissions and limitations under the License.
     <xs:element ref='requireitem' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='requireemployee' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='requireclass' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='requirecontract' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='requirewarehouse' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taxable' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='category' minOccurs='0' maxOccurs='1'/>
@@ -7215,6 +7231,8 @@ permissions and limitations under the License.
     <xs:element ref='requireitem' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='requireemployee' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='requireclass' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='requirecontract' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='requirewarehouse' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='category' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
@@ -7242,6 +7260,8 @@ permissions and limitations under the License.
     <xs:element ref='requireitem' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='requireemployee' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='requireclass' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='requirecontract' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='requirewarehouse' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='category' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='status' minOccurs='0' maxOccurs='1'/>
@@ -9570,6 +9590,23 @@ permissions and limitations under the License.
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='partialupdate_potransaction'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='dateposted' minOccurs='1' maxOccurs='1'/>
+   </xs:sequence>
+   <xs:attribute name='key' type='xs:string' use='required'/>
+   <xs:attribute name='externalkey' use='optional' default='false'>
+    <xs:simpleType>
+     <xs:restriction base='xs:string'>
+      <xs:enumeration value='true'/>
+      <xs:enumeration value='false'/>
+     </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='create_item'>
   <xs:complexType>
    <xs:sequence>
@@ -11441,6 +11478,7 @@ permissions and limitations under the License.
     <xs:element ref='delete_recursotransaction'/>
     <xs:element ref='create_potransaction'/>
     <xs:element ref='update_potransaction'/>
+    <xs:element ref='partialupdate_potransaction'/>
     <xs:element ref='get_salestotals'/>
     <xs:element ref='get_icitemtotals'/>
     <xs:element ref='record_cctransaction'/>
