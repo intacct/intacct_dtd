@@ -38,7 +38,7 @@ permissions and limitations under the License.
 <!ELEMENT billbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, bill*)>
 <!ELEMENT billitems (lineitem+)>
 <!ELEMENT project (key?, name?, description?, parentid?, invoicewithparent?, projectcategory?, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, sonumber?, ponumber?, poamount?, pqnumber?, whenmodified?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, invoicemessage?, invoicecurrency?, projectresources?)>
-<!ELEMENT task (key?, projectid?, name?, taskno?, description?, ismilestone?, parenttaskname?, budgetqty?, estqty?, priority?, pbegindate?, penddate?, percentcomplete?, taskstatus?, utilized?, billable?, itemid?, timetype?, classid?, obspercentcomplete?, taskresources?)>
+<!ELEMENT task (key?, projectid?, name?, taskno?, description?, ismilestone?, parenttaskname?, budgetqty?, estqty?, priority?, pbegindate?, penddate?, percentcomplete?, taskstatus?, utilized?, billable?, itemid?, timetype?, classid?, obspercentcomplete?, taskresources?, classid?, supdocid?, dependentonname?)>
 <!ELEMENT class (key?, classid?, name?, description?, parentid?, whenmodified?, status?)>
 <!ELEMENT timesheet (key?, title?, employeeid?, begindate?, enddate?, periodtype?, timesheetitems?)>
 <!ELEMENT checklayout (checkpaperformat?, signaturesrequired?)>
@@ -68,7 +68,7 @@ permissions and limitations under the License.
 <!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, taxcode?, mrccode?, alternativeaccount?, customfields?)>
 <!-- NEW NEW NEW -->
 <!ELEMENT custglgroup (glgroupname?)>
-<!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, whslineitems?,vendlineitems?,complineitems?)>
+<!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, dropship?, whslineitems?,vendlineitems?,complineitems?, cnbillingtemplate?, cnrevenuetemplate?, cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, mrr?)>
 <!ELEMENT ictotal (totalname?, status?)>
 <!ELEMENT icitemtotal (warehouseid?, itemid?, totalname?, quantity?)>
 <!ELEMENT stkittransaction (transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, stkittransitems?)>
@@ -80,7 +80,7 @@ permissions and limitations under the License.
 <!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, departmentid?, customfields?)>
 <!ELEMENT itemglgroup (glgroupname?)>
 <!ELEMENT sotransitems (sotransitem+)>
-<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?)>
+<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?, dropship?)>
 <!ELEMENT potransitems (potransitem+)>
 <!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, price?, retailprice?, overridetaxamount?, taxrate?, tax?, totalamount?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
 <!ELEMENT popricelist (pricelistname?, datefrom?, dateto?, status?)>

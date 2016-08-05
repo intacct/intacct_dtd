@@ -181,6 +181,7 @@ permissions and limitations under the License.
     update_employee | update_expensereport | update_expensetype | update_glaccount | update_statglaccount | 
 	update_journal | update_location | update_vendor | update_vendorvisibility | create_paymentrequest | reclassify_bill | reclassify_invoice |
 	delete_paymentrequest | create_appayment | approve_appaymentrequest | send_appaymentrequest | confirm_appaymentrequest | void_appaymentrequest |
+	create_reimbursementrequest |
 	create_stkittransaction | create_ictransaction | update_ictransaction |  create_sotransaction | update_sotransaction | create_recursotransaction | delete_recursotransaction |
 	create_potransaction | update_potransaction | partialupdate_potransaction | get_salestotals | get_icitemtotals |record_cctransaction | record_wucctransactions |
 	record_wureceipts | record_wudisbursements | record_wuadjjournalentries | record_wujournalentries |
@@ -346,6 +347,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT discountpercent %NUMBER_2_2;>
 <!ELEMENT discounttoapply %MONEY;>
 <!ELEMENT discsurchargememo %STRING_4000;>
+<!ELEMENT dropship %BOOLEAN;> 
 <!ELEMENT document %STRING_30;>
 <!ELEMENT documentno %STRING_20;>
 <!ELEMENT origdocdate %DATE;>
@@ -456,6 +458,12 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT itemid %STRING_30;>
 <!ELEMENT itemdesc %STRING_200;>
 <!ELEMENT item1099 %STRING_10;>
+<!ELEMENT cnbillingtemplate %STRING_30;>
+<!ELEMENT cmrr %BOOLEAN;>
+<!ELEMENT cnrevenuetemplate %STRING_30;>
+<!ELEMENT cnrevenue2template %STRING_30;>
+<!ELEMENT cnexpensetemplate %STRING_30;>
+<!ELEMENT cnexpense2template %STRING_30;>
 <!ELEMENT journalid %STRING_4;>
 <!ELEMENT key %KEY;>
 <!ELEMENT label %STRING_80;>
@@ -994,6 +1002,8 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT taskno %STRING_8;>
 <!ELEMENT parenttaskname %STRING_200;>
 <!ELEMENT parentkey %KEY;>
+<!ELEMENT dependentonkey %KEY;>
+<!ELEMENT dependentonname %STRING_200;>
 <!ELEMENT budgetqty %NUMBER_38_2;>
 <!ELEMENT estqty %NUMBER_38_2;>
 <!ELEMENT priority %INTEGER;>

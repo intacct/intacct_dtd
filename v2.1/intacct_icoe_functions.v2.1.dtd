@@ -17,7 +17,7 @@ permissions and limitations under the License.
 <!ELEMENT create_potransaction (transactiontype, datecreated, dateposted?, createdfrom?, vendorid, documentno?, referenceno?,vendordocno?, termname?, datedue,
 message?, shippingmethod?, returnto,payto, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, state?, potransitems, subtotals?)>
 <!ELEMENT create_sotransaction (transactiontype, datecreated, dateposted?, createdfrom?, customerid, documentno?, origdocdate?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? , vsoepricelist?, customfields?, state?, projectid?, sotransitems, subtotals?)>
-<!ELEMENT create_recursotransaction (transactiontype, customerid, referenceno?, termname?, message?, contractid?, contractdesc?, shippingmethod?, shipto?, billto?, externalid?, basecurr?, currency?, exchratetype? , customfields?, recursotransitems, subtotals?, startdate, ending?, modenew?, interval?, eom?, status?, docstatus?)>
+<!ELEMENT create_recursotransaction (transactiontype, customerid, referenceno?, termname?, message?, contractid?, contractdesc?, shippingmethod?, shipto?, billto?, externalid?, basecurr?, currency?, exchratetype? , customfields?, recursotransitems, subtotals?, paymethod?, payinfull?, paymentamount?, creditcardtype?, customercreditcardkey?, customerbankaccountkey?, accounttype?, bankaccountid?, glaccountkey?, startdate, ending?, modenew?, interval?, eom?, status?, docstatus?)>
 <!-- Delete a recurring Bill -->
 <!ELEMENT delete_recursotransaction EMPTY>
 <!ATTLIST delete_recursotransaction
@@ -66,12 +66,13 @@ message?, shippingmethod?, returnto,payto, supdocid?, externalid?, (basecurr?, c
 		externalkey (true | false) "false"
 >
 
-<!ELEMENT create_item (itemid, name, status?,itemtype,enable_bins?,extended_description?, productlineid?, substituteid?,
+<!ELEMENT create_item (itemid, name, status?, itemtype,enable_bins?,extended_description?, productlineid?, substituteid?,
 ship_weight?, datelastsold?, datelastrecvd?, taxable?, cost_method?, standard_cost?, average_cost?, base_price?,
 standard_unit?, purchase_unit?, purchase_unit_factor?, sales_unit?, sales_unit_factor?, default_warehouse?,
 glgroup?, note?, inventory_precision?, purchasing_precision?, sales_precision?, upc?, hasstartenddates?, term_period?, defaultnoofperiods?, computepriceforshortterm?,
 itaxgroup?, revenue_posting?, vendlineitems?, whslineitems?, complineitems?, taxcode?, vsoecategory?, vsoedlvrstatus?, vsoerevdefstatus?, 
-incomeaccount?, invaccount?, expenseaccount?, cogsaccount?, offsetoeglaccount?, offsetpoglaccount?, defrevaccount?, uomgrp?, customfields?)>
+incomeaccount?, invaccount?, expenseaccount?, cogsaccount?, offsetoeglaccount?, offsetpoglaccount?, defrevaccount?, uomgrp?, dropship?,
+cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, customfields?, mrr?)>
 <!ATTLIST create_item
 	ignoreduplicates (true | false) "false"
 >
@@ -79,10 +80,11 @@ incomeaccount?, invaccount?, expenseaccount?, cogsaccount?, offsetoeglaccount?, 
 <!ATTLIST delete_item
 	itemid CDATA #REQUIRED
 >
-<!ELEMENT update_item (name?, status?,enable_bins?,extended_description?, productlineid?, substituteid?, ship_weight?, taxable?, standard_cost?, base_price?, standard_unit?, purchase_unit?, purchase_unit_factor?, sales_unit?, sales_unit_factor?, default_warehouse?,
+<!ELEMENT update_item (name?, status?, enable_bins?,extended_description?, productlineid?, substituteid?, ship_weight?, taxable?, standard_cost?, base_price?, standard_unit?, purchase_unit?, purchase_unit_factor?, sales_unit?, sales_unit_factor?, default_warehouse?,
 glgroup?, note?, inventory_precision?, purchasing_precision?, sales_precision?, upc?, hasstartenddates?, term_period?, defaultnoofperiods?, computepriceforshortterm?,
 itaxgroup?, revenue_posting?, vendlineitems?, whslineitems?, complineitems?, taxcode?, vsoecategory?, vsoedlvrstatus?, vsoerevdefstatus?, 
-incomeaccount?, invaccount?, expenseaccount?, cogsaccount?, offsetoeglaccount?, offsetpoglaccount?, defrevaccount?, uomgrp?, customfields?)>
+incomeaccount?, invaccount?, expenseaccount?, cogsaccount?, offsetoeglaccount?, offsetpoglaccount?, defrevaccount?, uomgrp?, dropship?,
+cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, customfields?, mrr?)>
 <!ATTLIST update_item
 	itemid CDATA #REQUIRED
 >

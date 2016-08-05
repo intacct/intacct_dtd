@@ -1332,6 +1332,31 @@ permissions and limitations under the License.
   </xs:complexType>
  </xs:element>
 
+<xs:element name='cnbillingtemplate'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+</xs:element>
+<xs:element name='cnrevenuetemplate'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+</xs:element>
+<xs:element name='cnrevenue2template'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+</xs:element>
+<xs:element name='cnexpensetemplate'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+</xs:element>
+<xs:element name='cnexpense2template'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+</xs:element>
+<xs:element name='mrr'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+</xs:element>
+
  <xs:element name='journalid'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -1896,16 +1921,16 @@ permissions and limitations under the License.
   <xs:complexType mixed='true'>
   </xs:complexType>
  </xs:element>
- 
+
  <xs:element name='requirecontract'>
   <xs:complexType mixed='true'>
   </xs:complexType>
- </xs:element> 
- 
+ </xs:element>
+
  <xs:element name='requirewarehouse'>
   <xs:complexType mixed='true'>
   </xs:complexType>
- </xs:element> 
+ </xs:element>
 
  <xs:element name='resaleno'>
   <xs:complexType mixed='true'>
@@ -2180,6 +2205,11 @@ permissions and limitations under the License.
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='dropship'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+ 
  <xs:element name='taxgroup'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -3828,6 +3858,16 @@ permissions and limitations under the License.
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='dependentonkey'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='dependentonname'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='budgetamount'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -4642,6 +4682,7 @@ permissions and limitations under the License.
     <xs:element ref='fulfillmentstatus' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taskno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billingtemplate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dropship' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -5269,6 +5310,7 @@ permissions and limitations under the License.
     <xs:element ref='fulfillmentstatus' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='taskno' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='billingtemplate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dropship' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='line_num' type='xs:string' use='required'/>
   </xs:complexType>
@@ -7979,7 +8021,65 @@ permissions and limitations under the License.
   </xs:complexType>
  </xs:element>
 
+  <xs:element name="create_reimbursementrequest">
+      <xs:complexType>
+          <xs:sequence>
+              <xs:element ref="bankaccountid"/>
+              <xs:element ref="employeeid"/>
+              <xs:element ref="memo" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="paymentmethod">
+                  <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                          <xs:enumeration value="Printed Check"/>
+                          <xs:enumeration value="EFT"/>
+                          <xs:enumeration value="Cash"/>
+                          <xs:enumeration value="ACH"/>
+                      </xs:restriction>
+                  </xs:simpleType>
+              </xs:element>
+              <xs:element ref="paymentdate"/>
+              <xs:element name="paymentoption" minOccurs="0" maxOccurs="1" default="employee">
+                  <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                          <xs:enumeration value="employee"/>
+                          <xs:enumeration value="expense"/>
+                          <xs:enumeration value="employeepref"/>
+                      </xs:restriction>
+                  </xs:simpleType>
+              </xs:element>
+              <xs:element ref="eppaymentrequestitems"/>
+              <xs:element ref="documentnumber" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="paymentdescription" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="paymentcontact" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+      </xs:complexType>
+  </xs:element>
 
+    <xs:element name='eppaymentrequestitems'>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref='eppaymentrequestitem' maxOccurs='unbounded'/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name='eppaymentrequestitem'>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref='key'/>
+                <xs:element ref='paymentamount'/>
+                <xs:element ref='credittoapply' minOccurs='0' maxOccurs='1'/>
+            </xs:sequence>
+            <xs:attribute name='externalkey' use='optional' default='false'>
+                <xs:simpleType>
+                    <xs:restriction base='xs:string'>
+                        <xs:enumeration value='true'/>
+                        <xs:enumeration value='false'/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
 
  <xs:element name='create_paymentrequest'>
   <xs:complexType>
@@ -9118,6 +9218,8 @@ permissions and limitations under the License.
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='supdocid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dependentonkey' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dependentonname' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -9146,6 +9248,8 @@ permissions and limitations under the License.
     <xs:element ref='taskresources' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='classid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dependentonkey' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dependentonname' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='key' type='xs:string' use='required'/>
   </xs:complexType>
@@ -9363,6 +9467,15 @@ permissions and limitations under the License.
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='recursotransitems'/>
     <xs:element ref='subtotals' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymethod' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='payinfull' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymentamount' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='creditcardtype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customercreditcardkey' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='accounttype' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='bankaccountid' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customerbankaccountkey' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='glaccountkey' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='startdate'/>
     <xs:element ref='ending' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='modenew' minOccurs='0' maxOccurs='1'/>
@@ -9659,7 +9772,14 @@ permissions and limitations under the License.
     <xs:element ref='offsetpoglaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='defrevaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='uomgrp' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dropship' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='cnbillingtemplate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='cnrevenuetemplate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='cnrevenue2template' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='cnexpensetemplate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='cnexpense2template' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='mrr' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='ignoreduplicates' use='optional' default='false'>
     <xs:simpleType>
@@ -9724,7 +9844,14 @@ permissions and limitations under the License.
     <xs:element ref='offsetpoglaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='defrevaccount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='uomgrp' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='dropship' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='cnbillingtemplate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='cnrevenuetemplate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='cnrevenue2template' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='cnexpensetemplate' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='cnexpense2template' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='mrr' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='itemid' type='xs:string' use='required'/>
   </xs:complexType>
@@ -11108,7 +11235,7 @@ permissions and limitations under the License.
     <xs:complexType>
         <xs:all>
             <xs:element name='delimiter' minOccurs="0" maxOccurs='1' type='xs:string' default=","/>
-            <xs:element name='enclosure' minOccurs="0" maxOccurs='1' type='xs:string'/>
+            <xs:element name='enclosure' minOccurs="0" maxOccurs='1' type='xs:string' default='"'/>
             <xs:element name='includeHeaders' minOccurs="0" maxOccurs='1' type='xs:boolean' default='false'/>
             <xs:element name="fileFormat" minOccurs="0" maxOccurs="1" default="unix">
                 <xs:simpleType >
@@ -11122,6 +11249,7 @@ permissions and limitations under the License.
             <xs:element name='splitSize' minOccurs="0" maxOccurs='1' default="100000">
                 <xs:simpleType>
                     <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="10000"/>
                         <xs:maxInclusive value="100000"/>
                     </xs:restriction>
                 </xs:simpleType>
@@ -11461,6 +11589,7 @@ permissions and limitations under the License.
     <xs:element ref='update_vendor'/>
     <xs:element ref='update_vendorvisibility'/>
     <xs:element ref='create_paymentrequest'/>
+    <xs:element ref='create_reimbursementrequest'/>
     <xs:element ref='reclassify_bill'/>
     <xs:element ref='reclassify_invoice'/>
     <xs:element ref='delete_paymentrequest'/>

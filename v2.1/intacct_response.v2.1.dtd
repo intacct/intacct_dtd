@@ -94,7 +94,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, taxcode?, mrccode?, alternativeaccount?, customfields?)>
 <!-- NEW NEW NEW -->
 <!ELEMENT custglgroup (glgroupname?)>
-<!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, whslineitems?,vendlineitems?,complineitems?)>
+<!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, whslineitems?,vendlineitems?,complineitems?, cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, cmrr?)>
 <!ELEMENT ictotal (totalname?, status?)>
 <!ELEMENT icitemtotal (warehouseid?, itemid?, totalname?, quantity?)>
 <!ELEMENT stkittransaction (transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, stkittransitems?)>
@@ -106,7 +106,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, departmentid?, customfields?)>
 <!ELEMENT itemglgroup (glgroupname?)>
 <!ELEMENT sotransitems (sotransitem+)>
-<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?, discountpercent?)>
+<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?, discountpercent?, dropship?)>
 <!ELEMENT potransitems (potransitem+)>
 <!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, price?, overridetaxamount?, taxrate?, tax?, retailprice?, totalamount?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
 <!ELEMENT popricelist (pricelistname?, datefrom?, dateto?, status?)>
@@ -514,6 +514,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT discountpercent %NUMBER_2_2;>
 <!ELEMENT discounttoapply %MONEY;>
 <!ELEMENT discsurchargememo %STRING_4000;>
+<!ELEMENT dropship %BOOLEAN;> 
 <!ELEMENT document %STRING_30;>
 <!ELEMENT documentno %STRING_20;>
 <!ELEMENT origdocdate %DATE;>
@@ -625,6 +626,12 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT itemid %STRING_30;>
 <!ELEMENT itemdesc %STRING_200;>
 <!ELEMENT item1099 %STRING_10;>
+<!ELEMENT cmrr %BOOLEAN;>
+<!ELEMENT cnbillingtemplate %STRING_30;>
+<!ELEMENT cnrevenuetemplate %STRING_30;>
+<!ELEMENT cnrevenue2template %STRING_30;>
+<!ELEMENT cnexpensetemplate %STRING_30;>
+<!ELEMENT cnexpense2template %STRING_30;>
 <!ELEMENT journalid %STRING_4;>
 <!ELEMENT key %KEY;>
 <!ELEMENT label %STRING_80;>
@@ -937,6 +944,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT poappricing %STRING_30;>
 <!ELEMENT invoicemessage %STRING_4000;>
 <!ELEMENT invoicecurrency %STRING_3;>
+<!ELEMENT dependentonname %STRING_200;>
 
 <!-- Class -->
 <!ELEMENT classid %STRING_30;>

@@ -148,6 +148,12 @@ permissions and limitations under the License.
 <!ELEMENT payitem ((glaccountno | accountlabel), paymentamount, item1099?, departmentid?, locationid?)>
 <!ELEMENT appaymentkeys (appaymentkey+)>
 <!-- END NEW For APPayment APIs -->
+<!ELEMENT create_reimbursementrequest (bankaccountid, employeeid, memo?, paymentmethod, paymentdate, paymentoption?, eppaymentrequestitems , documentnumber?, paymentdescription?, paymentcontact?)>
+<!ELEMENT eppaymentrequestitems (eppaymentrequestitem+)>
+<!ELEMENT eppaymentrequestitem (key, paymentamount, credittoapply?)>
+<!ATTLIST eppaymentrequestitem
+    externalkey (true | false) "false"
+>
 <!-- Create a Customer -->
 <!ELEMENT create_customer (customerid, name, parentid?, termname?, custrepid?, shippingmethod?, custtype?, taxid?, creditlimit?, territoryid?, resaleno?, deliveryoptions?, accountlabel?, glaccountno?, glgroup?, onhold?,
         comments?, status?, currency?, externalid?, primary?, billto?, shipto?, contactinfo?, contactlist?, vsoepricelist?, customfields?, visibility?, supdocid?, offsetglaccountno?)>
@@ -390,10 +396,10 @@ permissions and limitations under the License.
 >
 
 <!-- Create a task -->
-<!ELEMENT create_task (taskname, projectid, pbegindate?, penddate?, itemid?, billable?, taskdescription?, ismilestone?, utilized?, priority?, taskno?, taskstatus, parentkey?, budgetqty?, estqty?, timetype?, obspercentcomplete?, taskresources?, customfields?, classid?, supdocid?)>
+<!ELEMENT create_task (taskname, projectid, pbegindate?, penddate?, itemid?, billable?, taskdescription?, ismilestone?, utilized?, priority?, taskno?, taskstatus, parentkey?, budgetqty?, estqty?, timetype?, obspercentcomplete?, taskresources?, customfields?, classid?, supdocid?, dependentonkey?, dependentonname?)>
 
 <!-- Update a task -->
-<!ELEMENT update_task (taskname?, projectid?, pbegindate?, penddate?, itemid?, billable?, taskdescription?, ismilestone?, utilized?, priority?, taskno?, taskstatus?, parentkey?, budgetqty?, estqty?, timetype?, obspercentcomplete?, taskresources?, customfields?, classid?, supdocid?)>
+<!ELEMENT update_task (taskname?, projectid?, pbegindate?, penddate?, itemid?, billable?, taskdescription?, ismilestone?, utilized?, priority?, taskno?, taskstatus?, parentkey?, budgetqty?, estqty?, timetype?, obspercentcomplete?, taskresources?, customfields?, classid?, supdocid?, dependentonkey?, dependentonname?)>
 <!ATTLIST update_task
 	key CDATA #REQUIRED
 >
