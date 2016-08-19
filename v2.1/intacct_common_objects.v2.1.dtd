@@ -459,7 +459,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT itemdesc %STRING_200;>
 <!ELEMENT item1099 %STRING_10;>
 <!ELEMENT cnbillingtemplate %STRING_30;>
-<!ELEMENT cmrr %BOOLEAN;>
+<!ELEMENT mrr %BOOLEAN;>
 <!ELEMENT cnrevenuetemplate %STRING_30;>
 <!ELEMENT cnrevenue2template %STRING_30;>
 <!ELEMENT cnexpensetemplate %STRING_30;>

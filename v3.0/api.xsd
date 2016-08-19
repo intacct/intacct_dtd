@@ -1352,10 +1352,14 @@ permissions and limitations under the License.
   <xs:complexType mixed='true'>
   </xs:complexType>
 </xs:element>
-<xs:element name='mrr'>
-  <xs:complexType mixed='true'>
-  </xs:complexType>
-</xs:element>
+
+<xs:simpleType name='iaboolean'>
+    <xs:restriction base='xs:string'>
+        <xs:enumeration value='true'/>
+        <xs:enumeration value='false'/>
+    </xs:restriction>
+</xs:simpleType>
+
 
  <xs:element name='journalid'>
   <xs:complexType mixed='true'>
@@ -9472,9 +9476,9 @@ permissions and limitations under the License.
     <xs:element ref='paymentamount' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='creditcardtype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customercreditcardkey' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='customerbankaccountkey' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='accounttype' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='bankaccountid' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='customerbankaccountkey' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='glaccountkey' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='startdate'/>
     <xs:element ref='ending' minOccurs='0' maxOccurs='1'/>
@@ -9779,7 +9783,7 @@ permissions and limitations under the License.
     <xs:element ref='cnexpensetemplate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='cnexpense2template' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='mrr' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='mrr' minOccurs='0' maxOccurs='1' type="iaboolean"/>
    </xs:sequence>
    <xs:attribute name='ignoreduplicates' use='optional' default='false'>
     <xs:simpleType>
@@ -9851,7 +9855,7 @@ permissions and limitations under the License.
     <xs:element ref='cnexpensetemplate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='cnexpense2template' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
-    <xs:element ref='mrr' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='mrr' minOccurs='0' maxOccurs='1' type="iaboolean"/>
    </xs:sequence>
    <xs:attribute name='itemid' type='xs:string' use='required'/>
   </xs:complexType>

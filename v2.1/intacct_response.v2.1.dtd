@@ -94,7 +94,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, taxcode?, mrccode?, alternativeaccount?, customfields?)>
 <!-- NEW NEW NEW -->
 <!ELEMENT custglgroup (glgroupname?)>
-<!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, whslineitems?,vendlineitems?,complineitems?, cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, cmrr?)>
+<!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, whslineitems?,vendlineitems?,complineitems?, cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, mrr?)>
 <!ELEMENT ictotal (totalname?, status?)>
 <!ELEMENT icitemtotal (warehouseid?, itemid?, totalname?, quantity?)>
 <!ELEMENT stkittransaction (transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, stkittransitems?)>
@@ -626,7 +626,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT itemid %STRING_30;>
 <!ELEMENT itemdesc %STRING_200;>
 <!ELEMENT item1099 %STRING_10;>
-<!ELEMENT cmrr %BOOLEAN;>
+<!ELEMENT mrr %BOOLEAN;>
 <!ELEMENT cnbillingtemplate %STRING_30;>
 <!ELEMENT cnrevenuetemplate %STRING_30;>
 <!ELEMENT cnrevenue2template %STRING_30;>
