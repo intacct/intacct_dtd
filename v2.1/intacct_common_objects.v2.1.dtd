@@ -123,7 +123,7 @@ permissions and limitations under the License.
 <!ENTITY % ENUM_TXTYPE "(#PCDATA)">
 <!-- ENUMS: "debit", "credit" -->
 <!ENTITY % ENUM_PAYMENTMETHOD "(#PCDATA)">
-<!-- ENUMS: "Printed Check", "Online", "Cash", "EFT", "Credit Card", "Online Charge Card", "WF Check", "WF Domestic ACH", "WF USD Wire", "ACH" -->
+<!-- ENUMS: "Printed Check", "Cash", "EFT", "Charge Card", "ACH" -->
 <!ENTITY % ENUM_CCTYPE "(#PCDATA)">
 <!-- ENUMS: 'Visa','Mastercard','Discover','American Express','Diners Club','Other Charge Card' -->
 <!ENTITY % ENUM_ACHACCTYPE "(#PCDATA)">
