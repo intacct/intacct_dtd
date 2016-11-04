@@ -63,10 +63,10 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT bill (key?, vendorid?, datecreated?, dateposted?, datedue?, datepaid?, termname?, batchkey?, billno?, ponumber?, totalamount?, totalpaid?, totaldue?, onhold?, description?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, basecurr?, currency?, customfields?, billitems?, payto?, returnto?, whenmodified?, state?, supdocid?)>
 <!ELEMENT billbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, bill*)>
 <!ELEMENT billitems (lineitem+)>
-<!ELEMENT project (key?, name?, description?, parentid?, invoicewithparent?, projectcategory?, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, sonumber?, ponumber?, poamount?, pqnumber?, whenmodified?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, supdocid?, invoicemessage?, invoicecurrency?, projectresources?)>
+<!ELEMENT project (key?, name?, description?, parentid?, invoicewithparent?, projectcategory?, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, sonumber?, ponumber?, poamount?, pqnumber?, whenmodified?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, supdocid?, invoicemessage?, invoicecurrency?, projectresources?, billingovermax?, excludeexpenses?)>
 <!ELEMENT task (key?, projectid?, name?, taskno?, description?, ismilestone?, parenttaskname?, budgetqty?, estqty?, priority?, pbegindate?, penddate?, percentcomplete?, taskstatus?, utilized?, billable?, itemid?, timetype?, classid?, supdocid?, obspercentcomplete?, taskresources?)>
 <!ELEMENT class (key?, classid?, name?, description?, parentid?, whenmodified?, status?)>
-<!ELEMENT timesheet (key?, title?, employeeid?, begindate?, enddate?, periodtype?, timesheetitems?)> <!-- TODO: this is foobar -->
+<!ELEMENT timesheet (key?, title?, employeeid?, begindate?, enddate?, glpostdate?, periodtype?, timesheetitems?)> <!-- TODO: this is foobar -->
 <!ELEMENT checklayout (checkpaperformat?, signaturesrequired?)>
 <!ELEMENT customer (customerid?, name?, parentid?, termname?, custrepid?, shippingmethod?, custtype?, taxid?, creditlimit?, totaldue?, territoryid?, resaleno?, deliveryoptions?, accountlabel?, glaccountno?, glgroup?, comments?, whenmodified?, status?, currency?, primary?, billto?, shipto?, contactinfo?, vsoepricelist?, contactlist?, pricelist?, customfields?, supdocid?)>
 <!ELEMENT customervisibility (customerid?, name?, visibility?)>
@@ -698,6 +698,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT cleared %STRING_1;>
 <!ELEMENT paylabel %STRING_80;>
 <!ELEMENT paymentamount %MONEY;>
+<!ELEMENT basepaymentamount %MONEY;>
 <!ELEMENT translatedamount %MONEY;>
 <!ELEMENT paymentapplied %MONEY;>
 <!ELEMENT paymentmethod %ENUM_PAYMENTMETHOD;>
@@ -945,6 +946,8 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT invoicemessage %STRING_4000;>
 <!ELEMENT invoicecurrency %STRING_3;>
 <!ELEMENT dependentonname %STRING_200;>
+<!ELEMENT billingovermax %STRING_40;>
+<!ELEMENT excludeexpenses %BOOLEAN;>
 
 <!-- Class -->
 <!ELEMENT classid %STRING_30;>
@@ -980,6 +983,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT paymenttrxamount %NUMBER_38_2;>
 <!ELEMENT exchratedate %DATE;>
 <!ELEMENT exchratetype %STRING_100;>
+<!ELEMENT paymentexchratetype %STRING_100;>
 <!ELEMENT exchrate %NUMBER_38_2;>
 <!ELEMENT autoelimination %STRING_1;>
 
@@ -1178,6 +1182,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT timesheetitem (lineno?, customerid?, itemid?, projectid?, taskname?, timetype?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, contractid?, warehouseid?, customfields?)>
 <!ELEMENT timetype %STRING_80;>
 <!ELEMENT entrydate %DATE;>
+<!ELEMENT glpostdate %DATE;>
 <!ELEMENT qty %NUMBER_2;>
 <!ELEMENT timesheetentrydescription %STRING_100;>
 <!ELEMENT notes %STRING_100;>

@@ -66,6 +66,16 @@ permissions and limitations under the License.
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='latitude'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='longitude'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='adjustmentno'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -1307,6 +1317,11 @@ permissions and limitations under the License.
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='billingovermax'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='intacctid'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -1479,6 +1494,8 @@ permissions and limitations under the License.
     <xs:element ref='zip' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='country' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='isocountrycode' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='latitude' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='longitude' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
  </xs:element>
@@ -3069,6 +3086,16 @@ permissions and limitations under the License.
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='paymentexchratetype'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='basepaymentamount'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='exchrate'>
   <xs:complexType mixed='true'>
   </xs:complexType>
@@ -4374,6 +4401,15 @@ permissions and limitations under the License.
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='contactto1099'>
+  <xs:complexType>
+   <xs:choice>
+    <xs:element ref='contact'/>
+    <xs:element ref='contactname'/>
+   </xs:choice>
+  </xs:complexType>
+ </xs:element>
+
  <xs:element name='expense'>
   <xs:complexType>
    <xs:sequence>
@@ -4557,6 +4593,8 @@ permissions and limitations under the License.
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='item1099' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='form1099type' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='form1099box' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='key' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='totalpaid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='totaldue' minOccurs='0' maxOccurs='1'/>
@@ -4960,6 +4998,8 @@ permissions and limitations under the License.
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='item1099' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='form1099type' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='form1099box' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='revrectemplate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='defrevaccount' minOccurs='0' maxOccurs='1'/>
@@ -7421,6 +7461,7 @@ permissions and limitations under the License.
     <xs:element ref='returnto' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='payto' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='contactinfo' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contactto1099' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='contactlist' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='name1099' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='form1099type' minOccurs='0' maxOccurs='1'/>
@@ -7484,6 +7525,7 @@ permissions and limitations under the License.
     <xs:element ref='returnto' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='payto' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='contactinfo' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='contactto1099' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='contactlist' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='name1099' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='form1099type' minOccurs='0' maxOccurs='1'/>
@@ -7601,6 +7643,8 @@ permissions and limitations under the License.
     <xs:element ref='invoicemessage' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='invoicecurrency' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='projectresources' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref='billingovermax' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='excludeexpenses' minOccurs='0' maxOccurs='1' type='iaboolean'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
   </xs:complexType>
@@ -7654,6 +7698,8 @@ permissions and limitations under the License.
     <xs:element ref='invoicemessage' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='invoicecurrency' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='projectresources' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref='billingovermax' minOccurs='0' maxOccurs='1'/>
+    <xs:element name='excludeexpenses' minOccurs='0' maxOccurs='1' type='iaboolean'/>
     <xs:element ref='customfields' minOccurs='0' maxOccurs='1'/>
    </xs:sequence>
    <xs:attribute name='key' type='xs:string' use='required'/>
@@ -8145,12 +8191,30 @@ permissions and limitations under the License.
  <xs:element name='create_appayment'>
   <xs:complexType>
    <xs:sequence>
+   <xs:choice>
     <xs:element ref='bankaccountid'/>
+       <xs:element ref='chargecardid'/>
+   </xs:choice>
     <xs:element ref='vendorid'/>
     <xs:element ref='memo'/>
+    <xs:element ref="paymentmethod" minOccurs='0' maxOccurs='1'/>
     <xs:element ref='checkdate'/>
+    <xs:element ref="batchkey" minOccurs='0' maxOccurs='1'/>
     <xs:element ref='checkno'/>
     <xs:element ref='billno' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='basepaymentamount' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='paymentexchratetype' minOccurs='0' maxOccurs='1'/>
+    <xs:sequence minOccurs='0' maxOccurs='1'>
+     <xs:element ref='basecurr' minOccurs='0' maxOccurs='1'/>
+     <xs:element ref='currency'/>
+     <xs:choice>
+      <xs:sequence>
+       <xs:element ref='exchratedate' minOccurs='0' maxOccurs='1'/>
+       <xs:element ref='exchratetype'/>
+      </xs:sequence>
+      <xs:element ref='exchrate'/>
+     </xs:choice>
+    </xs:sequence>
     <xs:element ref='payitems'/>
    </xs:sequence>
   </xs:complexType>
@@ -9270,6 +9334,7 @@ permissions and limitations under the License.
    <xs:sequence>
     <xs:element ref='employeeid'/>
     <xs:element ref='begindate'/>
+    <xs:element ref='glpostdate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='timesheetdescription' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='state' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='timesheetitems' maxOccurs='unbounded'/>
@@ -9282,6 +9347,7 @@ permissions and limitations under the License.
    <xs:sequence>
     <xs:element ref='employeeid'/>
     <xs:element ref='begindate'/>
+    <xs:element ref='glpostdate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='timesheetdescription' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='state' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='timesheetitems' maxOccurs='unbounded'/>
@@ -11038,7 +11104,7 @@ permissions and limitations under the License.
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='senderid'/>
-    <xs:element ref='password'/>
+    <xs:element ref='password' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='controlid'/>
     <xs:element ref='uniqueid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='dtdversion' minOccurs='0' maxOccurs='1'/>
@@ -11072,9 +11138,16 @@ permissions and limitations under the License.
    <xs:choice>
     <xs:element ref='login'/>
     <xs:element ref='sessionid'/>
+    <xs:element ref='oauth'/>
    </xs:choice>
   </xs:complexType>
  </xs:element>
+
+ <xs:element name='oauth'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
 
  <xs:element name='login'>
   <xs:complexType>
@@ -11171,8 +11244,8 @@ permissions and limitations under the License.
                 </xs:all>
         </xs:complexType>
  </xs:element>
- 
-<xs:element name='consolidate'>
+
+ <xs:element name='consolidate'>
     <xs:complexType>
         <xs:all>
             <xs:element name="bookid" minOccurs="1" type='xs:string'/>
@@ -11428,7 +11501,7 @@ permissions and limitations under the License.
     </xs:complexType>
 </xs:element>
 
- <xs:element name='generate_projectinvoices'>
+<xs:element name='generate_projectinvoices'>
   <xs:complexType>
    <xs:all>
     <xs:element name="invoicetemplate" minOccurs="1" type="xs:string"/>

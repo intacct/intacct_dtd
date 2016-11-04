@@ -470,6 +470,8 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT lastname %STRING_40;>
 <!ELEMENT lastreconciledbalance %STRING_20;>
 <!ELEMENT lastreconcileddate %DATE;>
+<!ELEMENT latitude %STRING_30;>
+<!ELEMENT longitude %STRING_30;>
 <!ELEMENT lineitemkey %KEY;>
 <!ELEMENT line_num %KEY;>
 <!ELEMENT listtype %ENUM_LISTTYPE;>
@@ -489,7 +491,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT acctgroupkey %ID;>
 <!ELEMENT glacctratetypes %STRING_1;>
 <!ELEMENT code %ID;>
-<!ELEMENT mailaddress (address1?, address2?, city?, state?, zip?, country?, isocountrycode?)>
+<!ELEMENT mailaddress (address1?, address2?, city?, state?, zip?, country?, isocountrycode?, latitude?, longitude?)>
 <!ELEMENT managerid %ID;>
 <!ELEMENT megadepartmentid %ID;>
 <!ELEMENT megalocationid %ID;>
@@ -528,6 +530,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT cleared %STRING_1;>
 <!ELEMENT paylabel %STRING_80;>
 <!ELEMENT paymentamount %MONEY;>
+<!ELEMENT basepaymentamount %MONEY;>
 <!ELEMENT translatedamount %MONEY;>
 <!ELEMENT paymentapplied %MONEY;>
 <!ELEMENT paymentmethod %ENUM_PAYMENTMETHOD;>
@@ -600,6 +603,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT arjournal %STRING_4;> 
 <!ELEMENT reconmode %STRING_30;>
 <!ELEMENT disableiet %BOOLEAN;>
+<!ELEMENT contactto1099 %CONTACT;>
 <!-- default is true -->
 <!ELEMENT signaturesrequired %ENUM_NUMBEROFSIGNATURES;>
 <!ELEMENT signed %BOOLEAN;>
@@ -771,6 +775,8 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT poappricing %STRING_30;>
 <!ELEMENT invoicemessage %STRING_4000;>
 <!ELEMENT invoicecurrency %STRING_3;>
+<!ELEMENT billingovermax %STRING_40;>
+<!ELEMENT excludeexpenses %BOOLEAN;>
 
 <!-- Class -->
 <!ELEMENT classid %STRING_30;>
@@ -806,6 +812,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT paymenttrxamount %NUMBER_38_2;>
 <!ELEMENT exchratedate %DATE;>
 <!ELEMENT exchratetype %STRING_100;>
+<!ELEMENT paymentexchratetype %STRING_100;>
 <!ELEMENT exchrate %NUMBER_38_2;>
 <!ELEMENT autoelimination %STRING_1;>
 

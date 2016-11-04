@@ -16,7 +16,7 @@ permissions and limitations under the License.
 <!-- Set the current bill batch -->
 <!-- Create a Vendor -->
 <!ELEMENT create_vendor (vendorid, name, parentid?, termname?, glaccountno?, accountlabel?, vendtype?, taxid?, creditlimit?, paymethod?, outsourcecheck?, outsourceach?, billingtype?, vendoraccountno?, displocacctnocheck?, onhold?, donotcutcheck?,
-        comments?, status?, currency?, onetime?, externalid?, primary?, returnto?, payto?, contactinfo?, contactlist?, name1099?,form1099type?, form1099box?, customfields?, paymentnotify?, achenabled?, wireenabled?,
+        comments?, status?, currency?, onetime?, externalid?, primary?, returnto?, payto?, contactinfo?, contactto1099?, contactlist?, name1099?,form1099type?, form1099box?, customfields?, paymentnotify?, achenabled?, wireenabled?,
         checkenabled?, achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?, wirebankname?, wirebankroutingnumber?, wireaccountnumber?, wireaccounttype?, pmplusremittancetype?, pmplusemail?,
         pmplusfax?, displaytermdiscount?, visibility?, supdocid?, mergepaymentreq?, offsetglaccountno?)>
 <!ATTLIST create_vendor
@@ -24,7 +24,7 @@ permissions and limitations under the License.
 >
 <!--Update a vendor-->
 <!ELEMENT update_vendor (name?, parentid?, termname?, glaccountno?, accountlabel?, vendtype?, taxid?, creditlimit?, paymethod?, outsourcecheck?, outsourceach?, billingtype?, vendoraccountno?, displocacctnocheck?, onhold?, donotcutcheck?,
-        comments?, status?, currency?, primary?, returnto?, payto?, contactinfo?, contactlist?, name1099?, form1099type?, form1099box?, customfields?, paymentnotify?, achenabled?, wireenabled?, checkenabled?,
+        comments?, status?, currency?, primary?, returnto?, payto?, contactinfo?, contactlist?, contactto1099?, name1099?, form1099type?, form1099box?, customfields?, paymentnotify?, achenabled?, wireenabled?, checkenabled?,
         achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?, wirebankname?, wirebankroutingnumber?, wireaccountnumber?, wireaccounttype?, pmplusremittancetype?,
         pmplusemail?, pmplusfax?, displaytermdiscount?, visibility?, supdocid?, mergepaymentreq?, offsetglaccountno?)>
 <!ATTLIST update_vendor
@@ -44,9 +44,9 @@ permissions and limitations under the License.
 	externalkey (true | false) "false"
 >
 <!-- Create a project -->
-<!ELEMENT create_project (projectid, name, description?, parentid?, invoicewithparent?, projectcategory, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, billingtype?, termname?, docnumber?, billto?, shipto?, contactinfo?, sonumber?, ponumber?, poamount?, pqnumber?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, supdocid?, invoicemessage?, invoicecurrency?, projectresources*, customfields?)>
+<!ELEMENT create_project (projectid, name, description?, parentid?, invoicewithparent?, projectcategory, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, billingtype?, termname?, docnumber?, billto?, shipto?, contactinfo?, sonumber?, ponumber?, poamount?, pqnumber?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, supdocid?, invoicemessage?, invoicecurrency?, projectresources*, billingovermax?, excludeexpenses?, customfields?)>
 <!-- Update a project -->
-<!ELEMENT update_project (projectid, name, description?, parentid?, invoicewithparent?, projectcategory, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, billingtype?, termname?, docnumber?, billto?, shipto?, contactinfo?, sonumber?, ponumber?, poamount?, pqnumber?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, supdocid?, invoicemessage?, invoicecurrency?, projectresources*, customfields?)>
+<!ELEMENT update_project (projectid, name, description?, parentid?, invoicewithparent?, projectcategory, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, billingtype?, termname?, docnumber?, billto?, shipto?, contactinfo?, sonumber?, ponumber?, poamount?, pqnumber?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, supdocid?, invoicemessage?, invoicecurrency?, projectresources*, billingovermax?, excludeexpenses?, customfields?)>
 <!ATTLIST update_project
 	key CDATA #REQUIRED
 	set_nulls (true | false) "false"
@@ -139,7 +139,7 @@ permissions and limitations under the License.
 <!ATTLIST delete_paymentrequest
 	key CDATA #REQUIRED
 >
-<!ELEMENT create_appayment (bankaccountid, vendorid, memo, checkdate, checkno, billno?, payitems)>
+<!ELEMENT create_appayment ((bankaccountid|chargecardid), vendorid, memo,paymentmethod?, checkdate,batchkey?, checkno?, billno?,basepaymentamount?,paymentexchratetype?,(basecurr?,currency, ((exchratedate?, exchratetype) | exchrate))?, payitems)>
 <!ELEMENT approve_appaymentrequest (appaymentkeys)>
 <!ELEMENT send_appaymentrequest (appaymentkeys)>
 <!ELEMENT confirm_appaymentrequest (appaymentkeys)>
@@ -411,10 +411,10 @@ permissions and limitations under the License.
 >
 
 <!-- Create a timesheet -->
-<!ELEMENT create_timesheet (employeeid, begindate, timesheetdescription?, state?, timesheetitems+)>
+<!ELEMENT create_timesheet (employeeid, begindate, glpostdate?, timesheetdescription?, state?, timesheetitems+)>
 
 <!-- Update a timesheet -->
-<!ELEMENT update_timesheet (employeeid, begindate, timesheetdescription?, state?, timesheetitems+)>
+<!ELEMENT update_timesheet (employeeid, begindate, glpostdate?, timesheetdescription?, state?, timesheetitems+)>
 <!ATTLIST update_timesheet
 	key CDATA #REQUIRED
 >

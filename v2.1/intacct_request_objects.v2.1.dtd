@@ -30,7 +30,7 @@ permissions and limitations under the License.
 <!ELEMENT ictransitems (ictransitem+)>
 <!ELEMENT ictransitem (itemid, itemdesc?, warehouseid, quantity, unit?, cost?, locationid?, departmentid?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
 <!ELEMENT invoiceitems (lineitem+)>
-<!ELEMENT lineitem ((accountlabel | glaccountno), offsetglaccountno?, amount, allocationid?, memo?, locationid?, departmentid?, item1099?, key?, totalpaid?, totaldue?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?)>
+<!ELEMENT lineitem ((accountlabel | glaccountno), offsetglaccountno?, amount, allocationid?, memo?, locationid?, departmentid?, item1099?, form1099type?, form1099box?, key?, totalpaid?, totaldue?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?)>
 <!ELEMENT reclassifyitems (reclasslineitem)+>
 <!ELEMENT reclasslineitem ((accountlabel | glaccountno), memo?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?)>
 <!ATTLIST reclasslineitem
@@ -69,7 +69,7 @@ permissions and limitations under the License.
 >
 
 <!ELEMENT updateinvoiceitems (lineitem | updatelineitem)+>
-<!ELEMENT updatelineitem ((accountlabel? | glaccountno?), offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?)>
+<!ELEMENT updatelineitem ((accountlabel? | glaccountno?), offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, form1099type?, form1099box?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?)>
 <!ATTLIST updatelineitem
 	line_num CDATA #REQUIRED
 >
