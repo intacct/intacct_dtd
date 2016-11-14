@@ -1,0 +1,13 @@
+{
+  "name": "intacct/intacct_dtd",
+  "description": "Intacct Web Services Schemascomposer",
+  "type": "library",
+  "keywords": ["finance", "intacct", "accounting"],
+  "homepage": "https://github.com/Intacct/intacct_dtd",
+  "license": "Apache-2.0",
+  "authors": [],
+  "support":{
+    "issues": "https://github.com/Intacct/intacct_dtd/issues"
+  },
+  "minimum-stability": "stable"
+}
