@@ -1,6 +1,6 @@
 {
   "name": "intacct/intacct_dtd",
-  "description": "Intacct Web Services Schemascomposer",
+  "description": "Intacct Web Services Schemas",
   "type": "library",
   "keywords": ["finance", "intacct", "accounting"],
   "homepage": "https://github.com/Intacct/intacct_dtd",
