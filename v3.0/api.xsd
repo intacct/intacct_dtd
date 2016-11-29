@@ -11133,6 +11133,7 @@ permissions and limitations under the License.
   </xs:complexType>
  </xs:element>
 
+
  <xs:element name='authentication'>
   <xs:complexType>
    <xs:choice>
@@ -11357,28 +11358,7 @@ permissions and limitations under the License.
         </xs:all>
     </xs:complexType>
 </xs:element>
-
-    <xs:element name='getSpotRate'>
-        <xs:complexType>
-            <xs:all>
-                <xs:element name="fromCurrency" minOccurs="1" maxOccurs="1" type="xs:string"/>
-                <xs:element name="toCurrency" minOccurs="1" maxOccurs="1" type="xs:string"/>
-                <xs:element name="date" minOccurs="1" maxOccurs="1" type="xs:date"/>
-            </xs:all>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:element name="getWARate">
-        <xs:complexType>
-            <xs:all>
-                <xs:element name="fromCurrency" minOccurs="1" maxOccurs="1" type="xs:string"/>
-                <xs:element name="toCurrency" minOccurs="1" maxOccurs="1" type="xs:string"/>
-                <xs:element name="fromDate" minOccurs="1" maxOccurs="1" type="xs:date"/>
-                <xs:element name="toDate" minOccurs="1" maxOccurs="1" type="xs:date"/>
-            </xs:all>
-        </xs:complexType>
-    </xs:element>
-
+ 
  <xs:element name='readMore'>
         <xs:complexType>
                 <xs:choice>
@@ -11834,8 +11814,6 @@ permissions and limitations under the License.
     <xs:element ref="getDimensionRestrictedData"/>
     <xs:element ref="getDimensionAutofillData"/>
     <xs:element ref="getAuditTrail"/>
-    <xs:element ref="getSpotRate"/>
-    <xs:element ref="getWARate"/>
    </xs:choice>
    <xs:attribute name='controlid' use='required'>
        <xs:simpleType>
