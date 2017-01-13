@@ -49,7 +49,7 @@ permissions and limitations under the License.
 <!ELEMENT discount ((daysforward | (dayofmonth, monthsforward)), (percentamount | amount), gracedays?)>
 <!ELEMENT due ((daysforward | (dayofmonth, monthsforward)))>
 <!ELEMENT employee (employeeid?, ssn?, title?, locationid?, departmentid?, classid?, supervisorid?, birthdate?, startdate?, enddate?, terminationtype?, employeetype?, gender?, whenmodified?, status?, name1099?, form1099type?, form1099box?,  currency?, earningtypename?, personalinfo?, contactlist?, paymentnotify?, customfields?, mergepaymentreq?)>
-<!ELEMENT expense (line_num?, expensetype?, glaccountno?, amount?, form1099, expensedate?, paidto?, memo?, locationid?, departmentid?, expenseexchinfo?)>
+<!ELEMENT expense (line_num?, expensetype?, glaccountno?, amount?, form1099, form1099type?, form1099box?, expensedate?, paidto?, memo?, locationid?, departmentid?, expenseexchinfo?)>
 <!ELEMENT expenseexchinfo (currency?, amount?, exch_rate_date?, exch_rate_type_id?, exchange_rate?, user_exchrate?)>
 <!ELEMENT expensereport (key?, employeeid?, datecreated?, datepaid?, batchkey?, expensereportno?, description?, status?, totalamount?, totalpaid?, totaldue?, expenses?)>
 <!ELEMENT expensereportbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, expensereport*)>

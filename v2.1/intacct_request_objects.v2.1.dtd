@@ -19,7 +19,7 @@ permissions and limitations under the License.
 <!ELEMENT check (bankaccountid, checkno?)>
 <!ELEMENT creditcard (creditcardid)>
 <!ELEMENT eft (documentno)>
-<!ELEMENT expense ((expensetype | glaccountno), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?)>
+<!ELEMENT expense ((expensetype | glaccountno), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, form1099type?, form1099box?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?)>
 <!ELEMENT expenses (expense+)>
 <!ELEMENT glentry (trtype, amount, glaccountno, document?, datecreated?, memo?, locationid?, departmentid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, contractid?, warehouseid?, customfields?, recon_date?, (currency, ((exchratedate?, exchratetype) | exchrate))?)>
 <!ELEMENT gltransaction (journalid, datecreated, description, sourceentity?, gltransactionentries)>
@@ -50,7 +50,7 @@ permissions and limitations under the License.
 <!ELEMENT updateapadjustmentitems (lineitem | updatelineitem)+>
 <!ELEMENT updatearadjustmentitems (lineitem | updatelineitem)+>
 <!ELEMENT updatebillitems (lineitem | updatelineitem)+>
-<!ELEMENT updateexpense ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?)>
+<!ELEMENT updateexpense ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, form1099type?, form1099box?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?)>
 <!ATTLIST updateexpense
 	line_num CDATA #REQUIRED
 >

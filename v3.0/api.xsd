@@ -4426,6 +4426,8 @@ permissions and limitations under the License.
     <xs:element ref='expensedate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='memo' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='form1099' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='form1099type' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='form1099box' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='paidfor' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
@@ -4861,6 +4863,8 @@ permissions and limitations under the License.
     <xs:element ref='expensedate' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='memo' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='form1099' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='form1099type' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='form1099box' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='paidfor' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='departmentid' minOccurs='0' maxOccurs='1'/>
