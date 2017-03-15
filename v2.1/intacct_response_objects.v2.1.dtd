@@ -171,7 +171,7 @@ permissions and limitations under the License.
 <!ELEMENT pricelistitem (recordno,pricelistid,itemid,productlineid?,item_line?,datefrom?,dateto?,qtylimitmin?,qtylimitmax?,value?,valuetype?,fixed?,sale?,status?,currency?)>
 <!ELEMENT vsoeitempricelist (key, pricelistid, itemid, currency, valuebase, percentbase, percentof, usepricebands, pricebandtype, pricebandrule, status, version, priceentries)>
 <!ELEMENT priceentries (priceentry+)>
-<!ELEMENT priceentry (startdate?, enddate?, value?, markup?, markdown?, bandup?, banddown? memo?)>
+<!ELEMENT priceentry (startdate?, enddate?, value?, markup?, markdown?, bandup?, banddown?, memo?)>
 <!-- For SmartEventLog -->
 <!ELEMENT smarteventlog (recordno?, smartlinkid?, topic?, ownerobject?,timestamp?, userid?, objectkey? ) >
 <!-- For icitemtotals -->
