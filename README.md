@@ -9,6 +9,10 @@ Your XML requests must be constructed carefully in order to avoid an error respo
 
 Learning to read the Intacct DTD and XSD files will help you write valid XML more consistently.
 
+## Issues
+
+**This repository is read-only.** If you have any issues, please open a case with Intacct Customer Support at https://community.intacct.com
+
 ## Resources
 
 * [Intacct][intacct] - Intacct's home page
