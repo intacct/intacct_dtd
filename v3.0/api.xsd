@@ -41,6 +41,11 @@ permissions and limitations under the License.
   </xs:complexType>
  </xs:element>
 
+ <xs:element name='sourcelinekey'>
+  <xs:complexType mixed='true'>
+  </xs:complexType>
+ </xs:element>
+
 <xs:element name='alternativeaccount'>
     <xs:complexType mixed='true'>
     </xs:complexType>
@@ -4668,6 +4673,7 @@ permissions and limitations under the License.
     <xs:element ref='quantity'/>
     <xs:element ref='unit' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='price' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='sourcelinekey' minOccurs='0' maxOccurs='1'/>
     <xs:element name='overridetaxamount' minOccurs='0' maxOccurs='1'/>
     <xs:element name='tax' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='locationid' minOccurs='0' maxOccurs='1'/>
@@ -11362,7 +11368,7 @@ permissions and limitations under the License.
         </xs:all>
     </xs:complexType>
 </xs:element>
- 
+
  <xs:element name='readMore'>
         <xs:complexType>
                 <xs:choice>

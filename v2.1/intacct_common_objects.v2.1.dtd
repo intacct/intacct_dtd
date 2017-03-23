@@ -1155,6 +1155,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT taxrate %NUMBER_10_4;>
 <!ELEMENT tax %NUMBER_38_2;>
 <!ELEMENT grossamount %NUMBER_38_2;>
+<!ELEMENT sourcelinekey %INTEGER;>
 
 <!-- Elements for expensetype and unitrate-->
 <!ELEMENT unitcurrency %STRING_3;>
