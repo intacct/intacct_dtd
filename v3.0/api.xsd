@@ -2239,6 +2239,15 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="effective_start_date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="avgcost">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -2752,6 +2761,10 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="vendordata">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="componentid">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -3766,6 +3779,7 @@ permissions and limitations under the License.
         <xs:element ref="quantity"/>
         <xs:element ref="unit" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="cost" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="sourcelinekey" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemdetails" minOccurs="0" maxOccurs="1"/>
@@ -3907,6 +3921,7 @@ permissions and limitations under the License.
         <xs:element ref="unit" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="discountpercent" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="price" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="sourcelinekey" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="discsurchargememo" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
@@ -3976,6 +3991,7 @@ permissions and limitations under the License.
   <xs:element name="itemdetail">
     <xs:complexType>
       <xs:sequence>
+        <xs:element ref="componentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity" minOccurs="0" maxOccurs="1"/>
         <xs:choice minOccurs="0" maxOccurs="1">
           <xs:element ref="serialno"/>
@@ -4391,12 +4407,28 @@ permissions and limitations under the License.
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="whselineitemstdcostentries">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="whselineitemstdcostentry" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="whselineitemstdcostentry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="effective_start_date" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="standard_cost" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="whslineitem">
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="whsid"/>
         <xs:element ref="cycle" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="stdcost" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="whselineitemstdcostentries" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="lastcost" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="avgcost" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="reordermethod" minOccurs="0" maxOccurs="1"/>

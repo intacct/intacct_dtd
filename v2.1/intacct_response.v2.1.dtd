@@ -100,7 +100,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT stkittransaction (transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, stkittransitems?)>
 <!ELEMENT stkittransitems (stkittransitem)>
 <!ELEMENT stkittransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, locationid?, departmentid?,customfields?)>
-<!ELEMENT ictransaction (key?, transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, ictransitems?, subtotals?)>
+<!ELEMENT ictransaction (key?, transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, dateprinted?, ictransitems?, subtotals?)>
 <!ELEMENT ictransactiondef (transdefid?, transclass?)>
 <!ELEMENT ictransitems (ictransitem+)>
 <!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, departmentid?, customfields?)>
@@ -110,12 +110,12 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT potransitems (potransitem+)>
 <!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, price?, overridetaxamount?, taxrate?, tax?, retailprice?, totalamount?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
 <!ELEMENT popricelist (pricelistname?, datefrom?, dateto?, status?)>
-<!ELEMENT potransaction (key?, transactiontype?, transactionid?, datecreated?, dateposted?, createdfrom?, vendorid?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, supdocid?, transactionstate?, whenmodified?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, potransitems?, subtotals?)>
+<!ELEMENT potransaction (key?, transactiontype?, transactionid?, datecreated?, dateposted?, createdfrom?, vendorid?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, supdocid?, transactionstate?, whenmodified?, dateprinted?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, potransitems?, subtotals?)>
 <!ELEMENT potransactiondef (transdefid?, transclass?)>
 <!ELEMENT productline (productlineid?, parentid, productlinedesc?, status?)>
 <!ELEMENT sopricelist (pricelistname?, datefrom?, dateto?, status?)>
 <!ELEMENT sotransactiondef (transdefid?, transclass?)>
-<!ELEMENT sotransaction (key?, transactiontype?, transactionid?, documentnumber?, datecreated?, dateposted?, createdfrom?, customerid?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, transactionstate?, whenmodified?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, vsoepricelist?, projectid?, customfields?, sotransitems?, subtotals?)>
+<!ELEMENT sotransaction (key?, transactiontype?, transactionid?, documentnumber?, datecreated?, dateposted?, createdfrom?, customerid?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, transactionstate?, whenmodified?, dateprinted?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, vsoepricelist?, projectid?, customfields?, sotransitems?, subtotals?)>
 <!ELEMENT subscription (object, intacctid, subscriber, externalid)>
 <!ELEMENT vendglgroup (glgroupname?)>
 <!ELEMENT warehouse (warehouseid?, name?, parentid?, managerid?, contactname?, shipto?, usedingl?, status?)>
@@ -187,8 +187,11 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT customerchargecard (recordno, customerid, cardnum, maskcardnum, cardtype, exp_month, exp_year, description?, defaultcard?, usebilltoaddr?, status?, mailaddress)>
 <!ELEMENT vendlineitems (vendlineitem+)>
 <!ELEMENT vendlineitem (vendorid,stockno?,leadtime?,econorderqty?)>
+<!ELEMENT whselineitemstdcostentry (effective_start_date?,standard_cost?)>
+<!ELEMENT whselineitemstdcostentries (whselineitemstdcostentry+)>
+
 <!ELEMENT whslineitems (whslineitem+)>
-<!ELEMENT whslineitem (whsid,cycle?,stdcost?,lastcost?,avgcost?,reordermethod?,economyorderqty?,reorder?,minorderqty?,maxorderqty?,minstock?,maxstock?,datelastsold?,datelastrecvd?,begbalqty?,begbalprice?,defaultsubsection?)>
+<!ELEMENT whslineitem (whsid,cycle?,stdcost?, whselineitemstdcostentries?, lastcost?,avgcost?,reordermethod?,economyorderqty?,reorder?,minorderqty?,maxorderqty?,minstock?,maxstock?,datelastsold?,datelastrecvd?,begbalqty?,begbalprice?,defaultsubsection?)>
 <!ELEMENT complineitems (complineitem+)>
 <!ELEMENT complineitem (componentkey,quantity,revpercent)>
 <!ELEMENT itaxgroup (key?,name?)>
@@ -787,6 +790,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT docstatus %ENUM_STATUS;>
 <!ELEMENT sourceentity %ID;>
 <!ELEMENT standardcost %MONEY;>
+<!ELEMENT effective_start_date %DATE;>
 <!ELEMENT standardunit %STRING_30;>
 <!ELEMENT symbol %STRING_4;>
 <!ELEMENT statjournalsymbol %STRING_4;>
@@ -837,6 +841,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT whenlastsold %DATE;>
 <!ELEMENT whenlastreceived %DATE;>
 <!ELEMENT whenmodified %TIMESTAMP;>
+<!ELEMENT dateprinted %TIMESTAMP;>
 <!ELEMENT year %INTEGER;>
 <!ELEMENT zip %STRING_30;>
 <!ELEMENT receiveddate %DATE;>

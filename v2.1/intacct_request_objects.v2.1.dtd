@@ -28,7 +28,7 @@ permissions and limitations under the License.
 <!ELEMENT stkittransitems (stkittransitem)>
 <!ELEMENT stkittransitem (itemid, itemdesc?, warehouseid, quantity, unit?, locationid?, departmentid?, customfields?)>
 <!ELEMENT ictransitems (ictransitem+)>
-<!ELEMENT ictransitem (itemid, itemdesc?, warehouseid, quantity, unit?, cost?, locationid?, departmentid?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
+<!ELEMENT ictransitem (itemid, itemdesc?, warehouseid, quantity, unit?, cost?, sourcelinekey?, locationid?, departmentid?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
 <!ELEMENT invoiceitems (lineitem+)>
 <!ELEMENT lineitem ((accountlabel | glaccountno), offsetglaccountno?, amount, allocationid?, memo?, locationid?, departmentid?, item1099?, form1099type?, form1099box?, key?, totalpaid?, totaldue?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?)>
 <!ELEMENT reclassifyitems (reclasslineitem)+>
@@ -39,11 +39,11 @@ permissions and limitations under the License.
 <!ELEMENT potransitems (potransitem+)>
 <!ELEMENT potransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?,  sourcelinekey?, overridetaxamount?, tax?, locationid?, departmentid?, memo?, itemdetails?, form1099?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?)>
 <!ELEMENT sotransitems (sotransitem+)>
-<!ELEMENT sotransitem (bundlenumber?, itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, discountpercent?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, fulfillmentstatus?, taskno?, billingtemplate?, dropship?)>
+<!ELEMENT sotransitem (bundlenumber?, itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, discountpercent?, price?, sourcelinekey?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, fulfillmentstatus?, taskno?, billingtemplate?, dropship?)>
 <!ELEMENT recursotransitems (recursotransitem+)>
 <!ELEMENT recursotransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, status?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
 <!ELEMENT itemdetails (itemdetail+)>
-<!ELEMENT itemdetail (quantity?, (serialno | lotno)?, aisle?, row?, bin?, itemexpiration?)>
+<!ELEMENT itemdetail (componentid?, quantity?, (serialno | lotno)?, aisle?, row?, bin?, itemexpiration?)>
 <!ELEMENT offset (glaccountno | accountlabel)>
 <!ELEMENT online (bankaccountid, notifyemail?)>
 <!ELEMENT personalinfo (contactname | contact)>
@@ -89,8 +89,11 @@ permissions and limitations under the License.
 <!ELEMENT recurlineitem ((accountlabel | glaccountno), form1099?, amount, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, customfields?)>
 <!ELEMENT vendlineitems (vendlineitem+)>
 <!ELEMENT vendlineitem (vendorid,stockno?,leadtime?,econorderqty?)>
+
+<!ELEMENT whselineitemstdcostentry (effective_start_date?,standard_cost?)>
+<!ELEMENT whselineitemstdcostentries (whselineitemstdcostentry+)>
 <!ELEMENT whslineitems (whslineitem+)>
-<!ELEMENT whslineitem (whsid,cycle?,stdcost?,lastcost?,avgcost?,reordermethod?,economyorderqty?,reorder?,minorderqty?,maxorderqty?,minstock?,maxstock?,datelastsold?,datelastrecvd?,begbalqty?,begbalprice?,defaultsubsection?,default_aisle?,default_row?,default_bin?)>
+<!ELEMENT whslineitem (whsid,cycle?, stdcost?, whselineitemstdcostentries?, lastcost?,avgcost?,reordermethod?,economyorderqty?,reorder?,minorderqty?,maxorderqty?,minstock?,maxstock?,datelastsold?,datelastrecvd?,begbalqty?,begbalprice?,defaultsubsection?,default_aisle?,default_row?,default_bin? )>
 <!ELEMENT complineitems (complineitem+)>
 <!ELEMENT complineitem (componentkey,quantity?,revpercent?,delete_component?,kcdlvrstatus?,kcrevdefstatus?)>
 <!ELEMENT itaxgroup (key?,name?)>
