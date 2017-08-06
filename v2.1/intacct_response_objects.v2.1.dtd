@@ -13,7 +13,7 @@ express or implied. See the License for the specific language governing
 permissions and limitations under the License.
 -->
 <!-- OBJECTS -->
-<!ELEMENT accountbalance (glaccountno, startbalance, debits, credits,adjdebits, adjcredits, endbalance)>
+<!ELEMENT accountbalance (glaccountno, startbalance, debits, credits,adjdebits, adjcredits, endbalance, currency, reportingbook)>
 <!ELEMENT accountgroup (accountgroupname?, headingtitle?, totaltitle?, normalbalance?, memberstype?, iskpi?)>
 <!ELEMENT accountgroupdetail (accountgroupname?, (accountgroupdetail | glaccount)*)>
 <!ELEMENT apaccountlabel (glaccountno?, accountlabel?, description?, offsetglaccountno?, status?)>

@@ -29,9 +29,17 @@ startdate, ending?, modenew?, interval?, eom?, errnotifyemailids?,
 revstartdate?, revending?, revmodenew?, revinterval?, reveom?, reverrnotifyemailids?, isautoreverse?, tiereverse?, autorevmodenew?, autorevinterval?, autoreveom?, customfields?, statgltransactionentries)>
 
 <!-- Get Trial Balance -->
-<!ELEMENT get_trialbalance ((reportingperiodname | (startdate, enddate)), showzerobalances?,showdeptdetail?,showlocdetail?)>
+<!ELEMENT get_trialbalance ((reportingperiodname | (startdate, enddate)), showzerobalances?,showdeptdetail?,showlocdetail?,
+			reportingbook?, adjbooks?, includereportingbook?, statistical?, departmentid?, dept_subs?, locationid?, loc_subs?,
+			((projectid?, projectid_subs?) | projecttypeid?), ((customerid?, customerid_subs?) | customertypeid?),
+			((vendorid?, vendorid_subs?) | vendortypeid?), ((employeeid?, employeeid_subs?) | employeetypeid?), itemid?, productlineid?,
+			classid?, classid_subs?, contractid?, contractid_subs?, warehouseid?, warehouseid_subs?, userDefinedDimensions?)>
 <!-- Get Account Balances -->
-<!ELEMENT get_accountbalances ((reportingperiodname | (startdate, enddate)), (glaccountno | accountgroupname | (startaccountno, endaccountno))?, locationid?, departmentid?, showzerobalances?)>
+<!ELEMENT get_accountbalances ((reportingperiodname | (startdate, enddate)), (glaccountno | accountgroupname | (startaccountno, endaccountno))?,
+			locationid?, departmentid?, showzerobalances?, reportingbook?, adjbooks?, includereportingbook?, statistical?, dept_subs?, loc_subs?,
+			((projectid?, projectid_subs?) | projecttypeid?), ((customerid?, customerid_subs?) | customertypeid?),
+			((vendorid?, vendorid_subs?) | vendortypeid?), ((employeeid?, employeeid_subs?) | employeetypeid?), itemid?, productlineid?,
+			classid?, classid_subs?, contractid?, contractid_subs?, warehouseid?, warehouseid_subs?, userDefinedDimensions?)>
 <!-- Get Account Group Details -->
 <!ELEMENT get_accountgroupdetails (accountgroupname)>
 <!-- Create Journal -->

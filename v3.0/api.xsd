@@ -393,6 +393,10 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="customertypeid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="customfields">
     <xs:complexType>
       <xs:sequence>
@@ -560,6 +564,17 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="dept_subs" type="xs:string"/>
+  <xs:element name="loc_subs" type="xs:string"/>
+  <xs:element name="projectid_subs" type="xs:string"/>
+  <xs:element name="customerid_subs" type="xs:string"/>
+  <xs:element name="vendorid_subs" type="xs:string"/>
+  <xs:element name="employeeid_subs" type="xs:string"/>
+  <xs:element name="classid_subs" type="xs:string"/>
+  <xs:element name="contractid_subs" type="xs:string"/>
+  <xs:element name="warehouseid_subs" type="xs:string"/>
+  <xs:element name="statistical" type="xs:string"/>
+  <xs:element name="includereportingbook" type="xs:string"/>
   <xs:element name="debits">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -705,6 +720,10 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="employeeid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="employeetypeid">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -1109,6 +1128,7 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="reportingbook" type="xs:string"/>
   <xs:element name="itemdesc">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -1973,6 +1993,10 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="vendortypeid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="displocacctnocheck">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -2350,6 +2374,10 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="projecttypeid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="custuserid">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -2426,6 +2454,14 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="adjbooks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="adjbook" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="adjbook" type="xs:string"/>
   <xs:element name="fixed">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -6153,9 +6189,62 @@ permissions and limitations under the License.
             <xs:element ref="enddate"/>
           </xs:sequence>
         </xs:choice>
-        <xs:element ref="showzerobalances" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="showdeptdetail" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="showlocdetail" minOccurs="0" maxOccurs="1"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="showzerobalances"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="showdeptdetail"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="showlocdetail"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="reportingbook"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="adjbooks"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="includereportingbook"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="statistical"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="departmentid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="dept_subs"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="locationid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="loc_subs"/>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="projectid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="projectid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="projecttypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="customerid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="customerid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="customertypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="vendorid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="vendorid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="vendortypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="employeeid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="employeeid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="employeetypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="1" ref="itemid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="productlineid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="classid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="classid_subs"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="contractid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="contractid_subs"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="warehouseid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="warehouseid_subs"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="userDefinedDimensions"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -6177,12 +6266,84 @@ permissions and limitations under the License.
             <xs:element ref="endaccountno"/>
           </xs:sequence>
         </xs:choice>
-        <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="showzerobalances" minOccurs="0" maxOccurs="1"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="locationid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="departmentid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="showzerobalances"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="reportingbook"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="adjbooks"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="includereportingbook"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="statistical"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="dept_subs"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="loc_subs"/>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="projectid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="projectid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="projecttypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="customerid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="customerid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="customertypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="vendorid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="vendorid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="vendortypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="employeeid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="employeeid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="employeetypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="1" ref="itemid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="productlineid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="classid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="classid_subs"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="contractid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="contractid_subs"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="warehouseid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="warehouseid_subs"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="userDefinedDimensions"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="userDefinedDimensions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="userDefinedDimension" minOccurs="1" maxOccurs="20"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="userDefinedDimension">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="objectName" minOccurs="1" maxOccurs="1"/>
+        <xs:choice minOccurs="1" maxOccurs="1">
+          <xs:element ref="recordId"/>
+          <xs:element ref="recordName"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="objectName" type="xs:string"/>
+  <xs:element name="recordId" type="xs:string"/>
+  <xs:element name="recordName" type="xs:string"/>
   <xs:element name="get_accountgroupdetails">
     <xs:complexType>
       <xs:sequence>
@@ -10190,10 +10351,13 @@ permissions and limitations under the License.
   </xs:element>
   <xs:element name="getAuditTrail">
     <xs:complexType>
-      <xs:all>
+      <xs:sequence>
         <xs:element name="object" minOccurs="1" maxOccurs="1" type="xs:string"/>
-        <xs:element name="objectKey" minOccurs="1" maxOccurs="1" type="xs:string"/>
-      </xs:all>
+        <xs:choice>
+          <xs:element name="objectKey" minOccurs="1" maxOccurs="1" type="xs:string"/>
+          <xs:element name="recordNo" minOccurs="1" maxOccurs="1" type="xs:string"/>
+        </xs:choice>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="readMore">
