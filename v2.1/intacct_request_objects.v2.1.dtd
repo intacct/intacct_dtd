@@ -39,7 +39,7 @@ permissions and limitations under the License.
 <!ELEMENT potransitems (potransitem+)>
 <!ELEMENT potransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?,  sourcelinekey?, overridetaxamount?, tax?, locationid?, departmentid?, memo?, itemdetails?, form1099?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?)>
 <!ELEMENT sotransitems (sotransitem+)>
-<!ELEMENT sotransitem (bundlenumber?, itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, discountpercent?, price?, sourcelinekey?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, fulfillmentstatus?, taskno?, billingtemplate?, dropship?)>
+<!ELEMENT sotransitem (bundlenumber?, itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, discountpercent?, price?, sourcelinekey?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, fulfillmentstatus?, taskno?, billingtemplate?, dropship?, shipto?)>
 <!ELEMENT recursotransitems (recursotransitem+)>
 <!ELEMENT recursotransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, status?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
 <!ELEMENT itemdetails (itemdetail+)>

@@ -3978,6 +3978,7 @@ permissions and limitations under the License.
         <xs:element ref="taskno" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billingtemplate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="dropship" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="shipto" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -10360,6 +10361,21 @@ permissions and limitations under the License.
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getTransactionsToApprove">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="module" minOccurs="1" maxOccurs="1"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getApprovalHistory">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="module" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="docid" minOccurs="1" maxOccurs="1" type="xs:string"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="readMore">
     <xs:complexType>
       <xs:choice>
@@ -10795,6 +10811,14 @@ permissions and limitations under the License.
         <xs:element ref="getDimensionRestrictedData"/>
         <xs:element ref="getDimensionAutofillData"/>
         <xs:element ref="getAuditTrail"/>
+        <xs:element ref="getTransactionsToApprove"/>
+        <xs:element ref="getApprovalHistory"/>
+        <xs:element ref="hold"/>
+        <xs:element ref="resume"/>
+        <xs:element ref="post"/>
+        <xs:element ref="unpost"/>
+        <xs:element ref="approve"/>
+        <xs:element ref="decline"/>
       </xs:choice>
       <xs:attribute name="controlid" use="required">
         <xs:simpleType>
@@ -10840,6 +10864,166 @@ permissions and limitations under the License.
         <xs:element ref="reportingperiodname"/>
         <xs:element ref="entities" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hold">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACTDETAIL">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="ASOFDATE" type="xs:string"/>
+              <xs:element name="BILLING" type="iaboolean" minOccurs="0"/>
+              <xs:element name="REVENUE" type="iaboolean" minOccurs="0"/>
+              <xs:element name="EXPENSE" type="iaboolean" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTEXPENSE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="ASOFDATE" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="resume">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACTDETAIL">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="ASOFDATE" type="xs:string"/>
+              <xs:element name="BILLING" type="iaboolean" minOccurs="0"/>
+              <xs:element name="REVENUE" type="iaboolean" minOccurs="0"/>
+              <xs:element name="EXPENSE" type="iaboolean" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTEXPENSE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="ASOFDATE" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="post">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACTEXPENSE2SCHEDULE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="ASOFDATE" type="xs:string"/>
+              <xs:element name="POSTINGDATE" type="xs:string"/>
+              <xs:element name="CUSTOMERID" type="xs:string" minOccurs="0"/>
+              <xs:element name="CONTRACTID" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTEXPENSESCHEDULE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="ASOFDATE" type="xs:string"/>
+              <xs:element name="POSTINGDATE" type="xs:string"/>
+              <xs:element name="CUSTOMERID" type="xs:string" minOccurs="0"/>
+              <xs:element name="CONTRACTID" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTEXPENSESCHEDULEENTRY">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="POSTINGDATE" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTREVENUE2SCHEDULE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="ASOFDATE" type="xs:string"/>
+              <xs:element name="POSTINGDATE" type="xs:string"/>
+              <xs:element name="CUSTOMERID" type="xs:string" minOccurs="0"/>
+              <xs:element name="CONTRACTID" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTREVENUESCHEDULE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="ASOFDATE" type="xs:string"/>
+              <xs:element name="POSTINGDATE" type="xs:string"/>
+              <xs:element name="CUSTOMERID" type="xs:string" minOccurs="0"/>
+              <xs:element name="CONTRACTID" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTREVENUESCHEDULEENTRY">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="POSTINGDATE" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="unpost">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACTEXPENSESCHEDULEENTRY">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTREVENUESCHEDULEENTRY">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="approve">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="PODOCUMENT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="DOCID" type="xs:string"/>
+              <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="decline">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="PODOCUMENT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="DOCID" type="xs:string"/>
+              <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
     </xs:complexType>
   </xs:element>
 </xs:schema>
