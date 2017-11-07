@@ -4015,6 +4015,7 @@ permissions and limitations under the License.
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="classid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="contractid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="shipto" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -4584,6 +4585,7 @@ permissions and limitations under the License.
         <xs:element ref="taskno" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billingtemplate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="dropship" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="shipto" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="line_num" type="xs:string" use="required"/>
     </xs:complexType>
