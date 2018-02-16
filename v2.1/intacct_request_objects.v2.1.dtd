@@ -37,7 +37,7 @@ permissions and limitations under the License.
 	line_num CDATA #REQUIRED
 >
 <!ELEMENT potransitems (potransitem+)>
-<!ELEMENT potransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?,  sourcelinekey?, overridetaxamount?, tax?, locationid?, departmentid?, memo?, itemdetails?, form1099?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?)>
+<!ELEMENT potransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?,  sourcelinekey?, overridetaxamount?, tax?, locationid?, departmentid?, memo?, itemdetails?, form1099?, form1099type?, form1099box?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?)>
 <!ELEMENT sotransitems (sotransitem+)>
 <!ELEMENT sotransitem (bundlenumber?, itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, discountpercent?, price?, sourcelinekey?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, fulfillmentstatus?, taskno?, billingtemplate?, dropship?, shipto?)>
 <!ELEMENT recursotransitems (recursotransitem+)>
@@ -106,7 +106,7 @@ permissions and limitations under the License.
 	line_num CDATA #REQUIRED
 >
 <!ELEMENT updatepotransitems (potransitem | updatepotransitem)+>
-<!ELEMENT updatepotransitem (itemid?, itemdesc?, taxable?, warehouseid?, quantity?, unit?, price?, locationid?, departmentid?, memo?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?)>
+<!ELEMENT updatepotransitem (itemid?, itemdesc?, taxable?, warehouseid?, quantity?, unit?, price?, locationid?, departmentid?, memo?, itemdetails?, form1099?, form1099type?, form1099box?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?)>
 <!ATTLIST updatepotransitem
 	line_num CDATA #REQUIRED
 >

@@ -3927,6 +3927,8 @@ permissions and limitations under the License.
         <xs:element ref="memo" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemdetails" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="form1099" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="form1099type" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="form1099box" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
@@ -4612,6 +4614,9 @@ permissions and limitations under the License.
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="memo" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemdetails" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="form1099" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="form1099type" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="form1099box" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
