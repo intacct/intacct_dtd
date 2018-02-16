@@ -10820,6 +10820,7 @@ permissions and limitations under the License.
         <xs:element ref="getAuditTrail"/>
         <xs:element ref="getTransactionsToApprove"/>
         <xs:element ref="getApprovalHistory"/>
+        <xs:element ref="renew"/>
         <xs:element ref="hold"/>
         <xs:element ref="resume"/>
         <xs:element ref="post"/>
@@ -10871,6 +10872,19 @@ permissions and limitations under the License.
         <xs:element ref="reportingperiodname"/>
         <xs:element ref="entities" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="renew">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="CONTRACTID" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
     </xs:complexType>
   </xs:element>
   <xs:element name="hold">
