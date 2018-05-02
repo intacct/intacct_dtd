@@ -80,11 +80,11 @@ permissions and limitations under the License.
 <!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, departmentid?, customfields?)>
 <!ELEMENT itemglgroup (glgroupname?)>
 <!ELEMENT sotransitems (sotransitem+)>
-<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?, dropship?, shipto?)>
+<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?, dropship?, shipto?)>
 <!ELEMENT potransitems (potransitem+)>
-<!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, price?, retailprice?, overridetaxamount?, taxrate?, tax?, totalamount?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
+<!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, price?, retailprice?, overridetaxamount?, deliverto?, taxrate?, tax?, totalamount?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
 <!ELEMENT popricelist (pricelistname?, datefrom?, dateto?, status?)>
-<!ELEMENT potransaction (key?, transactiontype?, transactionid?, datecreated?, dateposted?, createdfrom?, vendorid?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, supdocid?, transactionstate?, whenmodified?, dateprinted?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, potransitems?, subtotals?)>
+<!ELEMENT potransaction (key?, transactiontype?, transactionid?, datecreated?, dateposted?, createdfrom?, vendorid?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, deliverto?, supdocid?, transactionstate?, whenmodified?, dateprinted?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, potransitems?, subtotals?)>
 <!ELEMENT potransactiondef (transdefid?, transclass?)>
 <!ELEMENT productline (productlineid?, parentid, productlinedesc?, status?)>
 <!ELEMENT sopricelist (pricelistname?, datefrom?, dateto?, status?)>

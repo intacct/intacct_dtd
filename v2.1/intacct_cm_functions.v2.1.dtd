@@ -47,6 +47,7 @@ permissions and limitations under the License.
 <!ELEMENT update_cctransaction (paymentdate?, referenceno?, payee?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, updateccpayitems?)>
 <!ATTLIST update_cctransaction
 	key CDATA #REQUIRED
+	set_nulls (true | false) "false"
 >
 <!ELEMENT reverse_cctransaction (datereversed, memo?)>
 <!ATTLIST reverse_cctransaction

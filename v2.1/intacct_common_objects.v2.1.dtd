@@ -1177,7 +1177,9 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT offsetacctno %STRING_24;>
 
 <!-- Elements for docentry -->
+<!ELEMENT linelevelsimpletaxtype %STRING_200;>
 <!ELEMENT overridetaxamount %BOOLEAN;>
+<!ELEMENT deliverto %CONTACT;>
 <!ELEMENT taxrate %NUMBER_10_4;>
 <!ELEMENT tax %NUMBER_38_2;>
 <!ELEMENT grossamount %NUMBER_38_2;>

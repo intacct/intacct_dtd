@@ -15,7 +15,7 @@ permissions and limitations under the License.
 <!ELEMENT create_stkittransaction (transactiontype, datecreated, createdfrom?, documentno?, referenceno?, message?, externalid?,  customfields?,stkittransitems?)>
 <!ELEMENT create_ictransaction (transactiontype, datecreated, createdfrom?, documentno?, referenceno?, message?, externalid?, basecurr?, customfields?, state?, ictransitems, subtotals?)>
 <!ELEMENT create_potransaction (transactiontype, datecreated, dateposted?, createdfrom?, vendorid, documentno?, referenceno?,vendordocno?, termname?, datedue,
-message?, shippingmethod?, returnto,payto, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, state?, potransitems, subtotals?)>
+message?, shippingmethod?, returnto, payto, deliverto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, state?, potransitems, subtotals?)>
 <!ELEMENT create_sotransaction (transactiontype, datecreated, dateposted?, createdfrom?, customerid, documentno?, origdocdate?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? , vsoepricelist?, customfields?, state?, projectid?, sotransitems, subtotals?)>
 <!ELEMENT create_recursotransaction (transactiontype, customerid, referenceno?, termname?, message?, contractid?, contractdesc?, shippingmethod?, shipto?, billto?, externalid?, basecurr?, currency?, exchratetype? , customfields?, recursotransitems, subtotals?, paymethod?, payinfull?, paymentamount?, creditcardtype?, customercreditcardkey?, customerbankaccountkey?, accounttype?, bankaccountid?, glaccountkey?, startdate, ending?, modenew?, interval?, eom?, status?, docstatus?)>
 <!-- Delete a recurring Bill -->
@@ -53,7 +53,7 @@ message?, shippingmethod?, returnto,payto, supdocid?, externalid?, (basecurr?, c
 	externalkey (true | false) "false"
     disablevalidation (true | false) "false"
 >
-<!ELEMENT update_potransaction (datecreated?, dateposted?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, state?, updatepotransitems?, updatesubtotals?)>
+<!ELEMENT update_potransaction (datecreated?, dateposted?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, deliverto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, state?, updatepotransitems?, updatesubtotals?)>
 <!ATTLIST update_potransaction
 	key CDATA #REQUIRED
 	set_nulls (true | false) "false"

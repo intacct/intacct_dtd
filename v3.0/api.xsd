@@ -1472,6 +1472,14 @@ permissions and limitations under the License.
       </xs:choice>
     </xs:complexType>
   </xs:element>
+  <xs:element name="deliverto">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="contact"/>
+        <xs:element ref="contactname"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="penaltycycle">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -1954,6 +1962,10 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="unit">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="linelevelsimpletaxtype">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -3918,9 +3930,11 @@ permissions and limitations under the License.
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity"/>
         <xs:element ref="unit" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linelevelsimpletaxtype" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="price" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="sourcelinekey" minOccurs="0" maxOccurs="1"/>
         <xs:element name="overridetaxamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="deliverto" minOccurs="0" maxOccurs="1"/>
         <xs:element name="tax" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
@@ -3957,6 +3971,7 @@ permissions and limitations under the License.
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity"/>
         <xs:element ref="unit" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linelevelsimpletaxtype" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="discountpercent" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="price" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="sourcelinekey" minOccurs="0" maxOccurs="1"/>
@@ -4565,6 +4580,7 @@ permissions and limitations under the License.
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="unit" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linelevelsimpletaxtype" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="discountpercent" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="price" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="discsurchargememo" minOccurs="0" maxOccurs="1"/>
@@ -4609,7 +4625,9 @@ permissions and limitations under the License.
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="unit" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linelevelsimpletaxtype" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="price" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="deliverto" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="memo" minOccurs="0" maxOccurs="1"/>
@@ -8587,6 +8605,7 @@ permissions and limitations under the License.
         <xs:element ref="shippingmethod" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="returnto"/>
         <xs:element ref="payto"/>
+        <xs:element ref="deliverto" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="externalid" minOccurs="0" maxOccurs="1"/>
         <xs:sequence minOccurs="0" maxOccurs="1">
@@ -8855,6 +8874,7 @@ permissions and limitations under the License.
         <xs:element ref="shippingmethod" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="returnto" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="payto" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="deliverto" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="externalid" minOccurs="0" maxOccurs="1"/>
         <xs:sequence minOccurs="0" maxOccurs="1">
@@ -9440,6 +9460,7 @@ permissions and limitations under the License.
         <xs:element ref="recordno"/>
         <xs:element ref="revrecstartdate"/>
         <xs:element ref="revrecenddate"/>
+        <xs:element name="unpostall" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -9803,6 +9824,14 @@ permissions and limitations under the License.
         <xs:element ref="updateccpayitems" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="key" type="xs:string" use="required"/>
+      <xs:attribute name="set_nulls" use="optional" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
     </xs:complexType>
   </xs:element>
   <xs:element name="reverse_cctransaction">
@@ -10820,13 +10849,14 @@ permissions and limitations under the License.
         <xs:element ref="getAuditTrail"/>
         <xs:element ref="getTransactionsToApprove"/>
         <xs:element ref="getApprovalHistory"/>
-        <xs:element ref="renew"/>
-        <xs:element ref="hold"/>
-        <xs:element ref="resume"/>
-        <xs:element ref="post"/>
-        <xs:element ref="unpost"/>
         <xs:element ref="approve"/>
         <xs:element ref="decline"/>
+        <xs:element ref="deliver"/>
+        <xs:element ref="hold"/>
+        <xs:element ref="post"/>
+        <xs:element ref="renew"/>
+        <xs:element ref="resume"/>
+        <xs:element ref="unpost"/>
       </xs:choice>
       <xs:attribute name="controlid" use="required">
         <xs:simpleType>
@@ -10874,13 +10904,42 @@ permissions and limitations under the License.
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="renew">
+  <xs:element name="approve">
     <xs:complexType>
       <xs:choice>
-        <xs:element name="CONTRACT">
+        <xs:element name="PODOCUMENT">
           <xs:complexType>
             <xs:all>
-              <xs:element name="CONTRACTID" type="xs:string"/>
+              <xs:element name="DOCID" type="xs:string"/>
+              <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="decline">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="PODOCUMENT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="DOCID" type="xs:string"/>
+              <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deliver">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACTDETAIL">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="DELIVERYDATE" type="xs:string"/>
             </xs:all>
           </xs:complexType>
         </xs:element>
@@ -10888,31 +10947,6 @@ permissions and limitations under the License.
     </xs:complexType>
   </xs:element>
   <xs:element name="hold">
-    <xs:complexType>
-      <xs:choice>
-        <xs:element name="CONTRACTDETAIL">
-          <xs:complexType>
-            <xs:all>
-              <xs:element name="RECORDNO" type="xs:integer"/>
-              <xs:element name="ASOFDATE" type="xs:string"/>
-              <xs:element name="BILLING" type="iaboolean" minOccurs="0"/>
-              <xs:element name="REVENUE" type="iaboolean" minOccurs="0"/>
-              <xs:element name="EXPENSE" type="iaboolean" minOccurs="0"/>
-            </xs:all>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="CONTRACTEXPENSE">
-          <xs:complexType>
-            <xs:all>
-              <xs:element name="RECORDNO" type="xs:integer"/>
-              <xs:element name="ASOFDATE" type="xs:string"/>
-            </xs:all>
-          </xs:complexType>
-        </xs:element>
-      </xs:choice>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="resume">
     <xs:complexType>
       <xs:choice>
         <xs:element name="CONTRACTDETAIL">
@@ -10999,6 +11033,44 @@ permissions and limitations under the License.
       </xs:choice>
     </xs:complexType>
   </xs:element>
+  <xs:element name="renew">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="CONTRACTID" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="resume">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACTDETAIL">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="ASOFDATE" type="xs:string"/>
+              <xs:element name="BILLING" type="iaboolean" minOccurs="0"/>
+              <xs:element name="REVENUE" type="iaboolean" minOccurs="0"/>
+              <xs:element name="EXPENSE" type="iaboolean" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTEXPENSE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="ASOFDATE" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="unpost">
     <xs:complexType>
       <xs:choice>
@@ -11013,34 +11085,6 @@ permissions and limitations under the License.
           <xs:complexType>
             <xs:all>
               <xs:element name="RECORDNO" type="xs:integer"/>
-            </xs:all>
-          </xs:complexType>
-        </xs:element>
-      </xs:choice>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="approve">
-    <xs:complexType>
-      <xs:choice>
-        <xs:element name="PODOCUMENT">
-          <xs:complexType>
-            <xs:all>
-              <xs:element name="DOCID" type="xs:string"/>
-              <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
-            </xs:all>
-          </xs:complexType>
-        </xs:element>
-      </xs:choice>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="decline">
-    <xs:complexType>
-      <xs:choice>
-        <xs:element name="PODOCUMENT">
-          <xs:complexType>
-            <xs:all>
-              <xs:element name="DOCID" type="xs:string"/>
-              <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
             </xs:all>
           </xs:complexType>
         </xs:element>
