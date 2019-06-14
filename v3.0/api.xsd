@@ -42,6 +42,10 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
     </xs:complexType>
   </xs:element>
+  <xs:element name="subledgercontrolon">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="disccalcon">
     <xs:complexType mixed="true">
         </xs:complexType>
@@ -3213,6 +3217,10 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="taskid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="pbegindate">
     <xs:complexType>
       <xs:sequence>
@@ -4147,7 +4155,7 @@ permissions and limitations under the License.
   </xs:element>
   <xs:element name="updateexpenses">
     <xs:complexType>
-      <xs:choice minOccurs="0" maxOccurs="1">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element ref="expense"/>
         <xs:element ref="updateexpense"/>
       </xs:choice>
@@ -4277,9 +4285,10 @@ permissions and limitations under the License.
   </xs:element>
   <xs:element name="receiptitems">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="lineitem" maxOccurs="unbounded"/>
-      </xs:sequence>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="lineitem"/>
+        <xs:element ref="updatelineitem"/>
+      </xs:choice>
     </xs:complexType>
   </xs:element>
   <xs:element name="receipts">
@@ -5025,6 +5034,7 @@ permissions and limitations under the License.
             <xs:enumeration value="revrectemplate"/>
             <xs:enumeration value="sopricelist"/>
             <xs:enumeration value="sotransaction"/>
+            <xs:enumeration value="otherreceipts"/>
             <xs:enumeration value="recursotransaction"/>
             <xs:enumeration value="sotransactiondef"/>
             <xs:enumeration value="subscription"/>
@@ -5159,6 +5169,7 @@ permissions and limitations under the License.
             <xs:enumeration value="revrecscheduleentry"/>
             <xs:enumeration value="sopricelist"/>
             <xs:enumeration value="sotransaction"/>
+            <xs:enumeration value="otherreceipts"/>
             <xs:enumeration value="recursotransaction"/>
             <xs:enumeration value="recurringgltransaction"/>
             <xs:enumeration value="recurringstatgltrans"/>
@@ -5485,104 +5496,6 @@ permissions and limitations under the License.
     <xs:complexType>
       <xs:attribute name="departmentid" type="xs:string" use="required"/>
       <xs:attribute name="externalkey" use="optional" default="false">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="true"/>
-            <xs:enumeration value="false"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="create_glbooklocations">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="bookkey"/>
-        <xs:element ref="locationid"/>
-        <xs:element ref="bookentityjournal"/>
-      </xs:sequence>
-      <xs:attribute name="ignoreduplicates" use="optional" default="false">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="true"/>
-            <xs:enumeration value="false"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="delete_glbooklocations">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="bookkey"/>
-        <xs:element ref="locationid"/>
-      </xs:sequence>
-      <xs:attribute name="externalkey" use="optional" default="false">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="true"/>
-            <xs:enumeration value="false"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="create_glbookacctgroups">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="bookkey"/>
-        <xs:element ref="acctgroupkey"/>
-      </xs:sequence>
-      <xs:attribute name="ignoreduplicates" use="optional" default="false">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="true"/>
-            <xs:enumeration value="false"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="delete_glbookacctgroups">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="bookkey"/>
-        <xs:element ref="acctgroupkey"/>
-      </xs:sequence>
-      <xs:attribute name="externalkey" use="optional" default="false">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="true"/>
-            <xs:enumeration value="false"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="create_glbookacctratetypes">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="bookkey"/>
-        <xs:element ref="glaccountno"/>
-        <xs:element ref="glacctratetypes"/>
-      </xs:sequence>
-      <xs:attribute name="ignoreduplicates" use="optional" default="false">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="true"/>
-            <xs:enumeration value="false"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="delete_glbookacctratetypes">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="bookkey"/>
-        <xs:element ref="glaccountno"/>
-      </xs:sequence>
-      <xs:attribute name="ignoreduplicates" use="optional" default="false">
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="true"/>
@@ -6349,6 +6262,101 @@ permissions and limitations under the License.
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="get_accountbalancesbydimensions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="reportingperiodname"/>
+          <xs:sequence>
+            <xs:element ref="startdate"/>
+            <xs:element ref="enddate"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:element ref="glaccountno"/>
+          <xs:element ref="accountgroupname"/>
+          <xs:sequence>
+            <xs:element ref="startaccountno"/>
+            <xs:element ref="endaccountno"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="1" ref="reportingbook"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="adjbooks"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="includereportingbook"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="statistical"/>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element ref="departmentid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="dept_subs"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element ref="locationid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="loc_subs"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element ref="projectid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="projectid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="projecttypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element ref="customerid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="customerid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="customertypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element ref="vendorid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="vendorid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="vendortypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element ref="employeeid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="employeeid_subs"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="employeetypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="1" ref="itemid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="productlineid"/>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element ref="classid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="classid_subs"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element ref="contractid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="contractid_subs"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element ref="warehouseid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="warehouseid_subs"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="1" ref="userDefinedDimensions"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="groupby"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="userDefinedDimensions">
     <xs:complexType>
       <xs:sequence>
@@ -6492,6 +6500,7 @@ permissions and limitations under the License.
         <xs:element ref="taxcode" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="mrccode" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="alternativeaccount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="subledgercontrolon" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="ignoreduplicates" use="optional" default="false">
         <xs:simpleType>
@@ -6528,6 +6537,7 @@ permissions and limitations under the License.
         <xs:element ref="taxcode" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="mrccode" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="alternativeaccount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="subledgercontrolon" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="glaccountno" type="xs:string" use="required"/>
       <xs:attribute name="set_nulls" use="optional" default="false">
@@ -7457,6 +7467,12 @@ permissions and limitations under the License.
         <xs:element ref="item1099" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="itemid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="classid" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -8427,6 +8443,7 @@ permissions and limitations under the License.
       <xs:sequence>
         <xs:element ref="taskname"/>
         <xs:element ref="projectid"/>
+        <xs:element ref="taskid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="pbegindate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="penddate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemid" minOccurs="0" maxOccurs="1"/>
@@ -9550,6 +9567,60 @@ permissions and limitations under the License.
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="update_otherreceipt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="paymentdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="payee" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="receiveddate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentmethod" minOccurs="0" maxOccurs="1"/>
+        <xs:choice>
+          <xs:element ref="undepglaccountno" minOccurs="0" maxOccurs="1"/>
+          <xs:sequence>
+            <xs:element ref="bankaccountid" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="depositdate" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:element ref="refid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="description" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element ref="currency" minOccurs="0" maxOccurs="1"/>
+          <xs:choice>
+            <xs:sequence>
+              <xs:element ref="exchratedate" minOccurs="0" maxOccurs="1"/>
+              <xs:element ref="exchratetype" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:element ref="exchrate" minOccurs="0" maxOccurs="1"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="receiptitems" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="key" type="xs:string" use="required"/>
+      <xs:attribute name="set_nulls" use="optional" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="externalkey" use="optional" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="delete_otherreceipt">
+    <xs:complexType>
+      <xs:attribute name="key" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="record_deposit">
     <xs:complexType>
       <xs:sequence>
@@ -9908,211 +9979,6 @@ permissions and limitations under the License.
       <xs:attribute name="achbankid" type="xs:string" use="required"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="record_wucctransactions">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wucctransactions"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wucctransactions">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wucctransaction" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wucctransaction">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="creditcardid"/>
-        <xs:element ref="datecreated"/>
-        <xs:element ref="payee" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="referenceno" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="description" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="wuccpayitems"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wuccpayitems">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wuccpayitem" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wuccpayitem">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:choice>
-          <xs:element ref="glaccountno"/>
-          <xs:element ref="accountlabel"/>
-        </xs:choice>
-        <xs:element ref="description" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="paymentamount"/>
-        <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="record_wureceipts">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wureceipts"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wureceipts">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wureceipt" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wureceipt">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="bankaccountid"/>
-        <xs:element ref="datecreated"/>
-        <xs:element ref="depositid"/>
-        <xs:element ref="depositdate"/>
-        <xs:choice>
-          <xs:element ref="customerid"/>
-          <xs:element ref="payer"/>
-        </xs:choice>
-        <xs:element ref="referenceno" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="description" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="wureceiptitems"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wureceiptitems">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wureceiptitem" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wureceiptitem">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:choice>
-          <xs:element ref="glaccountno"/>
-          <xs:element ref="accountlabel"/>
-        </xs:choice>
-        <xs:element ref="description" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="amount"/>
-        <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="record_wudisbursements">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wudisbursements"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wudisbursements">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wudisbursement" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wudisbursement">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="bankaccountid"/>
-        <xs:element ref="datecreated"/>
-        <xs:choice>
-          <xs:element ref="vendorid"/>
-          <xs:element ref="payee"/>
-        </xs:choice>
-        <xs:element ref="referenceno" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="description" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="wudisbursementitems"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wudisbursementitems">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wudisbursementitem" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wudisbursementitem">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:choice>
-          <xs:element ref="glaccountno"/>
-          <xs:element ref="accountlabel"/>
-        </xs:choice>
-        <xs:element ref="description" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="amount"/>
-        <xs:element ref="item1099" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="record_wuadjjournalentries">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wujournalentries"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="record_wujournalentries">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wujournalentries"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wujournalentries">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wujournalentry" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wujournalentry">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="journalid"/>
-        <xs:element ref="datecreated"/>
-        <xs:element ref="referenceno" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="description" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="wuentryitems"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wuentryitems">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="wuentryitem" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="wuentryitem">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:choice>
-          <xs:element ref="glaccountno"/>
-          <xs:element ref="accountlabel"/>
-        </xs:choice>
-        <xs:element ref="amount"/>
-        <xs:element ref="trtype"/>
-        <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="description" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="document" minOccurs="0" maxOccurs="1"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="ratestartdate">
     <xs:complexType>
       <xs:sequence>
@@ -10239,7 +10105,10 @@ permissions and limitations under the License.
   </xs:element>
   <xs:element name="getAPISession">
     <xs:complexType>
-        </xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="1">
+        <xs:element name="locationid" type="xs:string"/>
+      </xs:choice>
+    </xs:complexType>
   </xs:element>
   <xs:element name="inspect">
     <xs:complexType>
@@ -10345,6 +10214,7 @@ permissions and limitations under the License.
         <xs:element name="jobType" minOccurs="1" type="xs:string"/>
         <xs:element name="timeStamp" minOccurs="0" type="xs:dateTime"/>
         <xs:element ref="fileConfiguration" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="additional_parameters" minOccurs="0" maxOccurs="1"/>
       </xs:all>
     </xs:complexType>
   </xs:element>
@@ -10447,6 +10317,7 @@ permissions and limitations under the License.
         <xs:element name="listSeparator" minOccurs="0" maxOccurs="1" type="xs:string"/>
       </xs:all>
       <xs:attribute name="returnDef" type="xs:string"/>
+      <xs:attribute name="type" type="xs:string"/>
       <xs:attribute name="libraryReport" type="xs:string"/>
     </xs:complexType>
   </xs:element>
@@ -10482,6 +10353,18 @@ permissions and limitations under the License.
         <xs:element ref="operator"/>
         <xs:element ref="value"/>
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getFinancialSetup">
+    <xs:complexType>
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="readEntityDetails">
+    <xs:complexType>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getDimensions">
+    <xs:complexType>
     </xs:complexType>
   </xs:element>
   <xs:element name="getDimensionRestrictions">
@@ -10649,6 +10532,7 @@ permissions and limitations under the License.
         <xs:element ref="delete_vendor"/>
         <xs:element ref="get"/>
         <xs:element ref="get_accountbalances"/>
+        <xs:element ref="get_accountbalancesbydimensions"/>
         <xs:element ref="get_accountgroupdetails"/>
         <xs:element ref="get_apadjustment"/>
         <xs:element ref="get_aradjustment"/>
@@ -10701,15 +10585,12 @@ permissions and limitations under the License.
         <xs:element ref="get_salestotals"/>
         <xs:element ref="get_icitemtotals"/>
         <xs:element ref="record_cctransaction"/>
-        <xs:element ref="record_wucctransactions"/>
-        <xs:element ref="record_wureceipts"/>
-        <xs:element ref="record_wudisbursements"/>
-        <xs:element ref="record_wuadjjournalentries"/>
-        <xs:element ref="record_wujournalentries"/>
         <xs:element ref="get_companyprefs"/>
         <xs:element ref="set_companyprefs"/>
         <xs:element ref="get_applications"/>
         <xs:element ref="record_otherreceipt"/>
+        <xs:element ref="update_otherreceipt"/>
+        <xs:element ref="delete_otherreceipt"/>
         <xs:element ref="record_deposit"/>
         <xs:element ref="create_territory"/>
         <xs:element ref="delete_territory"/>
@@ -10841,6 +10722,9 @@ permissions and limitations under the License.
         <xs:element ref="runDdsJob"/>
         <xs:element ref="getDdsObjects"/>
         <xs:element ref="getDdsDdl"/>
+        <xs:element ref="getFinancialSetup"/>
+        <xs:element ref="readEntityDetails"/>
+        <xs:element ref="getDimensions"/>
         <xs:element ref="getDimensionRestrictions"/>
         <xs:element ref="getDimensionRelationships"/>
         <xs:element ref="getDimensionAutofillDetails"/>
@@ -10850,12 +10734,16 @@ permissions and limitations under the License.
         <xs:element ref="getTransactionsToApprove"/>
         <xs:element ref="getApprovalHistory"/>
         <xs:element ref="approve"/>
+        <xs:element ref="cancel"/>
         <xs:element ref="decline"/>
         <xs:element ref="deliver"/>
         <xs:element ref="hold"/>
         <xs:element ref="post"/>
+        <xs:element ref="promote"/>
+        <xs:element ref="reallocate"/>
         <xs:element ref="renew"/>
         <xs:element ref="resume"/>
+        <xs:element ref="uncancel"/>
         <xs:element ref="unpost"/>
       </xs:choice>
       <xs:attribute name="controlid" use="required">
@@ -10918,6 +10806,19 @@ permissions and limitations under the License.
       </xs:choice>
     </xs:complexType>
   </xs:element>
+  <xs:element name="cancel">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="JOBQUEUERECORD">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="JOBID" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="decline">
     <xs:complexType>
       <xs:choice>
@@ -10949,11 +10850,25 @@ permissions and limitations under the License.
   <xs:element name="hold">
     <xs:complexType>
       <xs:choice>
+        <xs:element name="CONTRACT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="CONTRACTID" type="xs:string"/>
+              <xs:element name="CONTRACTDETAILKEYS" type="xs:string"/>
+              <xs:element name="HOLDDATE" type="xs:string"/>
+              <xs:element name="HOLDMEMO" type="xs:string" minOccurs="0"/>
+              <xs:element name="HOLDBILLINGSCHEDULES" type="iaboolean"/>
+              <xs:element name="HOLDREVENUESCHEDULES" type="iaboolean"/>
+              <xs:element name="HOLDEXPENSESCHEDULES" type="iaboolean"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="CONTRACTDETAIL">
           <xs:complexType>
             <xs:all>
               <xs:element name="RECORDNO" type="xs:integer"/>
               <xs:element name="ASOFDATE" type="xs:string"/>
+              <xs:element name="MEMO" type="xs:string" minOccurs="0"/>
               <xs:element name="BILLING" type="iaboolean" minOccurs="0"/>
               <xs:element name="REVENUE" type="iaboolean" minOccurs="0"/>
               <xs:element name="EXPENSE" type="iaboolean" minOccurs="0"/>
@@ -11033,6 +10948,65 @@ permissions and limitations under the License.
       </xs:choice>
     </xs:complexType>
   </xs:element>
+  <xs:element name="promote">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="JOBQUEUERECORD">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="JOBID" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="reallocate">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACTEXPENSE2SCHEDULE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="SCHEDULEKEY" type="xs:integer"/>
+              <xs:element name="STARTDATE" type="xs:string" minOccurs="0"/>
+              <xs:element name="ENDDATE" type="xs:string" minOccurs="0"/>
+              <xs:element name="POSTPASTDATED" type="iaboolean" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTEXPENSESCHEDULE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="SCHEDULEKEY" type="xs:integer"/>
+              <xs:element name="STARTDATE" type="xs:string" minOccurs="0"/>
+              <xs:element name="ENDDATE" type="xs:string" minOccurs="0"/>
+              <xs:element name="POSTPASTDATED" type="iaboolean" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTREVENUE2SCHEDULE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="SCHEDULEKEY" type="xs:integer"/>
+              <xs:element name="STARTDATE" type="xs:string" minOccurs="0"/>
+              <xs:element name="ENDDATE" type="xs:string" minOccurs="0"/>
+              <xs:element name="POSTPASTDATED" type="iaboolean" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTREVENUESCHEDULE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="SCHEDULEKEY" type="xs:integer"/>
+              <xs:element name="STARTDATE" type="xs:string" minOccurs="0"/>
+              <xs:element name="ENDDATE" type="xs:string" minOccurs="0"/>
+              <xs:element name="POSTPASTDATED" type="iaboolean" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="renew">
     <xs:complexType>
       <xs:choice>
@@ -11049,14 +11023,30 @@ permissions and limitations under the License.
   <xs:element name="resume">
     <xs:complexType>
       <xs:choice>
+        <xs:element name="CONTRACT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="CONTRACTID" type="xs:string"/>
+              <xs:element name="CONTRACTDETAILKEYS" type="xs:string"/>
+              <xs:element name="RESUMEDATE" type="xs:string"/>
+              <xs:element name="RESUMEMEMO" type="xs:string" minOccurs="0"/>
+              <xs:element name="RESUMEBILLINGSCHEDULES" type="iaboolean"/>
+              <xs:element name="RESUMEREVENUESCHEDULES" type="iaboolean"/>
+              <xs:element name="RESUMEEXPENSESCHEDULES" type="iaboolean"/>
+              <xs:element name="REVENUEADJUSTMENTTYPE" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="CONTRACTDETAIL">
           <xs:complexType>
             <xs:all>
               <xs:element name="RECORDNO" type="xs:integer"/>
               <xs:element name="ASOFDATE" type="xs:string"/>
+              <xs:element name="MEMO" type="xs:string" minOccurs="0"/>
               <xs:element name="BILLING" type="iaboolean" minOccurs="0"/>
               <xs:element name="REVENUE" type="iaboolean" minOccurs="0"/>
               <xs:element name="EXPENSE" type="iaboolean" minOccurs="0"/>
+              <xs:element name="REVENUEADJUSTMENTTYPE" type="xs:string" minOccurs="0"/>
             </xs:all>
           </xs:complexType>
         </xs:element>
@@ -11065,6 +11055,26 @@ permissions and limitations under the License.
             <xs:all>
               <xs:element name="RECORDNO" type="xs:integer"/>
               <xs:element name="ASOFDATE" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="uncancel">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTDETAIL">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
             </xs:all>
           </xs:complexType>
         </xs:element>
