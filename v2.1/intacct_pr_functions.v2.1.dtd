@@ -1,5 +1,5 @@
 <!--
-Copyright 2018 Sage Intacct, Inc.
+Copyright 2019 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -145,7 +145,7 @@ permissions and limitations under the License.
 <!ELEMENT confirm_appaymentrequest (appaymentkeys)>
 <!ELEMENT void_appaymentrequest (appaymentkeys)>
 <!ELEMENT payitems (payitem+)>
-<!ELEMENT payitem ((glaccountno | accountlabel), paymentamount, item1099?, departmentid?, locationid?)>
+<!ELEMENT payitem ((glaccountno | accountlabel), paymentamount, item1099?, departmentid?, locationid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?)>
 <!ELEMENT appaymentkeys (appaymentkey+)>
 <!-- END NEW For APPayment APIs -->
 <!ELEMENT create_reimbursementrequest (bankaccountid, employeeid, memo?, paymentmethod, paymentdate, paymentoption?, eppaymentrequestitems , documentnumber?, paymentdescription?, paymentcontact?)>
@@ -396,7 +396,7 @@ permissions and limitations under the License.
 >
 
 <!-- Create a task -->
-<!ELEMENT create_task (taskname, projectid, pbegindate?, penddate?, itemid?, billable?, taskdescription?, ismilestone?, utilized?, priority?, taskno?, taskstatus, parentkey?, budgetqty?, estqty?, timetype?, obspercentcomplete?, taskresources?, customfields?, classid?, supdocid?, dependentonkey?, dependentonname?)>
+<!ELEMENT create_task (taskname, projectid, taskid?, pbegindate?, penddate?, itemid?, billable?, taskdescription?, ismilestone?, utilized?, priority?, taskno?, taskstatus, parentkey?, budgetqty?, estqty?, timetype?, obspercentcomplete?, taskresources?, customfields?, classid?, supdocid?, dependentonkey?, dependentonname?)>
 
 <!-- Update a task -->
 <!ELEMENT update_task (taskname?, projectid?, pbegindate?, penddate?, itemid?, billable?, taskdescription?, ismilestone?, utilized?, priority?, taskno?, taskstatus?, parentkey?, budgetqty?, estqty?, timetype?, obspercentcomplete?, taskresources?, customfields?, classid?, supdocid?, dependentonkey?, dependentonname?)>

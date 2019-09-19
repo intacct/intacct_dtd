@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright 2018 Sage Intacct, Inc.
+Copyright 2019 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -577,6 +577,7 @@ permissions and limitations under the License.
   <xs:element name="classid_subs" type="xs:string"/>
   <xs:element name="contractid_subs" type="xs:string"/>
   <xs:element name="warehouseid_subs" type="xs:string"/>
+  <xs:element name="taskid_subs" type="xs:string"/>
   <xs:element name="statistical" type="xs:string"/>
   <xs:element name="includereportingbook" type="xs:string"/>
   <xs:element name="debits">
@@ -1645,6 +1646,10 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="requiretask">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="resaleno">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -2038,6 +2043,10 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="warehouseid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="taskid">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -3214,10 +3223,6 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="taskname">
-    <xs:complexType mixed="true">
-  </xs:complexType>
-  </xs:element>
-  <xs:element name="taskid">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -6148,6 +6153,8 @@ permissions and limitations under the License.
             <xs:element minOccurs="0" maxOccurs="1" ref="projecttypeid"/>
           </xs:sequence>
         </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="1" ref="taskid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="taskid_subs"/>
         <xs:choice>
           <xs:sequence>
             <xs:element minOccurs="0" maxOccurs="1" ref="customerid"/>
@@ -6223,6 +6230,8 @@ permissions and limitations under the License.
             <xs:element minOccurs="0" maxOccurs="1" ref="projecttypeid"/>
           </xs:sequence>
         </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="1" ref="taskid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="taskid_subs"/>
         <xs:choice>
           <xs:sequence>
             <xs:element minOccurs="0" maxOccurs="1" ref="customerid"/>
@@ -6486,6 +6495,7 @@ permissions and limitations under the License.
         <xs:element ref="requiredept" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireloc" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireproject" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="requiretask" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirecustomer" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirevendor" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireitem" minOccurs="0" maxOccurs="1"/>
@@ -6524,6 +6534,7 @@ permissions and limitations under the License.
         <xs:element ref="requiredept" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireloc" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireproject" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="requiretask" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirecustomer" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirevendor" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireitem" minOccurs="0" maxOccurs="1"/>
@@ -6579,6 +6590,7 @@ permissions and limitations under the License.
         <xs:element ref="requiredept" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireloc" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireproject" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="requiretask" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirecustomer" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirevendor" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireitem" minOccurs="0" maxOccurs="1"/>
@@ -6607,6 +6619,7 @@ permissions and limitations under the License.
         <xs:element ref="requiredept" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireloc" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireproject" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="requiretask" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirecustomer" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirevendor" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requireitem" minOccurs="0" maxOccurs="1"/>
@@ -10363,6 +10376,14 @@ permissions and limitations under the License.
     <xs:complexType>
     </xs:complexType>
   </xs:element>
+  <xs:element name="readUserFormatting">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="key" minOccurs="1" maxOccurs="1" type="xs:string"/>
+        <xs:element name="userId" minOccurs="1" maxOccurs="1" type="xs:string"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="getDimensions">
     <xs:complexType>
     </xs:complexType>
@@ -10724,6 +10745,7 @@ permissions and limitations under the License.
         <xs:element ref="getDdsDdl"/>
         <xs:element ref="getFinancialSetup"/>
         <xs:element ref="readEntityDetails"/>
+        <xs:element ref="readUserFormatting"/>
         <xs:element ref="getDimensions"/>
         <xs:element ref="getDimensionRestrictions"/>
         <xs:element ref="getDimensionRelationships"/>

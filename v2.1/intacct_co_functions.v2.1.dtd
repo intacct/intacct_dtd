@@ -1,5 +1,5 @@
 <!--
-Copyright 2018 Sage Intacct, Inc.
+Copyright 2019 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -34,7 +34,7 @@ permissions and limitations under the License.
 <!-- init_session function -->
 <!ELEMENT init_session (activity?)>
 <!-- getAPISession function -->
-<!ELEMENT getAPISession EMPTY>
+<!ELEMENT getAPISession (locationid?)>
 <!-- Get_List function -->
 <!ELEMENT get_list (filter?, sorts?, fields?, additional_parameters?)>
 <!ATTLIST get_list
@@ -153,49 +153,6 @@ permissions and limitations under the License.
 <!ATTLIST delete_glbook
 	bookkey CDATA #REQUIRED
 	externalkey (true | false) "false"
->
-
-<!ELEMENT create_glbooklocations (bookkey, locationid, bookentityjournal)>
-<!ATTLIST create_glbooklocations
-    ignoreduplicates (true | false) "false"
->
-<!-- Delete GLBookLocations -->
-<!ELEMENT delete_glbooklocations (bookkey, locationid)>
-<!ATTLIST delete_glbooklocations
-	externalkey (true | false) "false"
->
-
-<!ELEMENT create_glbookacctgroups (bookkey, acctgroupkey)>
-<!ATTLIST create_glbookacctgroups
-    ignoreduplicates (true | false) "false"
->
-
-<!-- Delete GLBookAcctGroups -->
-<!ELEMENT delete_glbookacctgroups (bookkey, acctgroupkey)>
-<!ATTLIST delete_glbookacctgroups
-	externalkey (true | false) "false"
->
-
-<!ELEMENT create_glbookacctratetypes (bookkey, glaccountno, glacctratetypes)>
-<!ATTLIST create_glbookacctratetypes
-    ignoreduplicates (true | false) "false"
->
-
-<!-- Delete GLBookAcctRateTypes -->
-<!ELEMENT delete_glbookacctratetypes (bookkey, glaccountno)>
-<!ATTLIST delete_glbookacctratetypes
-    ignoreduplicates (true | false) "false"
->
-
-<!ELEMENT create_glbookelimaccounts (bookkey, accountkey)>
-<!ATTLIST create_glbookelimaccounts
-    ignoreduplicates (true | false) "false"
->
-
-<!-- Delete glbookelimaccounts -->
-<!ELEMENT delete_glbookelimaccounts (bookkey)>
-<!ATTLIST delete_glbookelimaccounts
-    ignoreduplicates (true | false) "false"
 >
 
 <!ELEMENT create_location (locationid, name, parentid?, supervisorid?, startdate?, enddate?, status?, externalid?, primary?, shipto?, customfields?, custtitle?)>

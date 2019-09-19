@@ -1,5 +1,5 @@
 <!--
-Copyright 2018 Sage Intacct, Inc.
+Copyright 2019 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -83,7 +83,7 @@ permissions and limitations under the License.
 <!-- ENUMS: "non-closing account", "closing account",
 									"closed to account" -->
 <!ENTITY % ENUM_COMPANYTYPE "(#PCDATA)">
-<!-- ENUMS: "W", "A", "E"  which mean "Writeup", "Accounting", "E-Practice" -->
+<!-- ENUMS: "A", "E"  which mean "Accounting", "E-Practice" -->
 <!ENTITY % ENUM_DELIVERYOPTIONS "(#PCDATA)">
 <!-- ENUMS: "print", "email", "online" -->
 <!ENTITY % ENUM_EMPLOYEETYPE "(#PCDATA)">
@@ -174,7 +174,7 @@ permissions and limitations under the License.
 	delete_araccountlabel | delete_aradjustment | delete_bill | delete_recurringbill | delete_contact |
 	delete_customer | delete_department | delete_employee | delete_expensereport | reverse_expensereport |
     delete_expensetype | delete_glaccount | delete_statglaccount | delete_invoice | reverse_invoice | delete_recurringinvoice | delete_journal | delete_statjournal | delete_location | 
-    delete_vendor | get | get_accountbalances | get_accountgroupdetails | get_apadjustment |
+    delete_vendor | get | get_accountbalances | get_accountbalancesbydimensions | get_accountgroupdetails | get_apadjustment |
     get_aradjustment | get_bill | get_expensereport | get_invoice | get_list | get_trialbalance | get_myclients |
     init_session | getAPISession | update_apaccountlabel | update_araccountlabel | 
     update_contact | update_customer | update_customervisibility | update_department | update_invoice | update_bill | update_apadjustment | update_aradjustment |
@@ -185,7 +185,7 @@ permissions and limitations under the License.
 	create_stkittransaction | create_ictransaction | update_ictransaction |  create_sotransaction | update_sotransaction | create_recursotransaction | delete_recursotransaction |
 	create_potransaction | update_potransaction | partialupdate_potransaction | get_salestotals | get_icitemtotals |record_cctransaction | record_wucctransactions |
 	record_wureceipts | record_wudisbursements | record_wuadjjournalentries | record_wujournalentries |
-	get_companyprefs | set_companyprefs | get_applications | record_otherreceipt | record_deposit |
+	get_companyprefs | set_companyprefs | get_applications | record_otherreceipt | update_otherreceipt | delete_otherreceipt | record_deposit |
     create_territory | delete_territory | update_territory | apply_arpayment | delete_sotransaction | 
 	delete_potransaction | delete_ictransaction | create_item | update_item | delete_item | create_sopricelist | delete_sopricelist | update_sopricelist | create_popricelist | delete_popricelist | update_popricelist |
     create_vsoepricelist | update_vsoepricelist | delete_vsoepricelist | create_vsoeitempricelist | update_vsoeitempricelist | delete_vsoeitempricelist |
@@ -206,7 +206,7 @@ permissions and limitations under the License.
 	create_employeerate | update_employeerate | delete_employeerate | create_achbankconfiguration | delete_achbankconfiguration | 
     update_achbankconfiguration | create_vendorentityaccountno | create_consolidation | convert_glbudget_fp_amounts_to_eop |
     create_expensepaymenttype | update_expensepaymenttype | delete_expensepaymenttype |
-    getUserPermissions | generate_projectinvoices) ">
+    getUserPermissions | generate_projectinvoices ) ">
 
 <!ENTITY % LIST_OBJECTS "accountgroup | adjjournal | statjournal | apaccountlabel | apadjustment | apadjustmentbatch | appayment | apterm | project | class |
     araccountlabel | aradjustment | aradjustmentbatch | arpayment | arpaymentbatch | arterm | artransactiondef | bankaccount | 
@@ -216,10 +216,10 @@ permissions and limitations under the License.
     invoice | invoicebatch | itemglgroup | journal | location | locationentity | supdocfolder | supdoc |
 	company_info | trxcurrencies | popricelist | vsoepricelist | vsoeitempricelist | potransaction | potransactiondef | csnhistory | locationgroup |
     pricelistitem | productline | renewalmacro | reportingperiod | revrecschedule | revrecscheduleentry | revrectemplate | 
-    sopricelist | sotransaction | recursotransaction | sotransactiondef | subscription | territory | uom | 
+    sopricelist | sotransaction | otherreceipts | recursotransaction | sotransactiondef | subscription | territory | uom | 
     vendglgroup | vendor | vendorvisibility | warehouse | taxdetail | taxschedule | taxscheduledetail | contacttaxgroup | itemtaxgroup |
 	taxschedulemap | smarteventlog | appaymentrequest | icitemtotals | 
-	itemtotal | timesheet | task | projecttype | projectstatus | timetype | 
+	itemtotal | timesheet | task | projecttype | projectstatus | timetype |
 	allocation | cctransaction | revrecchangelog | vsoeallocation | expenseadjustmentreport | earningtype | employeerate |
 	achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 
@@ -227,7 +227,7 @@ permissions and limitations under the License.
 customer | customervisibility | customerachinfo | customerchargecard | customerbankaccount | department | employee | expensetypes | 
 glaccount | statglaccount | icitem | stkittransaction | ictransaction | invoice |location | locationentity | supdocfolder | supdoc | company_info | trxcurrencies | journal | popricelist | csnhistory | locationgroup | vsoepricelist | 
 potransaction | pricelistitem | productline | recurbill | recurinvoice | renewalmacro | reportingperiod | 
-revrecschedule | revrecscheduleentry | sopricelist | sotransaction | recursotransaction | recurringgltransaction | recurringstatgltrans |
+revrecschedule | revrecscheduleentry | sopricelist | sotransaction | otherreceipts | recursotransaction | recurringgltransaction | recurringstatgltrans |
 subscription | territory | vendor | vendorvisibility | warehouse  | taxdetail | taxschedule | taxscheduledetail | taxschedulemap | appaymentrequest | timesheet | task | projecttype | projectstatus | timetype | allocation | cctransaction | vsoeallocation |
 earningtype | employeerate | achbankconfiguration ">
 <!ENTITY % LIST_RESULTS "trialbalance | accountgroupdetail | sessioninfo | client | companypref | application | closedbooksdate | araging | icitemtotals | itemtotal | permissions">
@@ -240,6 +240,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT accounttype %ENUM_ACCTTYPE;>
 <!ELEMENT alternativeaccount %ENUM_ACCTGLTYPE;>
 <!ELEMENT activity %STRING_30;>
+<!ELEMENT subledgercontrolon %BOOLEAN;>
 <!ELEMENT address1 %STRING_80;>
 <!ELEMENT address2 %STRING_80;>
 <!ELEMENT adjustmentno %STRING_30;>
@@ -309,7 +310,8 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT customfieldname %STRING_80;>
 <!ELEMENT customfieldvalue (#PCDATA)> 
 <!ELEMENT custtitle %STRING_250;>
-<!ELEMENT visibility (visibility_type, restricted_locs*, restricted_depts*)> 
+<!ELEMENT visibility (visibility_type, restricted_locs*, restricted_depts*)>
+<!ELEMENT groupby (#PCDATA)>
 <!ELEMENT restricted_locs (locationid+)>
 <!ELEMENT restricted_depts (departmentid+)>
 <!ELEMENT visibility_type %STRING_80;>
@@ -582,6 +584,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT userDefinedDimensions (userDefinedDimension+)>
 <!ELEMENT contractid_subs %STRING_30;>
 <!ELEMENT warehouseid_subs %STRING_30;>
+<!ELEMENT taskid_subs %STRING_30;>
 <!ELEMENT objectName %STRING_30;>
 <!ELEMENT recordId %STRING_30;>
 <!ELEMENT recordName %STRING_30;>
@@ -592,6 +595,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT requiredept %BOOLEAN;>
 <!ELEMENT requireloc %BOOLEAN;>
 <!ELEMENT requireproject %BOOLEAN;>
+<!ELEMENT requiretask %BOOLEAN;>
 <!ELEMENT requirecustomer %BOOLEAN;>
 <!ELEMENT requirevendor %BOOLEAN;>
 <!ELEMENT requireemployee %BOOLEAN;>
@@ -1027,6 +1031,7 @@ earningtype | employeerate | achbankconfiguration ">
 
 <!-- Elements for TASK -->
 <!ELEMENT taskname %STRING_200;>
+<!ELEMENT taskid %STRING_20;>
 <!ELEMENT pbegindate %DATE;>
 <!ELEMENT penddate %DATE;>
 <!ELEMENT taskdescription %STRING_1000;>
@@ -1046,7 +1051,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!-- Elements for TIMESHEET -->
 <!ELEMENT timesheetdescription %STRING_200;>
 <!ELEMENT timesheetitems (timesheetitem+)>
-<!ELEMENT timesheetitem (lineno?, customerid?, itemid?, projectid?, taskname?, timetype?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, contractid?, warehouseid?, clznamount?, extbillrate?, extcostrate?, customfields?)>
+<!ELEMENT timesheetitem (lineno?, customerid?, itemid?, (projectid, taskid?)?, taskname?, timetype?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, contractid?, warehouseid?, clznamount?, extbillrate?, extcostrate?, customfields?)>
 <!ELEMENT timetype %STRING_80;>
 <!ELEMENT entrydate %DATE;>
 <!ELEMENT qty %NUMBER_2;>

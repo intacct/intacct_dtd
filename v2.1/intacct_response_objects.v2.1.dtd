@@ -1,5 +1,5 @@
 <!--
-Copyright 2018 Sage Intacct, Inc.
+Copyright 2019 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -65,7 +65,7 @@ permissions and limitations under the License.
 <!ELEMENT expensetypes (glaccountno?, expensetype?, description?, offsetglaccountno?, status?, unitcurrency?, unitrates?)>
 <!ELEMENT expensepaymenttype (name?, description?, nonreimbursable?, offsetacctno?, status?)>
 <!ELEMENT function (#PCDATA)>
-<!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, taxcode?, mrccode?, alternativeaccount?, customfields?)>
+<!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requiretask?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, taxcode?, mrccode?, alternativeaccount?, customfields?)>
 <!-- NEW NEW NEW -->
 <!ELEMENT custglgroup (glgroupname?)>
 <!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, dropship?, whslineitems?,vendlineitems?,complineitems?, cnbillingtemplate?, cnrevenuetemplate?, cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, mrr?)>
@@ -80,6 +80,7 @@ permissions and limitations under the License.
 <!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, departmentid?, customfields?)>
 <!ELEMENT itemglgroup (glgroupname?)>
 <!ELEMENT sotransitems (sotransitem+)>
+<!ELEMENT otherreceiptentries (otherreceiptentry+)>
 <!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?, dropship?, shipto?)>
 <!ELEMENT potransitems (potransitem+)>
 <!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, price?, retailprice?, overridetaxamount?, deliverto?, taxrate?, tax?, totalamount?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
@@ -90,6 +91,7 @@ permissions and limitations under the License.
 <!ELEMENT sopricelist (pricelistname?, datefrom?, dateto?, status?)>
 <!ELEMENT sotransactiondef (transdefid?, transclass?)>
 <!ELEMENT sotransaction (key?, transactiontype?, transactionid?, documentnumber?, datecreated?, dateposted?, createdfrom?, customerid?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, transactionstate?, whenmodified?, dateprinted?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, vsoepricelist?, projectid?, customfields?, sotransitems?, subtotals?)>
+<!ELEMENT otherreceipts (key?, datecreated?, recordtype?, recordtype?,description2?,paymethod?,docnumber?,datepaid?,description?,(undepglaccountno|(bankaccountid,bankaccountname?,bankaccountcurr?)),depositdate?,prbatchkey?,basecurr?,currency?,batchkey?,exch_rate_date?,exch_rate_type_id?,exchange_rate?,totalentered?,trx_totalentered?,recon_date?,state?,rawstate?,cleared?,parentpayment?,impliedlocation?,auwhencreated?,whenmodified?,createdby?,modifiedby?, customfields?, otherreceiptsentries?)>
 <!ELEMENT subscription (object, intacctid, subscriber, externalid)>
 <!ELEMENT vendglgroup (glgroupname?)>
 <!ELEMENT warehouse (warehouseid?, name?, parentid?, managerid?, contactname?, shipto?, usedingl?, status?)>
@@ -106,6 +108,7 @@ permissions and limitations under the License.
 <!ELEMENT invoiceitems (lineitem+)>
 <!ELEMENT journal (symbol?, title?, status?)>
 <!ELEMENT lineitem (line_num?, accountlabel?, glaccountno?, offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, form1099type?, form1099box?, key?, totalpaid?, totaldue?, trx_amount?, trx_totalpaid?, trx_totaldue?, currency?)>
+<!ELEMENT otherreceiptsentry (line_num?, accountlabel?, glaccountno?, offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, form1099type?, form1099box?, key?, totalpaid?, totaldue?, trx_amount?, trx_totalpaid?, trx_totaldue?, currency?)>
 <!ELEMENT adjjournal (symbol?, title?, status?)>
 <!ELEMENT statjournal (symbol?, title?, status?)>
 <!ELEMENT location (locationid?, name?, parentid?, supervisorid?, startdate?, enddate?, whenmodified?, status?, primary?, shipto?, contactinfo?, customfields?)>
@@ -118,10 +121,6 @@ permissions and limitations under the License.
 <!ELEMENT glbook (bookid, description, currency, bookcontact?, ctanetassetacct, ctanetincomeacct, bookstatjournal?, 
 		          budgetheader, department, exchratetype, bstransmethod, istransmethod, eename, autoelimination)>
 <!ELEMENT glbookdetail (bookid, detail)>
-<!ELEMENT glbooklocations (bookkey, locationid, name, bookentityjournal)>
-<!ELEMENT glbookacctgroups (bookkey, acctgroupkey)>
-<!ELEMENT glbookacctratetypes (bookkey, glaccountno, glaccounttitle, glacctratetypes, overriderate?, overrideexpirydate?)>
-<!ELEMENT glbookelimaccounts (bookkey, accountkey)>
 <!ELEMENT csnhistory (bookkey, locationname, periodname, actiontime, startedby, warate, bsrate, status, message )>
 <!ELEMENT company_info (title, name)>
 <!ELEMENT trxcurrencies (code)>

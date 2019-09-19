@@ -1,5 +1,5 @@
 <!--
-Copyright 2018 Sage Intacct, Inc.
+Copyright 2019 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -17,6 +17,16 @@ permissions and limitations under the License.
 <!ELEMENT ccpayitems (ccpayitem+)>
 <!ELEMENT ccpayitem ((glaccountno | accountlabel), description?, paymentamount, departmentid?, locationid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, contractid?, warehouseid?, customfields?)>
 <!ELEMENT record_otherreceipt (paymentdate, payee, receiveddate, paymentmethod, (undepglaccountno|(bankaccountid, depositdate?)), refid?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, receiptitems)>
+<!ELEMENT update_otherreceipt (paymentdate?, payee?, receiveddate?, paymentmethod?, (undepglaccountno|(bankaccountid, depositdate?))?, refid?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, receiptitems?)>
+<!ATTLIST update_otherreceipt
+        key CDATA #REQUIRED
+        set_nulls (true | false) "false"
+        externalkey (true | false) "false"
+        >
+<!ELEMENT delete_otherreceipt EMPTY>
+<!ATTLIST delete_otherreceipt
+        key CDATA #REQUIRED
+        >
 <!ELEMENT record_deposit (bankaccountid, depositdate, depositid, (receipts | receiptkeys), description?, supdocid?, customfields?)>
 <!ELEMENT create_checkingaccount (bankaccountid,bankaccountno?, locationid, bankname,routingno?,branchid?,phone?,currency?,mailaddress?,status?,disableiet?,financialdata?,glaccountno?,(servicechargeglaccount|servicechargeaccountlabel)?,(interestearnedglaccount|interestearnedaccountlabel)?,departmentid?,checkinfocontact?,checklayout?,nextcheck?,achenabled?, achbankid?, companyname?, companyidentification?, financialinstitution?, description?, discretionarydata?, userecommendedsetup?, serviceclasscode?,batchid?,tracenumberseq?, usetracenumber?, docnumberseq?, visibility? )>
 <!ELEMENT create_savingsaccount (bankaccountid,bankaccountno?, locationid, bankname,routingno?,branchid?,phone?,currency?,mailaddress?,status?,disableiet?,financialdata?,glaccountno?,(servicechargeglaccount|servicechargeaccountlabel)?,(interestearnedglaccount|interestearnedaccountlabel)?,departmentid?, visibility?)>
