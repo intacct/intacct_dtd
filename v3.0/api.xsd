@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright 2019 Sage Intacct, Inc.
+Copyright 2023 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -35,6 +35,14 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="sourcelinekey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="relateddockey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="relateddoclinekey">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -179,6 +187,18 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="contentselection">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="budgetcomparison">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="debitcreditbalance">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="budgetid">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -315,6 +335,8 @@ permissions and limitations under the License.
         <xs:element ref="status" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="mailaddress" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="taxid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxschedule" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -577,6 +599,7 @@ permissions and limitations under the License.
   <xs:element name="classid_subs" type="xs:string"/>
   <xs:element name="contractid_subs" type="xs:string"/>
   <xs:element name="warehouseid_subs" type="xs:string"/>
+  <xs:element name="costtypeid_subs" type="xs:string"/>
   <xs:element name="taskid_subs" type="xs:string"/>
   <xs:element name="statistical" type="xs:string"/>
   <xs:element name="includereportingbook" type="xs:string"/>
@@ -1168,6 +1191,198 @@ permissions and limitations under the License.
       <xs:enumeration value="false"/>
     </xs:restriction>
   </xs:simpleType>
+  <xs:element name="autoprintlabel">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="weightuom">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="netweight">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="lwhuom">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="length">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="width">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="height">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="thicknessuom">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="thickness">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="minimumthickness">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="maximumthickness">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="areauom">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="area">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="volumeuom">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="volume">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="diameteruom">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="innerdiameter">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="outerdiameter">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="durometer">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="densityuom">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="density">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="upc12">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="ean13">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="safetyitem">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="restricteditem">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="compliantitem">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="condition">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="engineeringalert">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="specification1">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="specification2">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="specification3">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="engineeringapproval">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="qualitycontrolapproval">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="salesapproval">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="primarycountryoforigin">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="brand">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="subbrand">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="subcategory">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="catalogref">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="color">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="style">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="size1">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="size2">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="giftcard">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="webenabled">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="webname">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="webshortdesc">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="weblongdesc">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="journalid">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -1646,6 +1861,10 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="requirecosttype">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="requiretask">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -1842,6 +2061,10 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="changelognumber">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="status">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -1878,7 +2101,23 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="taxsolutionid">
+    <xs:complexType mixed="true">
+   </xs:complexType>
+  </xs:element>
+  <xs:element name="taxschedule">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="dropship">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="buytoorder">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="btoshiptocontactname">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -1891,6 +2130,10 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="termname">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="scope">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -2185,6 +2428,10 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="itemtype">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="enablefulfillment">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -2560,6 +2807,22 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="retainagepercentage">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="amountretained">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="trx_amountretained">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="conversiontype">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="trx_totalselected">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -2577,6 +2840,22 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="exch_rate_date">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="totaltrxamount">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="partialexempt">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="overridedetailid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="trx_tax">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -2690,6 +2969,14 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="contractdesc">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="costtypeid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="costtypedesc">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -3094,6 +3381,10 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="emppositionid">
+    <xs:complexType mixed="true">
+     </xs:complexType>
+  </xs:element>
   <xs:element name="paymethod">
     <xs:complexType mixed="true">
   </xs:complexType>
@@ -3395,6 +3686,14 @@ permissions and limitations under the License.
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
+  <xs:element name="isretainagerelease">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="retainagetobill">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="timesheetitems">
     <xs:complexType>
       <xs:sequence>
@@ -3404,13 +3703,23 @@ permissions and limitations under the License.
   </xs:element>
   <xs:element name="timesheetitem">
     <xs:complexType>
-      <xs:all>
+      <xs:sequence>
         <xs:element ref="lineno" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="taskname" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="timetype" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="emppositionid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="laborclassid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="laborshiftid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="laborunionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billable" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
@@ -3425,8 +3734,28 @@ permissions and limitations under the License.
         <xs:element ref="clznamount" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="extbillrate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="extcostrate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="extamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="extemployertaxes" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="extfringes" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="extcashfringes" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
-      </xs:all>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="extamount">
+    <xs:complexType mixed="true">
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="extemployertaxes">
+    <xs:complexType mixed="true">
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="extfringes">
+    <xs:complexType mixed="true">
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="extcashfringes">
+    <xs:complexType mixed="true">
     </xs:complexType>
   </xs:element>
   <xs:element name="extcostrate">
@@ -3442,6 +3771,18 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="timetype">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="laborclassid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="laborshiftid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="laborunionid">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -3467,6 +3808,10 @@ permissions and limitations under the License.
   </xs:complexType>
   </xs:element>
   <xs:element name="allocationid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="itemaliasid">
     <xs:complexType mixed="true">
   </xs:complexType>
   </xs:element>
@@ -3700,6 +4045,322 @@ permissions and limitations under the License.
       </xs:choice>
     </xs:complexType>
   </xs:element>
+  <xs:element name="inclusions">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="exclusions">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="terms">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="schedulestartdate">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="actualstartdate">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="scheduledcompletiondate">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="revisedcompletiondate">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="substantialcompletiondate">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="actualcompletiondate">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="noticetoproceed">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="responsedue">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="executedon">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="scheduleimpact">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalrefno">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalinitiatedbykey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalinitiatedby">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalinitiatedbyname">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalverbalbykey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalverbalby">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalverbalbyname">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalissuedbykey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalissuedby">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalissuedbyname">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalissuedon">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalapprovedbykey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalapprovedby">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalapprovedbyname">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalapprovedon">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalsignedbykey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalsignedby">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalsignedbyname">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalsignedon">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalsource">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="internalsourcerefno">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="externalrefno">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="externalverbalbykey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="externalverbalby">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="externalapprovedbykey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="externalapprovedby">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="externalapprovedon">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="externalsignedbykey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="externalsignedby">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="externalsignedon">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="performancebondrequired">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="performancebondreceived">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="performancebondamount">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="performancesuretycompanykey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="performancesuretycompany">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="performancesuretycompanyname">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="paymentbondrequired">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="paymentbondreceived">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="paymentbondamount">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="paymentsuretycompanykey">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="paymentsuretycompany">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="paymentsuretycompanyname">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="projectcontractid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="pcbexternalrefno">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="pcbdescription">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="pcbdate">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="architect">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="billthroughdate">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="billapplicationno">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="orgcontractamt">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="retcompletedamt">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="retstoredmaterials">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="lesspriorapplication">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="tcapmaddition">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="tcapmdeduction">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="tcatmaddition">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="tcatmdeduction">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="previousretainagebalance">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="totalretainageonthisinvoice">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="projectcontractlineid">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="pcblexternalrefno">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="pcbldescription">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="contractlinevalue">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="priorapplicationamt">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="completedthisperiod">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
+  <xs:element name="storedmaterials">
+    <xs:complexType mixed="true">
+  </xs:complexType>
+  </xs:element>
   <xs:element name="expense">
     <xs:complexType>
       <xs:sequence>
@@ -3722,7 +4383,13 @@ permissions and limitations under the License.
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -3734,6 +4401,8 @@ permissions and limitations under the License.
         <xs:element ref="exppmttype" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="rate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="totaltrxamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxentries" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -3758,7 +4427,13 @@ permissions and limitations under the License.
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="itemid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="classid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="contractid" minOccurs="0" maxOccurs="1"/>
@@ -3806,7 +4481,7 @@ permissions and limitations under the License.
   <xs:element name="stkittransitems">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="stkittransitem"/>
+        <xs:element ref="stkittransitem" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -3820,6 +4495,7 @@ permissions and limitations under the License.
         <xs:element ref="unit" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="itemdetails" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
@@ -3842,15 +4518,37 @@ permissions and limitations under the License.
         <xs:element ref="cost" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="sourcelinekey" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="adjdocentrykey" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemdetails" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="classid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="contractid" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="taxentries">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="taxentry" minOccurs="1" maxOccurs="2"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="taxentry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="detailid" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="trx_tax" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -3885,7 +4583,13 @@ permissions and limitations under the License.
         <xs:element ref="defrevaccount" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="revrecstartdate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="revrecenddate" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -3894,6 +4598,9 @@ permissions and limitations under the License.
         <xs:element ref="contractid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billable" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="totaltrxamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="partialexempt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxentries" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -3915,7 +4622,13 @@ permissions and limitations under the License.
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -3939,6 +4652,7 @@ permissions and limitations under the License.
       <xs:sequence>
         <xs:element ref="itemid"/>
         <xs:element ref="itemdesc" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="itemaliasid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="taxable" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity"/>
@@ -3957,13 +4671,35 @@ permissions and limitations under the License.
         <xs:element ref="form1099type" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="form1099box" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="classid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="contractid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billable" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="allocationid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="needbydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipbeforedate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="promiseddate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="dateconfirmed" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="cancelafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="dateshiptosupplier" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="relateddockey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="relateddoclinekey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retainagepercentage" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="amountretained" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="trx_amountretained" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="conversiontype" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="partialexempt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linesubtotals" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -3980,6 +4716,7 @@ permissions and limitations under the License.
         <xs:element ref="bundlenumber" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemid"/>
         <xs:element ref="itemdesc" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="itemaliasid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="taxable" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity"/>
@@ -3998,7 +4735,13 @@ permissions and limitations under the License.
         <xs:element ref="revrecstartdate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="revrecenddate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="renewalmacro" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -4008,7 +4751,33 @@ permissions and limitations under the License.
         <xs:element ref="taskno" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billingtemplate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="dropship" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="buytoorder" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="btoshiptocontactname" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="shipto" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="needbydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="shipby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipbeforedate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="datepickticketprinted" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="cancelafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="shippeddate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="relateddockey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="relateddoclinekey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retainagepercentage" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="amountretained" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="trx_amountretained" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="conversiontype" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="projectcontractid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="projectcontractlineid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcblexternalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbldescription" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="contractlinevalue" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="priorapplicationamt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="completedthisperiod" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="storedmaterials" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="isretainagerelease" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retainagetobill" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linesubtotals" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -4024,6 +4793,7 @@ permissions and limitations under the License.
       <xs:sequence>
         <xs:element ref="itemid"/>
         <xs:element ref="itemdesc" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="itemaliasid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="taxable" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity"/>
@@ -4039,7 +4809,13 @@ permissions and limitations under the License.
         <xs:element ref="revrecstartdate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="revrecenddate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="status" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -4061,10 +4837,8 @@ permissions and limitations under the License.
       <xs:sequence>
         <xs:element ref="componentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity" minOccurs="0" maxOccurs="1"/>
-        <xs:choice minOccurs="0" maxOccurs="1">
-          <xs:element ref="serialno"/>
-          <xs:element ref="lotno"/>
-        </xs:choice>
+        <xs:element ref="serialno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="lotno" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="aisle" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="row" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="bin" minOccurs="0" maxOccurs="1"/>
@@ -4142,7 +4916,13 @@ permissions and limitations under the License.
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -4154,6 +4934,8 @@ permissions and limitations under the License.
         <xs:element ref="exppmttype" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="rate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="totaltrxamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxentries" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="line_num" type="xs:string" use="required"/>
     </xs:complexType>
@@ -4198,7 +4980,13 @@ permissions and limitations under the License.
         <xs:element ref="memo" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -4211,6 +4999,8 @@ permissions and limitations under the License.
         <xs:element ref="quantity" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="rate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="totaltrxamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxentries" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -4231,7 +5021,13 @@ permissions and limitations under the License.
         <xs:element ref="memo" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -4244,7 +5040,10 @@ permissions and limitations under the License.
         <xs:element ref="quantity" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="rate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="totaltrxamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxentries" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
+      <xs:attribute name="line_num" type="xs:string" use="required"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="updateinvoiceitems">
@@ -4275,7 +5074,13 @@ permissions and limitations under the License.
         <xs:element ref="defrevaccount" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="revrecstartdate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="revrecenddate" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -4284,6 +5089,9 @@ permissions and limitations under the License.
         <xs:element ref="contractid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billable" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="totaltrxamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="partialexempt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxentries" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="line_num" type="xs:string" use="required"/>
     </xs:complexType>
@@ -4352,7 +5160,13 @@ permissions and limitations under the License.
         <xs:element ref="percentval" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -4379,7 +5193,13 @@ permissions and limitations under the License.
         <xs:element ref="percentval" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -4439,7 +5259,13 @@ permissions and limitations under the License.
         <xs:element ref="memo" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -4449,6 +5275,7 @@ permissions and limitations under the License.
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billable" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxentries" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -4590,6 +5417,7 @@ permissions and limitations under the License.
         <xs:element ref="bundlenumber" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemdesc" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="itemaliasid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="taxable" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity" minOccurs="0" maxOccurs="1"/>
@@ -4607,7 +5435,13 @@ permissions and limitations under the License.
         <xs:element ref="revrecstartdate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="revrecenddate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="renewalmacro" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -4617,7 +5451,33 @@ permissions and limitations under the License.
         <xs:element ref="taskno" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billingtemplate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="dropship" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="buytoorder" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="btoshiptocontactname" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="shipto" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="needbydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="shipby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipbeforedate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="datepickticketprinted" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="cancelafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="shippeddate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="relateddockey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="relateddoclinekey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retainagepercentage" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="amountretained" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="trx_amountretained" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="conversiontype" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="projectcontractid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="projectcontractlineid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcblexternalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbldescription" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="contractlinevalue" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="priorapplicationamt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="completedthisperiod" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="storedmaterials" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="isretainagerelease" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retainagetobill" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linesubtotals" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="line_num" type="xs:string" use="required"/>
     </xs:complexType>
@@ -4635,6 +5495,7 @@ permissions and limitations under the License.
       <xs:sequence>
         <xs:element ref="itemid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemdesc" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="itemaliasid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="taxable" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="quantity" minOccurs="0" maxOccurs="1"/>
@@ -4650,13 +5511,35 @@ permissions and limitations under the License.
         <xs:element ref="form1099type" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="form1099box" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="classid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="contractid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billable" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="allocationid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="needbydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipbeforedate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="promiseddate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="dateconfirmed" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="cancelafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="dateshiptosupplier" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="relateddockey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="relateddoclinekey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retainagepercentage" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="amountretained" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="trx_amountretained" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="conversiontype" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="partialexempt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="linesubtotals" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="line_num" type="xs:string" use="required"/>
     </xs:complexType>
@@ -4666,6 +5549,21 @@ permissions and limitations under the License.
       <xs:choice maxOccurs="unbounded">
         <xs:element ref="ictransitem"/>
         <xs:element ref="updateictransitem"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="linesubtotals">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="linesubtotal"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="linesubtotal">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="trx_tax"/>
+        <xs:element ref="overridedetailid"/>
       </xs:choice>
     </xs:complexType>
   </xs:element>
@@ -4682,7 +5580,13 @@ permissions and limitations under the License.
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemdetails" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -5061,6 +5965,7 @@ permissions and limitations under the License.
             <xs:enumeration value="itemtotal"/>
             <xs:enumeration value="timesheet"/>
             <xs:enumeration value="task"/>
+            <xs:enumeration value="costtype"/>
             <xs:enumeration value="projecttype"/>
             <xs:enumeration value="projectstatus"/>
             <xs:enumeration value="timetype"/>
@@ -5190,6 +6095,7 @@ permissions and limitations under the License.
             <xs:enumeration value="appaymentrequest"/>
             <xs:enumeration value="timesheet"/>
             <xs:enumeration value="task"/>
+            <xs:enumeration value="costtype"/>
             <xs:enumeration value="projecttype"/>
             <xs:enumeration value="projectstatus"/>
             <xs:enumeration value="timetype"/>
@@ -5237,6 +6143,7 @@ permissions and limitations under the License.
         <xs:element ref="form1099box" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="earningtypename" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="postactualcost" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="emppositionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="personalinfo"/>
         <xs:element ref="contactlist" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="paymethod" minOccurs="0" maxOccurs="1"/>
@@ -5294,6 +6201,7 @@ permissions and limitations under the License.
         <xs:element ref="form1099box" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="earningtypename" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="postactualcost" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="emppositionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="personalinfo"/>
         <xs:element ref="contactlist" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="paymethod" minOccurs="0" maxOccurs="1"/>
@@ -5379,6 +6287,8 @@ permissions and limitations under the License.
         <xs:element ref="mailaddress" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="taxid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="externalid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxschedule" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="ignoreduplicates" use="optional" default="false">
         <xs:simpleType>
@@ -5413,6 +6323,8 @@ permissions and limitations under the License.
         <xs:element ref="status" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="mailaddress" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="taxid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxschedule" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="contactname" type="xs:string" use="required"/>
       <xs:attribute name="set_nulls" use="optional" default="false">
@@ -6155,6 +7067,8 @@ permissions and limitations under the License.
         </xs:choice>
         <xs:element minOccurs="0" maxOccurs="1" ref="taskid"/>
         <xs:element minOccurs="0" maxOccurs="1" ref="taskid_subs"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="costtypeid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="costtypeid_subs"/>
         <xs:choice>
           <xs:sequence>
             <xs:element minOccurs="0" maxOccurs="1" ref="customerid"/>
@@ -6191,6 +7105,7 @@ permissions and limitations under the License.
         <xs:element minOccurs="0" maxOccurs="1" ref="warehouseid"/>
         <xs:element minOccurs="0" maxOccurs="1" ref="warehouseid_subs"/>
         <xs:element minOccurs="0" maxOccurs="1" ref="userDefinedDimensions"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="debitcreditbalance"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -6232,6 +7147,8 @@ permissions and limitations under the License.
         </xs:choice>
         <xs:element minOccurs="0" maxOccurs="1" ref="taskid"/>
         <xs:element minOccurs="0" maxOccurs="1" ref="taskid_subs"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="costtypeid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="costtypeid_subs"/>
         <xs:choice>
           <xs:sequence>
             <xs:element minOccurs="0" maxOccurs="1" ref="customerid"/>
@@ -6281,6 +7198,10 @@ permissions and limitations under the License.
             <xs:element ref="enddate"/>
           </xs:sequence>
         </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="1" ref="contentselection"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="budgetid"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="budgetcomparison"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="showzerowithactivity"/>
         <xs:choice minOccurs="0" maxOccurs="1">
           <xs:element ref="glaccountno"/>
           <xs:element ref="accountgroupname"/>
@@ -6312,6 +7233,18 @@ permissions and limitations under the License.
           </xs:sequence>
           <xs:sequence>
             <xs:element minOccurs="0" maxOccurs="1" ref="projecttypeid"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element ref="taskid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="taskid_subs"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element ref="costtypeid"/>
+            <xs:element minOccurs="0" maxOccurs="1" ref="costtypeid_subs"/>
           </xs:sequence>
         </xs:choice>
         <xs:choice minOccurs="0" maxOccurs="1">
@@ -6503,6 +7436,7 @@ permissions and limitations under the License.
         <xs:element ref="requireclass" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirecontract" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirewarehouse" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="requirecosttype" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="taxable" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="externalid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
@@ -6542,6 +7476,7 @@ permissions and limitations under the License.
         <xs:element ref="requireclass" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirecontract" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirewarehouse" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="requirecosttype" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="taxable" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="category" minOccurs="0" maxOccurs="1"/>
@@ -6598,6 +7533,7 @@ permissions and limitations under the License.
         <xs:element ref="requireclass" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirecontract" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirewarehouse" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="requirecosttype" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="category" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="status" minOccurs="0" maxOccurs="1"/>
@@ -6627,6 +7563,7 @@ permissions and limitations under the License.
         <xs:element ref="requireclass" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirecontract" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="requirewarehouse" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="requirecosttype" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="category" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="status" minOccurs="0" maxOccurs="1"/>
@@ -6760,6 +7697,7 @@ permissions and limitations under the License.
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="mergepaymentreq" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="offsetglaccountno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retainagepercentage" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="ignoreduplicates" use="optional" default="false">
         <xs:simpleType>
@@ -6823,6 +7761,7 @@ permissions and limitations under the License.
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="mergepaymentreq" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="offsetglaccountno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retainagepercentage" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="vendorid" type="xs:string" use="required"/>
       <xs:attribute name="set_nulls" use="optional" default="false">
@@ -7056,6 +7995,8 @@ permissions and limitations under the License.
         <xs:element ref="nogl" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billitems"/>
       </xs:sequence>
     </xs:complexType>
@@ -7137,6 +8078,7 @@ permissions and limitations under the License.
         </xs:sequence>
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="updatebillitems" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="key" type="xs:string" use="required"/>
@@ -7250,6 +8192,8 @@ permissions and limitations under the License.
         </xs:sequence>
         <xs:element ref="nogl" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="apadjustmentitems"/>
       </xs:sequence>
     </xs:complexType>
@@ -7274,6 +8218,7 @@ permissions and limitations under the License.
             <xs:element ref="exchrate"/>
           </xs:choice>
         </xs:sequence>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="updateapadjustmentitems" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="key" type="xs:string" use="required"/>
@@ -7480,7 +8425,13 @@ permissions and limitations under the License.
         <xs:element ref="item1099" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -7490,6 +8441,13 @@ permissions and limitations under the License.
     </xs:complexType>
   </xs:element>
   <xs:element name="approve_appaymentrequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="appaymentkeys"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="decline_appaymentrequest">
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="appaymentkeys"/>
@@ -7557,6 +8515,7 @@ permissions and limitations under the License.
         <xs:element ref="visibility" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="offsetglaccountno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retainagepercentage" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="ignoreduplicates" use="optional" default="false">
         <xs:simpleType>
@@ -7599,6 +8558,7 @@ permissions and limitations under the License.
         <xs:element ref="visibility" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="offsetglaccountno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retainagepercentage" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="customerid" type="xs:string" use="required"/>
       <xs:attribute name="set_nulls" use="optional" default="false">
@@ -7679,6 +8639,7 @@ permissions and limitations under the License.
         <xs:element ref="nogl" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="invoiceitems"/>
       </xs:sequence>
     </xs:complexType>
@@ -7713,6 +8674,7 @@ permissions and limitations under the License.
         <xs:element ref="modenew" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="interval" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="eom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="recurinvoiceitems"/>
         <xs:element ref="paymethod" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="payinfull" minOccurs="0" maxOccurs="1"/>
@@ -7865,6 +8827,7 @@ permissions and limitations under the License.
           </xs:choice>
         </xs:sequence>
         <xs:element ref="nogl" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="aradjustmentitems"/>
       </xs:sequence>
     </xs:complexType>
@@ -8139,6 +9102,8 @@ permissions and limitations under the License.
         <xs:element ref="currency" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1" type="iaboolean"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="expenses"/>
       </xs:all>
     </xs:complexType>
@@ -8157,6 +9122,7 @@ permissions and limitations under the License.
         <xs:element ref="currency" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1" type="iaboolean"/>
         <xs:element ref="updateexpenses" minOccurs="0" maxOccurs="1"/>
       </xs:all>
       <xs:attribute name="key" type="xs:string" use="required"/>
@@ -8227,6 +9193,8 @@ permissions and limitations under the License.
         <xs:element ref="currency" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="expenseadjustments"/>
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1" type="iaboolean"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -8242,6 +9210,7 @@ permissions and limitations under the License.
         <xs:element ref="currency" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="updateexpenseadjustments" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="supdocid" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1" type="iaboolean"/>
       </xs:sequence>
       <xs:attribute name="key" type="xs:string" use="required"/>
       <xs:attribute name="set_nulls" use="optional" default="false">
@@ -8630,7 +9599,7 @@ permissions and limitations under the License.
         <xs:element ref="referenceno" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendordocno" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="termname" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="datedue"/>
+        <xs:element ref="datedue" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="message" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="shippingmethod" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="returnto"/>
@@ -8651,8 +9620,89 @@ permissions and limitations under the License.
         </xs:sequence>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="state" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="needbydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="changelognumber" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipbeforedate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="promiseddate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="contractstartdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="contractenddate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="cancelafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="potransitems"/>
         <xs:element ref="subtotals" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scope" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="inclusions" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="exclusions" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="terms" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="schedulestartdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="actualstartdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scheduledcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="revisedcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="substantialcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="actualcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="noticetoproceed" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="responsedue" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="executedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scheduleimpact" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsource" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsourcerefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalverbalbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalverbalby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondrequired" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondreceived" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompanykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompany" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompanyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondrequired" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondreceived" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompanykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompany" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompanyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="projectcontractid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbexternalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbdescription" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="architect" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="billthroughdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="billapplicationno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="orgcontractamt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retcompletedamt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retstoredmaterials" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="lesspriorapplication" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcapmaddition" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcapmdeduction" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcatmaddition" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcatmdeduction" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -8690,8 +9740,90 @@ permissions and limitations under the License.
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="state" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="changelognumber" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="needbydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="shipbydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="cancelafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipbeforedate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="servicedeliverydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="trackingnumber" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="shippeddate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="customerponumber" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="sotransitems"/>
         <xs:element ref="subtotals" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scope" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="inclusions" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="exclusions" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="terms" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="schedulestartdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="actualstartdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scheduledcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="revisedcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="substantialcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="actualcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="noticetoproceed" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="responsedue" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="executedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scheduleimpact" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsource" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsourcerefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalverbalbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalverbalby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondrequired" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondreceived" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompanykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompany" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompanyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondrequired" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondreceived" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompanykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompany" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompanyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="projectcontractid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbexternalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbdescription" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="architect" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="billthroughdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="billapplicationno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="orgcontractamt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retcompletedamt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retstoredmaterials" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="lesspriorapplication" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcapmaddition" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcapmdeduction" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcatmaddition" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcatmdeduction" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -8705,6 +9837,7 @@ permissions and limitations under the License.
         <xs:element ref="message" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="contractid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="contractdesc" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="customerponumber" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="shippingmethod" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="shipto" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="billto" minOccurs="0" maxOccurs="1"/>
@@ -8713,6 +9846,7 @@ permissions and limitations under the License.
         <xs:element ref="currency" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="exchratetype" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="recursotransitems"/>
         <xs:element ref="subtotals" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="paymethod" minOccurs="0" maxOccurs="1"/>
@@ -8861,8 +9995,88 @@ permissions and limitations under the License.
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="state" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="needbydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="shipbydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="cancelafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipbeforedate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="servicedeliverydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="trackingnumber" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="shippeddate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="customerponumber" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="updatesotransitems" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="updatesubtotals" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scope" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="inclusions" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="exclusions" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="terms" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="schedulestartdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="actualstartdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scheduledcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="revisedcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="substantialcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="actualcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="noticetoproceed" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="responsedue" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="executedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scheduleimpact" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsource" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsourcerefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalverbalbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalverbalby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondrequired" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondreceived" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompanykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompany" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompanyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondrequired" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondreceived" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompanykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompany" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompanyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="projectcontractid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbexternalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbdescription" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="architect" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="billthroughdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="billapplicationno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="orgcontractamt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retcompletedamt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retstoredmaterials" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="lesspriorapplication" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcapmaddition" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcapmdeduction" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcatmaddition" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcatmdeduction" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="key" type="xs:string" use="required"/>
       <xs:attribute name="set_nulls" use="optional" default="false">
@@ -8920,8 +10134,88 @@ permissions and limitations under the License.
         </xs:sequence>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="state" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="needbydate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="changelognumber" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipbeforedate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="donotshipafterdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="promiseddate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="contractstartdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="contractenddate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="cancelafterdate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="updatepotransitems" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="updatesubtotals" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scope" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="inclusions" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="exclusions" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="terms" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="schedulestartdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="actualstartdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scheduledcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="revisedcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="substantialcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="actualcompletiondate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="noticetoproceed" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="responsedue" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="executedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="scheduleimpact" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalinitiatedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalverbalbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalissuedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalapprovedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedbyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsignedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsource" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="internalsourcerefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalverbalbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalverbalby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalapprovedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedbykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedby" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="externalsignedon" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondrequired" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondreceived" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancebondamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompanykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompany" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="performancesuretycompanyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondrequired" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondreceived" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentbondamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompanykey" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompany" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="paymentsuretycompanyname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="projectcontractid" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbexternalrefno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbdescription" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="pcbdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="architect" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="billthroughdate" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="billapplicationno" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="orgcontractamt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retcompletedamt" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="retstoredmaterials" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="lesspriorapplication" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcapmaddition" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcapmdeduction" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcatmaddition" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="tcatmdeduction" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="key" type="xs:string" use="required"/>
       <xs:attribute name="set_nulls" use="optional" default="false">
@@ -8965,6 +10259,7 @@ permissions and limitations under the License.
         <xs:element ref="name"/>
         <xs:element ref="status" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="itemtype"/>
+        <xs:element ref="enablefulfillment" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="enable_bins" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="extended_description" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="productlineid" minOccurs="0" maxOccurs="1"/>
@@ -9011,6 +10306,8 @@ permissions and limitations under the License.
         <xs:element ref="defrevaccount" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="uomgrp" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="dropship" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="buytoorder" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="btoshiptocontactname" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="cnbillingtemplate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="cnrevenuetemplate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="cnrevenue2template" minOccurs="0" maxOccurs="1"/>
@@ -9018,6 +10315,55 @@ permissions and limitations under the License.
         <xs:element ref="cnexpense2template" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element name="mrr" minOccurs="0" maxOccurs="1" type="iaboolean"/>
+        <xs:element ref="autoprintlabel" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="weightuom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="netweight" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="lwhuom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="length" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="width" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="height" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="thicknessuom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="thickness" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="minimumthickness" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="maximumthickness" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="areauom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="area" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="volumeuom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="volume" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="diameteruom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="innerdiameter" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="outerdiameter" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="durometer" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="densityuom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="density" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="upc12" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="ean13" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="safetyitem" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="restricteditem" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="compliantitem" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="condition" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="engineeringalert" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="specification1" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="specification2" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="specification3" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="engineeringapproval" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="qualitycontrolapproval" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="salesapproval" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="primarycountryoforigin" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="brand" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="subbrand" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="category" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="subcategory" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="catalogref" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="color" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="style" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="size1" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="size2" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="giftcard" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="webenabled" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="webname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="webshortdesc" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="weblongdesc" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="ignoreduplicates" use="optional" default="false">
         <xs:simpleType>
@@ -9039,6 +10385,7 @@ permissions and limitations under the License.
       <xs:sequence>
         <xs:element ref="name" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="status" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="enablefulfillment" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="enable_bins" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="extended_description" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="productlineid" minOccurs="0" maxOccurs="1"/>
@@ -9081,6 +10428,8 @@ permissions and limitations under the License.
         <xs:element ref="defrevaccount" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="uomgrp" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="dropship" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="buytoorder" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="btoshiptocontactname" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="cnbillingtemplate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="cnrevenuetemplate" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="cnrevenue2template" minOccurs="0" maxOccurs="1"/>
@@ -9088,6 +10437,55 @@ permissions and limitations under the License.
         <xs:element ref="cnexpense2template" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
         <xs:element name="mrr" minOccurs="0" maxOccurs="1" type="iaboolean"/>
+        <xs:element ref="autoprintlabel" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="weightuom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="netweight" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="lwhuom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="length" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="width" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="height" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="thicknessuom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="thickness" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="minimumthickness" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="maximumthickness" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="areauom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="area" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="volumeuom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="volume" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="diameteruom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="innerdiameter" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="outerdiameter" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="durometer" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="densityuom" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="density" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="upc12" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="ean13" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="safetyitem" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="restricteditem" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="compliantitem" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="condition" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="engineeringalert" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="specification1" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="specification2" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="specification3" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="engineeringapproval" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="qualitycontrolapproval" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="salesapproval" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="primarycountryoforigin" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="brand" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="subbrand" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="category" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="subcategory" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="catalogref" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="color" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="style" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="size1" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="size2" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="giftcard" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="webenabled" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="webname" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="webshortdesc" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="weblongdesc" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="itemid" type="xs:string" use="required"/>
     </xs:complexType>
@@ -9514,6 +10912,8 @@ permissions and limitations under the License.
           </xs:choice>
         </xs:sequence>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="ccpayitems"/>
       </xs:sequence>
     </xs:complexType>
@@ -9539,12 +10939,21 @@ permissions and limitations under the License.
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="itemid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="classid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="contractid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="totaltrxamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxentries" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="billable" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -9576,6 +10985,8 @@ permissions and limitations under the License.
           </xs:choice>
         </xs:sequence>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxsolutionid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="receiptitems"/>
       </xs:sequence>
     </xs:complexType>
@@ -9608,6 +11019,7 @@ permissions and limitations under the License.
           </xs:choice>
         </xs:sequence>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="receiptitems" minOccurs="0"/>
       </xs:sequence>
       <xs:attribute name="key" type="xs:string" use="required"/>
@@ -9905,6 +11317,7 @@ permissions and limitations under the License.
           </xs:choice>
         </xs:sequence>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="inclusivetax" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="updateccpayitems" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="key" type="xs:string" use="required"/>
@@ -9949,12 +11362,21 @@ permissions and limitations under the License.
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="itemid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="classid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="contractid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="warehouseid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="customfields" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="totaltrxamount" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="taxentries" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="billable" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="line_num" type="xs:string" use="required"/>
     </xs:complexType>
@@ -10132,6 +11554,14 @@ permissions and limitations under the License.
       <xs:attribute name="detail" type="xs:string"/>
     </xs:complexType>
   </xs:element>
+  <xs:element name="lookup">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="object" minOccurs="1" type="xs:string"/>
+        <xs:element name="docparid" minOccurs="0" type="xs:string"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="validate">
     <xs:complexType>
       <xs:sequence maxOccurs="unbounded">
@@ -10185,6 +11615,21 @@ permissions and limitations under the License.
       </xs:all>
     </xs:complexType>
   </xs:element>
+  <xs:element name="overrideexchangerate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="bookid" minOccurs="1" maxOccurs="1" type="xs:string"/>
+        <xs:element ref="entities" minOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="overrideexchangerates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="overrideexchangerate" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="readRelated">
     <xs:complexType>
       <xs:all>
@@ -10219,16 +11664,234 @@ permissions and limitations under the License.
       </xs:all>
     </xs:complexType>
   </xs:element>
-  <xs:element name="runDdsJob">
+  <xs:element name="query">
     <xs:complexType>
       <xs:all>
-        <xs:element name="object" minOccurs="1" type="xs:string"/>
+        <xs:element name="select" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+              <xs:element name="field"/>
+              <xs:element name="count"/>
+              <xs:element name="avg"/>
+              <xs:element name="min"/>
+              <xs:element name="max"/>
+              <xs:element name="sum"/>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="object" minOccurs="1" maxOccurs="1" type="xs:string"/>
+        <xs:element name="docparid" minOccurs="0" maxOccurs="1" type="xs:string"/>
+        <xs:element name="filter" minOccurs="0" maxOccurs="1" type="filteroption"/>
+        <xs:element name="orderby" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="order" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                    <xs:choice minOccurs="0" maxOccurs="1">
+                      <xs:element name="ascending"/>
+                      <xs:element name="descending"/>
+                    </xs:choice>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="options" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="caseinsensitive" minOccurs="0" maxOccurs="1" default="false" type="xs:boolean"/>
+              <xs:element name="showprivate" minOccurs="0" maxOccurs="1" default="false" type="xs:boolean"/>
+              <xs:element name="returnformat" minOccurs="0" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="pagesize" minOccurs="0" maxOccurs="1" default="100">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="1"/>
+              <xs:maxInclusive value="2000"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="offset" minOccurs="0" maxOccurs="1" default="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="0"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="filteroption">
+    <xs:choice minOccurs="1" maxOccurs="1">
+      <xs:group ref="andor"/>
+      <xs:group ref="operators"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:group name="andor">
+    <xs:choice>
+      <xs:element ref="and"/>
+      <xs:element ref="or"/>
+    </xs:choice>
+  </xs:group>
+  <xs:group name="operators">
+    <xs:choice>
+      <xs:element ref="equalto"/>
+      <xs:element ref="notequalto"/>
+      <xs:element ref="lessthan"/>
+      <xs:element ref="lessthanorequalto"/>
+      <xs:element ref="greaterthan"/>
+      <xs:element ref="greaterthanorequalto"/>
+      <xs:element ref="between"/>
+      <xs:element ref="in"/>
+      <xs:element ref="notin"/>
+      <xs:element ref="like"/>
+      <xs:element ref="notlike"/>
+      <xs:element ref="isnull"/>
+      <xs:element ref="isnotnull"/>
+    </xs:choice>
+  </xs:group>
+  <xs:element name="and">
+    <xs:complexType>
+      <xs:choice minOccurs="2" maxOccurs="unbounded">
+        <xs:group ref="andor"/>
+        <xs:group ref="operators"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="or">
+    <xs:complexType>
+      <xs:choice minOccurs="2" maxOccurs="unbounded">
+        <xs:group ref="andor"/>
+        <xs:group ref="operators"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="equalto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notequalto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lessthan">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lessthanorequalto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="greaterthan">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="greaterthanorequalto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="between">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="value" type="xs:string" minOccurs="2" maxOccurs="2"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="in">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1000"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1000"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="like">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notlike">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="isnull">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="isnotnull">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="field" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="runDdsJob">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="object" minOccurs="0" type="xs:string"/>
+        <xs:element name="objects" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="object" type="xs:string" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="cloudDelivery" minOccurs="1" type="xs:string"/>
         <xs:element name="jobType" minOccurs="1" type="xs:string"/>
         <xs:element name="timeStamp" minOccurs="0" type="xs:dateTime"/>
         <xs:element ref="fileConfiguration" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="additional_parameters" minOccurs="0" maxOccurs="1"/>
-      </xs:all>
+        <xs:element name="synchronized" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
+        <xs:element ref="query" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:choice>
     </xs:complexType>
   </xs:element>
   <xs:element name="fileConfiguration">
@@ -10314,8 +11977,13 @@ permissions and limitations under the License.
   </xs:element>
   <xs:element name="arguments">
     <xs:complexType>
-      <xs:sequence maxOccurs="unbounded">
-        <xs:any processContents="skip"/>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element minOccurs="0" maxOccurs="1" ref="get_accountbalancesbydimensions"/>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:any processContents="skip"/>
+          </xs:sequence>
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -10328,6 +11996,8 @@ permissions and limitations under the License.
         <xs:element ref="arguments" minOccurs="0" maxOccurs="1"/>
         <xs:element name="waitTime" minOccurs="0" maxOccurs="1" type="xs:string"/>
         <xs:element name="listSeparator" minOccurs="0" maxOccurs="1" type="xs:string"/>
+        <xs:element name="reportId" minOccurs="0" maxOccurs="1" type="xs:string"/>
+        <xs:element name="showStatusOnly" minOccurs="0" maxOccurs="1" type="xs:boolean" default="false"/>
       </xs:all>
       <xs:attribute name="returnDef" type="xs:string"/>
       <xs:attribute name="type" type="xs:string"/>
@@ -10422,6 +12092,24 @@ permissions and limitations under the License.
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="cancelLine">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="lineno" minOccurs="1" maxOccurs="1" type="xs:integer"/>
+        <xs:element name="cancelExpenseSchedule" minOccurs="0" maxOccurs="1" type="xs:boolean"/>
+        <xs:element name="createAdjustments" minOccurs="0" maxOccurs="1" type="xs:boolean"/>
+        <xs:element name="includeUsage" minOccurs="0" maxOccurs="1" type="xs:boolean"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cancelExpense">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="contractexpensekey" minOccurs="1" maxOccurs="1" type="xs:integer"/>
+        <xs:element name="createadjustments" minOccurs="0" maxOccurs="1" type="xs:boolean" default="true"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="generate_projectinvoices">
     <xs:complexType>
       <xs:all>
@@ -10449,6 +12137,7 @@ permissions and limitations under the License.
         <xs:element name="employeeid" minOccurs="0" type="xs:string"/>
         <xs:element name="locationid" minOccurs="0" type="xs:string"/>
         <xs:element name="departmentid" minOccurs="0" type="xs:string"/>
+        <xs:element name="includereversals" minOccurs="0" type="xs:boolean" default="false"/>
       </xs:all>
     </xs:complexType>
   </xs:element>
@@ -10590,6 +12279,7 @@ permissions and limitations under the License.
         <xs:element ref="delete_paymentrequest"/>
         <xs:element ref="create_appayment"/>
         <xs:element ref="approve_appaymentrequest"/>
+        <xs:element ref="decline_appaymentrequest"/>
         <xs:element ref="send_appaymentrequest"/>
         <xs:element ref="confirm_appaymentrequest"/>
         <xs:element ref="void_appaymentrequest"/>
@@ -10727,6 +12417,7 @@ permissions and limitations under the License.
         <xs:element ref="generate_projectinvoices"/>
         <xs:element ref="getAPISession"/>
         <xs:element ref="inspect"/>
+        <xs:element ref="lookup"/>
         <xs:element ref="validate"/>
         <xs:element ref="create"/>
         <xs:element ref="update"/>
@@ -10735,6 +12426,7 @@ permissions and limitations under the License.
         <xs:element ref="readRelated"/>
         <xs:element ref="readByName"/>
         <xs:element ref="readByQuery"/>
+        <xs:element ref="query"/>
         <xs:element ref="readMore"/>
         <xs:element ref="installApp"/>
         <xs:element ref="readView"/>
@@ -10757,6 +12449,8 @@ permissions and limitations under the License.
         <xs:element ref="getApprovalHistory"/>
         <xs:element ref="approve"/>
         <xs:element ref="cancel"/>
+        <xs:element ref="clearallmea"/>
+        <xs:element ref="clearlastactivemea"/>
         <xs:element ref="decline"/>
         <xs:element ref="deliver"/>
         <xs:element ref="hold"/>
@@ -10765,6 +12459,7 @@ permissions and limitations under the License.
         <xs:element ref="reallocate"/>
         <xs:element ref="renew"/>
         <xs:element ref="resume"/>
+        <xs:element ref="retrievepdf"/>
         <xs:element ref="uncancel"/>
         <xs:element ref="unpost"/>
       </xs:choice>
@@ -10789,7 +12484,13 @@ permissions and limitations under the License.
         <xs:element ref="glaccountno"/>
         <xs:element ref="departmentid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="locationid" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="projectid" minOccurs="0" maxOccurs="1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="projectid" minOccurs="1" maxOccurs="1"/>
+          <xs:sequence minOccurs="0">
+            <xs:element ref="taskid" minOccurs="1" maxOccurs="1"/>
+            <xs:element ref="costtypeid" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:sequence>
         <xs:element ref="customerid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="vendorid" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="employeeid" minOccurs="0" maxOccurs="1"/>
@@ -10814,13 +12515,169 @@ permissions and limitations under the License.
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="cancelafterdate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="donotshipafterdate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="donotshipbeforedate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="needbydate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="shipbydate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="servicedeliverydate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="promiseddate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="contractstartdate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="contractenddate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="shipby">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="datepickticketprinted">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dateconfirmed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dateshiptosupplier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="customerponumber">
+    <xs:complexType mixed="true">
+     </xs:complexType>
+  </xs:element>
+  <xs:element name="trackingnumber">
+    <xs:complexType mixed="true">
+     </xs:complexType>
+  </xs:element>
+  <xs:element name="shippeddate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="adjdocentrykey">
+    <xs:complexType mixed="true">
+   </xs:complexType>
+  </xs:element>
   <xs:element name="approve">
     <xs:complexType>
       <xs:choice>
+        <xs:element name="APBILL">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:string"/>
+              <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="PODOCUMENT">
           <xs:complexType>
             <xs:all>
               <xs:element name="DOCID" type="xs:string"/>
+              <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TIMESHEET">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:string"/>
+              <xs:element name="ENTRYKEYS" type="xs:string" minOccurs="0"/>
+              <xs:element name="APPROVEDBY" type="xs:string" minOccurs="0"/>
               <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
             </xs:all>
           </xs:complexType>
@@ -10841,13 +12698,57 @@ permissions and limitations under the License.
       </xs:choice>
     </xs:complexType>
   </xs:element>
+  <xs:element name="clearallmea">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="CONTRACTID" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="clearlastactivemea">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="CONTRACT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="CONTRACTID" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="decline">
     <xs:complexType>
       <xs:choice>
+        <xs:element name="APBILL">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:string"/>
+              <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="PODOCUMENT">
           <xs:complexType>
             <xs:all>
               <xs:element name="DOCID" type="xs:string"/>
+              <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TIMESHEET">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:string"/>
+              <xs:element name="ENTRYKEYS" type="xs:string" minOccurs="0"/>
+              <xs:element name="DECLINEDBY" type="xs:string" minOccurs="0"/>
               <xs:element name="COMMENT" type="xs:string" minOccurs="0"/>
             </xs:all>
           </xs:complexType>
@@ -10911,11 +12812,38 @@ permissions and limitations under the License.
   <xs:element name="post">
     <xs:complexType>
       <xs:choice>
+        <xs:element name="CONTRACT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="GLPOSTINGDATE" type="xs:string" minOccurs="0"/>
+              <xs:element name="POSTMEMO" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTDETAIL">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="GLPOSTINGDATE" type="xs:string" minOccurs="0"/>
+              <xs:element name="POSTMEMO" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CONTRACTEXPENSE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:integer"/>
+              <xs:element name="GLPOSTINGDATE" type="xs:string" minOccurs="0"/>
+              <xs:element name="POSTMEMO" type="xs:string" minOccurs="0"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="CONTRACTEXPENSE2SCHEDULE">
           <xs:complexType>
             <xs:all>
               <xs:element name="ASOFDATE" type="xs:string"/>
-              <xs:element name="POSTINGDATE" type="xs:string"/>
+              <xs:element name="POSTINGDATE" type="xs:string" minOccurs="0"/>
               <xs:element name="CUSTOMERID" type="xs:string" minOccurs="0"/>
               <xs:element name="CONTRACTID" type="xs:string" minOccurs="0"/>
             </xs:all>
@@ -10925,7 +12853,7 @@ permissions and limitations under the License.
           <xs:complexType>
             <xs:all>
               <xs:element name="ASOFDATE" type="xs:string"/>
-              <xs:element name="POSTINGDATE" type="xs:string"/>
+              <xs:element name="POSTINGDATE" type="xs:string" minOccurs="0"/>
               <xs:element name="CUSTOMERID" type="xs:string" minOccurs="0"/>
               <xs:element name="CONTRACTID" type="xs:string" minOccurs="0"/>
             </xs:all>
@@ -10943,9 +12871,10 @@ permissions and limitations under the License.
           <xs:complexType>
             <xs:all>
               <xs:element name="ASOFDATE" type="xs:string"/>
-              <xs:element name="POSTINGDATE" type="xs:string"/>
+              <xs:element name="POSTINGDATE" type="xs:string" minOccurs="0"/>
               <xs:element name="CUSTOMERID" type="xs:string" minOccurs="0"/>
               <xs:element name="CONTRACTID" type="xs:string" minOccurs="0"/>
+              <xs:element name="USEDISPATCHER" type="xs:string" minOccurs="0"/>
             </xs:all>
           </xs:complexType>
         </xs:element>
@@ -10953,9 +12882,10 @@ permissions and limitations under the License.
           <xs:complexType>
             <xs:all>
               <xs:element name="ASOFDATE" type="xs:string"/>
-              <xs:element name="POSTINGDATE" type="xs:string"/>
+              <xs:element name="POSTINGDATE" type="xs:string" minOccurs="0"/>
               <xs:element name="CUSTOMERID" type="xs:string" minOccurs="0"/>
               <xs:element name="CONTRACTID" type="xs:string" minOccurs="0"/>
+              <xs:element name="USEDISPATCHER" type="xs:string" minOccurs="0"/>
             </xs:all>
           </xs:complexType>
         </xs:element>
@@ -11077,6 +13007,26 @@ permissions and limitations under the License.
             <xs:all>
               <xs:element name="RECORDNO" type="xs:integer"/>
               <xs:element name="ASOFDATE" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="retrievepdf">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="ARINVOICE">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="RECORDNO" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SODOCUMENT">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="DOCID" type="xs:string" minOccurs="0"/>
             </xs:all>
           </xs:complexType>
         </xs:element>
