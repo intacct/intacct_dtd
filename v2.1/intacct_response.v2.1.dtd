@@ -1,5 +1,5 @@
 <!--
-Copyright 2019 Sage Intacct, Inc.
+Copyright 2024 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -31,7 +31,7 @@ pricelistitem | productline | renewalmacro | reportingperiod | revrecschedule | 
 sopricelist | sotransaction | otherreceipts | recursotransaction | sotransactiondef | subscription | territory | uom |
 vendglgroup | vendor | vendorvisibility | warehouse | taxdetail | taxschedule | taxscheduledetail | contacttaxgroup | itemtaxgroup |
 taxschedulemap | smarteventlog | appaymentrequest | icitemtotals |
-itemtotal | timesheet | task | projecttype | projectstatus | timetype |
+itemtotal | timesheet | task | costtype | projecttype | projectstatus | timetype |
 allocation | cctransaction | revrecchangelog | vsoeallocation | expenseadjustmentreport | earningtype | employeerate |
 achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permissions | api)*>
 <!ELEMENT errormessage (error*)>
@@ -42,25 +42,26 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT accountgroup (accountgroupname?, headingtitle?, totaltitle?, normalbalance?, memberstype?, iskpi?)>
 <!ELEMENT accountgroupdetail (accountgroupname?, (accountgroupdetail | glaccount)*)>
 <!ELEMENT apaccountlabel (glaccountno?, accountlabel?, description?, offsetglaccountno?, status?)>
-<!ELEMENT apadjustment (key?, vendorid?, datecreated?, dateposted?, datepaid?, batchkey?, adjustmentno?, billno?, description?, totalamount?, totalpaid?, totaldue?, totalselected?, whenmodified?, state?, basecurr?, currency?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, trx_totalselected?, customfields?, apadjustmentitems?)>
+<!ELEMENT apadjustment (key?, vendorid?, datecreated?, dateposted?, datepaid?, batchkey?, adjustmentno?, billno?, description?, totalamount?, totalpaid?, totaldue?, totalselected?, whenmodified?, state?, basecurr?, currency?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, trx_totalselected?, customfields?, inclusivetax?, taxsolutionid?, apadjustmentitems?)>
 <!ELEMENT apadjustmentbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, apadjustment*)>
-<!ELEMENT apadjustmentitems (lineitem+)>
+<!ELEMENT apadjustmentitems (lineitemnoretainage+)>
 <!ELEMENT api (sessionid, endpoint)>
 <!ELEMENT apterm (name?, description?, status?, due?, discount?, penalty?)>
 <!ELEMENT araccountlabel (glaccountno?, accountlabel?, description?, offsetglaccountno?, status?, taxcode?)>
-<!ELEMENT aradjustment (key?, customerid?, datecreated?, dateposted?, datepaid?, batchkey?, adjustmentno?, invoiceno?, description?, totalamount?, totalpaid?, totaldue, totalselected?, whenmodified?, state?, basecurr?, currency?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, trx_totalselected?, aradjustmentitems?)>
+<!ELEMENT aradjustment (key?, customerid?, datecreated?, dateposted?, datepaid?, batchkey?, adjustmentno?, invoiceno?, description?, totalamount?, totalpaid?, totaldue, totalselected?, whenmodified?, state?, basecurr?, currency?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, trx_totalselected?, taxsolutionid?, aradjustmentitems?)>
 <!ELEMENT aradjustmentbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, aradjustment*)>
-<!ELEMENT aradjustmentitems (lineitem+)>
-<!ELEMENT arpayment (customerid?, paymentamount?, paymentapplied?, paymentunapplied?, batchkey?, refid?, state?, datereceived?, key?, batchtitle?, paymentmethod?, undepglaccountno?, undepaccountlabel?,undeposited?, whenmodified?, arpaymentitems?, arpaymentitemdetails?, lineitems?)>
+<!ELEMENT aradjustmentitems (lineitemnoretainage+)>
+<!ELEMENT arpayment (customerid?, paymentamount?, paymentapplied?, paymentunapplied?, batchkey?, refid?, state?, datereceived?, key?, batchtitle?, paymentmethod?, undepglaccountno?, undepaccountlabel?,undeposited?, whenmodified?, arpaymentitems?, arpaymentitemdetails?, lineitemsnoretainage?)>
 <!ELEMENT arpaymentbatch (key?, batchtitle?, datecreated?, bankaccountid?, open?, status?, totalamount?, arpayment*)>
 <!ELEMENT arpaymentitems (arpaymentitem+)>
 <!ELEMENT arpaymentitem (invoicekey?, amount?)>
 <!ELEMENT arpaymentitemdetails (arpaymentitemdetail+)>
 <!ELEMENT arpaymentitemdetail (arpaymentitemkey?, invoicelineitemkey?, amount?)>
 <!ELEMENT lineitems (lineitem+)>
+<!ELEMENT lineitemsnoretainage (lineitemnoretainage+)>
 <!ELEMENT arterm (name?, description?, status?, due?, discount?, penalty?)>
 <!ELEMENT bankaccount (bankaccountid?, bankaccountno?, glaccountno?, bankname?, routingno?, branchid?, bankaccounttype?, phone?, nextcheck?, status?, lastreconciledbalance?, lastreconcileddate?, currency?, mailaddress?, outsourcecheck?, fractionalroutingno?, nameontheaccount?)>
-<!ELEMENT bill (key?, vendorid?, datecreated?, dateposted?, datedue?, datepaid?, termname?, batchkey?, billno?, ponumber?, totalamount?, totalpaid?, totaldue?, onhold?, description?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, basecurr?, currency?, customfields?, billitems?, payto?, returnto?, whenmodified?, state?, supdocid?)>
+<!ELEMENT bill (key?, vendorid?, datecreated?, dateposted?, datedue?, datepaid?, termname?, batchkey?, billno?, ponumber?, totalamount?, totalpaid?, totaldue?, onhold?, description?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, basecurr?, currency?, customfields?, inclusivetax?, taxsolutionid?, billitems?, payto?, returnto?, whenmodified?, state?, supdocid?, retainagereleased)>
 <!ELEMENT billbatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, bill*)>
 <!ELEMENT billitems (lineitem+)>
 <!ELEMENT project (key?, name?, description?, parentid?, invoicewithparent?, projectcategory?, projecttype?, projectstatus?, customerid?, managerid?, custuserid?, salescontactid?, begindate?, enddate?, departmentid?, locationid?, classid?, currency?, sonumber?, ponumber?, poamount?, pqnumber?, whenmodified?, budgetamount?, budgetedcost?, budgetqty?, userrestrictions?, obspercentcomplete?, budgetid?, billingrate?, billingpricing?, expenserate?, expensepricing?, poaprate?, poappricing?, status?, supdocid?, invoicemessage?, invoicecurrency?, projectresources?, billingovermax?, excludeexpenses?)>
@@ -68,7 +69,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT class (key?, classid?, name?, description?, parentid?, whenmodified?, status?)>
 <!ELEMENT timesheet (key?, title?, employeeid?, begindate?, enddate?, glpostdate?, periodtype?, timesheetitems?)> <!-- TODO: this is foobar -->
 <!ELEMENT checklayout (checkpaperformat?, signaturesrequired?)>
-<!ELEMENT customer (customerid?, name?, parentid?, termname?, custrepid?, shippingmethod?, custtype?, taxid?, creditlimit?, totaldue?, territoryid?, resaleno?, deliveryoptions?, accountlabel?, glaccountno?, glgroup?, comments?, whenmodified?, status?, currency?, primary?, billto?, shipto?, contactinfo?, vsoepricelist?, contactlist?, pricelist?, customfields?, supdocid?)>
+<!ELEMENT customer (customerid?, name?, parentid?, termname?, custrepid?, shippingmethod?, custtype?, taxid?, creditlimit?, totaldue?, territoryid?, resaleno?, deliveryoptions?, accountlabel?, glaccountno?, glgroup?, comments?, whenmodified?, status?, currency?, primary?, billto?, shipto?, contactinfo?, vsoepricelist?, contactlist?, pricelist?, customfields?, supdocid?, retainagepercentage?)>
 <!ELEMENT customervisibility (customerid?, name?, visibility?)>
 <!ELEMENT customerppackage (name?, description?, author?, intacctid?, signed?)>
 <!ELEMENT department (departmentid?, title?, parentid?, supervisorid?, whenmodified?, status?, customfields?)>
@@ -91,10 +92,15 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT expensetypes (glaccountno?, expensetype?, description?, offsetglaccountno?, status?, unitcurrency?, unitrates?)>
 <!ELEMENT expensepaymenttype (name?, description?, nonreimbursable?, offsetacctno?, status?)>
 <!ELEMENT function (#PCDATA)>
-<!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requiretask?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, taxcode?, mrccode?, alternativeaccount?, subledgercontrolon?,  customfields?)>
+<!ELEMENT glaccount (glaccountno?, title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, whenmodified?, status?, requiredept?, requireloc?, requireproject?, requiretask?, requirecosttype?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, taxcode?, mrccode?, alternativeaccount?, subledgercontrolon?,  customfields?)>
 <!-- NEW NEW NEW -->
 <!ELEMENT custglgroup (glgroupname?)>
-<!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, whslineitems?,vendlineitems?,complineitems?, cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, mrr?)>
+<!ELEMENT icitem (itemid?, itemname?, extdescription?, productlineid?, glgroupname?, substituteid?, shipweight?, standardunit?, purchasingunit?, purchasingunitfactor?, salesunit?, salesunitfactor?, costmethod?, standardcost?, averagecost?, whenlastsold?, whenlastreceived?, taxable?, taxgroup?, defaultwhse?, note?, itemtype?, enablefulfillment?, whenmodified?, status?, upc?, hasstartenddates?, termperiod?, totalperiods?, computeforshortterm?, customfields?, taxcode?, revenue_posting?,vsoecategory?,vsoedlvrstatus?,vsoerevdefstatus?,enable_bins?,inventory_precision?,purchasing_precision?,sales_precision?, whslineitems?,vendlineitems?,complineitems?, cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, mrr?, autoprintlabel?,
+        weightuom?, netweight?, lwhuom?, length?, width?, height?, thicknessuom?, thickness?, minimumthickness?, maximumthickness?,
+        areauom?, area?,volumeuom?, volume?, diameteruom?, innerdiameter?, outerdiameter?, durometer?, densityuom?, density?,
+        upc12?, ean13?, safetyitem?, restricteditem?, compliantitem?, condition?, engineeringalert?, specification1?, specification2?, specification3?,
+        engineeringapproval?, qualitycontrolapproval?, salesapproval?, primarycountryoforigin?, brand?, subbrand?, category?, subcategory?, catalogref?,
+        color?, style?, size1?, size2?, giftcard?, webenabled?, webname?, webshortdesc?, weblongdesc?)>
 <!ELEMENT ictotal (totalname?, status?)>
 <!ELEMENT icitemtotal (warehouseid?, itemid?, totalname?, quantity?)>
 <!ELEMENT stkittransaction (transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, stkittransitems?)>
@@ -103,21 +109,30 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT ictransaction (key?, transactiontype?, transactionid?, datecreated?, createdfrom?, documentno?, referenceno?, message?, transactionstate?, whenmodified?, dateprinted?, ictransitems?, subtotals?)>
 <!ELEMENT ictransactiondef (transdefid?, transclass?)>
 <!ELEMENT ictransitems (ictransitem+)>
-<!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, departmentid?, customfields?)>
+<!ELEMENT ictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, totalamount?, locationid?, adjdocentrykey?, departmentid?, customfields?)>
 <!ELEMENT itemglgroup (glgroupname?)>
 <!ELEMENT sotransitems (sotransitem+)>
 <!ELEMENT otherreceiptsentries (otherreceiptsentry+)>
-<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?, discountpercent?, multiplier?, dropship?, shipto?)>
+<!ELEMENT sotransitem (recordno?, dochdrno?, docid?, bundlenumber?, itemid?, itemaliasid?, itemdesc?, line_no?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, price?, retailprice?, totalamount?, taxrate?, tax?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, currency?, exchratedate?, exchratetype?, exchrate?, trx_price?, trx_value?, discountpercent?, multiplier?, dropship?, buytoorder?, btoshiptocontactname?, shipto?, needbydate?, shipby?, donotshipbeforedate?, donotshipafterdate?, datepickticketprinted?, cancelafterdate?, shippeddate?, retainagepercentage?, amountretained?, trx_amountretained?, conversiontype?, addedbychange?,
+        projectcontractid?, projectcontractlineid?, pcblexternalrefno?, pcbldescription?, contractlinevalue?, priorapplicationamt?, completedthisperiod?, storedmaterials?, previousretainagebalance?, isretainagerelease?, retainagetobill?, retainagebalance?, issummarized?, reverseconversion?, reversepriceconverted?, reverseqtyconverted?, stdpriceconverted?, stdqtyconverted?, sourcedocid?, sourcedoclineid?, taxscheduleid?)>
 <!ELEMENT potransitems (potransitem+)>
-<!ELEMENT potransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, price?, overridetaxamount?, deliverto?, taxrate?, tax?, retailprice?, totalamount?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?)>
+<!ELEMENT potransitem (itemid?, itemaliasid?, itemdesc?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, price?, overridetaxamount?, deliverto?, taxrate?, tax?, retailprice?, totalamount?, grossamount?, locationid?, departmentid?, memo?, discsurchargememo?, customfields?, allocationid?, needbydate?, donotshipbeforedate?, donotshipafterdate?, promiseddate?, dateconfirmed?, cancelafterdate?, dateshiptosupplier?, allocationid?, retainagepercentage?, amountretained?, trx_amountretained?, relateddockey?, relateddoclinekey?, conversiontype?, addedbychange?, reverseconversion?, reversepriceconverted?, reverseqtyconverted?, stdpriceconverted?, stdqtyconverted?, sourcedocid?, sourcedoclineid?, taxscheduleid?, sourcedocid?, sourcedoclineid?)>
 <!ELEMENT popricelist (pricelistname?, datefrom?, dateto?, status?)>
-<!ELEMENT potransaction (key?, transactiontype?, transactionid?, datecreated?, dateposted?, createdfrom?, vendorid?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, supdocid?, transactionstate?, whenmodified?, dateprinted?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, potransitems?, subtotals?)>
+<!ELEMENT potransaction (key?, transactiontype?, transactionid?, datecreated?, dateposted?, createdfrom?, vendorid?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, supdocid?, transactionstate?, whenmodified?, dateprinted?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, projectid?, changelognumber?, needbydate?, donotshipbeforedate?, donotshipafterdate?, promiseddate?, contractstartdate?, contractenddate?, cancelafterdate?,
+        scope?, inclusions?, exclusions?, terms?, schedulestartdate?, actualstartdate?, scheduledcompletiondate?, revisedcompletiondate?, substantialcompletiondate?, actualcompletiondate?, noticetoproceed?, responsedue?, executedon?, scheduleimpact?, internalrefno?, internalinitiatedbykey?, internalinitiatedby?,internalinitiatedbyname?,
+        internalverbalbykey?, internalverbalby?, internalverbalbyname?, internalissuedbykey?, internalissuedby?, internalissuedbyname?, internalissuedon?, internalapprovedbykey?, internalapprovedby?, internalapprovedbyname?, internalapprovedon?, internalsignedbykey?, internalsignedby?, internalsignedbyname?, internalsignedon?, internalsource?, internalsourcerefno?, externalrefno?, externalverbalbykey?, externalverbalby?,
+        externalapprovedbykey?, externalapprovedby?, externalapprovedon?, externalsignedbykey?, externalsignedby?, externalsignedon?, performancebondrequired?, performancebondreceived?, performancebondamount?, performancesuretycompanykey?, performancesuretycompany?, performancesuretycompanyname?, paymentbondrequired?, paymentbondreceived?, paymentbondamount?,
+        paymentsuretycompanykey?, paymentsuretycompany?, paymentsuretycompanyname?,haschange?,revisedtotal?,revisedsubtotal?,trx_revisedtotal?,trx_revisedsubtotal?, taxsolutionid?, postedchangestotal?, potransitems?, subtotals?)>
 <!ELEMENT potransactiondef (transdefid?, transclass?)>
 <!ELEMENT productline (productlineid?, parentid, productlinedesc?, status?)>
 <!ELEMENT sopricelist (pricelistname?, datefrom?, dateto?, status?)>
 <!ELEMENT sotransactiondef (transdefid?, transclass?)>
-<!ELEMENT sotransaction (key?, transactiontype?, transactionid?, documentnumber?, datecreated?, dateposted?, createdfrom?, customerid?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, transactionstate?, whenmodified?, dateprinted?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, vsoepricelist?, projectid?, customfields?, sotransitems?, subtotals?)>
-<!ELEMENT otherreceipts (key?, datecreated?, recordtype?, recordtype?,description2?,paymethod?,docnumber?,datepaid?,description?,bankaccountid?,bankaccountname?,bankaccountcurr?,depositdate?,prbatchkey?,basecurr?,currency?,batchkey?,exch_rate_date?,exch_rate_type_id?,exchange_rate?,totalentered?,trx_totalentered?,recon_date?,state?,rawstate?,cleared?,parentpayment?,impliedlocation?,auwhencreated?,whenmodified?,createdby?,modifiedby?, customfields?, otherreceiptsentries?)>
+<!ELEMENT sotransaction (key?, transactiontype?, transactionid?, documentnumber?, datecreated?, dateposted?, createdfrom?, customerid?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, transactionstate?, whenmodified?, dateprinted?, basecurr?, currency?, exchratedate?, exchratetype?, exchratetypeid?, exchrate?, vsoepricelist?, projectid?, changelognumber?, needbydate?, shipbydate?, cancelafterdate?, donotshipbeforedate?, donotshipafterdate?, servicedeliverydate?, trackingnumber?, shippeddate?, customerponumber?, customfields?,
+        scope?, inclusions?, exclusions?, terms?, schedulestartdate?, actualstartdate?, scheduledcompletiondate?, revisedcompletiondate?, substantialcompletiondate?, actualcompletiondate?, noticetoproceed?, responsedue?, executedon?, scheduleimpact?, internalrefno?, internalinitiatedbykey?, internalinitiatedby?,internalinitiatedbyname?,
+        internalverbalbykey?, internalverbalby?, internalverbalbyname?, internalissuedbykey?, internalissuedby?, internalissuedbyname?, internalissuedon?, internalapprovedbykey?, internalapprovedby?, internalapprovedbyname?, internalapprovedon?, internalsignedbykey?, internalsignedby?, internalsignedbyname?, internalsignedon?, internalsource?, internalsourcerefno?, externalrefno?, externalverbalbykey?, externalverbalby?,
+        externalapprovedbykey?, externalapprovedby?, externalapprovedon?, externalsignedbykey?, externalsignedby?, externalsignedon?, performancebondrequired?, performancebondreceived?, performancebondamount?, performancesuretycompanykey?, performancesuretycompany?, performancesuretycompanyname?, paymentbondrequired?, paymentbondreceived?, paymentbondamount?,
+        paymentsuretycompanykey?, paymentsuretycompany?, paymentsuretycompanyname?, taxsolutionid?,projectcontractid?, pcbexternalrefno?, pcbdescription?, pcbdate?, architect?, billthroughdate?, billapplicationno?, orgcontractamt?, retcompletedamt?, retstoredmaterials?, lesspriorapplication?, tcapmaddition?, tcapmdeduction?, tcatmaddition?, tcatmdeduction?, previousretainagebalance?, totalretainageonthisinvoice?, sotransitems?, subtotals?)>
+<!ELEMENT otherreceipts (key?, datecreated?, recordtype?, recordtype?,description2?,paymethod?,docnumber?,datepaid?,description?,bankaccountid?,bankaccountname?,bankaccountcurr?,depositdate?,prbatchkey?,basecurr?,currency?,batchkey?,exch_rate_date?,exch_rate_type_id?,exchange_rate?,totalentered?,trx_totalentered?,recon_date?,state?,rawstate?,cleared?,parentpayment?,impliedlocation?,auwhencreated?,whenmodified?,createdby?,modifiedby?, customfields?, inclusivetax?, taxsolutionid?, otherreceiptsentries?)>
 <!ELEMENT subscription (object, intacctid, subscriber, externalid)>
 <!ELEMENT vendglgroup (glgroupname?)>
 <!ELEMENT warehouse (warehouseid?, name?, parentid?, managerid?, contactname?, shipto?, usedingl?, status?)>
@@ -129,11 +144,11 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 
 <!ELEMENT recurringgltransaction (journalid?, batchno?, datecreated?, description?, sourceentity?, customfields?, gltransactionentries?)>
 
-<!ELEMENT invoice (key?, customerid?, datecreated?, dateposted?, datedue?, datepaid?, termname?, batchkey?, invoiceno?, ponumber?, totalamount?, totalpaid?, totaldue?, description?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, basecurr?, currency?, billto?, shipto?, whenmodified?, state?, supdocid?, invoiceitems?)>
+<!ELEMENT invoice (key?, customerid?, datecreated?, dateposted?, datedue?, datepaid?, termname?, batchkey?, invoiceno?, ponumber?, totalamount?, totalpaid?, totaldue?, description?, trx_totalamount?, trx_totalpaid?, trx_totaldue?, basecurr?, currency?, billto?, shipto?, whenmodified?, state?, supdocid?, taxsolutionid?, invoiceitems?, retainagereleased)>
 <!ELEMENT invoicebatch (key?, batchtitle?, datecreated?, open?, status?, totalamount?, invoice*)>
 <!ELEMENT invoiceitems (lineitem+)>
 <!ELEMENT journal (symbol?, title?, status?)>
-<!ELEMENT lineitem (line_num?, accountlabel?, glaccountno?, offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, key?, totalpaid?, totaldue?, trx_amount?, trx_totalpaid?, trx_totaldue?, currency?)>
+<!ELEMENT lineitem (line_num?, accountlabel?, glaccountno?, offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, key?, totalpaid?, totaldue?, trx_amount?, trx_totalpaid?, trx_totaldue?, currency?, retainagepercentage?, amountretained?, trx_amountretained?)>
 <!ELEMENT otherreceiptsentry (line_num?, accountlabel?, glaccountno?, offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, key?, totalpaid?, totaldue?, trx_amount?, trx_totalpaid?, trx_totaldue?, currency?)>
 <!ELEMENT adjjournal (symbol?, title?, status?)>
 <!ELEMENT statjournal (symbol?, title?, status?)>
@@ -157,7 +172,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT salestotal (customerid, itemid, productlineid, quantity, totalamount)>
 <!ELEMENT redirectinfo (url, expires)>
 <!ELEMENT trialbalance (glaccountno, startbalance, debits, credits, endbalance, departmentid?, locationid?)>
-<!ELEMENT vendor (vendorid?, name?, parentid?, termname?, glaccountno?, accountlabel?, vendtype?, taxid?, creditlimit?, totaldue?, billingtype?, outsourcecheck?, servicestate?, vendoraccountno?, comments?, status?, currency?, onetime?, whenmodified?, primary?, returnto?, payto?, contactinfo?, contactlist?, form1099?, name1099?, paymentnotify?, achenabled?, wireenabled?, checkenabled?, achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?, wirebankname?, wirebankroutingnumber?, wireaccountnumber?, wireaccounttype?, pmplusremittancetype?, pmplusemail?, pmplusfax?, displaytermdiscount?, supdocid?, mergepaymentreq?)>
+<!ELEMENT vendor (vendorid?, name?, parentid?, termname?, glaccountno?, accountlabel?, vendtype?, taxid?, creditlimit?, totaldue?, billingtype?, outsourcecheck?, servicestate?, vendoraccountno?, comments?, status?, currency?, onetime?, whenmodified?, primary?, returnto?, payto?, contactinfo?, contactlist?, form1099?, name1099?, paymentnotify?, achenabled?, wireenabled?, checkenabled?, achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?, wirebankname?, wirebankroutingnumber?, wireaccountnumber?, wireaccounttype?, pmplusremittancetype?, pmplusemail?, pmplusfax?, displaytermdiscount?, supdocid?, mergepaymentreq?, retainagepercentage?)>
 <!ELEMENT vendorvisibility (vendorid?, name?, visibility?)>
 <!ELEMENT vendorentityaccount (recordno?, vendorid?, locationid?, accountno?, vendorname?, locationname?) >
 <!ELEMENT appayment (key, vendorid, paymentamount, refid?, paymentdate, paymentmethod, financialentity, transactionstate, paymenttrxamount?, currency?, whenmodified?, cleared?, cleareddate?, appaymentitems)>
@@ -178,7 +193,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT agingdetail (invoiceno,totaldue,agingdate,age)>
 <!ELEMENT sessioninfo ((userid, companyid, sessiontimestamp)|(url, expires, session))>
 <!ELEMENT recurbill (recordno, prbatchkey, prbatch, recordtype, description, state, datecreated, datemodified, termkey, termname, recordid, totalentered, userkey, docnumber, prmodulekey, status, schopkey, entity, contractid, contractdesc, vendorid, vendorname, username, paytocontactname, returntocontactname, locationkey, recurbillitems, supdocid, externalurl, startdate, enddate, repeatcount, repeatby, interval, vendordata)>
-<!ELEMENT recurinvoice (recordno, prbatchkey, prbatch, recordtype, description, state, datecreated, datemodified, termkey, termname, recordid, totalentered, userkey, docnumber, prmodulekey, status, schopkey, entity, contractid, contractdesc, customerid, customername, username, billtocontactname, shiptocontactname, locationkey, recurinvoiceitems, supdocid, externalurl, startdate, enddate, repeatcount, repeatby, interval, customerdata)>
+<!ELEMENT recurinvoice (recordno, prbatchkey, prbatch, recordtype, description, state, datecreated, datemodified, termkey, termname, recordid, totalentered, userkey, docnumber, prmodulekey, status, schopkey, entity, contractid, contractdesc, customerid, customername, username, billtocontactname, shiptocontactname, locationkey, taxsolutionid?, recurinvoiceitems, supdocid, externalurl, startdate, enddate, repeatcount, repeatby, interval, customerdata)>
 <!ELEMENT recurbillitems (recurlineitem+)>
 <!ELEMENT recurinvoiceitems (recurlineitem+)>
 <!ELEMENT recurlineitem ((accountlabel | glaccountno), amount, memo?, locationid?, departmentid?)>
@@ -210,7 +225,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!ELEMENT allocationentries (entry+) >
 <!ELEMENT entry ( value?, departmentid?, locationid?) >
 
-<!ELEMENT cctransaction (record?, description?, chargecardid?, payee?, referenceno?, paymentdate?, ccpayitems) >
+<!ELEMENT cctransaction (record?, description?, chargecardid?, payee?, referenceno?, paymentdate?,inclusivetax?, taxsolutionid?, ccpayitems) >
 <!ELEMENT ccpayitems (ccpayitem+) >
 <!ELEMENT ccpayitem ( line_num?, glaccountno?, accountlabel?, description?, paymentamount?, department?, location?) >
 
@@ -380,7 +395,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref | permiss
 <!-- ENUMS: "vendor", "bill", "vendorpref" -->
 <!-- Optional contact fields -->
 <!ENTITY % CONTACT_OPTIONAL_FIELDS " companyname?, taxable?, taxgroup?, prefix?, firstname?, lastname?, initial?, phone1?, phone2?,
-cellphone?, pager?, fax?, email1?, email2?, url1?, url2?, status?, mailaddress?, taxid?">
+cellphone?, pager?, fax?, email1?, email2?, url1?, url2?, status?, mailaddress?, taxid?, taxsolutionid?, taxschedule?">
 <!-- Contact Fields -->
 <!ENTITY % CONTACT_FIELDS "(contactname, printas, %CONTACT_OPTIONAL_FIELDS;)">
 
@@ -398,7 +413,7 @@ pricelistitem | productline | renewalmacro | reportingperiod | revrecschedule | 
 sopricelist | sotransaction | otherreceipts | recursotransaction | sotransactiondef | subscription | territory | uom |
 vendglgroup | vendor | vendorvisibility | warehouse | taxdetail | taxschedule | taxscheduledetail | contacttaxgroup | itemtaxgroup |
 taxschedulemap | smarteventlog | appaymentrequest | icitemtotals |
-itemtotal | timesheet | task | projecttype | projectstatus | timetype |
+itemtotal | timesheet | task | costtype | projecttype | projectstatus | timetype |
 allocation | cctransaction | revrecchangelog | vsoeallocation | expenseadjustmentreport | earningtype | employeerate |
 achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!-- COMMON OBJECT DEFINITIONS -->
@@ -457,7 +472,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT moduleprefs (modulepref+)>
 <!ELEMENT modulepref (appSubscription, preference, prefvalue)>
 <!ELEMENT companytype %ENUM_COMPANYTYPE;>
-<!ELEMENT contact (contactname, printas,taxable?, companyname?, taxgroup?, prefix?, firstname?, lastname?, initial?, phone1?, phone2?, cellphone?, pager?, fax?, email1?, email2?, url1?, url2?, status?, mailaddress?, taxid?)>
+<!ELEMENT contact (contactname, printas,taxable?, companyname?, taxgroup?, prefix?, firstname?, lastname?, initial?, phone1?, phone2?, cellphone?, pager?, fax?, email1?, email2?, url1?, url2?, status?, mailaddress?, taxid?, taxsolutionid?, taxschedule?)>
 <!ELEMENT contactlist (contactitem+)>
 <!ELEMENT contactinfo (contact | contactname)>
 <!ELEMENT contactitem (category, contactname)>
@@ -517,7 +532,9 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT multiplier %NUMBER_4;>
 <!ELEMENT discounttoapply %MONEY;>
 <!ELEMENT discsurchargememo %STRING_4000;>
-<!ELEMENT dropship %BOOLEAN;> 
+<!ELEMENT dropship %BOOLEAN;>
+<!ELEMENT buytoorder %BOOLEAN;>
+<!ELEMENT btoshiptocontactname %STRING_100;>
 <!ELEMENT document %STRING_30;>
 <!ELEMENT documentno %STRING_20;>
 <!ELEMENT origdocdate %DATE;>
@@ -741,6 +758,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT requireloc %BOOLEAN;>
 <!ELEMENT requireproject %BOOLEAN;>
 <!ELEMENT requiretask %BOOLEAN;>
+<!ELEMENT requirecosttype %BOOLEAN;>
 <!ELEMENT requirecustomer %BOOLEAN;>
 <!ELEMENT requirevendor %BOOLEAN;>
 <!ELEMENT requireemployee %BOOLEAN;>
@@ -858,6 +876,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT postactualcost %BOOLEAN;>
 <!ELEMENT offsetaccountno %STRING_24;>
 <!ELEMENT contraaccountno %STRING_24;>
+<!ELEMENT itemaliasid %STRING_50;>
 
 <!-- ITEM ELEMENTS -->
 <!ELEMENT allow_backorder %BOOLEAN;>
@@ -870,6 +889,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT glgroup %STRING_80;>
 <!ELEMENT inventory_precision %INTEGER;>
 <!ELEMENT itemtype %STRING_30;>
+<!ELEMENT enablefulfillment %BOOLEAN;>
 <!ELEMENT enable_bins %BOOLEAN;>
 <!ELEMENT producttype %STRING_20;>
 <!ELEMENT purchase_unit %STRING_30;>
@@ -885,6 +905,54 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT taxcode %STRING_30;>
 <!ELEMENT mrccode %STRING_20;>
 <!ELEMENT retailprice %MONEY;>
+<!ELEMENT autoprintlabel %BOOLEAN;>
+<!ELEMENT weightuom %STRING_50;>
+<!ELEMENT netweight %NUMBER_12_4;>
+<!ELEMENT lwhuom %STRING_50;>
+<!ELEMENT width %NUMBER_12_4;>
+<!ELEMENT length %NUMBER_12_4;>
+<!ELEMENT height %NUMBER_12_4;>
+<!ELEMENT thicknessuom %STRING_50;>
+<!ELEMENT thickness %NUMBER_12_4;>
+<!ELEMENT minimumthickness %NUMBER_12_4;>
+<!ELEMENT maximumthickness %NUMBER_12_4;>
+<!ELEMENT areauom %STRING_50;>
+<!ELEMENT area %NUMBER_12_4;>
+<!ELEMENT volumeuom %STRING_50;>
+<!ELEMENT volume %NUMBER_12_4;>
+<!ELEMENT diameteruom %STRING_50;>
+<!ELEMENT innerdiameter %NUMBER_12_4;>
+<!ELEMENT outerdiameter %NUMBER_12_4;>
+<!ELEMENT durometer %STRING_10;>
+<!ELEMENT densityuom %STRING_50;>
+<!ELEMENT density %NUMBER_12_4;>
+<!ELEMENT upc12 %INTEGER;>
+<!ELEMENT ean13 %INTEGER;>
+<!ELEMENT safetyitem %BOOLEAN;>
+<!ELEMENT restricteditem %BOOLEAN;>
+<!ELEMENT compliantitem %BOOLEAN;>
+<!ELEMENT condition %STRING_30;>
+<!ELEMENT engineeringalert %STRING_30;>
+<!ELEMENT specification1 %STRING_30;>
+<!ELEMENT specification2 %STRING_30;>
+<!ELEMENT specification3 %STRING_30;>
+<!ELEMENT engineeringapproval %BOOLEAN;>
+<!ELEMENT qualitycontrolapproval %BOOLEAN;>
+<!ELEMENT salesapproval %BOOLEAN;>
+<!ELEMENT primarycountryoforigin %STRING_30;>
+<!ELEMENT brand %STRING_30;>
+<!ELEMENT subbrand %STRING_30;>
+<!ELEMENT subcategory %STRING_30;>
+<!ELEMENT catalogref %STRING_30;>
+<!ELEMENT color %STRING_30;>
+<!ELEMENT style %STRING_30;>
+<!ELEMENT size1 %STRING_30;>
+<!ELEMENT size2 %STRING_30;>
+<!ELEMENT giftcard %BOOLEAN;>
+<!ELEMENT webenabled %BOOLEAN;>
+<!ELEMENT webname %STRING_30;>
+<!ELEMENT webshortdesc %STRING_1000;>
+<!ELEMENT weblongdesc %STRING_2000;>
 
 <!ELEMENT hasstartenddates %BOOLEAN;>
 <!ELEMENT term_period %STRING_1;>
@@ -1188,7 +1256,7 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!-- Elements for TIMESHEET -->
 <!ELEMENT timesheetdescription %STRING_200;>
 <!ELEMENT timesheetitems (timesheetitem+)>
-<!ELEMENT timesheetitem (lineno?, customerid?, itemid?, projectid?, taskname?, timetype?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, contractid?, warehouseid?, customfields?)>
+<!ELEMENT timesheetitem (lineno?, customerid?, itemid?, projectid?, taskname?, timetype?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, contractid?, warehouseid?, extamount?, extemployertaxes?, extfringes?, extcashfringes?, customfields?)>
 <!ELEMENT timetype %STRING_80;>
 <!ELEMENT entrydate %DATE;>
 <!ELEMENT glpostdate %DATE;>
@@ -1196,6 +1264,10 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT timesheetentrydescription %STRING_100;>
 <!ELEMENT notes %STRING_100;>
 <!ELEMENT periodtype (#PCDATA)>
+<!ELEMENT extamount %NUMBER_38_2;>
+<!ELEMENT extemployertaxes %NUMBER_38_2;>
+<!ELEMENT extfringes %NUMBER_38_2;>
+<!ELEMENT extcashfringes %NUMBER_38_2;>
 
 <!-- Elements for ALLOCATIONS -->
 <!ELEMENT allocationid %STRING_50;>
@@ -1345,3 +1417,31 @@ achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
 <!ELEMENT taxrate %NUMBER_10_4;>
 <!ELEMENT grossamount %MONEY;>
 <!ELEMENT rate %NUMBER_10_4;>
+
+<!-- Elements for shipping Date in OE and PO-->
+<!ELEMENT cancelafterdate %DATE;>
+<!ELEMENT donotshipafterdate %DATE;>
+<!ELEMENT donotshipbeforedate %DATE;>
+<!ELEMENT needbydate %DATE;>
+<!ELEMENT servicedeliverydate %DATE;>
+<!ELEMENT promiseddate %DATE;>
+<!ELEMENT contractstartdate %DATE;>
+<!ELEMENT contractenddate %DATE;>
+<!ELEMENT customerponumber %STRING_100;>
+<!ELEMENT trackingnumber %STRING_4000;>
+<!-- Elements for shipping Date in OE and PO line items-->
+<!ELEMENT shipby %DATE;>
+<!ELEMENT datepickticketprinted %DATE;>
+<!ELEMENT dateconfirmed %DATE;>
+<!ELEMENT dateshiptosupplier %DATE;>
+<!ELEMENT relateddockey %KEY;>
+<!ELEMENT relateddoclinekey %KEY;>
+<!ELEMENT conversiontype %KEY;>
+<!-- Elements for shipping Date in OE -->
+<!ELEMENT shipbydate %DATE;>
+<!ELEMENT shippeddate %DATE;>
+
+<!-- Needed for vat enabled transaction -->
+<!ELEMENT taxsolutionid %STRING_100;>
+<!ELEMENT inclusivetax %BOOLEAN;>
+<!ELEMENT taxschedule %STRING_100;>

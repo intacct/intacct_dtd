@@ -1,9 +1,10 @@
 <!--
-Copyright 2019 Sage Intacct, Inc.
+Copyright 2024 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
 of the License at
+
 
 http://www.apache.org/licenses/LICENSE-2.0
 
@@ -13,11 +14,11 @@ express or implied. See the License for the specific language governing
 permissions and limitations under the License.
 -->
 <!-- CASH MANAGEMENT FUNCTIONS -->
-<!ELEMENT record_cctransaction (chargecardid, paymentdate, referenceno?, payee?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, ccpayitems)>
+<!ELEMENT record_cctransaction (chargecardid, paymentdate, referenceno?, payee?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?,inclusivetax?, taxsolutionid?, ccpayitems)>
 <!ELEMENT ccpayitems (ccpayitem+)>
-<!ELEMENT ccpayitem ((glaccountno | accountlabel), description?, paymentamount, departmentid?, locationid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, contractid?, warehouseid?, customfields?)>
-<!ELEMENT record_otherreceipt (paymentdate, payee, receiveddate, paymentmethod, (undepglaccountno|(bankaccountid, depositdate?)), refid?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, receiptitems)>
-<!ELEMENT update_otherreceipt (paymentdate?, payee?, receiveddate?, paymentmethod?, (undepglaccountno|(bankaccountid, depositdate?))?, refid?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, receiptitems?)>
+<!ELEMENT ccpayitem ((glaccountno | accountlabel), description?, paymentamount, departmentid?, locationid?, customerid?, vendorid?, employeeid?, (projectid, (taskid, costtypeid?)?)?, itemid?, classid?, contractid?, warehouseid?, customfields?, totaltrxamount?, taxentries?, billable?)>
+<!ELEMENT record_otherreceipt (paymentdate, payee, receiveddate, paymentmethod, (undepglaccountno|(bankaccountid, depositdate?)), refid?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, inclusivetax?, taxsolutionid?, receiptitems)>
+<!ELEMENT update_otherreceipt (paymentdate?, payee?, receiveddate?, paymentmethod?, (undepglaccountno|(bankaccountid, depositdate?))?, refid?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, inclusivetax?, receiptitems?)>
 <!ATTLIST update_otherreceipt
         key CDATA #REQUIRED
         set_nulls (true | false) "false"
@@ -54,7 +55,7 @@ permissions and limitations under the License.
 >
 <!ELEMENT reconcile_bank (bankaccountid, cutoffdate?, statementendingdate, reconmode, statementendingbalance, banktxns)>
 
-<!ELEMENT update_cctransaction (paymentdate?, referenceno?, payee?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, updateccpayitems?)>
+<!ELEMENT update_cctransaction (paymentdate?, referenceno?, payee?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?,inclusivetax?, updateccpayitems?)>
 <!ATTLIST update_cctransaction
 	key CDATA #REQUIRED
 	set_nulls (true | false) "false"
@@ -65,7 +66,7 @@ permissions and limitations under the License.
 >
 
 <!ELEMENT updateccpayitems (ccpayitem | updateccpayitem)+>
-<!ELEMENT updateccpayitem ((glaccountno | accountlabel)?, description?, paymentamount?, departmentid?, locationid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, contractid?, warehouseid?, customfields?)>
+<!ELEMENT updateccpayitem ((glaccountno | accountlabel)?, description?, paymentamount?, departmentid?, locationid?, customerid?, vendorid?, employeeid?, (projectid, (taskid, costtypeid?)?)?, itemid?, classid?, contractid?, warehouseid?, customfields?, totaltrxamount?, taxentries?, billable?)>
 <!ATTLIST updateccpayitem
 	line_num CDATA #REQUIRED
 >

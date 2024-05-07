@@ -1,5 +1,5 @@
 <!--
-Copyright 2019 Sage Intacct, Inc.
+Copyright 2024 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -18,7 +18,7 @@ permissions and limitations under the License.
 <!ELEMENT create_vendor (vendorid, name, parentid?, termname?, glaccountno?, accountlabel?, vendtype?, taxid?, creditlimit?, paymethod?, outsourcecheck?, outsourceach?, billingtype?, vendoraccountno?, displocacctnocheck?, onhold?, donotcutcheck?,
         comments?, status?, currency?, onetime?, externalid?, primary?, returnto?, payto?, contactinfo?, contactto1099?, contactlist?, name1099?,form1099type?, form1099box?, customfields?, paymentnotify?, achenabled?, wireenabled?,
         checkenabled?, achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?, wirebankname?, wirebankroutingnumber?, wireaccountnumber?, wireaccounttype?, pmplusremittancetype?, pmplusemail?,
-        pmplusfax?, displaytermdiscount?, visibility?, supdocid?, mergepaymentreq?, offsetglaccountno?)>
+        pmplusfax?, displaytermdiscount?, visibility?, supdocid?, mergepaymentreq?, offsetglaccountno?, retainagepercentage?)>
 <!ATTLIST create_vendor
 	ignoreduplicates (true | false) "false"
 >
@@ -26,7 +26,7 @@ permissions and limitations under the License.
 <!ELEMENT update_vendor (name?, parentid?, termname?, glaccountno?, accountlabel?, vendtype?, taxid?, creditlimit?, paymethod?, outsourcecheck?, outsourceach?, billingtype?, vendoraccountno?, displocacctnocheck?, onhold?, donotcutcheck?,
         comments?, status?, currency?, primary?, returnto?, payto?, contactinfo?, contactlist?, contactto1099?, name1099?, form1099type?, form1099box?, customfields?, paymentnotify?, achenabled?, wireenabled?, checkenabled?,
         achbankroutingnumber?, achaccountnumber?, achaccounttype?, achremittancetype?, wirebankname?, wirebankroutingnumber?, wireaccountnumber?, wireaccounttype?, pmplusremittancetype?,
-        pmplusemail?, pmplusfax?, displaytermdiscount?, visibility?, supdocid?, mergepaymentreq?, offsetglaccountno?)>
+        pmplusemail?, pmplusfax?, displaytermdiscount?, visibility?, supdocid?, mergepaymentreq?, offsetglaccountno?, retainagepercentage?)>
 <!ATTLIST update_vendor
 	vendorid CDATA #REQUIRED
 	set_nulls (true | false) "false"
@@ -63,7 +63,7 @@ permissions and limitations under the License.
 <!-- Create an AP adjustment batch -->
 <!ELEMENT create_apadjustmentbatch (batchtitle, datecreated?, create_apadjustment*)>
 <!-- Create a bill -->
-<!ELEMENT create_bill (vendorid, datecreated, dateposted?, ((datedue, termname?) | termname), action?, batchkey?, billno?, ponumber?, onhold?, description?, externalid?, payto?, returnto?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? ,nogl?, supdocid?, customfields?, billitems)>
+<!ELEMENT create_bill (vendorid, datecreated, dateposted?, ((datedue, termname?) | termname), action?, batchkey?, billno?, ponumber?, onhold?, description?, externalid?, payto?, returnto?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? ,nogl?, supdocid?, customfields?, inclusivetax?, taxsolutionid?, billitems)>
 <!-- Create a recurring bill -->
 <!ELEMENT create_recurringbill (vendorid, datecreated, recordid?, docnumber?, description?, contractid?, contractdesc?, termname, (currency, ((exchratedate?, exchratetype) | exchrate))?, status?, supdocid?, paytocontactname?, returntocontactname?, startdate, ending?, modenew?, interval?, eom?, recurbillitems)>
 <!--Reclassify bill -->
@@ -72,7 +72,7 @@ permissions and limitations under the License.
         key CDATA #REQUIRED
 >
 <!-- Update a Bill -->
-<!ELEMENT update_bill (vendorid?, datecreated?, dateposted?, datedue?, termname?, action?,  billno?, ponumber?, onhold?, description?, payto?, returnto?, (currency, ((exchratedate?, exchratetype) | exchrate))?, supdocid?, customfields?, updatebillitems?)>
+<!ELEMENT update_bill (vendorid?, datecreated?, dateposted?, datedue?, termname?, action?,  billno?, ponumber?, onhold?, description?, payto?, returnto?, (currency, ((exchratedate?, exchratetype) | exchrate))?, supdocid?, customfields?, inclusivetax?, updatebillitems?)>
 <!ATTLIST update_bill
 	key CDATA #REQUIRED
 	partial_edit (true | false) "false"
@@ -107,9 +107,9 @@ permissions and limitations under the License.
 	externalkey (true | false) "false"
 >
 <!-- Create an ap adjustment -->
-<!ELEMENT create_apadjustment (vendorid, datecreated, dateposted?, batchkey?, adjustmentno?, action?, billno?, description?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? ,nogl?, customfields?, apadjustmentitems)>
+<!ELEMENT create_apadjustment (vendorid, datecreated, dateposted?, batchkey?, adjustmentno?, action?, billno?, description?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? ,nogl?, customfields?, inclusivetax?, taxsolutionid?, apadjustmentitems)>
 <!-- Update an ap adjustment -->
-<!ELEMENT update_apadjustment (vendorid?, datecreated?, dateposted?, adjustmentno?, action?, billno?,description?, (currency, ((exchratedate?, exchratetype) | exchrate))?, updateapadjustmentitems?)>
+<!ELEMENT update_apadjustment (vendorid?, datecreated?, dateposted?, adjustmentno?, action?, billno?,description?, (currency, ((exchratedate?, exchratetype) | exchrate))?, inclusivetax?, updateapadjustmentitems?)>
 <!ATTLIST update_apadjustment
 	key CDATA #REQUIRED
 	set_nulls (true | false) "false"
@@ -141,11 +141,12 @@ permissions and limitations under the License.
 >
 <!ELEMENT create_appayment ((bankaccountid|chargecardid), vendorid, memo,paymentmethod?, checkdate,batchkey?, checkno?, billno?,basepaymentamount?,paymentexchratetype?,(basecurr?,currency, ((exchratedate?, exchratetype) | exchrate))?, payitems)>
 <!ELEMENT approve_appaymentrequest (appaymentkeys)>
+<!ELEMENT decline_appaymentrequest (appaymentkeys)>
 <!ELEMENT send_appaymentrequest (appaymentkeys)>
 <!ELEMENT confirm_appaymentrequest (appaymentkeys)>
 <!ELEMENT void_appaymentrequest (appaymentkeys)>
 <!ELEMENT payitems (payitem+)>
-<!ELEMENT payitem ((glaccountno | accountlabel), paymentamount, item1099?, departmentid?, locationid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?)>
+<!ELEMENT payitem ((glaccountno | accountlabel), paymentamount, item1099?, departmentid?, locationid?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, itemid?, classid?)>
 <!ELEMENT appaymentkeys (appaymentkey+)>
 <!-- END NEW For APPayment APIs -->
 <!ELEMENT create_reimbursementrequest (bankaccountid, employeeid, memo?, paymentmethod, paymentdate, paymentoption?, eppaymentrequestitems , documentnumber?, paymentdescription?, paymentcontact?)>
@@ -156,13 +157,13 @@ permissions and limitations under the License.
 >
 <!-- Create a Customer -->
 <!ELEMENT create_customer (customerid, name, parentid?, termname?, custrepid?, shippingmethod?, custtype?, taxid?, creditlimit?, territoryid?, resaleno?, deliveryoptions?, accountlabel?, glaccountno?, glgroup?, onhold?,
-        comments?, status?, currency?, externalid?, primary?, billto?, shipto?, contactinfo?, contactlist?, vsoepricelist?, customfields?, visibility?, supdocid?, offsetglaccountno?)>
+        comments?, status?, currency?, externalid?, primary?, billto?, shipto?, contactinfo?, contactlist?, vsoepricelist?, customfields?, visibility?, supdocid?, offsetglaccountno?, retainagepercentage?)>
 <!ATTLIST create_customer
 	ignoreduplicates (true | false) "false"
 >
 <!-- Update Customer -->
 <!ELEMENT update_customer (name?, parentid?, termname?, custrepid?, shippingmethod?, custtype?, taxid?, creditlimit?, territoryid?, resaleno?, deliveryoptions?, accountlabel?, glaccountno?, glgroup?,  onhold?, comments?,
-        status?, currency?, primary?, billto?, shipto?, contactinfo?, contactlist?, vsoepricelist?, customfields?, visibility?, supdocid?, offsetglaccountno?)>
+        status?, currency?, primary?, billto?, shipto?, contactinfo?, contactlist?, vsoepricelist?, customfields?, visibility?, supdocid?, offsetglaccountno?, retainagepercentage?)>
 <!ATTLIST update_customer
 	customerid CDATA #REQUIRED
 	set_nulls (true | false) "false"
@@ -183,9 +184,9 @@ permissions and limitations under the License.
 <!ELEMENT create_invoicebatch (batchtitle, datecreated?, create_invoice*)>
 <!-- Create an invoice -->
 <!ELEMENT create_invoice (customerid, datecreated, dateposted?, datedue?, termname?, batchkey?, action?, invoiceno?,  ponumber?, description?, externalid?,  billto?, shipto?, (basecurr?, currency, ((exchratedate?, exchratetype) |
-        exchrate))? , nogl?,  supdocid?, customfields?, invoiceitems)>
+        exchrate))? , nogl?,  supdocid?, customfields?, taxsolutionid?, invoiceitems)>
 <!-- Create a recurring invoice -->
-<!ELEMENT create_recurringinvoice (customerid, datecreated, recordid?, docnumber?, description?, contractid?, contractdesc?, termname, (currency, ((exchratedate?, exchratetype) | exchrate))?, status?, supdocid?, billtocontactname?, shiptocontactname?, startdate, ending?, modenew?, interval?, eom?, recurinvoiceitems, paymethod?, payinfull?, paymentamount?, customercreditcardkey?, customerbankaccountkey?, creditcardtype?, expirednotify?, expirednotifyemail?, (accounttype, (bankaccountid | glaccountkey))?)>
+<!ELEMENT create_recurringinvoice (customerid, datecreated, recordid?, docnumber?, description?, contractid?, contractdesc?, termname, (currency, ((exchratedate?, exchratetype) | exchrate))?, status?, supdocid?, billtocontactname?, shiptocontactname?, startdate, ending?, modenew?, interval?, eom?, taxsolutionid?, recurinvoiceitems, paymethod?, payinfull?, paymentamount?, customercreditcardkey?, customerbankaccountkey?, creditcardtype?, expirednotify?, expirednotifyemail?, (accounttype, (bankaccountid | glaccountkey))?)>
 <!--Reclassify invoice -->
 <!ELEMENT reclassify_invoice (invoiceno?, referenceno?, description?, termname?, datedue?, reclassifyitems?)>
 <!ATTLIST reclassify_invoice
@@ -223,7 +224,7 @@ permissions and limitations under the License.
 <!-- Create an adjustment batch -->
 <!ELEMENT create_aradjustmentbatch (batchtitle, datecreated?, create_aradjustment*)>
 <!-- Create an ar adjustment -->
-<!ELEMENT create_aradjustment (customerid, datecreated, dateposted?, batchkey?, adjustmentno?, action?, invoiceno?,description?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? , nogl?, aradjustmentitems)>
+<!ELEMENT create_aradjustment (customerid, datecreated, dateposted?, batchkey?, adjustmentno?, action?, invoiceno?,description?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? , nogl?, taxsolutionid?, aradjustmentitems)>
 <!-- Update an Adjustment -->
 <!ELEMENT update_aradjustment (customerid?, datecreated?, dateposted?, adjustmentno?,action?, invoiceno?, description?, (currency, ((exchratedate?, exchratetype) | exchrate))?, updatearadjustmentitems?)>
 <!ATTLIST update_aradjustment
@@ -291,9 +292,9 @@ permissions and limitations under the License.
 <!-- Create an expense report batch -->
 <!ELEMENT create_expensereportbatch (batchtitle, datecreated?, create_expensereport*)>
 <!-- Create an expense report-->
-<!ELEMENT create_expensereport (employeeid, datecreated, dateposted?, state?, batchkey?, expensereportno?, description?, memo?, externalid?, basecurr?, currency?, customfields?, expenses, supdocid?)>
+<!ELEMENT create_expensereport (employeeid, datecreated, dateposted?, state?, batchkey?, expensereportno?, description?, memo?, externalid?, basecurr?, currency?, customfields?, expenses, supdocid?, inclusivetax?, taxsolutionid?)>
 <!-- Update an expense report-->
-<!ELEMENT update_expensereport (employeeid?, datecreated?, dateposted?, state?, expensereportno?, description?, memo?, basecurr?, currency?, customfields?, updateexpenses?, supdocid?)>
+<!ELEMENT update_expensereport (employeeid?, datecreated?, dateposted?, state?, expensereportno?, description?, memo?, basecurr?, currency?, customfields?, updateexpenses?, supdocid?, inclusivetax?)>
 <!ATTLIST update_expensereport
 	key CDATA #REQUIRED
 	set_nulls (true | false) "false"
@@ -317,10 +318,10 @@ permissions and limitations under the License.
 >
 <!-- Create an Expense adjustment -->
 
-<!ELEMENT create_expenseadjustmentreport (employeeid, datecreated, dateposted?, batchkey?, adjustmentno?, docnumber?, description?, basecurr?, currency? , expenseadjustments, supdocid?)>
+<!ELEMENT create_expenseadjustmentreport (employeeid, datecreated, dateposted?, batchkey?, adjustmentno?, docnumber?, description?, basecurr?, currency? , expenseadjustments, supdocid?, inclusivetax?, taxsolutionid?)>
 
 <!-- Update an EE adjustment -->
-<!ELEMENT update_expenseadjustmentreport (employeeid?, datecreated?, adjustmentno?,docnumber?, description?, basecurr?, currency? , updateexpenseadjustments?, supdocid?)>
+<!ELEMENT update_expenseadjustmentreport (employeeid?, datecreated?, adjustmentno?,docnumber?, description?, basecurr?, currency? , updateexpenseadjustments?, supdocid?, inclusivetax?)>
 
 <!ATTLIST update_expenseadjustmentreport
 	key CDATA #REQUIRED
@@ -448,4 +449,4 @@ permissions and limitations under the License.
 >
 
 <!-- Generate project invoices -->
-<!ELEMENT generate_projectinvoices (invoicetemplate, invoicedate, glpostdate?, sortbyproject?, invoiceby, customerid?, projectid?, pricelistid?, saveas, invcurrencysource?, invoicecurrency?, exchratedate?, exchratetype?, exchrate?, custtype?, projecttype?, projectmanagerid?, fromdate?, todate?, fromitemid?, toitemid?, employeeid?, locationid?, departmentid?)>
+<!ELEMENT generate_projectinvoices (invoicetemplate, invoicedate, glpostdate?, sortbyproject?, invoiceby, customerid?, projectid?, pricelistid?, saveas, invcurrencysource?, invoicecurrency?, exchratedate?, exchratetype?, exchrate?, custtype?, projecttype?, projectmanagerid?, fromdate?, todate?, fromitemid?, toitemid?, employeeid?, locationid?, departmentid?, includereversals?)>

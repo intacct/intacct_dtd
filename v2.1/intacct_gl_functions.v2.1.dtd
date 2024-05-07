@@ -1,5 +1,5 @@
 <!--
-Copyright 2019 Sage Intacct, Inc.
+Copyright 2024 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -31,21 +31,21 @@ revstartdate?, revending?, revmodenew?, revinterval?, reveom?, reverrnotifyemail
 <!-- Get Trial Balance -->
 <!ELEMENT get_trialbalance ((reportingperiodname | (startdate, enddate)), showzerobalances?,showdeptdetail?,showlocdetail?,
 			reportingbook?, adjbooks?, includereportingbook?, statistical?, departmentid?, dept_subs?, locationid?, loc_subs?,
-			((projectid?, projectid_subs?) | projecttypeid?), (taskid?, taskid_subs?), ((customerid?, customerid_subs?) | customertypeid?),
+			((projectid?, projectid_subs?) | projecttypeid?), (taskid?, taskid_subs?), (costtypeid?, costtypeid_subs?), ((customerid?, customerid_subs?) | customertypeid?),
 			((vendorid?, vendorid_subs?) | vendortypeid?), ((employeeid?, employeeid_subs?) | employeetypeid?), itemid?, productlineid?,
 			classid?, classid_subs?, contractid?, contractid_subs?, warehouseid?, warehouseid_subs?,
-		    userDefinedDimensions?)>
+		    userDefinedDimensions?, debitcreditbalance?)>
 <!-- Get Account Balances -->
 <!ELEMENT get_accountbalances ((reportingperiodname | (startdate, enddate)), (glaccountno | accountgroupname | (startaccountno, endaccountno))?,
 			locationid?, departmentid?, showzerobalances?, reportingbook?, adjbooks?, includereportingbook?, statistical?, dept_subs?, loc_subs?,
-			((projectid?, projectid_subs?) | projecttypeid?), (taskid?, taskid_subs?), ((customerid?, customerid_subs?) | customertypeid?),
+			((projectid?, projectid_subs?) | projecttypeid?), (taskid?, taskid_subs?), (costtypeid?, costtypeid_subs?), ((customerid?, customerid_subs?) | customertypeid?),
 			((vendorid?, vendorid_subs?) | vendortypeid?), ((employeeid?, employeeid_subs?) | employeetypeid?), itemid?, productlineid?,
 			classid?, classid_subs?, contractid?, contractid_subs?, warehouseid?, warehouseid_subs?,
 		userDefinedDimensions?)>
 <!-- Get Account Balances By Dimensions-->
-<!ELEMENT get_accountbalancesbydimensions ((reportingperiodname | (startdate, enddate)), (glaccountno | accountgroupname | (startaccountno, endaccountno)),
+<!ELEMENT get_accountbalancesbydimensions ((reportingperiodname | (startdate, enddate)), contentselection?, budgetid?, budgetcomparison?, showperiodbalancedetail?, showzerowithactivity?, (glaccountno | accountgroupname | (startaccountno, endaccountno)),
 			reportingbook?, adjbooks?, includereportingbook?, statistical?, (departmentid, dept_subs?)?, (locationid, loc_subs?)?,
-			((projectid, projectid_subs?) | projecttypeid)?, ((customerid, customerid_subs?) | customertypeid)?,
+			((projectid, projectid_subs?) | projecttypeid)?, (taskid, taskid_subs?)?, (costtypeid, costtypeid_subs?)?, ((customerid, customerid_subs?) | customertypeid)?,
 			((vendorid, vendorid_subs?) | vendortypeid)?, ((employeeid, employeeid_subs?) | employeetypeid)?, itemid?, productlineid?,
 			(classid, classid_subs?)?, (contractid, contractid_subs?)?, (warehouseid, warehouseid_subs?)?, userDefinedDimensions?,
 			groupby?)>
@@ -81,12 +81,12 @@ revstartdate?, revending?, revmodenew?, revinterval?, reveom?, reverrnotifyemail
 >
 
 <!-- Create Glaccount -->
-<!ELEMENT create_glaccount (glaccountno, title, normalbalance, accounttype?, closingtype?, closingaccountno?, status?, requiredept?, requireloc?, requireproject?, requiretask?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, externalid?, customfields?, category?, taxcode?, mrccode?, alternativeaccount?, subledgercontrolon?)>
+<!ELEMENT create_glaccount (glaccountno, title, normalbalance, accounttype?, closingtype?, closingaccountno?, status?, requiredept?, requireloc?, requireproject?, requiretask?, requirecosttype?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, externalid?, customfields?, category?, taxcode?, mrccode?, alternativeaccount?, subledgercontrolon?)>
 <!ATTLIST create_glaccount
 	ignoreduplicates (true | false) "false"
 >
 <!-- Update Glaccount -->
-<!ELEMENT update_glaccount (title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, status?, requiredept?, requireloc?, requireproject?, requiretask?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, customfields?, category?, taxcode?, mrccode?, alternativeaccount?, subledgercontrolon?)>
+<!ELEMENT update_glaccount (title?, normalbalance?, accounttype?, closingtype?, closingaccountno?, status?, requiredept?, requireloc?, requireproject?, requiretask?, requirecosttype?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, taxable?, customfields?, category?, taxcode?, mrccode?, alternativeaccount?, subledgercontrolon?)>
 <!ATTLIST update_glaccount
 	glaccountno CDATA #REQUIRED
 	set_nulls (true | false) "false"
@@ -99,12 +99,12 @@ revstartdate?, revending?, revmodenew?, revinterval?, reveom?, reverrnotifyemail
 	externalkey (true | false) "false"
 >
 <!-- Create Statistical Glaccount -->
-<!ELEMENT create_statglaccount (glaccountno, title, requiredept?, requireloc?, requireproject?, requiretask?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, customfields?, category?, status?)>
+<!ELEMENT create_statglaccount (glaccountno, title, requiredept?, requireloc?, requireproject?, requiretask?, requirecosttype?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, customfields?, category?, status?)>
 <!ATTLIST create_statglaccount
 	ignoreduplicates (true | false) "false"
 >
 <!-- Update Glaccount -->
-<!ELEMENT update_statglaccount (title?, requiredept?, requireloc?, requireproject?, requiretask?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, customfields?, category?, status?)>
+<!ELEMENT update_statglaccount (title?, requiredept?, requireloc?, requireproject?, requiretask?, requirecosttype?, requirecustomer?, requirevendor?, requireitem?, requireemployee?, requireclass?, requirecontract?, requirewarehouse?, customfields?, category?, status?)>
 <!ATTLIST update_statglaccount
 	glaccountno CDATA #REQUIRED
 	set_nulls (true | false) "false"
@@ -141,7 +141,7 @@ revstartdate?, revending?, revmodenew?, revinterval?, reveom?, reverrnotifyemail
 
 <!-- convert_glbudget_fp_amounts_to_eop -->
 <!ELEMENT convert_glbudget_fp_amounts_to_eop (budgetid, glaccountno, departmentid?, locationid?,
-projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, convertfromperiod?)>
+		(projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, convertfromperiod?)>
 
 <!-- NEW For Atlas Consolidation APIs -->
 <!ELEMENT create_consolidation (bookid, offline?, updatesucceedingperiods?, changesonly?, email?, reportingperiodname, entities?)>

@@ -1,5 +1,6 @@
 <!--
-Copyright 2019 Sage Intacct, Inc.
+Copyright 2024 Sage Intacct, Inc.
+
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -58,6 +59,7 @@ permissions and limitations under the License.
 <!ENTITY % STRING_400 "(#PCDATA)">
 <!ENTITY % STRING_500 "(#PCDATA)">
 <!ENTITY % STRING_1000 "(#PCDATA)">
+<!ENTITY % STRING_2000 "(#PCDATA)">
 <!ENTITY % STRING_4000 "(#PCDATA)">
 <!ENTITY % STRING_100000 "(#PCDATA)">
 <!ENTITY % BOOLEAN "(#PCDATA)">
@@ -158,7 +160,7 @@ permissions and limitations under the License.
 <!-- ENUMS: "vendor", "bill", "vendorpref" -->
 <!-- Optional contact fields -->
 <!ENTITY % CONTACT_OPTIONAL_FIELDS " companyname?, taxable?, taxgroup?, prefix?, firstname?, lastname?, initial?, phone1?, phone2?,
-    cellphone?, pager?, fax?, email1?, email2?, url1?, url2?, status?, mailaddress?, taxid?">
+    cellphone?, pager?, fax?, email1?, email2?, url1?, url2?, status?, mailaddress?, taxid?, taxsolutionid?, taxschedule?">
 <!-- Contact Fields -->
 <!ENTITY % CONTACT_FIELDS "(contactname, printas, %CONTACT_OPTIONAL_FIELDS;)">
 <!-- Entire list of XML Gateway Business Functions -->
@@ -180,7 +182,7 @@ permissions and limitations under the License.
     update_contact | update_customer | update_customervisibility | update_department | update_invoice | update_bill | update_apadjustment | update_aradjustment |
     update_employee | update_expensereport | update_expensetype | update_glaccount | update_statglaccount | 
 	update_journal | update_location | update_vendor | update_vendorvisibility | create_paymentrequest | reclassify_bill | reclassify_invoice |
-	delete_paymentrequest | create_appayment | approve_appaymentrequest | send_appaymentrequest | confirm_appaymentrequest | void_appaymentrequest |
+	delete_paymentrequest | create_appayment | approve_appaymentrequest | decline_appaymentrequest | send_appaymentrequest | confirm_appaymentrequest | void_appaymentrequest |
 	create_reimbursementrequest |
 	create_stkittransaction | create_ictransaction | update_ictransaction |  create_sotransaction | update_sotransaction | create_recursotransaction | delete_recursotransaction |
 	create_potransaction | update_potransaction | partialupdate_potransaction | get_salestotals | get_icitemtotals |record_cctransaction | record_wucctransactions |
@@ -206,7 +208,7 @@ permissions and limitations under the License.
 	create_employeerate | update_employeerate | delete_employeerate | create_achbankconfiguration | delete_achbankconfiguration | 
     update_achbankconfiguration | create_vendorentityaccountno | create_consolidation | convert_glbudget_fp_amounts_to_eop |
     create_expensepaymenttype | update_expensepaymenttype | delete_expensepaymenttype |
-    getUserPermissions | generate_projectinvoices ) ">
+    getUserPermissions | generate_projectinvoices | update_projectglgroupaccounts) ">
 
 <!ENTITY % LIST_OBJECTS "accountgroup | adjjournal | statjournal | apaccountlabel | apadjustment | apadjustmentbatch | appayment | apterm | project | class |
     araccountlabel | aradjustment | aradjustmentbatch | arpayment | arpaymentbatch | arterm | artransactiondef | bankaccount | 
@@ -221,7 +223,7 @@ permissions and limitations under the License.
 	taxschedulemap | smarteventlog | appaymentrequest | icitemtotals | 
 	itemtotal | timesheet | task | projecttype | projectstatus | timetype |
 	allocation | cctransaction | revrecchangelog | vsoeallocation | expenseadjustmentreport | earningtype | employeerate |
-	achbankconfiguration | vendorentityaccount | vendorpref | employeepref">
+	achbankconfiguration | vendorentityaccount | vendorpref | employeepref | costtype">
 
 <!ENTITY % GET_OBJECTS "accountgroup | apaccountlabel | apterm | araccountlabel | arterm | bankaccount | bill | contact | project | class |
 customer | customervisibility | customerachinfo | customerchargecard | customerbankaccount | department | employee | expensetypes | 
@@ -229,7 +231,7 @@ glaccount | statglaccount | icitem | stkittransaction | ictransaction | invoice 
 potransaction | pricelistitem | productline | recurbill | recurinvoice | renewalmacro | reportingperiod | 
 revrecschedule | revrecscheduleentry | sopricelist | sotransaction | otherreceipts | recursotransaction | recurringgltransaction | recurringstatgltrans |
 subscription | territory | vendor | vendorvisibility | warehouse  | taxdetail | taxschedule | taxscheduledetail | taxschedulemap | appaymentrequest | timesheet | task | projecttype | projectstatus | timetype | allocation | cctransaction | vsoeallocation |
-earningtype | employeerate | achbankconfiguration ">
+earningtype | employeerate | achbankconfiguration | costtype">
 <!ENTITY % LIST_RESULTS "trialbalance | accountgroupdetail | sessioninfo | client | companypref | application | closedbooksdate | araging | icitemtotals | itemtotal | permissions">
 <!-- <!ENTITY % LIST_APPLICATIONS "AP | AR | CO | GL | SO | INV | PO | EE "> -->
 <!-- COMMON OBJECT DEFINITIONS -->
@@ -268,7 +270,11 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT branchid %STRING_12;>
 <!ELEMENT budgetdefault %BOOLEAN;>
 <!ELEMENT budgetid %STRING_40;>
-<!ELEMENT budgetable %BOOLEAN;> 
+<!ELEMENT contentselection %STRING_40;>
+<!ELEMENT showperiodbalancedetail %BOOLEAN;>
+<!ELEMENT budgetcomparison %STRING_40;>
+<!ELEMENT debitcreditbalance %BOOLEAN;>	
+<!ELEMENT budgetable %BOOLEAN;>
 <!ELEMENT category %STRING_80;>
 <!ELEMENT city %STRING_80;>
 <!ELEMENT cellphone %PHONENO;>
@@ -288,7 +294,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT moduleprefs (modulepref+)>
 <!ELEMENT modulepref (application, preference, prefvalue)>
 <!ELEMENT companytype %ENUM_COMPANYTYPE;>
-<!ELEMENT contact (contactname, printas,taxable?, companyname?, taxgroup?, prefix?, firstname?, lastname?, initial?, phone1?, phone2?, cellphone?, pager?, fax?, email1?, email2?, url1?, url2?, status?, mailaddress?, taxid?)>
+<!ELEMENT contact (contactname, printas,taxable?, companyname?, taxgroup?, prefix?, firstname?, lastname?, initial?, phone1?, phone2?, cellphone?, pager?, fax?, email1?, email2?, url1?, url2?, status?, mailaddress?, taxid?, taxsolutionid?, taxschedule?)>
 <!ELEMENT contactlist (contactitem+)>
 <!ELEMENT contactinfo (contact | contactname)>
 <!ELEMENT contactitem (category, contactname)>
@@ -349,7 +355,9 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT discountpercent %NUMBER_2_2;>
 <!ELEMENT discounttoapply %MONEY;>
 <!ELEMENT discsurchargememo %STRING_4000;>
-<!ELEMENT dropship %BOOLEAN;> 
+<!ELEMENT dropship %BOOLEAN;>
+<!ELEMENT buytoorder %BOOLEAN;>
+<!ELEMENT btoshiptocontactname %STRING_100;>
 <!ELEMENT document %STRING_30;>
 <!ELEMENT documentno %STRING_20;>
 <!ELEMENT origdocdate %DATE;>
@@ -584,7 +592,9 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT userDefinedDimensions (userDefinedDimension+)>
 <!ELEMENT contractid_subs %STRING_30;>
 <!ELEMENT warehouseid_subs %STRING_30;>
+<!ELEMENT assetid_subs %STRING_30;>
 <!ELEMENT taskid_subs %STRING_30;>
+<!ELEMENT costtypeid_subs %STRING_30;>
 <!ELEMENT objectName %STRING_30;>
 <!ELEMENT recordId %STRING_30;>
 <!ELEMENT recordName %STRING_30;>
@@ -596,6 +606,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT requireloc %BOOLEAN;>
 <!ELEMENT requireproject %BOOLEAN;>
 <!ELEMENT requiretask %BOOLEAN;>
+<!ELEMENT requirecosttype %BOOLEAN;>
 <!ELEMENT requirecustomer %BOOLEAN;>
 <!ELEMENT requirevendor %BOOLEAN;>
 <!ELEMENT requireemployee %BOOLEAN;>
@@ -676,6 +687,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT undepfundsacct %STRING_24;>
 <!ELEMENT uniqueid %BOOLEAN;>
 <!ELEMENT includewhitespace %BOOLEAN;> <!-- includewhitespace default="true" -->
+<!ELEMENT showadditionalerrorinfo %BOOLEAN;>
 <!ELEMENT nogl %BOOLEAN;>
 <!ELEMENT unit %STRING_30;>
 <!ELEMENT url %STRING_256;>
@@ -693,6 +705,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT form1099box %STRING_4;>
 <!ELEMENT vendtype %STRING_80;>
 <!ELEMENT warehouseid %STRING_40;>
+<!ELEMENT assetid %STRING_40;>
 <!ELEMENT webpage %STRING_256;>
 <!ELEMENT whencreated %DATE;>
 <!ELEMENT whenlastsold %DATE;>
@@ -712,6 +725,11 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT postactualcost %BOOLEAN;>
 <!ELEMENT offsetaccountno %STRING_24;>
 <!ELEMENT contraaccountno %STRING_24;>
+<!ELEMENT itemaliasid %STRING_50;>
+<!ELEMENT emppositionid %STRING_20;>
+<!ELEMENT laborclassid %STRING_20;>
+<!ELEMENT laborshiftid %STRING_20;>
+<!ELEMENT laborunionid %STRING_20;>
 
 <!-- ITEM ELEMENTS -->
 <!ELEMENT allow_backorder %BOOLEAN;>
@@ -723,7 +741,8 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT extended_description %STRING_400;> 
 <!ELEMENT glgroup %STRING_80;>
 <!ELEMENT inventory_precision %INTEGER;> 
-<!ELEMENT itemtype %STRING_30;> 
+<!ELEMENT itemtype %STRING_30;>
+<!ELEMENT enablefulfillment %BOOLEAN;>
 <!ELEMENT enable_bins %BOOLEAN;>
 <!ELEMENT producttype %STRING_20;>  
 <!ELEMENT purchase_unit %STRING_30;> 
@@ -739,6 +758,54 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT taxcode %STRING_30;>
 <!ELEMENT mrccode %STRING_20;>
 <!ELEMENT retailprice %MONEY;>
+<!ELEMENT autoprintlabel %BOOLEAN;>
+<!ELEMENT weightuom %STRING_50;>
+<!ELEMENT netweight %NUMBER_12_4;>
+<!ELEMENT lwhuom %STRING_50;>
+<!ELEMENT width %NUMBER_12_4;>
+<!ELEMENT length %NUMBER_12_4;>
+<!ELEMENT height %NUMBER_12_4;>
+<!ELEMENT thicknessuom %STRING_50;>
+<!ELEMENT thickness %NUMBER_12_4;>
+<!ELEMENT minimumthickness %NUMBER_12_4;>
+<!ELEMENT maximumthickness %NUMBER_12_4;>
+<!ELEMENT areauom %STRING_50;>
+<!ELEMENT area %NUMBER_12_4;>
+<!ELEMENT volumeuom %STRING_50;>
+<!ELEMENT volume %NUMBER_12_4;>
+<!ELEMENT diameteruom %STRING_50;>
+<!ELEMENT innerdiameter %NUMBER_12_4;>
+<!ELEMENT outerdiameter %NUMBER_12_4;>
+<!ELEMENT durometer %STRING_10;>
+<!ELEMENT densityuom %STRING_50;>
+<!ELEMENT density %NUMBER_12_4;>
+<!ELEMENT upc12 %INTEGER;>
+<!ELEMENT ean13 %INTEGER;>
+<!ELEMENT safetyitem %BOOLEAN;>
+<!ELEMENT restricteditem %BOOLEAN;>
+<!ELEMENT compliantitem %BOOLEAN;>
+<!ELEMENT condition %STRING_30;>
+<!ELEMENT engineeringalert %STRING_30;>
+<!ELEMENT specification1 %STRING_30;>
+<!ELEMENT specification2 %STRING_30;>
+<!ELEMENT specification3 %STRING_30;>
+<!ELEMENT engineeringapproval %BOOLEAN;>
+<!ELEMENT qualitycontrolapproval %BOOLEAN;>
+<!ELEMENT salesapproval %BOOLEAN;>
+<!ELEMENT primarycountryoforigin %STRING_30;>
+<!ELEMENT brand %STRING_30;>
+<!ELEMENT subbrand %STRING_30;>
+<!ELEMENT subcategory %STRING_30;>
+<!ELEMENT catalogref %STRING_30;>
+<!ELEMENT color %STRING_30;>
+<!ELEMENT style %STRING_30;>
+<!ELEMENT size1 %STRING_30;>
+<!ELEMENT size2 %STRING_30;>
+<!ELEMENT giftcard %BOOLEAN;>
+<!ELEMENT webenabled %BOOLEAN;>
+<!ELEMENT webname %STRING_30;>
+<!ELEMENT webshortdesc %STRING_1000;>
+<!ELEMENT weblongdesc %STRING_2000;>
 
 <!ELEMENT hasstartenddates %BOOLEAN;>
 <!ELEMENT term_period %STRING_1;> 
@@ -869,6 +936,12 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT contractid %STRING_100;>
 <!ELEMENT contractdesc %STRING_100;>
 <!ELEMENT supdocid %STRING_100;>
+<!ELEMENT retainagepercentage %NUMBER_3_2;>
+<!ELEMENT taxscheduleid %STRING_100;>
+<!ELEMENT sourcedocid %STRING_100;>
+<!ELEMENT sourcedoclineid %STRING_100;>
+<!ELEMENT amountretained %MONEY;>
+<!ELEMENT trx_amountretained %MONEY;>
 <!ELEMENT paytocontactname %STRING_100;>
 <!ELEMENT returntocontactname %STRING_100;>
 <!ELEMENT billtocontactname %STRING_100;>
@@ -1032,6 +1105,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!-- Elements for TASK -->
 <!ELEMENT taskname %STRING_200;>
 <!ELEMENT taskid %STRING_20;>
+<!ELEMENT costtypeid %STRING_20;>
 <!ELEMENT pbegindate %DATE;>
 <!ELEMENT penddate %DATE;>
 <!ELEMENT taskdescription %STRING_1000;>
@@ -1051,7 +1125,7 @@ earningtype | employeerate | achbankconfiguration ">
 <!-- Elements for TIMESHEET -->
 <!ELEMENT timesheetdescription %STRING_200;>
 <!ELEMENT timesheetitems (timesheetitem+)>
-<!ELEMENT timesheetitem (lineno?, customerid?, itemid?, (projectid, taskid?)?, taskname?, timetype?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, contractid?, warehouseid?, clznamount?, extbillrate?, extcostrate?, customfields?)>
+<!ELEMENT timesheetitem (lineno?, customerid?, itemid?, (projectid, (taskid, costtypeid?)?)?, taskname?, timetype?, emppositionid?, laborclassid?, laborshiftid?, laborunionid?, billable?, locationid?, departmentid?, entrydate, qty, timesheetentrydescription?, notes?, vendorid?, classid?, contractid?, warehouseid?, clznamount?, extbillrate?, extcostrate?,extamount?, extemployertaxes?, extfringes?, extcashfringes?, customfields?)>
 <!ELEMENT timetype %STRING_80;>
 <!ELEMENT entrydate %DATE;>
 <!ELEMENT qty %NUMBER_2;>
@@ -1060,6 +1134,10 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT clznamount %NUMBER_38_2;>
 <!ELEMENT extcostrate %NUMBER_38_2;>
 <!ELEMENT extbillrate %NUMBER_38_2;>
+<!ELEMENT extamount %NUMBER_38_2;>
+<!ELEMENT extemployertaxes %NUMBER_38_2;>
+<!ELEMENT extfringes %NUMBER_38_2;>
+<!ELEMENT extcashfringes %NUMBER_38_2;>
 
 <!-- Elements for ALLOCATIONS -->
 <!ELEMENT allocationid %STRING_50;>
@@ -1190,6 +1268,9 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT grossamount %NUMBER_38_2;>
 <!ELEMENT sourcelinekey %INTEGER;>
 
+<!-- Elements for overriding taxes-->
+<!ELEMENT overridedetailid %STRING_100;>
+
 <!-- Elements for expensetype and unitrate-->
 <!ELEMENT unitcurrency %STRING_3;>
 <!ELEMENT rate %NUMBER_10_4;>
@@ -1206,3 +1287,112 @@ earningtype | employeerate | achbankconfiguration ">
 <!ELEMENT todate %DATE;>
 <!ELEMENT fromitemid %STRING_30;>
 <!ELEMENT toitemid %STRING_30;>
+<!ELEMENT includereversals %BOOLEAN;>
+
+<!-- Elements for shipping Date in OE and PO-->
+<!ELEMENT cancelafterdate %DATE;>
+<!ELEMENT donotshipafterdate %DATE;>
+<!ELEMENT donotshipbeforedate %DATE;>
+<!ELEMENT needbydate %DATE;>
+<!ELEMENT servicedeliverydate %DATE;>
+<!ELEMENT promiseddate %DATE;>
+<!ELEMENT contractstartdate %DATE;>
+<!ELEMENT contractenddate %DATE;>
+<!ELEMENT customerponumber %STRING_100;>
+<!ELEMENT trackingnumber %STRING_4000;>
+<!-- Elements for shipping Date in OE and PO line items-->
+<!ELEMENT shipby %DATE;>
+<!ELEMENT datepickticketprinted %DATE;>
+<!ELEMENT dateconfirmed %DATE;>
+<!ELEMENT dateshiptosupplier %DATE;>
+<!ELEMENT adjdocentrykey %INTEGER;>
+<!ELEMENT relateddockey %KEY;>
+<!ELEMENT relateddoclinekey %KEY;>
+<!ELEMENT conversiontype %KEY;>
+<!-- Additional information fields in PO and SO -->
+<!ELEMENT scope %STRING_4000;>
+<!ELEMENT inclusions %STRING_4000;>
+<!ELEMENT exclusions %STRING_4000;>
+<!ELEMENT terms %STRING_4000;>
+<!ELEMENT schedulestartdate %DATE;>
+<!ELEMENT actualcompletiondate %DATE;>
+<!ELEMENT actualstartdate %DATE;>
+<!ELEMENT scheduledcompletiondate %DATE;>
+<!ELEMENT revisedcompletiondate %DATE;>
+<!ELEMENT substantialcompletiondate %DATE;>
+<!ELEMENT noticetoproceed %DATE;>
+<!ELEMENT responsedue %DATE;>
+<!ELEMENT executedon %DATE;>
+<!ELEMENT scheduleimpact %STRING_100;>
+<!ELEMENT internalrefno %STRING_100;>
+<!ELEMENT internalinitiatedby %STRING_30;>
+<!ELEMENT internalverbalby %STRING_30;>
+<!ELEMENT internalissuedby %STRING_30;>
+<!ELEMENT internalissuedon %DATE;>
+<!ELEMENT internalapprovedby %STRING_30;>
+<!ELEMENT internalapprovedon %DATE;>
+<!ELEMENT internalsignedby %STRING_30;>
+<!ELEMENT internalsignedon %DATE;>
+<!ELEMENT internalsource %STRING_100;>
+<!ELEMENT internalsourcerefno %STRING_100;>
+<!ELEMENT externalrefno %STRING_100;>
+<!ELEMENT externalverbalby %STRING_100;>
+<!ELEMENT externalapprovedby %STRING_100;>
+<!ELEMENT externalapprovedon %DATE;>
+<!ELEMENT externalsignedby %STRING_100;>
+<!ELEMENT externalsignedon %DATE;>
+<!ELEMENT performancebondrequired %BOOLEAN;>
+<!ELEMENT performancebondreceived %BOOLEAN;>
+<!ELEMENT performancebondamount %MONEY;>
+<!ELEMENT performancesuretycompany %STRING_30;>
+<!ELEMENT paymentbondrequired %BOOLEAN;>
+<!ELEMENT paymentbondreceived %BOOLEAN;>
+<!ELEMENT paymentbondamount %MONEY;>
+<!ELEMENT paymentsuretycompany %STRING_30;>
+<!ELEMENT changelognumber %STRING_30;>
+<!-- Elements for shipping Date in OE -->
+<!ELEMENT shipbydate %DATE;>
+<!ELEMENT shippeddate %DATE;>
+<!-- Needed for vat enabled transaction -->
+<!ELEMENT taxsolutionid %STRING_100;>
+<!ELEMENT inclusivetax %BOOLEAN;>
+<!ELEMENT trx_tax %MONEY;>
+<!ELEMENT totaltrxamount %MONEY;>
+<!ELEMENT partialexempt %BOOLEAN;>
+<!ELEMENT paymenttaxcapture %BOOLEAN;>
+<!ELEMENT taxschedule %STRING_100;>
+<!-- Deleting posted change order in OE and PO -->
+<!ELEMENT addedbychange %BOOLEAN;>
+<!-- AIA in OE -->
+<!ELEMENT projectcontractid %STRING_100;>
+<!ELEMENT pcbexternalrefno %STRING_100;>
+<!ELEMENT pcbdescription %STRING_100;>
+<!ELEMENT pcbdate %DATE;>
+<!ELEMENT architect %STRING_100;>
+<!ELEMENT billthroughdate %DATE;>
+<!ELEMENT billapplicationno %STRING_100;>
+<!ELEMENT orgcontractamt  %MONEY;>
+<!ELEMENT retcompletedamt  %MONEY;>
+<!ELEMENT retstoredmaterials  %MONEY;>
+<!ELEMENT lesspriorapplication  %MONEY;>
+<!ELEMENT tcapmaddition  %MONEY;>
+<!ELEMENT tcapmdeduction  %MONEY;>
+<!ELEMENT tcatmaddition  %MONEY;>
+<!ELEMENT tcatmdeduction  %MONEY;>
+<!ELEMENT totalretainageonthisinvoice %MONEY;>
+<!-- AIA in OE Line -->
+<!ELEMENT projectcontractlineid %STRING_100;>
+<!ELEMENT pcblexternalrefno %STRING_100;>
+<!ELEMENT pcbldescription %STRING_100;>
+<!ELEMENT contractlinevalue %MONEY; >
+<!ELEMENT priorapplicationamt  %MONEY;>
+<!ELEMENT completedthisperiod  %MONEY;>
+<!ELEMENT storedmaterials  %MONEY;>
+<!-- retainage balance in OE and OE line -->
+<!ELEMENT previousretainagebalance %MONEY;>
+<!ELEMENT isretainagerelease %BOOLEAN;>
+<!ELEMENT retainagetobill %MONEY;>
+<!ELEMENT retainagereleased %BOOLEAN;>
+
+<!-- REVERSE CONVERSION PRICE PO-->
+<!ELEMENT reverseconversion %BOOLEAN;>
