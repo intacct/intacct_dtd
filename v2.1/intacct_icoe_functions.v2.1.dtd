@@ -1,5 +1,6 @@
+
 <!--
-Copyright 2019 Sage Intacct, Inc.
+Copyright 2024 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -14,10 +15,17 @@ permissions and limitations under the License.
 -->
 <!ELEMENT create_stkittransaction (transactiontype, datecreated, createdfrom?, documentno?, referenceno?, message?, externalid?,  customfields?,stkittransitems?)>
 <!ELEMENT create_ictransaction (transactiontype, datecreated, createdfrom?, documentno?, referenceno?, message?, externalid?, basecurr?, customfields?, state?, ictransitems, subtotals?)>
-<!ELEMENT create_potransaction (transactiontype, datecreated, dateposted?, createdfrom?, vendorid, documentno?, referenceno?,vendordocno?, termname?, datedue,
-message?, shippingmethod?, returnto, payto, deliverto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, state?, potransitems, subtotals?)>
-<!ELEMENT create_sotransaction (transactiontype, datecreated, dateposted?, createdfrom?, customerid, documentno?, origdocdate?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? , vsoepricelist?, customfields?, state?, projectid?, sotransitems, subtotals?)>
-<!ELEMENT create_recursotransaction (transactiontype, customerid, referenceno?, termname?, message?, contractid?, contractdesc?, shippingmethod?, shipto?, billto?, externalid?, basecurr?, currency?, exchratetype? , customfields?, recursotransitems, subtotals?, paymethod?, payinfull?, paymentamount?, creditcardtype?, customercreditcardkey?, customerbankaccountkey?, accounttype?, bankaccountid?, glaccountkey?, startdate, ending?, modenew?, interval?, eom?, status?, docstatus?)>
+<!ELEMENT create_potransaction (transactiontype, datecreated, dateposted?, createdfrom?, vendorid, documentno?, referenceno?,vendordocno?, termname?, datedue?,
+message?, shippingmethod?, returnto, payto, deliverto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, state?, projectid?, changelognumber?, needbydate?, donotshipbeforedate?, donotshipafterdate?, promiseddate?, contractstartdate?, contractenddate?, cancelafterdate?,
+		scope?, inclusions?, exclusions?, terms?, schedulestartdate?, actualstartdate?, scheduledcompletiondate?, revisedcompletiondate?, substantialcompletiondate?, actualcompletiondate?, noticetoproceed?, responsedue?, executedon?, scheduleimpact?, internalrefno?, internalinitiatedby?, internalverbalby?,
+		internalissuedby?, internalissuedon?, internalapprovedby?, internalapprovedon?, internalsignedby?, internalsignedon?, internalsource?, internalsourcerefno?, externalrefno?, externalverbalby?, externalapprovedby?, externalapprovedon?, externalsignedby?, externalsignedon?, performancebondrequired?,
+		performancebondreceived?, performancebondamount?, performancesuretycompany?, paymentbondrequired?, paymentbondreceived?, paymentbondamount?, paymentsuretycompany?, taxsolutionid?, potransitems, subtotals?)>
+<!ELEMENT create_sotransaction (transactiontype, datecreated, dateposted?, createdfrom?, customerid, documentno?, origdocdate?, referenceno?, termname?, datedue?, message?, shippingmethod?, shipto?, billto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))? , vsoepricelist?, customfields?, state?, projectid?, changelognumber?, needbydate?, shipbydate?, cancelafterdate?, donotshipbeforedate?, donotshipafterdate?, servicedeliverydate?, trackingnumber?, shippeddate?, customerponumber?,
+		scope?, inclusions?, exclusions?, terms?, schedulestartdate?, actualstartdate?, scheduledcompletiondate?, revisedcompletiondate?, substantialcompletiondate?, actualcompletiondate?, noticetoproceed?, responsedue?, executedon?, scheduleimpact?, internalrefno?, internalinitiatedby?, internalverbalby?,
+		internalissuedby?, internalissuedon?, internalapprovedby?, internalapprovedon?, internalsignedby?, internalsignedon?, internalsource?, internalsourcerefno?, externalrefno?, externalverbalby?, externalapprovedby?, externalapprovedon?, externalsignedby?, externalsignedon?, performancebondrequired?,
+		performancebondreceived?, performancebondamount?, performancesuretycompany?, paymentbondrequired?, paymentbondreceived?, paymentbondamount?, paymentsuretycompany?, taxsolutionid?, projectcontractid?, pcbexternalrefno?, pcbdescription?, pcbdate?, architect?, billthroughdate?, billapplicationno?, orgcontractamt?, retcompletedamt?, retstoredmaterials?, lesspriorapplication?, tcapmaddition?, tcapmdeduction?, tcatmaddition?, tcatmdeduction?, previousretainagebalance?, sotransitems, subtotals?)>
+<!ELEMENT create_recursotransaction (transactiontype, customerid, referenceno?, termname?, message?, contractid?, contractdesc?, customerponumber?, shippingmethod?, shipto?, billto?, externalid?, basecurr?, currency?, exchratetype? , customfields?, taxsolutionid?, recursotransitems, subtotals?, paymethod?, payinfull?, paymentamount?, creditcardtype?, customercreditcardkey?, customerbankaccountkey?, accounttype?, bankaccountid?, glaccountkey?, startdate, ending?, modenew?, interval?, eom?,
+		status?, docstatus?)>
 <!-- Delete a recurring Bill -->
 <!ELEMENT delete_recursotransaction EMPTY>
 <!ATTLIST delete_recursotransaction
@@ -46,14 +54,20 @@ message?, shippingmethod?, returnto, payto, deliverto?, supdocid?, externalid?, 
 	set_nulls (true | false) "false"
 	externalkey (true | false) "false"
 >
-<!ELEMENT update_sotransaction (datecreated?, dateposted?, referenceno?, termname?, datedue?, origdocdate?, message?, shippingmethod?, shipto?, billto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, vsoepricelist?, customfields?, state?, projectid?, updatesotransitems?, updatesubtotals?)>
+<!ELEMENT update_sotransaction (datecreated?, dateposted?, referenceno?, termname?, datedue?, origdocdate?, message?, shippingmethod?, shipto?, billto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, vsoepricelist?, customfields?, state?, projectid?, changelognumber?, needbydate?, shipbydate?, cancelafterdate?, donotshipbeforedate?, donotshipafterdate?, servicedeliverydate?, trackingnumber?, shippeddate?, customerponumber?,
+		scope?, inclusions?, exclusions?, terms?, schedulestartdate?, actualstartdate?, scheduledcompletiondate?, revisedcompletiondate?, substantialcompletiondate?, actualcompletiondate?, noticetoproceed?, responsedue?, executedon?, scheduleimpact?, internalrefno?, internalinitiatedby?, internalverbalby?,
+		internalissuedby?, internalissuedon?, internalapprovedby?, internalapprovedon?, internalsignedby?, internalsignedon?, internalsource?, internalsourcerefno?, externalrefno?, externalverbalby?, externalapprovedby?, externalapprovedon?, externalsignedby?, externalsignedon?, performancebondrequired?,
+		performancebondreceived?, performancebondamount?, performancesuretycompany?, paymentbondrequired?, paymentbondreceived?, paymentbondamount?, paymentsuretycompany?, projectcontractid?, pcbexternalrefno?, pcbdescription?, pcbdate?, architect?, billthroughdate?, billapplicationno?, orgcontractamt?, retcompletedamt?, retstoredmaterials?, lesspriorapplication?, tcapmaddition?, tcapmdeduction?, tcatmaddition?, tcatmdeduction?, previousretainagebalance?,  updatesotransitems?, updatesubtotals?)>
 <!ATTLIST update_sotransaction
 	key CDATA #REQUIRED
 	set_nulls (true | false) "false"
 	externalkey (true | false) "false"
     disablevalidation (true | false) "false"
 >
-<!ELEMENT update_potransaction (datecreated?, dateposted?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, deliverto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, state?, updatepotransitems?, updatesubtotals?)>
+<!ELEMENT update_potransaction (datecreated?, dateposted?, referenceno?, vendordocno?, termname?, datedue?, message?, shippingmethod?, returnto?, payto?, deliverto?, supdocid?, externalid?, (basecurr?, currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, state?, projectid?, changelognumber?, needbydate?, donotshipbeforedate?, donotshipafterdate?, promiseddate?, contractstartdate?, contractenddate?, cancelafterdate?,
+		scope?, inclusions?, exclusions?, terms?, schedulestartdate?, actualstartdate?, scheduledcompletiondate?, revisedcompletiondate?, substantialcompletiondate?, actualcompletiondate?, noticetoproceed?, responsedue?, executedon?, scheduleimpact?, internalrefno?, internalinitiatedby?, internalverbalby?,
+		internalissuedby?, internalissuedon?, internalapprovedby?, internalapprovedon?, internalsignedby?, internalsignedon?, internalsource?, internalsourcerefno?, externalrefno?, externalverbalby?, externalapprovedby?, externalapprovedon?, externalsignedby?, externalsignedon?, performancebondrequired?,
+		performancebondreceived?, performancebondamount?, performancesuretycompany?, paymentbondrequired?, paymentbondreceived?, paymentbondamount?, paymentsuretycompany?, updatepotransitems?, updatesubtotals?)>
 <!ATTLIST update_potransaction
 	key CDATA #REQUIRED
 	set_nulls (true | false) "false"
@@ -66,13 +80,18 @@ message?, shippingmethod?, returnto, payto, deliverto?, supdocid?, externalid?, 
 		externalkey (true | false) "false"
 >
 
-<!ELEMENT create_item (itemid, name, status?, itemtype,enable_bins?,extended_description?, productlineid?, substituteid?,
+<!ELEMENT create_item (itemid, name, status?, itemtype, enablefulfillment?, enable_bins?,extended_description?, productlineid?, substituteid?,
 ship_weight?, datelastsold?, datelastrecvd?, taxable?, cost_method?, standard_cost?, average_cost?, base_price?,
 standard_unit?, purchase_unit?, purchase_unit_factor?, sales_unit?, sales_unit_factor?, default_warehouse?,
 glgroup?, note?, inventory_precision?, purchasing_precision?, sales_precision?, upc?, hasstartenddates?, term_period?, defaultnoofperiods?, computepriceforshortterm?,
 itaxgroup?, revenue_posting?, vendlineitems?, whslineitems?, complineitems?, taxcode?, vsoecategory?, vsoedlvrstatus?, vsoerevdefstatus?, 
-incomeaccount?, invaccount?, expenseaccount?, cogsaccount?, offsetoeglaccount?, offsetpoglaccount?, defrevaccount?, uomgrp?, dropship?,
-cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, customfields?, mrr?)>
+incomeaccount?, invaccount?, expenseaccount?, cogsaccount?, offsetoeglaccount?, offsetpoglaccount?, defrevaccount?, uomgrp?, dropship?, buytoorder?, 
+cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, customfields?, mrr?, autoprintlabel?,
+weightuom?, netweight?, lwhuom?, length?, width?, height?, thicknessuom?, thickness?, minimumthickness?, maximumthickness?,
+areauom?, area?,volumeuom?, volume?, diameteruom?, innerdiameter?, outerdiameter?, durometer?, densityuom?, density?,
+upc12?, ean13?, safetyitem?, restricteditem?, compliantitem?, condition?, engineeringalert?, specification1?, specification2?, specification3?,
+engineeringapproval?, qualitycontrolapproval?, salesapproval?, primarycountryoforigin?, brand?, subbrand?, category?, subcategory?, catalogref?,
+color?, style?, size1?, size2?, giftcard?, webenabled?, webname?, webshortdesc?, weblongdesc?)>
 <!ATTLIST create_item
 	ignoreduplicates (true | false) "false"
 >
@@ -80,11 +99,16 @@ cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?
 <!ATTLIST delete_item
 	itemid CDATA #REQUIRED
 >
-<!ELEMENT update_item (name?, status?, enable_bins?,extended_description?, productlineid?, substituteid?, ship_weight?, taxable?, standard_cost?, base_price?, standard_unit?, purchase_unit?, purchase_unit_factor?, sales_unit?, sales_unit_factor?, default_warehouse?,
+<!ELEMENT update_item (name?, status?, enable_bins?, enablefulfillment?, extended_description?, productlineid?, substituteid?, ship_weight?, taxable?, standard_cost?, base_price?, standard_unit?, purchase_unit?, purchase_unit_factor?, sales_unit?, sales_unit_factor?, default_warehouse?,
 glgroup?, note?, inventory_precision?, purchasing_precision?, sales_precision?, upc?, hasstartenddates?, term_period?, defaultnoofperiods?, computepriceforshortterm?,
 itaxgroup?, revenue_posting?, vendlineitems?, whslineitems?, complineitems?, taxcode?, vsoecategory?, vsoedlvrstatus?, vsoerevdefstatus?, 
-incomeaccount?, invaccount?, expenseaccount?, cogsaccount?, offsetoeglaccount?, offsetpoglaccount?, defrevaccount?, uomgrp?, dropship?,
-cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, customfields?, mrr?)>
+incomeaccount?, invaccount?, expenseaccount?, cogsaccount?, offsetoeglaccount?, offsetpoglaccount?, defrevaccount?, uomgrp?, dropship?, buytoorder?, 
+cnbillingtemplate?, cnrevenuetemplate?,  cnrevenue2template?, cnexpensetemplate?, cnexpense2template?, customfields?, mrr?, autoprintlabel?,
+weightuom?, netweight?, lwhuom?, length?, width?, height?, thicknessuom?, thickness?, minimumthickness?, maximumthickness?,
+areauom?, area?,volumeuom?, volume?, diameteruom?, innerdiameter?, outerdiameter?, durometer?, densityuom?, density?,
+upc12?, ean13?, safetyitem?, restricteditem?, compliantitem?, condition?, engineeringalert?, specification1?, specification2?, specification3?,
+engineeringapproval?, qualitycontrolapproval?, salesapproval?, primarycountryoforigin?, brand?, subbrand?, category?, subcategory?, catalogref?,
+color?, style?, size1?, size2?, giftcard?, webenabled?, webname?, webshortdesc?, weblongdesc?)>
 <!ATTLIST update_item
 	itemid CDATA #REQUIRED
 >
@@ -162,17 +186,17 @@ maximum_quantity?, value?, valuetype?, fixed?, status?)>
 	detailid CDATA #REQUIRED
 >
 <!-- TAX SCHEDULE -->
-<!ELEMENT create_taxschedule (scheduleid, description?, taxtype, status?)> 
-<!ELEMENT update_taxschedule (description?, taxtype?, status?)>
+<!ELEMENT create_taxschedule (scheduleid, description?, taxtype, status?, taxsolutionid?)>
+<!ELEMENT update_taxschedule (scheduleid?, description?, taxtype?, status?, taxsolutionid?)>
 <!ATTLIST update_taxschedule
-	scheduleid CDATA #REQUIRED
+    recordno CDATA #REQUIRED
 >
 <!ELEMENT delete_taxschedule EMPTY>
 <!ATTLIST delete_taxschedule
-	scheduleid CDATA #REQUIRED
+    recordno CDATA #REQUIRED
 >
 <!-- TAX SCHEDULE DETAILS -->
-<!ELEMENT create_taxscheduledetail (scheduleid, detailid)>
+<!ELEMENT create_taxscheduledetail (scheduleid, taxsolutionid?, detailid)>
 <!ELEMENT delete_taxscheduledetail EMPTY>
 <!ATTLIST delete_taxscheduledetail
 	recordno CDATA #REQUIRED
@@ -190,7 +214,7 @@ maximum_quantity?, value?, valuetype?, fixed?, status?)>
 	name CDATA #REQUIRED
 >
 <!-- TAX SCHEDULE MAPS -->
-<!ELEMENT create_taxschedulemap (documenttype?, (itemtaxgroup | accountgroup), taxgroup, scheduleid, module?)>
+<!ELEMENT create_taxschedulemap (documenttype?, (itemtaxgroup | accountgroup), taxgroup, scheduleid, taxsolutionid?, module?)>
 <!ELEMENT delete_taxschedulemap EMPTY>
 <!ATTLIST delete_taxschedulemap
 	recordno CDATA #REQUIRED

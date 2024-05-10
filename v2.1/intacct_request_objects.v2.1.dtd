@@ -1,5 +1,5 @@
 <!--
-Copyright 2019 Sage Intacct, Inc.
+Copyright 2024 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -19,38 +19,45 @@ permissions and limitations under the License.
 <!ELEMENT check (bankaccountid, checkno?)>
 <!ELEMENT creditcard (creditcardid)>
 <!ELEMENT eft (documentno)>
-<!ELEMENT expense ((expensetype | glaccountno), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, form1099type?, form1099box?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?)>
+<!ELEMENT expense ((expensetype | glaccountno), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, form1099type?, form1099box?, paidfor?, locationid?, departmentid?, customfields?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?, totaltrxamount?, taxentries?)>
 <!ELEMENT expenses (expense+)>
-<!ELEMENT glentry (trtype, amount, glaccountno, document?, datecreated?, memo?, locationid?, departmentid?, customerid?, vendorid?, employeeid?, projectid?, itemid?, classid?, contractid?, warehouseid?, customfields?, recon_date?, (currency, ((exchratedate?, exchratetype) | exchrate))?)>
+<!ELEMENT glentry (trtype, amount, glaccountno, document?, datecreated?, memo?, locationid?, departmentid?, customerid?, vendorid?, employeeid?, (projectid, (taskid, costtypeid?)?)?, itemid?, classid?, contractid?, warehouseid?, customfields?, recon_date?, (currency, ((exchratedate?, exchratetype) | exchrate))?)>
 <!ELEMENT gltransaction (journalid, datecreated, description, sourceentity?, gltransactionentries)>
 <!ELEMENT gltransactionentries (glentry, glentry, glentry*)>
 <!ELEMENT statgltransactionentries (glentry+)>
 <!ELEMENT stkittransitems (stkittransitem)>
-<!ELEMENT stkittransitem (itemid, itemdesc?, warehouseid, quantity, unit?, locationid?, departmentid?, customfields?)>
+<!ELEMENT stkittransitem (itemid, itemdesc?, warehouseid, quantity, unit?, locationid?, departmentid?, itemdetails?, customfields?)>
 <!ELEMENT ictransitems (ictransitem+)>
-<!ELEMENT ictransitem (itemid, itemdesc?, warehouseid, quantity, unit?, cost?, sourcelinekey?, locationid?, departmentid?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
+<!ELEMENT ictransitem (itemid, itemdesc?, warehouseid, quantity, unit?, cost?, sourcelinekey?, locationid?, adjdocentrykey?, departmentid?, itemdetails?, customfields?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
 <!ELEMENT invoiceitems (lineitem+)>
-<!ELEMENT lineitem ((accountlabel | glaccountno), offsetglaccountno?, amount, allocationid?, memo?, locationid?, departmentid?, item1099?, form1099type?, form1099box?, key?, totalpaid?, totaldue?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?)>
+<!ELEMENT lineitem ((accountlabel | glaccountno), offsetglaccountno?, amount, allocationid?, memo?, locationid?, departmentid?, item1099?, form1099type?, form1099box?, key?, totalpaid?, totaldue?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, totaltrxamount?, partialexempt?, paymenttaxcapture?, taxentries?)>
+<!ELEMENT taxentries (taxentry+)>
+<!ELEMENT taxentry ( detailid, trx_tax?)>
+
 <!ELEMENT reclassifyitems (reclasslineitem)+>
-<!ELEMENT reclasslineitem ((accountlabel | glaccountno), memo?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?)>
+<!ELEMENT reclasslineitem ((accountlabel | glaccountno), memo?, locationid?, departmentid?, customfields?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?)>
 <!ATTLIST reclasslineitem
 	line_num CDATA #REQUIRED
 >
 <!ELEMENT potransitems (potransitem+)>
-<!ELEMENT potransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, linelevelsimpletaxtype?, price?,  sourcelinekey?, overridetaxamount?,  deliverto?, tax?, locationid?, departmentid?, memo?, itemdetails?, form1099?, form1099type?, form1099box?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?)>
+<!ELEMENT potransitem (itemid, itemaliasid?, itemdesc?, taxable?, warehouseid?, quantity, unit?, linelevelsimpletaxtype?, price?,  sourcelinekey?, overridetaxamount?,  deliverto?, tax?, locationid?, departmentid?, memo?, itemdetails?, form1099?, form1099type?, form1099box?, customfields?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?, needbydate?, donotshipbeforedate?, donotshipafterdate?, promiseddate?, dateconfirmed?, cancelafterdate?, dateshiptosupplier?, allocationid?, retainagepercentage?, amountretained?, trx_amountretained?, relateddockey?, relateddoclinekey?, conversiontype?, partialexempt?, paymenttaxcapture?, reverseconversion?, linesubtotals?, taxscheduleid?, sourcedocid?, sourcedoclineid?)>
 <!ELEMENT sotransitems (sotransitem+)>
-<!ELEMENT sotransitem (bundlenumber?, itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, linelevelsimpletaxtype?, discountpercent?, price?, sourcelinekey?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, fulfillmentstatus?, taskno?, billingtemplate?, dropship?, shipto?)>
+<!ELEMENT sotransitem (bundlenumber?, itemid, itemaliasid?, itemdesc?, taxable?, warehouseid?, quantity, unit?, linelevelsimpletaxtype?, discountpercent?, price?, sourcelinekey?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, classid?, contractid?, fulfillmentstatus?, taskno?, billingtemplate?, dropship?, buytoorder?, btoshiptocontactname?, shipto?, needbydate?, shipby?, donotshipbeforedate?, donotshipafterdate?, datepickticketprinted?, cancelafterdate?, shippeddate?, relateddockey?, relateddoclinekey?, retainagepercentage?, amountretained?, trx_amountretained?, conversiontype?,
+		projectcontractid?, projectcontractlineid?, pcblexternalrefno?, pcbldescription?, contractlinevalue?, priorapplicationamt?, completedthisperiod?, storedmaterials?, previousretainagebalance?, isretainagerelease?, retainagetobill?, paymenttaxcapture?, reverseconversion?, linesubtotals?, taxscheduleid?)>
+
+<!ELEMENT linesubtotals (linesubtotal+)>
+<!ELEMENT linesubtotal ( trx_tax?, overridedetailid)>
 <!ELEMENT recursotransitems (recursotransitem+)>
-<!ELEMENT recursotransitem (itemid, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, status?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, shipto?)>
+<!ELEMENT recursotransitem (itemid, itemaliasid?, itemdesc?, taxable?, warehouseid?, quantity, unit?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, status?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, classid?, contractid?, shipto?)>
 <!ELEMENT itemdetails (itemdetail+)>
-<!ELEMENT itemdetail (componentid?, quantity?, (serialno | lotno)?, aisle?, row?, bin?, itemexpiration?)>
+<!ELEMENT itemdetail (componentid?, quantity?, serialno?, lotno?, aisle?, row?, bin?, itemexpiration?)>
 <!ELEMENT offset (glaccountno | accountlabel)>
 <!ELEMENT online (bankaccountid, notifyemail?)>
 <!ELEMENT personalinfo (contactname | contact)>
 <!ELEMENT updateapadjustmentitems (lineitem | updatelineitem)+>
 <!ELEMENT updatearadjustmentitems (lineitem | updatelineitem)+>
 <!ELEMENT updatebillitems (lineitem | updatelineitem)+>
-<!ELEMENT updateexpense ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, form1099type?, form1099box?, paidfor?, locationid?, departmentid?, customfields?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?)>
+<!ELEMENT updateexpense ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, form1099?, form1099type?, form1099box?, paidfor?, locationid?, departmentid?, customfields?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?, totaltrxamount?, taxentries?)>
 <!ATTLIST updateexpense
 	line_num CDATA #REQUIRED
 >
@@ -60,16 +67,16 @@ permissions and limitations under the License.
 
 <!ELEMENT updateexpenseadjustments (expenseadjustment | updateexpenseadjustment)+>
 
-<!ELEMENT expenseadjustment ((expensetype | glaccountno), amount, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?, customfields?)>
+<!ELEMENT expenseadjustment ((expensetype | glaccountno), amount, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?, customfields?, totaltrxamount?, taxentries?)>
 
-<!ELEMENT updateexpenseadjustment ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?, customfields?)>
+<!ELEMENT updateexpenseadjustment ((expensetype? | glaccountno?), amount?, currency?, trx_amount?, exchratedate?, exchratetype?, exchrate?, expensedate?, memo?, locationid?, departmentid?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, exppmttype?, quantity?, rate?, customfields?, totaltrxamount?, taxentries?)>
 
 <!ATTLIST updateexpenseadjustment
 	line_num CDATA #REQUIRED
 >
 
 <!ELEMENT updateinvoiceitems (lineitem | updatelineitem)+>
-<!ELEMENT updatelineitem ((accountlabel? | glaccountno?), offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, form1099type?, form1099box?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?)>
+<!ELEMENT updatelineitem ((accountlabel? | glaccountno?), offsetglaccountno?, amount?, memo?, locationid?, departmentid?, item1099?, form1099type?, form1099box?, customfields?, revrectemplate?, defrevaccount?, revrecstartdate?, revrecenddate?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, totaltrxamount?, partialexempt?,  paymenttaxcapture?, taxentries?)>
 <!ATTLIST updatelineitem
 	line_num CDATA #REQUIRED
 >
@@ -78,15 +85,15 @@ permissions and limitations under the License.
 <!ELEMENT receipt (paymentdate, payee, receiveddate, paymentmethod, undepglaccountno, refid?, description?, supdocid?, (currency, ((exchratedate?, exchratetype) | exchrate))?, customfields?, receiptitems)>
 <!ELEMENT receiptkeys (receiptkey+)>
 <!ELEMENT subtotals (subtotal+)>
-<!ELEMENT subtotal (description, total, absval?, percentval?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, classid?,itemid?, contractid?, customfields?)>
+<!ELEMENT subtotal (description, total, absval?, percentval?, locationid?, departmentid?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, classid?,itemid?, contractid?, customfields?)>
 <!ELEMENT updatesubtotals (updatesubtotal+)>
-<!ELEMENT updatesubtotal (description, total, absval?, percentval?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, classid?, itemid?, contractid?, customfields?)>
+<!ELEMENT updatesubtotal (description, total, absval?, percentval?, locationid?, departmentid?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, classid?, itemid?, contractid?, customfields?)>
 <!ELEMENT arpaymentitems (arpaymentitem+)>
 <!ELEMENT arpaymentitemdetails (arpaymentitemdetail)>
 <!ELEMENT arpaymentitemdetail (arpaymentlineitemkey, invoicelineitemkey, amount)>
 <!ELEMENT recurbillitems (recurlineitem+)>
 <!ELEMENT recurinvoiceitems (recurlineitem+)>
-<!ELEMENT recurlineitem ((accountlabel | glaccountno), form1099?, amount, memo?, locationid?, departmentid?, projectid?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, customfields?)>
+<!ELEMENT recurlineitem ((accountlabel | glaccountno), form1099?, amount, memo?, locationid?, departmentid?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, itemid?, classid?, contractid?, warehouseid?, billable?, customfields?, taxentries?)>
 <!ELEMENT vendlineitems (vendlineitem+)>
 <!ELEMENT vendlineitem (vendorid,stockno?,leadtime?,econorderqty?)>
 
@@ -101,17 +108,18 @@ permissions and limitations under the License.
 <!ELEMENT onlineachpayment (bankname,accounttype,accountnumber,routingnumber,accountholder,usedefaultaccount?)>
 <!ELEMENT expirydate (exp_month,exp_year)>
 <!ELEMENT updatesotransitems (sotransitem | updatesotransitem)+>
-<!ELEMENT updatesotransitem (bundlenumber?, itemid?, itemdesc?, taxable?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, discountpercent?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, fulfillmentstatus?, taskno?, billingtemplate?, dropship?, shipto?)>
+<!ELEMENT updatesotransitem (bundlenumber?, itemid?, itemaliasid?, itemdesc?, taxable?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, discountpercent?, price?, discsurchargememo?, locationid?, departmentid?, memo?, itemdetails?, customfields?,  revrectemplate?, revrecstartdate?, revrecenddate?, renewalmacro?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, classid?, contractid?, fulfillmentstatus?, taskno?, billingtemplate?, dropship?, btoshiptocontactname?, buytoorder?,  shipto?, needbydate?, shipby?, donotshipbeforedate?, donotshipafterdate?, datepickticketprinted?, cancelafterdate?, shippeddate?, relateddockey?, relateddoclinekey?, retainagepercentage?, amountretained?, trx_amountretained?, conversiontype?,
+		projectcontractid?, projectcontractlineid?, pcblexternalrefno?, pcbldescription?, contractlinevalue?, priorapplicationamt?, completedthisperiod?, storedmaterials?,isretainagerelease?, retainagetobill?, paymenttaxcapture?, reverseconversion?, linesubtotals?, taxscheduleid?)>
 <!ATTLIST updatesotransitem
 	line_num CDATA #REQUIRED
 >
 <!ELEMENT updatepotransitems (potransitem | updatepotransitem)+>
-<!ELEMENT updatepotransitem (itemid?, itemdesc?, taxable?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, price?, deliverto?, locationid?, departmentid?, memo?, itemdetails?, form1099?, form1099type?, form1099box?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?)>
+<!ELEMENT updatepotransitem (itemid?, itemaliasid?, itemdesc?, taxable?, warehouseid?, quantity?, unit?, linelevelsimpletaxtype?, price?, deliverto?, locationid?, departmentid?, memo?, itemdetails?, form1099?, form1099type?, form1099box?, customfields?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, classid?, contractid?, billable?, needbydate?, donotshipbeforedate?, donotshipafterdate?, promiseddate?, dateconfirmed?, cancelafterdate?, dateshiptosupplier?, allocationid?, relateddockey?, relateddoclinekey?, retainagepercentage?, amountretained?, trx_amountretained?, conversiontype?, partialexempt?, paymenttaxcapture?, reverseconversion?, linesubtotals?, taxscheduleid?, sourcedocid?, sourcedoclineid?)>
 <!ATTLIST updatepotransitem
 	line_num CDATA #REQUIRED
 >
 <!ELEMENT updateictransitems (ictransitem | updateictransitem)+>
-<!ELEMENT updateictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, locationid?, departmentid?, itemdetails?, customfields?, projectid?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
+<!ELEMENT updateictransitem (itemid?, itemdesc?, warehouseid?, quantity?, unit?, cost?, locationid?, departmentid?, itemdetails?, customfields?, (projectid, (taskid, costtypeid?)?)?, customerid?, vendorid?, employeeid?, classid?, contractid?)>
 <!ATTLIST updateictransitem
 	line_num CDATA #REQUIRED
 >

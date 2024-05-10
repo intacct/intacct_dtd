@@ -1,5 +1,5 @@
 <!--
-Copyright 2019 Sage Intacct, Inc.
+Copyright 2024 Sage Intacct, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"). You may not
 use this file except in compliance with the License. You may obtain a copy
@@ -23,7 +23,7 @@ permissions and limitations under the License.
 %COMMON_OBJECTS;%REQUEST_OBJECTS;%CO_FUNCTIONS;%GL_FUNCTIONS;%PR_FUNCTIONS;%ICOE_FUNCTIONS;%CM_FUNCTIONS;
 <!-- REQUEST IS THE TOP LEVEL ELEMENT EXPECTED IN XML REQUESTS -->
 <!ELEMENT request (control, operation+)>
-<!ELEMENT control (senderid, password, controlid, uniqueid?, dtdversion?, policyid?, debug?, validate?, includewhitespace?)>
+<!ELEMENT control (senderid, password, controlid, uniqueid?, dtdversion?, policyid?, debug?, validate?, includewhitespace?, showadditionalerrorinfo?)>
 <!ELEMENT operation (authentication, preferences*, content*)>
 <!ATTLIST operation
 	transaction (true | false) "false"
