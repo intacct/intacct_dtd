@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Intacct CustomERP XML Schema v.1.0  
+This schema defines all data types for CustomERP Packages, SmartLinks, Custom Fields and Custom Reports.
+
+Copyright 2024 Intacct Corporation
+All Rights Reserved
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Rendering Types for Smartlinks -->
+	<xs:complexType name="ClickType">
+		<xs:sequence>
+			<xs:element name="condition" type="ConditionType" minOccurs="0"/>
+			<xs:element ref="height"/>
+			<xs:element ref="width"/>
+			<xs:element ref="position" minOccurs="0"/>
+			<xs:element ref="resizeable" minOccurs="0"/>
+			<xs:element ref="showAddressbar" minOccurs="0"/>
+			<xs:element ref="showScrollbar" minOccurs="0"/>
+			<xs:element ref="showToolbar" minOccurs="0"/>
+			<xs:element ref="showMenubar" minOccurs="0"/>
+			<xs:element ref="showStatusbar" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FetchType">
+		<xs:sequence>
+			<xs:element name="condition" type="ConditionType" minOccurs="0"/>
+			<xs:element ref="height"/>
+			<xs:element ref="width"/>
+			<xs:element ref="showScrollbar" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="height" type="xs:string"/>
+	<xs:element name="width" type="xs:string"/>
+	<xs:element name="position" type="xs:string"/>
+	<xs:element name="renderDetails" type="RenderDetailsType"/>
+	<xs:element name="resizeable" type="xs:boolean"/>
+	<xs:element name="showAddressbar" type="xs:boolean"/>
+	<xs:element name="showMenubar" type="xs:boolean"/>
+	<xs:element name="showScrollbar" type="xs:boolean"/>
+	<xs:element name="showStatusbar" type="xs:boolean"/>
+	<xs:element name="showToolbar" type="xs:boolean"/>
+	<xs:complexType name="RenderDetailsType">
+		<xs:choice>
+			<xs:element name="click" type="ClickType"/>
+			<xs:element name="fetch" type="FetchType"/>
+			<xs:element name="workflow" type="WorkflowType"/>
+			<xs:element name="validate" type="ValidateType"/>
+			<xs:element name="calculate" type="CalculateType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="WorkflowType">
+		<xs:all>
+			<xs:element name="action" type="ActionChoiceType"/>
+			<xs:element name="condition" type="ConditionType" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="EmailActionType">
+		<xs:sequence>
+			<xs:element name="subject" type="xs:string"/>
+			<xs:element name="attach" type="xs:boolean"/>
+			<xs:element name="body" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ApiActionType">
+		<xs:all>
+			<xs:element name="body" type="xs:string"/>
+			<xs:element name="synchronousApiAction" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="HttpPostActionType">
+		<xs:sequence>
+			<xs:element name="method" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="post|get"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="arguments" type="ArgumentsType" minOccurs="0"/>
+			<xs:element name="requestTimeout" minOccurs="0" maxOccurs="1" default="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="10"/>
+						<xs:pattern value="\d{1,2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ValidateType">
+		<xs:all>
+			<xs:element name="condition" type="ConditionType"/>
+			<xs:element name="errorMessage" type="xs:string"/>
+			<xs:element name="errorType" default="error" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="error|warning"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:simpleType name="ConditionType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="ActionChoiceType">
+		<xs:choice>
+			<xs:element name="emailAction" type="EmailActionType"/>
+			<xs:element name="httpPostAction" type="HttpPostActionType" nillable="1"/>
+			<xs:element name="logAction"/>
+			<xs:element name="apiAction" type="ApiActionType"/>
+		</xs:choice>
+	</xs:complexType>
+	<!-- Data Descriptions for Custom Fields -->
+	<xs:complexType name="CheckboxType">
+		<xs:sequence>
+			<xs:element ref="checked"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="checked" type="xs:boolean"/>
+	<xs:complexType name="CurrencyType">
+		<xs:sequence>
+			<xs:element ref="leftOfDecimal"/>
+			<xs:element ref="rightOfDecimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="dataDescription">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="checkbox" type="CheckboxType"/>
+				<xs:element name="currency" type="CurrencyType"/>
+				<xs:element name="date" type="DateType"/>
+				<xs:element ref="email"/>
+				<xs:element name="number" type="NumberType"/>
+				<xs:element name="percent" type="PercentType"/>
+				<xs:element name="picklist" type="PicklistType"/>
+				<xs:element name="picklistmulti" type="PicklistmultiType"/>
+				<xs:element name="sequence" type="SequenceType"/>
+				<xs:element name="text" type="TextType"/>
+				<xs:element name="textarea" type="TextareaType"/>
+				<xs:element ref="url"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="DateType">
+		<xs:sequence>
+			<xs:element ref="defaultToday" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="defaultToday" type="xs:boolean"/>
+	<xs:element name="defaultValue" type="xs:string"/>
+	<xs:element name="email" type="xs:string"/>
+	<xs:element name="leftOfDecimal" type="xs:integer"/>
+	<xs:element name="length" type="xs:string"/>
+	<xs:complexType name="NumberType">
+		<xs:sequence>
+			<xs:element ref="leftOfDecimal"/>
+			<xs:element ref="rightOfDecimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PercentType">
+		<xs:sequence>
+			<xs:element ref="leftOfDecimal"/>
+			<xs:element ref="rightOfDecimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PicklistType">
+		<xs:sequence>
+			<xs:element name="pickValues" type="PickValuesType"/>
+			<xs:element ref="defaultValue" minOccurs="0"/>
+			<xs:element ref="sort" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PicklistmultiType">
+		<xs:sequence>
+			<xs:element name="pickValues" type="PickValuesType"/>
+			<xs:element ref="defaultValue" minOccurs="0"/>
+			<xs:element ref="sort" minOccurs="0"/>
+			<xs:element ref="rowCount" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="pickValue" type="xs:string"/>
+	<xs:complexType name="PickValuesType">
+		<xs:sequence>
+			<xs:element ref="pickValue" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="rightOfDecimal" type="integer-or-empty"/>
+	<xs:element name="rowCount" type="xs:string"/>
+	<xs:complexType name="SequenceType">
+		<xs:sequence>
+			<xs:element ref="sequenceId"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="sequenceId" type="xs:string"/>
+	<xs:element name="sort" type="xs:boolean"/>
+	<xs:complexType name="TextType">
+		<xs:sequence>
+			<xs:element ref="length"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TextareaType">
+		<xs:sequence>
+			<xs:element ref="rowCount" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="url">
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="password">
+		<xs:complexType/>
+	</xs:element>
+	<xs:complexType name="DataDescriptionType">
+		<xs:choice>
+			<xs:element name="checkbox" type="CheckboxType"/>
+			<xs:element name="currency" type="CurrencyType"/>
+			<xs:element name="date" type="DateType"/>
+			<xs:element name="number" type="NumberType"/>
+			<xs:element name="percent" type="PercentType"/>
+			<xs:element name="picklistmulti" type="PicklistmultiType"/>
+			<xs:element name="picklist" type="PicklistType"/>
+			<xs:element name="sequence" type="SequenceType"/>
+			<xs:element name="textarea" type="TextareaType"/>
+			<xs:element name="text" type="TextType"/>
+			<xs:element ref="email"/>
+			<xs:element ref="url"/>
+			<xs:element ref="password"/>
+		</xs:choice>
+	</xs:complexType>
+	<!-- Types for CustomERP Package -->
+	<xs:element name="customErpPackages" type="CustomErpPackagesType"/>
+	<xs:element name="customErpPackage" type="CustomErpPackageType"/>
+	<xs:complexType name="CustomErpPackagesType">
+		<xs:annotation>
+			<xs:documentation>List of Custom ERP Packages</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">			
+			<xs:element name="customErpPackage" type="CustomErpPackageType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomErpPackageType">
+		<xs:annotation>
+			<xs:documentation>A collection of Custom Fields, SmartLinks, and Layout information.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="packageDescription" type="PackageDescriptionType"/>
+			<xs:element name="featureKeys" type="FeatureKeysType" minOccurs="0"/>
+			<xs:element name="customFields" type="CustomFieldsType" minOccurs="0"/>
+			<xs:element name="smartLinks" type="SmartLinksType" minOccurs="0"/>
+			<xs:element name="customReports" type="CustomReportsType" minOccurs="0"/>
+			<xs:element name="signature" minOccurs="0"/>
+			<xs:element name="interactiveReports" type="InteractiveReportsType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PackageDescriptionType">
+		<xs:annotation>
+			<xs:documentation>Package Description information</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Name of CustomERP Package</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Describe the feature or business process enabled by this package</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="author" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Person or organization who created the package</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intacctPackageId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>For signed packages, this value is the unique id assigned by Intacct</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="FeatureKeysType">
+		<xs:annotation>
+			<xs:documentation>List of features to enable with this package.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="featureKey" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomFieldsType">
+		<xs:annotation>
+			<xs:documentation>List of Custom Fields</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="customField" type="CustomFieldType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomFieldType">
+		<xs:annotation>
+			<xs:documentation>Custom Field definition</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="customFieldId" type="xs:string"/>
+			<xs:element name="type">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="checkbox|currency|date|email|number|percent|picklist|picklistmulti|sequence|text|textarea|url|password|lookup"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ownerObject" type="ownerObjectType"/>
+			<xs:element name="documentTypes" type="DocTypes" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="documentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="label" type="xs:string" minOccurs="0"/>
+            <xs:element name="customLabels" type="customLabelsType" minOccurs="0"/>
+			<xs:element name="fieldSet" minOccurs="0"/>
+			<xs:element name="page" nillable="1" minOccurs="0"/>
+			<xs:element name="dataDescription" type="DataDescriptionType"/>
+			<xs:element name="required" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+			<xs:element name="hidden" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="active" type="xs:boolean" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:simpleType name="ownerObjectType">
+		<xs:restriction base="xs:string">
+
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SmartLinksType">
+		<xs:annotation>
+			<xs:documentation>List of SmartLinks</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="smartLink" type="SmartLinkType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SmartLinkType">
+		<xs:annotation>
+			<xs:documentation>SmartLink Definition</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="smartLinkId" type="xs:string"/>
+			<xs:element name="type">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="click|fetch|workflow|validate|calculate"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ownerObject" type="ownerObjectType"/>
+			<xs:element name="documentTypes" type="DocTypes" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="documentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="label" type="xs:string" minOccurs="0"/>
+			<xs:element name="fieldSet" minOccurs="0"/>
+			<xs:element name="page" type="xs:string" nillable="1" minOccurs="0"/>
+			<xs:element name="events" type="EventsType" minOccurs="0"/>
+			<xs:element name="target" type="xs:string" minOccurs="0"/>
+			<xs:element name="active" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="renderDetails" type="RenderDetailsType"/>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="CalculateType">
+		<xs:annotation>
+			<xs:documentation>Definition for Smartlink Calculate</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="expression"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EventsType">
+		<xs:annotation>
+			<xs:documentation>List of events</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="event" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocTypes">
+		<xs:annotation>
+			<xs:documentation>List of document types</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="documentType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+    <xs:complexType name="customLabelsType">
+        <xs:annotation>
+            <xs:documentation>List of internationalized labels</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="customLabel" minOccurs="0" maxOccurs="unbounded" type="customLabelType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="customLabelType">
+        <xs:sequence>
+            <xs:element name="locale" type="xs:string"/>
+            <xs:element name="text" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+	<xs:complexType name="ArgumentsType">
+		<xs:annotation>
+			<xs:documentation>List of arguments for HTTP(S) post Workflow action</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="argument" type="ArgumentType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArgumentType">
+		<xs:annotation>
+			<xs:documentation>HTTP post argument definition</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="argument" type="xs:string"/>
+			<xs:element name="value" type="xs:string"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="CustomReportsType">
+		<xs:annotation>
+			<xs:documentation>List of Custom Reports</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="customReport" type="CustomReportType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomReportType">
+		<xs:annotation>
+			<xs:documentation>Custom Report definition</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+			<xs:element name="type" type="reportType"/>
+			<xs:element name="module" type="moduleType"/>
+			<xs:element name="root" type="xs:string"/>
+			<xs:element name="documentType" type="xs:string" minOccurs="0"/>
+			<!-- Enable custom package to install in detail mode -->
+			<xs:element name="showdetails" type="promptOnRunType" minOccurs="0"/>
+			<xs:element name="location_restriction" type="xs:string" minOccurs="0"/>
+			<xs:element name="columns" type="columnsType"/>
+			<xs:element name="calculated_columns" type="calculated_columnsType" minOccurs="0"/>
+			<xs:element name="parameters" type="parametersType" minOccurs="0"/>
+			<xs:element name="filter" type="filterType" minOccurs="0"/>
+			<xs:element name="sortby" type="sortbyType" minOccurs="0"/>
+			<xs:element name="groupby" type="groupbyType" minOccurs="0"/>
+			<xs:element name="summary" type="summaryType" minOccurs="0"/>
+			<xs:element name="menupopup" type="xs:string" minOccurs="0"/>
+			<xs:element name="menutext" type="xs:string" minOccurs="0"/>
+			<xs:element name="menuorder" type="xs:integer" minOccurs="0"/>
+            <xs:element name="active" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="hierarchies" type="hierarchiesType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="graph" type="graphType" minOccurs="0" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="InteractiveReportsType">
+		<xs:annotation>
+			<xs:documentation>List of Interactive Reports</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="interactiveReport" type="InteractiveReportType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InteractiveReportType">
+		<xs:annotation>
+			<xs:documentation>Interactive Report definition</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="name" type="xs:string" minOccurs="0"/>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+			<xs:element name="type" type="interactiveReportType"/>
+			<xs:element name="module" type="moduleType"/>
+			<xs:element name="reportingArea" type="xs:string"/>
+			<xs:element name="crwType" type="xs:string" minOccurs="0"/>
+			<xs:element name="queryDef" type="binaryPackage"/>
+		</xs:all>
+	</xs:complexType>
+    <xs:complexType name="hierarchiesType">
+        <xs:sequence>
+            <xs:element name="hierarchy" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+	<xs:complexType name="columnsType">
+		<xs:sequence>
+			<xs:element name="field" type="fieldType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="calculated_columnsType">
+		<xs:sequence>
+			<xs:element name="calculated_field" type="calculated_fieldType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="calculated_fieldType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="type" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="formula" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="parametersType">
+		<xs:sequence>
+			<xs:element name="field" type="fieldType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="sortbyType">
+		<xs:sequence>
+			<xs:element name="field" type="fieldType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="groupbyType">
+		<xs:sequence>
+			<xs:element name="level" type="levelType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="summaryType">
+		<xs:sequence>
+			<xs:element name="field" type="fieldType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="filterType">
+		<xs:sequence>
+			<xs:element name="expression" type="expressionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="logical" type="logicalType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="expressionType">
+		<xs:sequence>
+			<xs:element name="path" type="xs:string"/>
+			<xs:element name="operator" type="operatorType"/>
+			<xs:element name="value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="logicalType">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="expression" minOccurs="0" maxOccurs="unbounded" type="expressionType"/>
+				<xs:element name="logical" minOccurs="0" maxOccurs="unbounded" type="logicalType"/>
+			</xs:sequence>
+		</xs:choice>
+		<xs:attribute name="logical_operator" type="logicaloperatorType"/>
+	</xs:complexType>
+	<xs:complexType name="fieldType">
+		<xs:sequence>
+			<xs:element name="path" type="xs:string"/>
+			<xs:element name="label" type="xs:string" minOccurs="0"/>
+			<xs:element name="promptOnRun" type="promptOnRunType" minOccurs="0"/>
+			<xs:element name="fieldSet" type="xs:string" minOccurs="0"/>
+			<xs:element name="direction" type="directionType" minOccurs="0"/>
+			<xs:element name="function" type="functionType" minOccurs="0">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="levelType">
+		<xs:sequence>
+			<xs:element name="group" type="groupType"/>
+			<xs:element name="summary" type="summaryType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="promptOnRunType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="Y|N"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="groupType">
+		<xs:sequence>
+			<xs:element name="field" type="fieldType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="reportType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="tabular|summary"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType  name="binaryPackage">
+		<xs:restriction  base="xs:base64Binary" />
+	</xs:simpleType>
+	<xs:simpleType name="interactiveReportType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="crw|crwComponent|dv"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="moduleType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="gl|ap|ar|cm|ee|so|po|inv|pa|cn|cre|saasmt|pay|fa|atlas"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="directionType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="asc|desc"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="functionType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="sum|avg|stddev|variance|count|max|min"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="operatorType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="eq|lt|gt|le|ge|ne|co|nc|sw|ew|in|ex|nu|nn"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="logicaloperatorType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="and|or"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="graphType">
+		<xs:sequence>
+			<xs:element name="graphtype" type="xs:string" />
+			<xs:element name="yaxis" type="xs:string" />
+			<xs:element name="xaxis" type="xs:string" />
+			<xs:element name="graphgrouping" type="xs:string" />
+			<xs:element name="xorient" type="xs:string" />
+			<xs:element name="legend" type="xs:string" />
+			<xs:element name="fontsize" type="xs:string" />
+			<xs:element name="graphsize" type="xs:string" />
+			<xs:element name="width" type="xs:string" />
+			<xs:element name="height" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="empty-string">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="integer-or-empty">
+		<xs:union memberTypes="xs:integer empty-string" />
+	</xs:simpleType>
+</xs:schema>
