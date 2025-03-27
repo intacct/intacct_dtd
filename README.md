@@ -3,7 +3,7 @@
 
 ## ⚠️ Deprecation Notice ⚠️  
 
-As of **Sage Intacct 2025 Release 1** (February 2025), the **REST API** are **Generally Available (GA)**.  
+As of **Sage Intacct 2025 Release 1** (February 2025), the **REST API** is **Generally Available (GA)**.  
 With this, we are **no longer actively developing enhancements** for the DTD and XSD schemas.  
 
 Developers can continue using these schemas, but any future changes, maintenance, and feature development will be **self-managed**.  
