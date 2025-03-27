@@ -1,5 +1,20 @@
 # Sage Intacct Web Services Schemas
 
+
+## ⚠️ Deprecation Notice ⚠️  
+
+As of **Sage Intacct 2025 Release 1** (February 2025), the **REST API** are **Generally Available (GA)**.  
+With this, we are **no longer actively developing enhancements** for the DTD and XSD schemas.  
+
+Developers can continue using these schemas, but any future changes, maintenance, and feature development will be **self-managed**.  
+For new integrations, we strongly recommend using the [REST API](https://developer.sage.com/intacct/docs/).  
+
+For any questions, refer to our [developer support](https://developer.sage.com/intacct/docs/developer-portal/rest-api-faq/).
+
+---
+
+
+
 As XML requests are passed through the Sage Intacct Web Services Gateway, they are parsed and validated against a DTD or XSD.  Depending on the version of the request,
 
 * 2.1 is validated against the DTD files inside the v2.1 folder.
